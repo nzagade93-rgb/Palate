@@ -63,13 +63,13 @@ export const CheckInModal: React.FC<CheckInModalProps> = ({
   return (
     <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 bg-black/85 backdrop-blur-md animate-fade-in overflow-hidden">
       <div 
-        className="w-full max-w-md bg-[#0E1116] border-t sm:border border-neutral-800/60 rounded-t-3xl sm:rounded-3xl shadow-2xl p-5 sm:p-6 space-y-4 animate-slide-up relative"
+        className="w-full max-w-md bg-[#0E1116] border-t sm:border border-[#262C36] rounded-t-3xl sm:rounded-3xl shadow-2xl p-5 sm:p-6 space-y-4 animate-slide-up relative"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button */}
         <button
           onClick={handleResetAndClose}
-          className="absolute top-4 right-4 p-2 rounded-full bg-[#141720] text-neutral-400 hover:text-white transition-colors"
+          className="absolute top-4 right-4 p-2 rounded-full bg-[#161B22] text-slate-400 hover:text-white border border-[#262C36] transition-colors"
           aria-label="Close"
         >
           <X className="w-4 h-4" />
@@ -86,26 +86,26 @@ export const CheckInModal: React.FC<CheckInModalProps> = ({
               <h2 className="text-xl font-black text-white tracking-tight leading-snug">
                 I'm Eating Here Now
               </h2>
-              <div className="flex items-center gap-1.5 text-xs text-neutral-400 font-medium pt-0.5">
+              <div className="flex items-center gap-1.5 text-xs text-slate-400 font-medium pt-0.5">
                 <MapPin className="w-3.5 h-3.5 text-brand-orange shrink-0" />
-                <span className="text-neutral-200 font-semibold">{dish.venueName}</span>
+                <span className="text-slate-200 font-semibold">{dish.venueName}</span>
                 <span>•</span>
                 <span>{dish.venueArea}</span>
               </div>
             </div>
 
             {/* Dish Card Snippet */}
-            <div className="p-3 rounded-2xl bg-[#141720] border border-neutral-800/60 flex items-center gap-3">
+            <div className="p-3 rounded-2xl bg-[#161B22] border border-[#262C36] flex items-center gap-3">
               <img
                 src={dish.imageUrl}
                 alt={dish.name}
-                className="w-14 h-14 rounded-xl object-cover shrink-0 border border-white/10"
+                className="w-14 h-14 rounded-xl object-cover shrink-0 border border-[#262C36]"
               />
               <div className="min-w-0 flex-1">
                 <h4 className="text-sm font-extrabold text-white truncate">{dish.name}</h4>
                 <div className="flex items-center gap-2 mt-0.5 text-xs">
-                  <span className="font-bold text-gray-300">₹{dish.price}</span>
-                  <span className="text-[10px] text-emerald-400 font-semibold bg-emerald-950/70 border border-emerald-800/50 px-2 py-0.2 rounded">
+                  <span className="font-bold text-white">₹{dish.price}</span>
+                  <span className="text-[10px] text-emerald-400 font-semibold bg-emerald-500/15 border border-emerald-500/30 px-2 py-0.5 rounded-full">
                     {dish.scorePercent}% God-Tier
                   </span>
                 </div>
@@ -117,7 +117,7 @@ export const CheckInModal: React.FC<CheckInModalProps> = ({
               <h3 className="text-sm font-extrabold text-white">
                 Did you order this today? What's your verdict?
               </h3>
-              <p className="text-xs text-gray-400 mt-0.5">
+              <p className="text-xs text-slate-400 mt-0.5">
                 Tap once to log your taste memory & unlock your social flex card
               </p>
             </div>
@@ -128,7 +128,7 @@ export const CheckInModal: React.FC<CheckInModalProps> = ({
               <button
                 type="button"
                 onClick={() => handleSubmit('GOD_TIER')}
-                className="group p-4 rounded-2xl bg-gradient-to-b from-emerald-950/70 to-emerald-900/40 hover:from-emerald-900/90 hover:to-emerald-800/60 border-2 border-emerald-500/50 hover:border-emerald-400 shadow-glow-green text-center space-y-1.5 transition-all active:scale-95 flex flex-col items-center justify-center cursor-pointer"
+                className="group p-4 min-h-[96px] rounded-2xl bg-gradient-to-b from-emerald-950/70 to-emerald-900/40 hover:from-emerald-900/90 hover:to-emerald-800/60 border-2 border-emerald-500/50 hover:border-emerald-400 shadow-glow-green text-center space-y-1.5 transition-all active:scale-95 flex flex-col items-center justify-center cursor-pointer"
               >
                 <div className="w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-400 group-hover:scale-110 transition-transform">
                   <ThumbsUp className="w-5 h-5 text-emerald-300 fill-emerald-300/40" />
@@ -141,7 +141,7 @@ export const CheckInModal: React.FC<CheckInModalProps> = ({
               <button
                 type="button"
                 onClick={() => handleSubmit('SKIP')}
-                className="group p-4 rounded-2xl bg-gradient-to-b from-red-950/70 to-red-900/40 hover:from-red-900/90 hover:to-red-800/60 border-2 border-red-500/50 hover:border-red-400 shadow-glow-red text-center space-y-1.5 transition-all active:scale-95 flex flex-col items-center justify-center cursor-pointer"
+                className="group p-4 min-h-[96px] rounded-2xl bg-gradient-to-b from-red-950/70 to-red-900/40 hover:from-red-900/90 hover:to-red-800/60 border-2 border-red-500/50 hover:border-red-400 shadow-glow-red text-center space-y-1.5 transition-all active:scale-95 flex flex-col items-center justify-center cursor-pointer"
               >
                 <div className="w-10 h-10 rounded-full bg-red-500/20 flex items-center justify-center text-red-400 group-hover:scale-110 transition-transform">
                   <ThumbsDown className="w-5 h-5 text-red-300 fill-red-300/40" />
@@ -158,7 +158,7 @@ export const CheckInModal: React.FC<CheckInModalProps> = ({
                 value={note}
                 onChange={(e) => setNote(e.target.value)}
                 placeholder="Add optional flex note (e.g. Extra kadak pav is insane)..."
-                className="w-full text-xs font-medium px-3.5 py-2.5 rounded-xl bg-[#1A1D2A] border border-[#2B3042] text-white placeholder-gray-500 focus:outline-none focus:border-brand-orange transition-all"
+                className="w-full text-xs font-medium px-3.5 py-3 rounded-xl bg-[#161B22] border border-[#262C36] text-white placeholder-slate-500 focus:outline-none focus:border-brand-orange transition-all"
               />
             </div>
           </>
@@ -176,7 +176,7 @@ export const CheckInModal: React.FC<CheckInModalProps> = ({
               <h3 className="text-xl font-black text-white">
                 Checked in at {dish.venueName}!
               </h3>
-              <p className="text-xs text-gray-300 max-w-xs mx-auto">
+              <p className="text-xs text-slate-300 max-w-xs mx-auto">
                 {selectedReaction === 'GOD_TIER' 
                   ? 'Your God-Tier verdict is now saved to your personal taste vault.' 
                   : 'Logged to your avoid list so you never make this mistake again.'}
@@ -192,7 +192,7 @@ export const CheckInModal: React.FC<CheckInModalProps> = ({
                     onOpenShare(dish, latestSavedCheckIn || previousCheckIn);
                   }
                 }}
-                className="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-brand-orange via-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-extrabold text-sm shadow-glow-orange flex items-center justify-center gap-2 active:scale-98 transition-all cursor-pointer"
+                className="w-full min-h-[44px] py-3 px-4 rounded-xl bg-gradient-to-r from-brand-orange via-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-extrabold text-sm shadow-glow-orange flex items-center justify-center gap-2 active:scale-95 transition-transform cursor-pointer"
               >
                 <Share2 className="w-4 h-4 text-white" />
                 <span>Flex to Instagram / WhatsApp Story</span>
@@ -200,7 +200,7 @@ export const CheckInModal: React.FC<CheckInModalProps> = ({
 
               <button
                 onClick={handleResetAndClose}
-                className="w-full py-2.5 text-xs font-semibold text-gray-400 hover:text-white transition-colors cursor-pointer"
+                className="w-full min-h-[44px] flex items-center justify-center py-2.5 text-xs font-semibold text-slate-400 hover:text-white transition-colors cursor-pointer active:scale-95"
               >
                 Done for now
               </button>

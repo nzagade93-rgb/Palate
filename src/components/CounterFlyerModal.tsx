@@ -106,17 +106,17 @@ export const CounterFlyerModal: React.FC<CounterFlyerModalProps> = ({
       `}</style>
 
       {/* Outer Modal Container */}
-      <div className="w-full max-w-md bg-[#0E1116] border border-neutral-800/60 rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[94vh] print:max-h-none print:border-none print:shadow-none print:bg-white">
+      <div className="w-full max-w-md bg-[#0E1116] border border-[#262C36] rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[94vh] print:max-h-none print:border-none print:shadow-none print:bg-white">
         
         {/* Top Control Bar (Hidden on print) */}
-        <div className="no-print p-3.5 border-b border-neutral-800/40 bg-[#141720] flex items-center justify-between gap-3 shrink-0">
+        <div className="no-print p-3.5 border-b border-[#262C36] bg-[#161B22] flex items-center justify-between gap-3 shrink-0">
           <div className="flex items-center gap-2">
             <div className="w-7 h-7 rounded-lg bg-brand-orange/20 border border-brand-orange/40 flex items-center justify-center">
               <Printer className="w-3.5 h-3.5 text-brand-orange" />
             </div>
             <div>
               <h2 className="text-xs font-black text-white">Merchant QR Table-Tent Flyer</h2>
-              <p className="text-[10px] text-neutral-400">A5 Standee Format (148 × 210 mm)</p>
+              <p className="text-[10px] text-slate-400">A5 Standee Format (148 × 210 mm)</p>
             </div>
           </div>
 
@@ -125,7 +125,7 @@ export const CounterFlyerModal: React.FC<CounterFlyerModalProps> = ({
               href="/flyer.html"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-xs font-semibold text-neutral-300 hover:text-white bg-[#0E1116] hover:bg-neutral-800 px-2.5 py-1.5 rounded-xl border border-neutral-800/60 flex items-center gap-1 transition-all"
+              className="text-xs font-semibold text-slate-300 hover:text-white bg-[#0E1116] hover:bg-neutral-800 px-3 py-1.5 rounded-xl border border-[#262C36] flex items-center gap-1 transition-all"
             >
               <span>HTML</span>
               <ExternalLink className="w-3 h-3" />
@@ -133,7 +133,7 @@ export const CounterFlyerModal: React.FC<CounterFlyerModalProps> = ({
 
             <button
               onClick={handlePrint}
-              className="text-xs font-bold text-white bg-gradient-to-r from-brand-orange to-amber-500 hover:from-orange-600 hover:to-amber-600 px-3 py-1.5 rounded-xl shadow-glow-orange flex items-center gap-1.5 transition-all active:scale-95"
+              className="text-xs font-bold text-white bg-gradient-to-r from-brand-orange to-amber-500 hover:from-orange-600 hover:to-amber-600 px-3.5 py-1.5 rounded-xl shadow-glow-orange flex items-center gap-1.5 transition-all active:scale-95"
             >
               <Printer className="w-3.5 h-3.5" />
               <span>Print A5</span>
@@ -141,7 +141,7 @@ export const CounterFlyerModal: React.FC<CounterFlyerModalProps> = ({
 
             <button
               onClick={onClose}
-              className="p-1.5 rounded-xl bg-[#0E1116] hover:bg-neutral-800 text-neutral-400 hover:text-white transition-colors"
+              className="p-1.5 rounded-xl bg-[#0E1116] hover:bg-neutral-800 text-slate-400 hover:text-white border border-[#262C36] transition-colors"
             >
               <X className="w-4 h-4" />
             </button>
@@ -149,13 +149,13 @@ export const CounterFlyerModal: React.FC<CounterFlyerModalProps> = ({
         </div>
 
         {/* Venue Selector (Hidden on print) */}
-        <div className="no-print px-4 py-2 bg-[#0E1116] border-b border-neutral-800/40 flex items-center justify-between gap-3 text-xs">
-          <span className="text-neutral-400 font-semibold shrink-0">Select Venue:</span>
+        <div className="no-print px-4 py-2.5 bg-[#0E1116] border-b border-[#262C36] flex items-center justify-between gap-3 text-xs">
+          <span className="text-slate-400 font-semibold shrink-0">Select Venue:</span>
           <div className="relative flex-1 max-w-xs">
             <select
               value={selectedVenueId}
               onChange={(e) => setSelectedVenueId(e.target.value)}
-              className="w-full bg-[#141720] text-white border border-neutral-800/70 rounded-xl px-3 py-1.5 pr-7 text-xs font-medium focus:outline-none focus:border-brand-orange cursor-pointer appearance-none"
+              className="w-full bg-[#161B22] text-white border border-[#262C36] rounded-xl px-3 py-1.5 pr-7 text-xs font-medium focus:outline-none focus:border-brand-orange cursor-pointer appearance-none"
             >
               {Object.values(VENUES).map((v) => (
                 <option key={v.id} value={v.id}>
@@ -252,13 +252,13 @@ export const CounterFlyerModal: React.FC<CounterFlyerModalProps> = ({
 
               {/* Spacious Horizontal Comparison: Must-Order & Skip */}
               <div className="grid grid-cols-2 gap-3 text-left pt-1">
-                {/* 🟢 Must-Order Horizontal Box */}
-                <div className="p-3 rounded-xl bg-white/70 border border-emerald-400/80 shadow-xs space-y-1">
-                  <div className="flex items-center gap-1 text-[10px] font-black text-emerald-800 uppercase tracking-wide">
-                    <CheckCircle2 className="w-3 h-3 text-emerald-600 shrink-0" />
+                {/* 🟢 Must-Order Horizontal Box with Pastel Badge */}
+                <div className="p-3.5 sm:p-4 rounded-xl bg-white/90 border border-emerald-300/80 shadow-xs space-y-1.5">
+                  <div className="inline-flex items-center gap-1 text-[10px] font-black text-emerald-800 uppercase tracking-wide bg-emerald-100/90 px-2 py-0.5 rounded-full border border-emerald-300">
+                    <CheckCircle2 className="w-3 h-3 text-emerald-700 shrink-0" />
                     <span>🟢 Must-Order</span>
                   </div>
-                  <div className="text-xs font-extrabold text-neutral-900 line-clamp-1">
+                  <div className="text-xs font-black text-neutral-900 line-clamp-1">
                     {topDish?.name || 'Signature Special'}
                   </div>
                   <div className="text-[10px] text-neutral-600 font-medium line-clamp-2 leading-relaxed">
@@ -266,13 +266,13 @@ export const CounterFlyerModal: React.FC<CounterFlyerModalProps> = ({
                   </div>
                 </div>
 
-                {/* 🔴 Skip Item Horizontal Box */}
-                <div className="p-3 rounded-xl bg-white/70 border border-red-300 shadow-xs space-y-1">
-                  <div className="flex items-center gap-1 text-[10px] font-black text-red-800 uppercase tracking-wide">
-                    <AlertTriangle className="w-3 h-3 text-red-600 shrink-0" />
+                {/* 🔴 Skip Item Horizontal Box with Pastel Badge */}
+                <div className="p-3.5 sm:p-4 rounded-xl bg-white/90 border border-rose-300/80 shadow-xs space-y-1.5">
+                  <div className="inline-flex items-center gap-1 text-[10px] font-black text-rose-800 uppercase tracking-wide bg-rose-100/90 px-2 py-0.5 rounded-full border border-rose-300">
+                    <AlertTriangle className="w-3 h-3 text-rose-700 shrink-0" />
                     <span>🔴 Skip This</span>
                   </div>
-                  <div className="text-xs font-extrabold text-neutral-900 line-clamp-1">
+                  <div className="text-xs font-black text-neutral-900 line-clamp-1">
                     {skipDish?.name || 'Generic Side Dishes'}
                   </div>
                   <div className="text-[10px] text-neutral-600 font-medium line-clamp-2 leading-relaxed">
@@ -282,7 +282,7 @@ export const CounterFlyerModal: React.FC<CounterFlyerModalProps> = ({
               </div>
 
               {/* Refined Counter Diner Perk Banner */}
-              <div className="p-3 rounded-xl bg-[#0E1116] text-white border border-neutral-800 flex items-center gap-3 shadow-md">
+              <div className="p-3 rounded-xl bg-[#0E1116] text-white border border-[#262C36] flex items-center gap-3 shadow-md">
                 <div className="w-7 h-7 rounded-lg bg-[#FF5C1F] flex items-center justify-center shrink-0">
                   <Gift className="w-3.5 h-3.5 text-white" />
                 </div>

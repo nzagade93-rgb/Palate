@@ -61,20 +61,20 @@ export const VerdictSplitCard: React.FC<VerdictSplitCardProps> = ({
   return (
     <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 bg-black/85 backdrop-blur-md animate-fade-in overflow-hidden">
       <div 
-        className="w-full max-w-md max-h-[92vh] sm:max-h-[88vh] bg-[#0E1116] border-t sm:border border-neutral-800/50 rounded-t-3xl sm:rounded-3xl shadow-2xl flex flex-col overflow-hidden animate-slide-up"
+        className="w-full max-w-md max-h-[92vh] sm:max-h-[88vh] bg-[#0E1116] border-t sm:border border-[#262C36] rounded-t-3xl sm:rounded-3xl shadow-2xl flex flex-col overflow-hidden animate-slide-up"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Top Header Bar */}
-        <div className="p-4 sm:p-5 bg-[#0E1116] border-b border-neutral-800/40 shrink-0">
+        <div className="p-4 sm:p-5 bg-[#0E1116] border-b border-[#262C36] shrink-0">
           <div className="flex items-start justify-between gap-3">
             <div>
               <div className="flex items-center gap-1.5 text-[10px] font-bold text-brand-orange uppercase tracking-luxury mb-1">
                 <Flame className="w-3.5 h-3.5" />
                 <span>The Verdict Split-Card</span>
               </div>
-              <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight leading-snug">{venue.name}</h2>
-              <div className="flex items-center gap-2 mt-1.5 text-xs text-neutral-400">
-                <span className="flex items-center gap-1 text-neutral-300">
+              <h2 className="text-xl sm:text-2xl font-black text-white tracking-wide leading-snug">{venue.name}</h2>
+              <div className="flex items-center gap-2 mt-1.5 text-xs text-slate-400">
+                <span className="flex items-center gap-1 text-slate-300">
                   <MapPin className="w-3.5 h-3.5 text-brand-orange" />
                   {venue.area}
                 </span>
@@ -88,7 +88,7 @@ export const VerdictSplitCard: React.FC<VerdictSplitCardProps> = ({
 
             <button
               onClick={onClose}
-              className="p-2 rounded-full bg-[#141720] text-neutral-400 hover:text-white hover:bg-neutral-800 border border-neutral-800/60 transition-colors"
+              className="p-2 rounded-full bg-[#161B22] text-slate-400 hover:text-white hover:bg-neutral-800 border border-[#262C36] transition-colors"
               aria-label="Close card"
             >
               <X className="w-4 h-4" />
@@ -100,7 +100,7 @@ export const VerdictSplitCard: React.FC<VerdictSplitCardProps> = ({
             {venue.vibeTags.map((tag, idx) => (
               <span
                 key={idx}
-                className="text-[10px] font-medium bg-[#141720] text-neutral-300 border border-neutral-800/60 px-2.5 py-0.5 rounded-full"
+                className="text-[10px] font-medium bg-[#161B22] text-slate-300 border border-[#262C36] px-2.5 py-0.5 rounded-full"
               >
                 {tag}
               </span>
@@ -122,7 +122,7 @@ export const VerdictSplitCard: React.FC<VerdictSplitCardProps> = ({
         <div className="p-4 sm:p-5 overflow-y-auto space-y-6 flex-1 overscroll-contain">
           
           {/* Action Banner: Secret Counter Perk */}
-          <div className="relative rounded-2xl overflow-hidden border border-neutral-800/50 bg-[#141720] p-4 shadow-lg">
+          <div className="relative rounded-2xl overflow-hidden border border-[#262C36] bg-[#161B22] p-4 shadow-lg">
             <div className="flex items-start justify-between gap-3">
               <div className="space-y-1">
                 <div className="inline-flex items-center gap-1.5 text-[10px] font-bold text-amber-400 uppercase tracking-luxury">
@@ -139,20 +139,20 @@ export const VerdictSplitCard: React.FC<VerdictSplitCardProps> = ({
             <div className="mt-3.5 flex items-center gap-2">
               <button
                 onClick={() => onOpenVoucher(venue)}
-                className="flex-1 py-2 px-3 rounded-xl bg-gradient-to-r from-brand-orange to-amber-500 text-white font-bold text-xs tracking-wide shadow-glow-orange flex items-center justify-center gap-1.5 active:scale-[0.98] transition-all"
+                className="flex-1 min-h-[44px] py-2.5 px-4 rounded-xl bg-gradient-to-r from-brand-orange to-amber-500 text-white font-bold text-xs tracking-wide shadow-glow-orange flex items-center justify-center gap-1.5 active:scale-95 transition-transform"
               >
-                <Sparkles className="w-3.5 h-3.5 text-white" />
+                <Sparkles className="w-4 h-4 text-white" />
                 <span>Show Voucher to Cashier</span>
               </button>
 
               {onOpenFlyer && (
                 <button
                   onClick={() => onOpenFlyer(venue)}
-                  className="py-2 px-3 rounded-xl bg-[#0E1116] hover:bg-[#141720] text-neutral-300 hover:text-white border border-neutral-800/60 text-xs font-semibold flex items-center justify-center gap-1.5 transition-all active:scale-[0.98]"
+                  className="min-h-[44px] min-w-[44px] px-3.5 rounded-xl bg-[#161B22] hover:bg-[#1E242E] text-slate-300 hover:text-white border border-[#262C36] text-xs font-semibold flex items-center justify-center gap-1.5 transition-all active:scale-95"
                   title="Print Merchant Counter Flyer"
                 >
-                  <Printer className="w-3.5 h-3.5 text-brand-orange" />
-                  <span className="text-[11px]">Flyer</span>
+                  <Printer className="w-4 h-4 text-brand-orange" />
+                  <span className="text-xs">Flyer</span>
                 </button>
               )}
             </div>
@@ -160,7 +160,7 @@ export const VerdictSplitCard: React.FC<VerdictSplitCardProps> = ({
 
           {/* Section 1: The Must-Orders */}
           <div className="space-y-3.5">
-            <div className="flex items-center gap-2 pb-1.5 border-b border-emerald-900/30">
+            <div className="flex items-center gap-2 pb-2 border-b border-[#262C36]">
               <div className="w-2 h-2 rounded-full bg-emerald-400" />
               <h3 className="text-xs font-black text-emerald-400 uppercase tracking-luxury flex items-center gap-1.5">
                 <CheckCircle className="w-3.5 h-3.5" />
@@ -178,13 +178,13 @@ export const VerdictSplitCard: React.FC<VerdictSplitCardProps> = ({
                 return (
                   <div
                     key={dish.id}
-                    className="p-4 rounded-2xl bg-[#0E1116] border border-neutral-800/50 hover:border-emerald-500/30 transition-all space-y-3 relative shadow-md"
+                    className="p-4 rounded-2xl bg-[#0E1116] border border-[#262C36] hover:border-emerald-500/40 transition-all space-y-3 relative shadow-md"
                   >
                     <div className="flex gap-3.5">
                       <img
                         src={dish.imageUrl}
                         alt={dish.name}
-                        className="w-16 h-16 rounded-xl object-cover shrink-0 border border-white/10"
+                        className="w-16 h-16 rounded-xl object-cover shrink-0 border border-[#262C36]"
                         loading="lazy"
                       />
                       <div className="flex-1 min-w-0">
@@ -192,7 +192,7 @@ export const VerdictSplitCard: React.FC<VerdictSplitCardProps> = ({
                           <h4 className="text-sm font-black text-white leading-snug truncate">
                             {dish.name}
                           </h4>
-                          <span className="text-xs font-black text-white bg-[#141720] px-2 py-0.5 rounded-md border border-white/10 shrink-0">
+                          <span className="text-xs font-black text-white bg-[#161B22] px-2 py-0.5 rounded-md border border-[#262C36] shrink-0">
                             ₹{dish.price}
                           </span>
                         </div>
@@ -203,20 +203,20 @@ export const VerdictSplitCard: React.FC<VerdictSplitCardProps> = ({
                             <Sparkles className="w-2.5 h-2.5" />
                             {dish.scorePercent}% {dish.verdict === 'GOD_TIER' ? 'God-Tier' : 'Worth It'}
                           </span>
-                          <span className="text-[11px] text-neutral-400">{dish.category}</span>
+                          <span className="text-[11px] text-slate-400">{dish.category}</span>
                         </div>
                       </div>
                     </div>
 
-                    {/* Micro Verdict with Increased Padding */}
-                    <p className="text-xs text-neutral-200 bg-[#07090C]/60 p-3 rounded-xl border border-neutral-800/50 leading-relaxed font-normal">
+                    {/* Micro Verdict Inset */}
+                    <p className="text-xs text-neutral-300 bg-[#161B22] p-3 rounded-xl border border-[#262C36] leading-relaxed font-normal">
                       “{dish.microVerdict}”
                     </p>
 
                     {/* Flavor Tags & Insider Tip */}
                     <div className="flex flex-wrap gap-1.5 pt-0.5">
                       {dish.flavorTags.map((tag, i) => (
-                        <span key={i} className="text-[10px] bg-[#141720] text-neutral-300 border border-neutral-800/40 px-2 py-0.5 rounded-md">
+                        <span key={i} className="text-[10px] bg-[#161B22] text-slate-300 border border-[#262C36] px-2 py-0.5 rounded-md">
                           {tag}
                         </span>
                       ))}
@@ -228,22 +228,22 @@ export const VerdictSplitCard: React.FC<VerdictSplitCardProps> = ({
                     </div>
 
                     {/* Action Row: Check-in, Share & Vault */}
-                    <div className="flex items-center justify-between pt-2 border-t border-neutral-800/40 gap-2">
+                    <div className="flex items-center justify-between pt-2 border-t border-[#262C36] gap-2">
                       <div className="flex items-center gap-2">
                         {checkedInToday ? (
                           <button
                             onClick={() => onCheckIn?.(dish)}
-                            className="py-1 px-2.5 rounded-lg bg-emerald-950/60 border border-emerald-700/50 text-emerald-300 text-[11px] font-bold flex items-center gap-1 active:scale-95 transition-all cursor-pointer"
+                            className="min-h-[44px] px-3 rounded-xl bg-emerald-950/60 border border-emerald-700/50 text-emerald-300 text-xs font-bold flex items-center gap-1.5 active:scale-95 transition-transform cursor-pointer"
                           >
-                            <Flame className="w-3 h-3 text-amber-400 fill-amber-400" />
+                            <Flame className="w-3.5 h-3.5 text-amber-400 fill-amber-400" />
                             <span>Checked In</span>
                           </button>
                         ) : (
                           <button
                             onClick={() => onCheckIn?.(dish)}
-                            className="py-1 px-2.5 rounded-lg bg-brand-orange/10 hover:bg-brand-orange/20 border border-brand-orange/30 text-brand-orange text-[11px] font-bold flex items-center gap-1 active:scale-95 transition-all cursor-pointer"
+                            className="min-h-[44px] px-3.5 rounded-xl bg-brand-orange/10 hover:bg-brand-orange/20 border border-brand-orange/30 text-brand-orange text-xs font-bold flex items-center gap-1.5 active:scale-95 transition-transform cursor-pointer"
                           >
-                            <MapPin className="w-3 h-3" />
+                            <MapPin className="w-3.5 h-3.5" />
                             <span>Check-In</span>
                           </button>
                         )}
@@ -251,10 +251,10 @@ export const VerdictSplitCard: React.FC<VerdictSplitCardProps> = ({
                         {onShare && (
                           <button
                             onClick={() => onShare(dish, latestCheckIn)}
-                            className="p-1.5 rounded-lg bg-[#141720] hover:bg-neutral-800 border border-neutral-800/50 text-neutral-300 hover:text-white transition-colors cursor-pointer"
+                            className="min-h-[44px] min-w-[44px] p-2.5 rounded-xl bg-[#161B22] hover:bg-neutral-800 border border-[#262C36] text-slate-300 hover:text-white flex items-center justify-center transition-all active:scale-95 cursor-pointer"
                             title="Share to Story"
                           >
-                            <Share2 className="w-3.5 h-3.5" />
+                            <Share2 className="w-4 h-4" />
                           </button>
                         )}
                       </div>
@@ -268,13 +268,13 @@ export const VerdictSplitCard: React.FC<VerdictSplitCardProps> = ({
                               saveDishToVault(dish, 'SAVED');
                             }
                           }}
-                          className={`inline-flex items-center gap-1 text-[11px] font-semibold px-2.5 py-1 rounded-lg transition-all ${
+                          className={`min-h-[44px] inline-flex items-center gap-1.5 text-xs font-semibold px-3.5 rounded-xl active:scale-95 transition-transform ${
                             saved
                               ? 'bg-brand-orange text-white'
-                              : 'bg-[#141720] text-neutral-300 hover:text-white border border-neutral-800/50'
+                              : 'bg-[#161B22] text-slate-300 hover:text-white border border-[#262C36]'
                           }`}
                         >
-                          {saved ? <BookmarkCheck className="w-3 h-3" /> : <Bookmark className="w-3 h-3" />}
+                          {saved ? <BookmarkCheck className="w-3.5 h-3.5" /> : <Bookmark className="w-3.5 h-3.5" />}
                           <span>{saved ? 'Saved' : 'Save'}</span>
                         </button>
 
@@ -283,7 +283,7 @@ export const VerdictSplitCard: React.FC<VerdictSplitCardProps> = ({
                             setActiveNoteDishId(isWritingNote ? null : dish.id);
                             setNoteText(item?.userNotes || '');
                           }}
-                          className="text-[11px] text-neutral-400 hover:text-neutral-200 underline underline-offset-4"
+                          className="min-h-[44px] px-2.5 flex items-center justify-center text-xs text-slate-400 hover:text-neutral-200 underline underline-offset-4"
                         >
                           {item?.userNotes ? 'Note' : '+ Note'}
                         </button>
@@ -297,19 +297,19 @@ export const VerdictSplitCard: React.FC<VerdictSplitCardProps> = ({
                           value={noteText}
                           onChange={(e) => setNoteText(e.target.value)}
                           placeholder="E.g., Ask for less salt, or extra kadak pav..."
-                          className="w-full text-xs p-2.5 rounded-xl bg-[#07090C] border border-neutral-800 text-white placeholder-neutral-500 focus:outline-none focus:border-brand-orange"
+                          className="w-full text-xs p-3 rounded-xl bg-[#07090C] border border-[#262C36] text-white placeholder-slate-500 focus:outline-none focus:border-brand-orange"
                           rows={2}
                         />
                         <div className="flex justify-end gap-2">
                           <button
                             onClick={() => setActiveNoteDishId(null)}
-                            className="text-xs text-neutral-400 px-2 py-1"
+                            className="min-h-[40px] text-xs text-slate-400 hover:text-white px-3 py-1.5"
                           >
                             Cancel
                           </button>
                           <button
                             onClick={() => handleSaveWithNote(dish)}
-                            className="text-xs bg-brand-orange text-white font-bold px-3 py-1 rounded-lg"
+                            className="min-h-[40px] text-xs bg-brand-orange hover:bg-orange-600 text-white font-bold px-3.5 py-1.5 rounded-xl active:scale-95 transition-transform"
                           >
                             Save Note to Vault
                           </button>
@@ -324,7 +324,7 @@ export const VerdictSplitCard: React.FC<VerdictSplitCardProps> = ({
 
           {/* Section 2: The Skip List */}
           <div className="space-y-3.5 pt-2">
-            <div className="flex items-center gap-2 pb-1.5 border-b border-red-900/30">
+            <div className="flex items-center gap-2 pb-2 border-b border-[#262C36]">
               <div className="w-2 h-2 rounded-full bg-red-500" />
               <h3 className="text-xs font-black text-red-400 uppercase tracking-luxury flex items-center gap-1.5">
                 <AlertTriangle className="w-3.5 h-3.5" />
@@ -336,7 +336,7 @@ export const VerdictSplitCard: React.FC<VerdictSplitCardProps> = ({
               {venue.skipDishes.map((skip) => (
                 <div
                   key={skip.id}
-                  className="p-4 rounded-2xl bg-[#0E1116] border border-red-900/30 hover:border-red-800/50 transition-all space-y-2.5 shadow-md"
+                  className="p-4 rounded-2xl bg-[#0E1116] border border-red-950/40 hover:border-red-900/60 transition-all space-y-2.5 shadow-md"
                 >
                   <div className="flex items-start justify-between">
                     <div>
@@ -346,11 +346,11 @@ export const VerdictSplitCard: React.FC<VerdictSplitCardProps> = ({
                         </span>
                         <h4 className="text-sm font-bold text-red-200">{skip.name}</h4>
                       </div>
-                      <span className="text-xs text-neutral-400 mt-1 block">Price: ₹{skip.price}</span>
+                      <span className="text-xs text-slate-400 mt-1 block">Price: ₹{skip.price}</span>
                     </div>
                   </div>
 
-                  <p className="text-xs text-neutral-300 leading-relaxed bg-[#07090C]/60 p-2.5 rounded-xl border border-red-950/40">
+                  <p className="text-xs text-neutral-300 leading-relaxed bg-[#161B22] p-3 rounded-xl border border-[#262C36]">
                     <strong className="text-red-400 font-semibold">Why to Avoid:</strong> {skip.reason}
                   </p>
 
@@ -365,14 +365,14 @@ export const VerdictSplitCard: React.FC<VerdictSplitCardProps> = ({
         </div>
 
         {/* Footer sticky bar */}
-        <div className="p-3.5 sm:p-4 bg-[#0E1116] border-t border-neutral-800/40 flex items-center justify-between text-xs text-neutral-400 shrink-0">
+        <div className="p-3.5 sm:p-4 bg-[#0E1116] border-t border-[#262C36] flex items-center justify-between text-xs text-slate-400 shrink-0">
           <span className="flex items-center gap-1.5 text-[11px]">
-            <Clock className="w-3.5 h-3.5 text-neutral-500" />
+            <Clock className="w-3.5 h-3.5 text-slate-500" />
             Verified by Palate Field Scouts • 2026
           </span>
           <button
             onClick={onClose}
-            className="px-4 py-1.5 rounded-xl bg-[#141720] hover:bg-neutral-800 border border-neutral-800/60 text-white font-bold transition-colors text-xs"
+            className="min-h-[44px] px-5 rounded-xl bg-[#161B22] hover:bg-neutral-800 border border-[#262C36] text-white font-bold transition-all text-xs active:scale-95"
           >
             Done
           </button>

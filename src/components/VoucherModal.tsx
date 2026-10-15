@@ -49,7 +49,7 @@ export const VoucherModal: React.FC<VoucherModalProps> = ({
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-fade-in">
       <div 
-        className="w-full max-w-sm rounded-3xl bg-[#12141A] border-2 border-brand-orange/60 shadow-glow-orange overflow-hidden text-center relative animate-slide-up"
+        className="w-full max-w-sm rounded-3xl bg-[#0E1116] border border-[#262C36] shadow-glow-orange overflow-hidden text-center relative animate-slide-up"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Top Header Glow */}
@@ -73,36 +73,36 @@ export const VoucherModal: React.FC<VoucherModalProps> = ({
         {/* Card Content */}
         <div className="p-6 space-y-5">
           <div>
-            <span className="text-xs font-semibold uppercase tracking-wider text-gray-400">Venue</span>
+            <span className="text-xs font-semibold uppercase tracking-wider text-slate-400">Venue</span>
             <h3 className="text-xl font-bold text-white mt-0.5">{venueName}</h3>
           </div>
 
           {/* Perk Highlight Box */}
-          <div className="bg-[#1C1F2A] border border-[#2D3243] rounded-2xl p-4 text-left space-y-2">
+          <div className="bg-[#161B22] border border-[#262C36] rounded-2xl p-4 text-left space-y-2">
             <div className="flex items-center gap-2 text-emerald-400 font-bold text-sm">
               <CheckCircle2 className="w-4 h-4 shrink-0" />
               <span>{perkTitle}</span>
             </div>
-            <p className="text-xs text-gray-300 leading-relaxed">
+            <p className="text-xs text-neutral-300 leading-relaxed">
               {perkDescription}
             </p>
           </div>
 
           {/* High Contrast Cashier Verification Box */}
-          <div className="bg-black/90 border-2 border-dashed border-brand-orange/70 rounded-2xl p-4 space-y-3">
+          <div className="bg-[#07090C] border-2 border-dashed border-brand-orange/60 rounded-2xl p-4 space-y-3">
             <div className="text-[11px] font-bold text-brand-orange uppercase tracking-widest flex items-center justify-center gap-1.5">
               <ShieldCheck className="w-4 h-4" />
               <span>Cashier Verification Code</span>
             </div>
             
-            <div className="font-mono text-2xl font-black tracking-widest text-white bg-surface-50 py-2.5 px-4 rounded-xl border border-white/10 select-all">
+            <div className="font-mono text-2xl font-black tracking-widest text-white bg-[#161B22] py-2.5 px-4 rounded-xl border border-[#262C36] select-all">
               {voucherCode}
             </div>
 
             {/* Simulated Live Barcode / Scanning Visual */}
             <div className="flex items-center justify-center gap-2 pt-1 opacity-80">
-              <QrCode className="w-4 h-4 text-gray-400" />
-              <span className="text-[10px] text-gray-400 font-mono tracking-widest">
+              <QrCode className="w-4 h-4 text-slate-400" />
+              <span className="text-[10px] text-slate-400 font-mono tracking-widest">
                 VERIFIED BY PALATE RADAR • NAVI MUMBAI
               </span>
             </div>
@@ -117,7 +117,7 @@ export const VoucherModal: React.FC<VoucherModalProps> = ({
           {/* Done Button */}
           <button
             onClick={onClose}
-            className="w-full py-3.5 rounded-2xl bg-gradient-to-r from-brand-orange to-orange-600 hover:from-orange-500 hover:to-orange-600 text-white font-bold text-sm shadow-lg shadow-orange-500/25 active:scale-[0.98] transition-all"
+            className="w-full min-h-[44px] py-3.5 rounded-2xl bg-gradient-to-r from-brand-orange to-orange-600 hover:from-orange-500 hover:to-orange-600 text-white font-bold text-sm shadow-glow-orange active:scale-95 transition-transform"
           >
             I've Shown This at the Counter
           </button>

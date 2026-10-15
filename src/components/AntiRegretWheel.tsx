@@ -51,13 +51,13 @@ export const AntiRegretWheel: React.FC<AntiRegretWheelProps> = ({
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-fade-in">
       <div 
-        className="w-full max-w-sm rounded-3xl bg-[#0E1116] border border-amber-500/40 shadow-glow-orange overflow-hidden text-center relative p-6 space-y-4 animate-slide-up"
+        className="w-full max-w-sm rounded-3xl bg-[#0E1116] border border-[#262C36] shadow-glow-orange overflow-hidden text-center relative p-6 space-y-4 animate-slide-up"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 p-1.5 rounded-full bg-[#141720] text-neutral-400 hover:text-white"
+          className="absolute top-4 right-4 p-2 rounded-full bg-[#161B22] text-slate-400 hover:text-white border border-[#262C36] transition-colors"
         >
           <X className="w-4 h-4" />
         </button>
@@ -69,15 +69,15 @@ export const AntiRegretWheel: React.FC<AntiRegretWheelProps> = ({
             <span>Anti-Regret Machine</span>
           </div>
           <h3 className="text-xl font-extrabold text-white">Can't Decide What to Eat?</h3>
-          <p className="text-xs text-gray-400">
+          <p className="text-xs text-slate-400">
             Spinning through 100% verified God-Tier dishes in your neighborhood.
           </p>
         </div>
 
         {/* Featured Dish Card */}
         {selectedDish && (
-          <div className={`p-4 rounded-2xl bg-[#1A1D2A] border ${isSpinning ? 'border-amber-400/50 blur-[0.5px]' : 'border-emerald-500/40 shadow-glow-green'} transition-all space-y-3`}>
-            <div className="relative aspect-[16/9] w-full rounded-xl overflow-hidden">
+          <div className={`p-4 rounded-2xl bg-[#161B22] border ${isSpinning ? 'border-amber-400/50 blur-[0.5px]' : 'border-emerald-500/40 shadow-glow-green'} transition-all space-y-3`}>
+            <div className="relative aspect-[16/9] w-full rounded-xl overflow-hidden border border-[#262C36]">
               <img
                 src={selectedDish.imageUrl}
                 alt={selectedDish.name}
@@ -92,19 +92,19 @@ export const AntiRegretWheel: React.FC<AntiRegretWheelProps> = ({
               <h4 className="text-base font-extrabold text-white leading-snug">
                 {selectedDish.name}
               </h4>
-              <p className="text-xs text-gray-300 mt-0.5 font-medium">
+              <p className="text-xs text-slate-300 mt-0.5 font-medium">
                 {selectedDish.venueName} • {selectedDish.venueArea}
               </p>
             </div>
 
-            <p className="text-xs text-gray-300 italic bg-[#141620] p-2.5 rounded-xl border border-white/5">
+            <p className="text-xs text-neutral-300 italic bg-[#07090C] p-3 rounded-xl border border-[#262C36]">
               “{selectedDish.microVerdict}”
             </p>
           </div>
         )}
 
         {/* Action Controls */}
-        <div className="space-y-2 pt-2">
+        <div className="space-y-2.5 pt-2">
           <button
             onClick={() => {
               if (selectedDish) {
@@ -113,7 +113,7 @@ export const AntiRegretWheel: React.FC<AntiRegretWheelProps> = ({
               }
             }}
             disabled={isSpinning}
-            className="w-full py-3.5 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-white font-bold text-sm shadow-lg shadow-emerald-500/25 flex items-center justify-center gap-2 transition-all active:scale-95 disabled:opacity-50"
+            className="w-full min-h-[44px] py-3.5 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-white font-bold text-sm shadow-lg shadow-emerald-500/25 flex items-center justify-center gap-2 transition-all active:scale-95 disabled:opacity-50"
           >
             <span>Lock In & View Split-Card</span>
             <ArrowRight className="w-4 h-4" />
@@ -122,9 +122,9 @@ export const AntiRegretWheel: React.FC<AntiRegretWheelProps> = ({
           <button
             onClick={handleSpin}
             disabled={isSpinning}
-            className="w-full py-2.5 rounded-2xl bg-[#1C1F2D] hover:bg-[#252B3E] text-amber-300 border border-amber-500/20 font-bold text-xs flex items-center justify-center gap-1.5 transition-all"
+            className="w-full min-h-[44px] py-3 rounded-2xl bg-[#161B22] hover:bg-[#1E242E] text-amber-300 border border-[#262C36] font-bold text-xs flex items-center justify-center gap-1.5 transition-all active:scale-95"
           >
-            <Dices className={`w-3.5 h-3.5 ${isSpinning ? 'animate-spin' : ''}`} />
+            <Dices className={`w-4 h-4 ${isSpinning ? 'animate-spin' : ''}`} />
             <span>{isSpinning ? 'Deciding...' : 'Reroll / Spin Again'}</span>
           </button>
         </div>

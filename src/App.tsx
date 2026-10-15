@@ -112,7 +112,7 @@ export function App() {
 
   return (
     <div className="min-h-screen w-full bg-[#07090C] flex justify-center selection:bg-brand-orange selection:text-white">
-      <div className="mx-auto w-full max-w-md min-h-screen bg-[#07090C] text-white shadow-2xl relative border-x border-neutral-800/40 flex flex-col font-sans">
+      <div className="mx-auto w-full max-w-md min-h-screen bg-[#07090C] text-white shadow-2xl relative border-x border-[#262C36] flex flex-col font-sans">
         {/* Sticky Top Navigation (Zero Clipping) */}
         <HeaderNav
           selectedCategory={selectedCategory}
@@ -132,7 +132,7 @@ export function App() {
             <div className="px-4 py-4 space-y-6">
             
             {/* Anti-Regret Value Proposition Bar (High-Luxury Minimal) */}
-            <div className="p-4 rounded-2xl bg-[#0E1116] border border-neutral-800/50 flex items-center justify-between gap-3 shadow-md">
+            <div className="p-4 rounded-2xl bg-[#0E1116] border border-[#262C36] flex items-center justify-between gap-3 shadow-md">
               <div className="flex items-center gap-3 min-w-0">
                 <div className="w-8 h-8 rounded-xl bg-brand-orange/15 border border-brand-orange/30 flex items-center justify-center shrink-0">
                   <Flame className="w-4 h-4 text-brand-orange" />
@@ -144,7 +144,7 @@ export function App() {
                       LIVE
                     </span>
                   </div>
-                  <p className="text-[11px] text-neutral-400 truncate mt-0.5">
+                  <p className="text-[11px] text-slate-400 truncate mt-0.5">
                     No 10-page menus • Only God-Tier dishes & verified items to skip
                   </p>
                 </div>
@@ -152,9 +152,9 @@ export function App() {
 
               <button
                 onClick={() => setIsWheelOpen(true)}
-                className="shrink-0 text-[11px] font-bold text-amber-300 bg-amber-950/40 hover:bg-amber-900/50 border border-amber-800/50 px-3 py-1.5 rounded-xl flex items-center gap-1.5 transition-all active:scale-95"
+                className="shrink-0 min-h-[40px] text-xs font-bold text-amber-300 bg-amber-950/40 hover:bg-amber-900/50 border border-amber-800/50 px-3.5 py-2 rounded-xl flex items-center gap-1.5 transition-all active:scale-95"
               >
-                <Dices className="w-3.5 h-3.5 text-amber-400" />
+                <Dices className="w-4 h-4 text-amber-400" />
                 <span>Spin</span>
               </button>
             </div>
@@ -164,20 +164,20 @@ export function App() {
               <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar">
                 <button
                   onClick={() => setVerdictFilter('ALL')}
-                  className={`px-3 py-1.5 rounded-xl font-bold transition-all text-xs ${
+                  className={`min-h-[36px] px-3.5 py-1.5 rounded-xl font-bold transition-all text-xs active:scale-95 ${
                     verdictFilter === 'ALL'
                       ? 'bg-white text-black shadow-sm'
-                      : 'bg-[#0E1116] text-neutral-400 hover:text-white border border-neutral-800/50'
+                      : 'bg-[#0E1116] text-slate-400 hover:text-white border border-[#262C36]'
                   }`}
                 >
                   All ({DISHES.length})
                 </button>
                 <button
                   onClick={() => setVerdictFilter('GOD_TIER')}
-                  className={`px-3 py-1.5 rounded-xl font-bold flex items-center gap-1.5 transition-all text-xs ${
+                  className={`min-h-[36px] px-3.5 py-1.5 rounded-xl font-bold flex items-center gap-1.5 transition-all text-xs active:scale-95 ${
                     verdictFilter === 'GOD_TIER'
                       ? 'bg-emerald-500 text-white shadow-glow-green'
-                      : 'bg-[#0E1116] text-emerald-400 hover:bg-neutral-800 border border-emerald-900/30'
+                      : 'bg-[#0E1116] text-emerald-400 hover:bg-[#161B22] border border-[#262C36]'
                   }`}
                 >
                   <Sparkles className="w-3 h-3 text-amber-300" />
@@ -185,27 +185,27 @@ export function App() {
                 </button>
                 <button
                   onClick={() => setVerdictFilter('UNDER_150')}
-                  className={`px-3 py-1.5 rounded-xl font-bold transition-all text-xs ${
+                  className={`min-h-[36px] px-3.5 py-1.5 rounded-xl font-bold transition-all text-xs active:scale-95 ${
                     verdictFilter === 'UNDER_150'
                       ? 'bg-brand-orange text-white'
-                      : 'bg-[#0E1116] text-neutral-400 hover:text-white border border-neutral-800/50'
+                      : 'bg-[#0E1116] text-slate-400 hover:text-white border border-[#262C36]'
                   }`}
                 >
                   Under ₹150
                 </button>
               </div>
 
-              <span className="text-[11px] text-neutral-500 shrink-0 font-medium">
+              <span className="text-[11px] text-slate-400 shrink-0 font-medium">
                 {filteredDishes.length} spots
               </span>
             </div>
 
             {/* Dish Cards Vertical Feed (mb-10 applied on each card for massive whitespace) */}
             {filteredDishes.length === 0 ? (
-              <div className="p-10 rounded-3xl bg-[#0E1116] border border-neutral-800/50 text-center space-y-3 my-8 shadow-xl">
-                <Utensils className="w-8 h-8 text-neutral-500 mx-auto" />
+              <div className="p-10 rounded-3xl bg-[#0E1116] border border-[#262C36] text-center space-y-3 my-8 shadow-xl">
+                <Utensils className="w-8 h-8 text-slate-500 mx-auto" />
                 <h3 className="text-base font-bold text-white">No dishes found</h3>
-                <p className="text-xs text-neutral-400 max-w-xs mx-auto">
+                <p className="text-xs text-slate-400 max-w-xs mx-auto">
                   Try clearing your search query or switching neighborhood hubs.
                 </p>
                 <button
@@ -215,7 +215,7 @@ export function App() {
                     setSelectedArea('All Navi Mumbai');
                     setVerdictFilter('ALL');
                   }}
-                  className="px-4 py-2 rounded-xl bg-brand-orange text-white text-xs font-bold shadow-md hover:bg-orange-600 transition-colors"
+                  className="min-h-[44px] px-4 py-2.5 rounded-xl bg-brand-orange text-white text-xs font-bold shadow-glow-orange hover:bg-orange-600 transition-all active:scale-95"
                 >
                   Reset All Filters
                 </button>

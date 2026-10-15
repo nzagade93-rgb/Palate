@@ -62,7 +62,7 @@ export const InstallPrompt: React.FC = () => {
 
   return (
     <div className="fixed bottom-20 left-1/2 -translate-x-1/2 w-[calc(100%-24px)] max-w-sm z-40 animate-slide-up">
-      <div className="p-3 rounded-2xl bg-[#0E1116]/95 backdrop-blur-xl border border-brand-orange/40 shadow-glow-orange flex items-center justify-between gap-2.5 text-white">
+      <div className="p-3 rounded-2xl bg-[#0E1116]/95 backdrop-blur-xl border border-[#262C36] shadow-glow-orange flex items-center justify-between gap-2.5 text-white">
         <div className="flex items-center gap-3 min-w-0">
           <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-orange to-amber-500 p-0.5 shrink-0 flex items-center justify-center shadow-md">
             <Smartphone className="w-5 h-5 text-white" />
@@ -72,7 +72,7 @@ export const InstallPrompt: React.FC = () => {
               <span>Install Palate PWA</span>
               <Sparkles className="w-3 h-3 text-amber-400" />
             </h4>
-            <p className="text-[11px] text-gray-400 truncate">
+            <p className="text-[11px] text-slate-400 truncate">
               Instant offline radar & cached food notes
             </p>
           </div>
@@ -81,13 +81,13 @@ export const InstallPrompt: React.FC = () => {
         <div className="flex items-center gap-1.5 shrink-0">
           <button
             onClick={handleInstallClick}
-            className="px-3 py-1.5 rounded-xl bg-brand-orange hover:bg-orange-600 text-white font-extrabold text-xs shadow-md active:scale-95 transition-all"
+            className="min-h-[36px] px-3.5 py-1.5 rounded-xl bg-brand-orange hover:bg-orange-600 text-white font-extrabold text-xs shadow-glow-orange active:scale-95 transition-all"
           >
             Install
           </button>
           <button
             onClick={handleDismiss}
-            className="p-1 rounded-lg text-gray-400 hover:text-white"
+            className="min-h-[36px] min-w-[36px] flex items-center justify-center p-1 rounded-lg text-slate-400 hover:text-white transition-colors"
             aria-label="Dismiss banner"
           >
             <X className="w-4 h-4" />

@@ -8,31 +8,40 @@ export default {
   theme: {
     extend: {
       colors: {
+        canvas: '#07090C',
         background: '#07090C',
         onyx: '#07090C',
-        paper: {
-          DEFAULT: '#0E1116',
-          elevated: '#141720',
-          border: 'rgba(255, 255, 255, 0.07)',
-        },
         surface: {
-          50: '#181C26',
-          100: '#12151E',
-          200: '#0E1116',
-          300: '#07090C',
+          1: '#0E1116',
+          2: '#161B22',
+          DEFAULT: '#0E1116',
           card: '#0E1116',
-          cardBorder: '#1E2330',
+          cardBorder: '#262C36',
           muted: '#8E95A5',
         },
+        hairline: '#262C36',
+        border: {
+          hairline: '#262C36',
+          DEFAULT: '#262C36',
+        },
+        paper: {
+          DEFAULT: '#0E1116',
+          elevated: '#161B22',
+          border: '#262C36',
+        },
         brand: {
+          DEFAULT: '#FF5C1F',
           orange: '#FF5C1F',
           amber: '#F59E0B',
           flame: '#FF5C1F',
         },
         verdict: {
+          approved: '#10B981',
+          approvedGlow: 'rgba(16, 185, 129, 0.12)',
           godtier: '#10B981',
           worthit: '#3B82F6',
           skip: '#EF4444',
+          skipTint: 'rgba(239, 68, 68, 0.12)',
           skipBg: '#2D1418',
           godtierBg: '#0D281E',
           worthitBg: '#0F253E',
@@ -45,6 +54,8 @@ export default {
       letterSpacing: {
         'ultra-wide': '0.25em',
         'luxury': '0.18em',
+        'widest': '0.1em',
+        'wide': '0.025em',
       },
       boxShadow: {
         'glow-green': '0 0 20px -3px rgba(16, 185, 129, 0.35)',

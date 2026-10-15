@@ -90,50 +90,58 @@ export const SocialShareModal: React.FC<SocialShareModalProps> = ({
     if (!ctx) throw new Error('No canvas context');
 
     // Base Background
-    ctx.fillStyle = activeFilter === 'halftone' ? '#111317' : '#07090C';
+    ctx.fillStyle = activeFilter === 'halftone' ? '#FAF7F2' : '#07090C';
     ctx.fillRect(0, 0, 1080, 1920);
 
     // Style Specific Backdrop
     if (activeFilter === 'spotlight') {
       const gradient = ctx.createRadialGradient(540, 350, 50, 540, 500, 850);
-      gradient.addColorStop(0, 'rgba(245, 158, 11, 0.35)');
+      gradient.addColorStop(0, 'rgba(245, 158, 11, 0.38)');
       gradient.addColorStop(1, 'rgba(7, 9, 12, 0)');
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, 1080, 1200);
     } else if (activeFilter === 'cyber') {
       ctx.strokeStyle = '#00F0FF';
-      ctx.lineWidth = 12;
+      ctx.lineWidth = 14;
       ctx.strokeRect(40, 40, 1000, 1840);
+      // Neon magenta inner border
+      ctx.strokeStyle = '#FF007F';
+      ctx.lineWidth = 4;
+      ctx.strokeRect(55, 55, 970, 1810);
     } else if (activeFilter === 'classic') {
       const gradient = ctx.createRadialGradient(540, 300, 50, 540, 450, 750);
       gradient.addColorStop(0, 'rgba(16, 185, 129, 0.25)');
       gradient.addColorStop(1, 'rgba(7, 9, 12, 0)');
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, 1080, 1000);
+    } else if (activeFilter === 'halftone') {
+      ctx.strokeStyle = '#262C36';
+      ctx.lineWidth = 8;
+      ctx.strokeRect(50, 50, 980, 1820);
     }
 
     // Header & Brand
-    ctx.fillStyle = '#FF5C1F';
+    ctx.fillStyle = activeFilter === 'halftone' ? '#0E1116' : '#FF5C1F';
     ctx.font = 'bold 56px system-ui';
     ctx.fillText('PALATE.', 100, 180);
 
-    ctx.fillStyle = '#9CA3AF';
+    ctx.fillStyle = activeFilter === 'halftone' ? '#555555' : '#9CA3AF';
     ctx.font = '600 36px system-ui';
     ctx.fillText('Sector 17, Vashi • Anti-Regret Radar', 100, 240);
 
     if (activeFilter === 'cyber') {
-      ctx.fillStyle = '#00F0FF';
+      ctx.fillStyle = '#FF007F';
       ctx.font = 'bold 32px monospace';
-      ctx.fillText('[ 23:14 IST • GPS 19.0760° N, 72.9986° E ]', 100, 300);
+      ctx.fillText('● REC • 23:14:08 IST • GPS 19.0760° N, 72.9986° E', 100, 300);
     }
 
     // Dish Title
-    ctx.fillStyle = '#FFFFFF';
+    ctx.fillStyle = activeFilter === 'halftone' ? '#0E1116' : '#FFFFFF';
     ctx.font = '900 70px system-ui';
     ctx.fillText(dish.name, 100, 480);
 
     // Venue
-    ctx.fillStyle = '#FF5C1F';
+    ctx.fillStyle = activeFilter === 'halftone' ? '#FF5C1F' : '#FF5C1F';
     ctx.font = 'bold 44px system-ui';
     ctx.fillText(`@ ${dish.venueName}`, 100, 550);
 
@@ -147,7 +155,7 @@ export const SocialShareModal: React.FC<SocialShareModalProps> = ({
       stampColor = '#00F0FF';
       stampText = '⚡ CYBER-VERIFIED // MUST-BITE';
     } else if (activeFilter === 'halftone') {
-      stampColor = '#E5E7EB';
+      stampColor = '#0E1116';
       stampText = '📰 THE VASHI CHRONICLE • TOP PICK';
     }
 
@@ -159,7 +167,7 @@ export const SocialShareModal: React.FC<SocialShareModalProps> = ({
     ctx.fillText(stampText, 140, 720);
 
     // Quote
-    ctx.fillStyle = '#D1D5DB';
+    ctx.fillStyle = activeFilter === 'halftone' ? '#2A2D34' : '#D1D5DB';
     ctx.font = 'italic 42px system-ui';
     ctx.fillText(`“${displayQuote}”`, 100, 950);
 
@@ -232,23 +240,27 @@ export const SocialShareModal: React.FC<SocialShareModalProps> = ({
     }
   };
 
+  const isHalftone = activeFilter === 'halftone';
+  const isCyber = activeFilter === 'cyber';
+  const isSpotlight = activeFilter === 'spotlight';
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/90 backdrop-blur-xl animate-fade-in overflow-y-auto">
       <div 
-        className="w-full max-w-md bg-[#07090C] border border-neutral-800/60 rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[96vh] relative animate-slide-up"
+        className="w-full max-w-md bg-[#0E1116] border border-[#262C36] rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[96vh] relative animate-slide-up"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Minimal Header */}
-        <div className="px-4 py-3 border-b border-neutral-800/40 bg-[#0E1116] flex items-center justify-between shrink-0">
+        <div className="px-4 py-3 border-b border-[#262C36] bg-[#0E1116] flex items-center justify-between shrink-0">
           <div className="flex items-center gap-2">
-            <span className="text-[10px] font-bold text-neutral-400 tracking-ultra-wide uppercase">
+            <span className="text-[11px] font-bold text-slate-400 tracking-widest uppercase">
               Social Flex • Story Export
             </span>
           </div>
 
           <button
             onClick={onClose}
-            className="p-1.5 rounded-full bg-[#141720] hover:bg-neutral-800 text-neutral-400 hover:text-white transition-colors"
+            className="p-1.5 rounded-full bg-[#161B22] hover:bg-neutral-800 text-slate-400 hover:text-white transition-colors"
             aria-label="Close story editor"
           >
             <X className="w-4 h-4" />
@@ -262,22 +274,22 @@ export const SocialShareModal: React.FC<SocialShareModalProps> = ({
           <div 
             ref={storyCardRef}
             className={`w-[275px] sm:w-[305px] aspect-[9/16] rounded-3xl p-4 flex flex-col justify-between relative shadow-2xl overflow-hidden shrink-0 select-none transition-all duration-300 ${
-              activeFilter === 'spotlight'
+              isSpotlight
                 ? 'bg-[#07090C] border-2 border-amber-500/50 story-vignette'
-                : activeFilter === 'cyber'
-                ? 'bg-[#06080E] border-2 border-[#00F0FF]/60 story-cyber-glow'
-                : activeFilter === 'halftone'
-                ? 'bg-[#111317] border-2 border-neutral-500/40 halftone-pattern'
-                : 'bg-[#07090C] border-2 border-emerald-500/40'
+                : isCyber
+                ? 'bg-[#06080E] border-2 border-[#00F0FF] shadow-[0_0_20px_rgba(0,240,255,0.25)]'
+                : isHalftone
+                ? 'bg-[#FAF7F2] border-2 border-dashed border-neutral-700 text-[#0E1116]'
+                : 'bg-[#0E1116] border border-[#262C36]'
             }`}
             style={{
               backgroundImage: 
-                activeFilter === 'spotlight'
-                  ? 'radial-gradient(circle at 50% 10%, rgba(245, 158, 11, 0.28) 0%, rgba(7, 9, 12, 1) 70%)'
+                isSpotlight
+                  ? 'radial-gradient(circle at 50% 12%, rgba(245, 158, 11, 0.32) 0%, rgba(7, 9, 12, 1) 75%)'
                   : activeFilter === 'classic'
-                  ? 'radial-gradient(circle at 50% 10%, rgba(16, 185, 129, 0.2) 0%, rgba(7, 9, 12, 1) 65%)'
-                  : activeFilter === 'cyber'
-                  ? 'radial-gradient(circle at 50% 10%, rgba(0, 240, 255, 0.18) 0%, rgba(6, 8, 14, 1) 70%)'
+                  ? 'radial-gradient(circle at 50% 10%, rgba(16, 185, 129, 0.2) 0%, rgba(14, 17, 22, 1) 70%)'
+                  : isCyber
+                  ? 'radial-gradient(circle at 50% 10%, rgba(0, 240, 255, 0.2) 0%, rgba(6, 8, 14, 1) 70%)'
                   : undefined
             }}
           >
@@ -287,41 +299,54 @@ export const SocialShareModal: React.FC<SocialShareModalProps> = ({
                 <div className="w-6 h-6 rounded-md bg-[#FF5C1F] flex items-center justify-center text-white shadow-sm">
                   <Flame className="w-3.5 h-3.5 fill-white" />
                 </div>
-                <span className="font-display font-black text-xs text-white tracking-ultra-wide uppercase">
+                <span className={`font-display font-black text-xs tracking-widest uppercase ${
+                  isHalftone ? 'text-[#0E1116]' : 'text-white'
+                }`}>
                   Palate<span className="text-[#FF5C1F]">.</span>
                 </span>
               </div>
 
-              <div className="text-[9px] font-semibold tracking-wider text-neutral-300 bg-black/50 backdrop-blur-md px-2 py-0.5 rounded-full border border-white/10 flex items-center gap-1">
+              <div className={`text-[9px] font-semibold tracking-wider px-2 py-0.5 rounded-full border flex items-center gap-1 ${
+                isHalftone 
+                  ? 'bg-black/5 text-neutral-700 border-neutral-300' 
+                  : 'text-neutral-300 bg-black/60 backdrop-blur-md border-white/10'
+              }`}>
                 <MapPin className="w-2.5 h-2.5 text-[#FF5C1F]" />
                 <span>Sector 17, Vashi</span>
               </div>
             </div>
 
-            {/* Cyber specific HUD stamp */}
-            {activeFilter === 'cyber' && (
-              <div className="z-10 text-left font-mono text-[8px] text-[#00F0FF]/90 tracking-widest uppercase -mt-2">
-                REC • 23:14 IST • SECTOR 17 VASHI
+            {/* Cyber specific HUD timestamp ticker with neon magenta accent */}
+            {isCyber && (
+              <div className="z-10 text-left font-mono text-[8px] text-[#FF007F] tracking-widest uppercase -mt-2 flex items-center gap-1">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#FF007F] animate-pulse" />
+                <span>REC • 23:14:08 IST • GPS 19.0760° N</span>
               </div>
             )}
 
             {/* Center Dish Content */}
             <div className="space-y-3 z-10 py-1">
               {/* Dish Image */}
-              <div className="relative aspect-[4/3] w-full rounded-2xl overflow-hidden border border-white/15 shadow-xl bg-[#141720]">
+              <div className={`relative aspect-[4/3] w-full rounded-2xl overflow-hidden border shadow-xl ${
+                isHalftone ? 'border-neutral-300 bg-neutral-200' : 'border-white/15 bg-[#161B22]'
+              }`}>
                 <img
                   src={dish.imageUrl}
                   alt={dish.name}
                   className="w-full h-full object-cover"
                   crossOrigin="anonymous"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-black/20" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20" />
                 
                 <div className="absolute bottom-2.5 left-2.5 right-2.5 flex items-center justify-between">
-                  <span className="text-[10px] font-black text-white bg-black/60 backdrop-blur-md px-2.5 py-0.5 rounded-full border border-white/15">
+                  <span className="text-[10px] font-black text-white bg-black/70 backdrop-blur-md px-2.5 py-0.5 rounded-full border border-white/15">
                     ₹{dish.price}
                   </span>
-                  <span className="text-[10px] font-bold text-amber-300 bg-black/60 backdrop-blur-md px-2 py-0.5 rounded-full border border-amber-500/30">
+                  <span className={`text-[10px] font-bold backdrop-blur-md px-2.5 py-0.5 rounded-full border ${
+                    isCyber 
+                      ? 'bg-[#FF007F]/20 text-[#FF007F] border-[#FF007F]/40'
+                      : 'text-amber-300 bg-black/70 border-amber-500/30'
+                  }`}>
                     {dish.category}
                   </span>
                 </div>
@@ -329,12 +354,18 @@ export const SocialShareModal: React.FC<SocialShareModalProps> = ({
 
               {/* Dish Name & Venue */}
               <div className="text-left space-y-0.5">
-                <h2 className="text-base font-black text-white tracking-tight leading-tight line-clamp-2">
+                <h2 className={`text-base font-black tracking-tight leading-tight line-clamp-2 ${
+                  isHalftone ? 'text-[#0E1116]' : 'text-white'
+                }`}>
                   {dish.name}
                 </h2>
-                <div className="text-[11px] font-semibold text-neutral-400 flex items-center gap-1">
+                <div className={`text-[11px] font-semibold flex items-center gap-1 ${
+                  isHalftone ? 'text-neutral-600' : 'text-slate-400'
+                }`}>
                   <span>@</span>
-                  <span className="text-white underline decoration-[#FF5C1F] underline-offset-2">
+                  <span className={`underline decoration-[#FF5C1F] underline-offset-2 font-bold ${
+                    isHalftone ? 'text-[#0E1116]' : 'text-white'
+                  }`}>
                     {dish.venueName}
                   </span>
                 </div>
@@ -348,20 +379,20 @@ export const SocialShareModal: React.FC<SocialShareModalProps> = ({
                     <span>APPROVED BY LOCALS</span>
                   </div>
                 )}
-                {activeFilter === 'spotlight' && (
+                {isSpotlight && (
                   <div className="inline-flex items-center gap-1 px-2.5 py-1 rounded-xl bg-amber-500/20 border-2 border-amber-400 text-amber-300 text-[10px] font-black tracking-wider uppercase rotate-1 shadow-lg shadow-amber-950/40">
                     <Sparkles className="w-3 h-3 text-amber-400" />
                     <span>98% GOD-TIER SPOTLIGHT</span>
                   </div>
                 )}
-                {activeFilter === 'cyber' && (
-                  <div className="inline-flex items-center gap-1 px-2.5 py-1 rounded-none bg-[#00F0FF]/15 border-2 border-[#00F0FF] text-[#00F0FF] text-[10px] font-mono font-black tracking-widest uppercase">
-                    <Zap className="w-3 h-3 text-[#00F0FF]" />
+                {isCyber && (
+                  <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-none bg-[#00F0FF]/15 border-2 border-[#00F0FF] text-[#00F0FF] text-[10px] font-mono font-black tracking-widest uppercase shadow-[0_0_10px_rgba(0,240,255,0.3)]">
+                    <Zap className="w-3 h-3 text-[#FF007F]" />
                     <span>CYBER-VERIFIED // BITE</span>
                   </div>
                 )}
-                {activeFilter === 'halftone' && (
-                  <div className="inline-flex items-center gap-1 px-2.5 py-1 rounded-sm bg-white/10 border-2 border-neutral-300 text-neutral-200 text-[10px] font-serif font-black tracking-widest uppercase -rotate-1">
+                {isHalftone && (
+                  <div className="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-[#0E1116] border border-[#262C36] text-[#FAF7F2] text-[10px] font-serif font-black tracking-widest uppercase -rotate-1 shadow-md">
                     <Newspaper className="w-3 h-3 text-neutral-300" />
                     <span>VASHI CHRONICLE • TOP PICK</span>
                   </div>
@@ -369,16 +400,22 @@ export const SocialShareModal: React.FC<SocialShareModalProps> = ({
               </div>
 
               {/* User Note Quote Box */}
-              <div className="p-3 rounded-xl bg-black/40 border border-white/10 backdrop-blur-md relative text-left">
-                <Quote className="w-3 h-3 text-[#FF5C1F]/60 absolute top-2 right-2" />
-                <p className="text-[11px] text-neutral-200 italic font-medium leading-snug line-clamp-3 pr-4">
+              <div className={`p-3 rounded-xl border backdrop-blur-md relative text-left ${
+                isHalftone 
+                  ? 'bg-white/90 border-neutral-300 text-neutral-800' 
+                  : 'bg-black/50 border-white/10 text-neutral-200'
+              }`}>
+                <Quote className="w-3 h-3 text-[#FF5C1F]/70 absolute top-2 right-2" />
+                <p className="text-[11px] italic font-medium leading-relaxed line-clamp-3 pr-4">
                   “{displayQuote}”
                 </p>
               </div>
             </div>
 
             {/* Bottom Footer */}
-            <div className="pt-2 border-t border-white/10 flex items-center justify-between text-[9px] font-bold text-neutral-400 z-10">
+            <div className={`pt-2 border-t flex items-center justify-between text-[9px] font-bold z-10 ${
+              isHalftone ? 'border-neutral-300 text-neutral-500' : 'border-white/10 text-slate-400'
+            }`}>
               <div className="flex items-center gap-1">
                 <div className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
                 <span>Anti-Regret Radar</span>
@@ -389,8 +426,8 @@ export const SocialShareModal: React.FC<SocialShareModalProps> = ({
 
           {/* Interactive UI Carousel: Filter & Style Overlays */}
           <div className="w-full space-y-2 pt-1">
-            <div className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-neutral-400 px-1">
-              <SlidersHorizontal className="w-3 h-3 text-brand-orange" />
+            <div className="flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-widest text-slate-400 px-1">
+              <SlidersHorizontal className="w-3.5 h-3.5 text-brand-orange" />
               <span>Select Story Filter Overlay</span>
             </div>
 
@@ -403,8 +440,8 @@ export const SocialShareModal: React.FC<SocialShareModalProps> = ({
                     onClick={() => setActiveFilter(f.id)}
                     className={`shrink-0 px-3 py-2 rounded-xl text-left border transition-all active:scale-95 flex flex-col gap-0.5 ${
                       isActive
-                        ? 'bg-[#141720] border-brand-orange text-white shadow-glow-orange'
-                        : 'bg-[#0E1116] border-neutral-800/60 text-neutral-400 hover:text-white hover:border-neutral-700'
+                        ? 'bg-[#161B22] border-brand-orange text-white shadow-glow-orange'
+                        : 'bg-[#161B22]/60 border-[#262C36] text-slate-400 hover:text-white hover:border-slate-500'
                     }`}
                   >
                     <div className="flex items-center gap-1.5 text-xs font-bold">
@@ -414,7 +451,7 @@ export const SocialShareModal: React.FC<SocialShareModalProps> = ({
                       />
                       <span>{f.label}</span>
                     </div>
-                    <span className="text-[9px] text-neutral-500 font-semibold tracking-wider">
+                    <span className="text-[9px] text-slate-500 font-semibold tracking-wider">
                       {f.badge}
                     </span>
                   </button>
@@ -425,7 +462,7 @@ export const SocialShareModal: React.FC<SocialShareModalProps> = ({
 
           {/* User Caption Editing Input: "What was the highlight?" */}
           <div className="w-full space-y-1.5">
-            <label className="text-[10px] font-bold uppercase tracking-widest text-neutral-400 block text-left">
+            <label className="text-[11px] font-bold uppercase tracking-widest text-slate-400 block text-left">
               What was the highlight?
             </label>
             <input
@@ -433,19 +470,19 @@ export const SocialShareModal: React.FC<SocialShareModalProps> = ({
               value={customQuote}
               onChange={(e) => setCustomQuote(e.target.value)}
               placeholder="What was the highlight? (e.g. Extra kadak butter, crispy crust...)"
-              className="w-full text-xs font-medium px-3.5 py-2.5 rounded-xl bg-[#0E1116] border border-neutral-800/60 text-white placeholder-neutral-500 focus:outline-none focus:border-brand-orange"
+              className="w-full text-xs font-medium px-3.5 py-2.5 rounded-xl bg-[#161B22] border border-[#262C36] text-white placeholder-slate-500 focus:outline-none focus:border-brand-orange focus:ring-1 focus:ring-brand-orange/40"
             />
           </div>
 
         </div>
 
-        {/* Spacious Bottom Sheet Action Buttons */}
-        <div className="p-4 bg-[#0E1116] border-t border-neutral-800/40 space-y-2.5 shrink-0">
+        {/* Spacious Bottom Sheet Action Buttons (High contrast min 44px) */}
+        <div className="p-4 bg-[#0E1116] border-t border-[#262C36] space-y-2.5 shrink-0">
           <div className="grid grid-cols-2 gap-2.5">
             <button
               onClick={handleNativeShare}
               disabled={isExporting}
-              className="py-2.5 px-3 rounded-xl bg-gradient-to-r from-brand-orange to-amber-500 text-white font-extrabold text-xs shadow-glow-orange flex items-center justify-center gap-1.5 transition-all active:scale-95 disabled:opacity-50 cursor-pointer tracking-wide"
+              className="min-h-[44px] px-3 rounded-xl bg-gradient-to-r from-brand-orange to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-black text-xs shadow-glow-orange flex items-center justify-center gap-1.5 transition-transform active:scale-95 disabled:opacity-50 cursor-pointer tracking-wide"
             >
               <Smartphone className="w-4 h-4 text-white" />
               <span>{isExporting ? 'Generating...' : 'Share Story'}</span>
@@ -454,7 +491,7 @@ export const SocialShareModal: React.FC<SocialShareModalProps> = ({
             <button
               onClick={handleDownload}
               disabled={isExporting}
-              className="py-2.5 px-3 rounded-xl bg-[#141720] hover:bg-neutral-800 text-neutral-200 border border-neutral-800/60 font-bold text-xs flex items-center justify-center gap-1.5 transition-all active:scale-95 disabled:opacity-50 cursor-pointer tracking-wide"
+              className="min-h-[44px] px-3 rounded-xl bg-[#161B22] hover:bg-[#1E2430] text-white border border-[#262C36] hover:border-slate-500 font-bold text-xs flex items-center justify-center gap-1.5 transition-transform active:scale-95 disabled:opacity-50 cursor-pointer tracking-wide"
             >
               <Download className="w-4 h-4 text-brand-orange" />
               <span>Save Image (PNG)</span>
@@ -463,17 +500,17 @@ export const SocialShareModal: React.FC<SocialShareModalProps> = ({
 
           <button
             onClick={handleCopyLink}
-            className="w-full py-2 text-xs font-semibold text-neutral-400 hover:text-white flex items-center justify-center gap-1.5 transition-colors"
+            className="w-full min-h-[44px] rounded-xl bg-[#161B22]/40 hover:bg-[#161B22] border border-[#262C36] text-xs font-semibold text-slate-300 hover:text-white flex items-center justify-center gap-1.5 transition-all active:scale-95"
           >
             {copiedLink ? (
               <>
-                <Check className="w-3.5 h-3.5 text-emerald-400" />
-                <span className="text-emerald-400 font-bold">Verdict & Link Copied!</span>
+                <Check className="w-4 h-4 text-emerald-400" />
+                <span className="text-emerald-400 font-bold">Verdict & Link Copied to Clipboard!</span>
               </>
             ) : (
               <>
-                <Copy className="w-3.5 h-3.5" />
-                <span>Copy Link</span>
+                <Copy className="w-4 h-4 text-slate-400" />
+                <span>Copy Link with Verdict</span>
               </>
             )}
           </button>
