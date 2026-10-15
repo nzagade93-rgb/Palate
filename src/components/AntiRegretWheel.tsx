@@ -51,13 +51,13 @@ export const AntiRegretWheel: React.FC<AntiRegretWheelProps> = ({
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-fade-in">
       <div 
-        className="w-full max-w-sm rounded-3xl bg-[#13151E] border border-amber-500/40 shadow-glow-orange overflow-hidden text-center relative p-6 space-y-4 animate-slide-up"
+        className="w-full max-w-sm rounded-3xl bg-[#0E1116] border border-amber-500/40 shadow-glow-orange overflow-hidden text-center relative p-6 space-y-4 animate-slide-up"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 p-1.5 rounded-full bg-[#1F2231] text-gray-400 hover:text-white"
+          className="absolute top-4 right-4 p-1.5 rounded-full bg-[#141720] text-neutral-400 hover:text-white"
         >
           <X className="w-4 h-4" />
         </button>

@@ -63,13 +63,13 @@ export const CheckInModal: React.FC<CheckInModalProps> = ({
   return (
     <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 bg-black/85 backdrop-blur-md animate-fade-in overflow-hidden">
       <div 
-        className="w-full max-w-md bg-[#13151F] border-t sm:border border-[#282C3D] rounded-t-3xl sm:rounded-3xl shadow-2xl p-5 sm:p-6 space-y-4 animate-slide-up relative"
+        className="w-full max-w-md bg-[#0E1116] border-t sm:border border-neutral-800/60 rounded-t-3xl sm:rounded-3xl shadow-2xl p-5 sm:p-6 space-y-4 animate-slide-up relative"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button */}
         <button
           onClick={handleResetAndClose}
-          className="absolute top-4 right-4 p-2 rounded-full bg-[#1F2231] text-gray-400 hover:text-white transition-colors"
+          className="absolute top-4 right-4 p-2 rounded-full bg-[#141720] text-neutral-400 hover:text-white transition-colors"
           aria-label="Close"
         >
           <X className="w-4 h-4" />
@@ -79,23 +79,23 @@ export const CheckInModal: React.FC<CheckInModalProps> = ({
           <>
             {/* Header: Location & Dish Info */}
             <div className="space-y-1 pr-8">
-              <div className="inline-flex items-center gap-1.5 text-[11px] font-bold text-brand-orange uppercase tracking-wider bg-brand-orange/10 border border-brand-orange/30 px-2.5 py-0.5 rounded-full">
+              <div className="inline-flex items-center gap-1.5 text-[10px] font-bold text-brand-orange uppercase tracking-luxury bg-brand-orange/10 border border-brand-orange/30 px-2.5 py-0.5 rounded-full">
                 <Flame className="w-3.5 h-3.5 fill-brand-orange" />
                 <span>1-Tap Live Check-In</span>
               </div>
               <h2 className="text-xl font-black text-white tracking-tight leading-snug">
                 I'm Eating Here Now
               </h2>
-              <div className="flex items-center gap-1 text-xs text-gray-400 font-medium pt-0.5">
-                <MapPin className="w-3.5 h-3.5 text-gray-400 shrink-0" />
-                <span className="text-gray-200 font-semibold">{dish.venueName}</span>
+              <div className="flex items-center gap-1.5 text-xs text-neutral-400 font-medium pt-0.5">
+                <MapPin className="w-3.5 h-3.5 text-brand-orange shrink-0" />
+                <span className="text-neutral-200 font-semibold">{dish.venueName}</span>
                 <span>•</span>
                 <span>{dish.venueArea}</span>
               </div>
             </div>
 
             {/* Dish Card Snippet */}
-            <div className="p-3 rounded-2xl bg-[#1A1D2A] border border-[#2B3042] flex items-center gap-3">
+            <div className="p-3 rounded-2xl bg-[#141720] border border-neutral-800/60 flex items-center gap-3">
               <img
                 src={dish.imageUrl}
                 alt={dish.name}

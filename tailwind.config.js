@@ -8,20 +8,26 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: '#0B0C0E',
+        background: '#07090C',
+        onyx: '#07090C',
+        paper: {
+          DEFAULT: '#0E1116',
+          elevated: '#141720',
+          border: 'rgba(255, 255, 255, 0.07)',
+        },
         surface: {
-          50: '#1A1C23',
-          100: '#14151B',
-          200: '#101116',
-          300: '#0B0C0E',
-          card: '#16181F',
-          cardBorder: '#272A36',
+          50: '#181C26',
+          100: '#12151E',
+          200: '#0E1116',
+          300: '#07090C',
+          card: '#0E1116',
+          cardBorder: '#1E2330',
           muted: '#8E95A5',
         },
         brand: {
-          orange: '#FF5722',
+          orange: '#FF5C1F',
           amber: '#F59E0B',
-          flame: '#FF6B35',
+          flame: '#FF5C1F',
         },
         verdict: {
           godtier: '#10B981',
@@ -35,6 +41,10 @@ export default {
       fontFamily: {
         sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
         display: ['Space Grotesk', 'Plus Jakarta Sans', 'sans-serif'],
+      },
+      letterSpacing: {
+        'ultra-wide': '0.25em',
+        'luxury': '0.18em',
       },
       boxShadow: {
         'glow-green': '0 0 20px -3px rgba(16, 185, 129, 0.35)',

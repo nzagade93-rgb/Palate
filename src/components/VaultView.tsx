@@ -138,13 +138,13 @@ export const VaultView: React.FC<VaultViewProps> = ({ onBackToRadar }) => {
       )}
 
       {/* Tabs Switcher: Tried & Loved | Never Again | Saved for Later */}
-      <div className="grid grid-cols-3 gap-1 bg-[#13151D] p-1 rounded-2xl border border-[#232737]">
+      <div className="grid grid-cols-3 gap-1 bg-[#0E1116] p-1 rounded-2xl border border-neutral-800/60">
         <button
           onClick={() => setActiveTab('LOVED')}
           className={`flex items-center justify-center gap-1.5 py-2.5 px-2 rounded-xl text-xs font-bold transition-all ${
             activeTab === 'LOVED'
               ? 'bg-emerald-500 text-white shadow-md shadow-emerald-500/20'
-              : 'text-gray-400 hover:text-gray-200'
+              : 'text-neutral-400 hover:text-neutral-200'
           }`}
         >
           <Heart className="w-3.5 h-3.5" />
@@ -159,7 +159,7 @@ export const VaultView: React.FC<VaultViewProps> = ({ onBackToRadar }) => {
           className={`flex items-center justify-center gap-1.5 py-2.5 px-2 rounded-xl text-xs font-bold transition-all ${
             activeTab === 'AVOID'
               ? 'bg-red-500 text-white shadow-md shadow-red-500/20'
-              : 'text-gray-400 hover:text-gray-200'
+              : 'text-neutral-400 hover:text-neutral-200'
           }`}
         >
           <Ban className="w-3.5 h-3.5" />
@@ -173,12 +173,12 @@ export const VaultView: React.FC<VaultViewProps> = ({ onBackToRadar }) => {
           onClick={() => setActiveTab('SAVED')}
           className={`flex items-center justify-center gap-1.5 py-2.5 px-2 rounded-xl text-xs font-bold transition-all ${
             activeTab === 'SAVED'
-              ? 'bg-blue-600 text-white shadow-md shadow-blue-500/20'
-              : 'text-gray-400 hover:text-gray-200'
+              ? 'bg-brand-orange text-white shadow-md shadow-orange-500/20'
+              : 'text-neutral-400 hover:text-neutral-200'
           }`}
         >
           <Bookmark className="w-3.5 h-3.5" />
-          <span>Saved for Later</span>
+          <span>Saved</span>
           <span className="text-[10px] font-black px-1.5 py-0.2 rounded-full bg-black/30">
             {countSaved}
           </span>

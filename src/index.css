@@ -57,26 +57,40 @@ input, textarea {
 
 /* Glassmorphism helpers */
 .glass-panel {
-  background: rgba(22, 24, 31, 0.75);
+  background: rgba(14, 17, 22, 0.75);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.07);
 }
 
 .glass-nav {
-  background: rgba(11, 12, 14, 0.88);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(7, 9, 12, 0.88);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .glass-card {
-  background: #14161D;
-  border: 1px solid #232733;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  background: #0E1116;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .glass-card:hover {
-  border-color: #383E52;
+  border-color: rgba(255, 255, 255, 0.12);
   transform: translateY(-2px);
+}
+
+/* Film & Story Overlays */
+.story-vignette {
+  box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.85);
+}
+
+.story-cyber-glow {
+  box-shadow: 0 0 25px rgba(255, 92, 31, 0.2), inset 0 0 20px rgba(0, 240, 255, 0.15);
+}
+
+.halftone-pattern {
+  background-image: radial-gradient(rgba(0, 0, 0, 0.18) 1px, transparent 0);
+  background-size: 6px 6px;
 }

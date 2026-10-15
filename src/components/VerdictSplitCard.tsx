@@ -59,28 +59,28 @@ export const VerdictSplitCard: React.FC<VerdictSplitCardProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-40 flex items-end sm:items-center justify-center p-0 sm:p-4 bg-black/80 backdrop-blur-md animate-fade-in overflow-hidden">
+    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 bg-black/85 backdrop-blur-md animate-fade-in overflow-hidden">
       <div 
-        className="w-full max-w-md max-h-[92vh] sm:max-h-[88vh] bg-[#12141A] border-t sm:border border-[#282C3C] rounded-t-3xl sm:rounded-3xl shadow-2xl flex flex-col overflow-hidden animate-slide-up"
+        className="w-full max-w-md max-h-[92vh] sm:max-h-[88vh] bg-[#0E1116] border-t sm:border border-neutral-800/50 rounded-t-3xl sm:rounded-3xl shadow-2xl flex flex-col overflow-hidden animate-slide-up"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Top Header Bar */}
-        <div className="p-4 sm:p-5 bg-gradient-to-b from-[#191B24] to-[#12141A] border-b border-[#232737] shrink-0">
+        <div className="p-4 sm:p-5 bg-[#0E1116] border-b border-neutral-800/40 shrink-0">
           <div className="flex items-start justify-between gap-3">
             <div>
-              <div className="flex items-center gap-2 text-xs font-semibold text-brand-orange uppercase tracking-wider mb-1">
+              <div className="flex items-center gap-1.5 text-[10px] font-bold text-brand-orange uppercase tracking-luxury mb-1">
                 <Flame className="w-3.5 h-3.5" />
                 <span>The Verdict Split-Card</span>
               </div>
-              <h2 className="text-2xl font-extrabold text-white tracking-tight">{venue.name}</h2>
-              <div className="flex items-center gap-2 mt-1 text-xs text-gray-400">
-                <span className="flex items-center gap-1 text-gray-300">
+              <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight leading-snug">{venue.name}</h2>
+              <div className="flex items-center gap-2 mt-1.5 text-xs text-neutral-400">
+                <span className="flex items-center gap-1 text-neutral-300">
                   <MapPin className="w-3.5 h-3.5 text-brand-orange" />
                   {venue.area}
                 </span>
                 <span>•</span>
-                <span className="flex items-center gap-1 text-gray-400">
-                  <Navigation className="w-3 h-3 text-emerald-400" />
+                <span className="flex items-center gap-1 text-emerald-400 font-medium">
+                  <Navigation className="w-3 h-3" />
                   {venue.distanceMeters}m ({venue.walkingMinutes} min walk)
                 </span>
               </div>
@@ -88,19 +88,19 @@ export const VerdictSplitCard: React.FC<VerdictSplitCardProps> = ({
 
             <button
               onClick={onClose}
-              className="p-2 rounded-full bg-[#202432] text-gray-400 hover:text-white hover:bg-[#2B3042] transition-colors"
+              className="p-2 rounded-full bg-[#141720] text-neutral-400 hover:text-white hover:bg-neutral-800 border border-neutral-800/60 transition-colors"
               aria-label="Close card"
             >
-              <X className="w-5 h-5" />
+              <X className="w-4 h-4" />
             </button>
           </div>
 
-          {/* Vibe Tags */}
-          <div className="flex flex-wrap gap-1.5 mt-3">
+          {/* Vibe Tags & Directions */}
+          <div className="flex flex-wrap items-center gap-1.5 mt-3.5">
             {venue.vibeTags.map((tag, idx) => (
               <span
                 key={idx}
-                className="text-[11px] font-medium bg-[#1B1E29] text-gray-300 border border-[#2B3042] px-2.5 py-0.5 rounded-full"
+                className="text-[10px] font-medium bg-[#141720] text-neutral-300 border border-neutral-800/60 px-2.5 py-0.5 rounded-full"
               >
                 {tag}
               </span>
@@ -109,7 +109,7 @@ export const VerdictSplitCard: React.FC<VerdictSplitCardProps> = ({
               href={venue.mapsUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 text-[11px] font-semibold text-emerald-400 bg-emerald-950/40 border border-emerald-800/40 px-2.5 py-0.5 rounded-full hover:bg-emerald-900/50 transition-colors ml-auto"
+              className="inline-flex items-center gap-1 text-[10px] font-semibold text-emerald-400 bg-emerald-950/40 border border-emerald-800/40 px-2.5 py-0.5 rounded-full hover:bg-emerald-900/50 transition-colors ml-auto"
             >
               <Navigation className="w-3 h-3" />
               <span>Directions</span>
@@ -118,19 +118,19 @@ export const VerdictSplitCard: React.FC<VerdictSplitCardProps> = ({
           </div>
         </div>
 
-        {/* Scrollable Body */}
-        <div className="p-4 sm:p-5 overflow-y-auto space-y-5 flex-1 overscroll-contain">
+        {/* Scrollable Body with Increased Whitespace */}
+        <div className="p-4 sm:p-5 overflow-y-auto space-y-6 flex-1 overscroll-contain">
           
           {/* Action Banner: Secret Counter Perk */}
-          <div className="relative rounded-2xl overflow-hidden border border-amber-500/40 bg-gradient-to-r from-amber-950/40 via-[#1C160F] to-[#161821] p-4 shadow-lg shadow-amber-950/20">
+          <div className="relative rounded-2xl overflow-hidden border border-neutral-800/50 bg-[#141720] p-4 shadow-lg">
             <div className="flex items-start justify-between gap-3">
               <div className="space-y-1">
-                <div className="inline-flex items-center gap-1.5 text-xs font-bold text-amber-400 uppercase tracking-wider">
-                  <Ticket className="w-4 h-4 text-amber-400 animate-bounce" />
+                <div className="inline-flex items-center gap-1.5 text-[10px] font-bold text-amber-400 uppercase tracking-luxury">
+                  <Ticket className="w-3.5 h-3.5 text-amber-400" />
                   <span>Exclusive Counter Perk</span>
                 </div>
                 <h4 className="text-sm font-bold text-white">{venue.counterPerk.title}</h4>
-                <p className="text-xs text-gray-300 leading-snug">
+                <p className="text-xs text-neutral-300 leading-relaxed">
                   {venue.counterPerk.description}
                 </p>
               </div>
@@ -139,19 +139,19 @@ export const VerdictSplitCard: React.FC<VerdictSplitCardProps> = ({
             <div className="mt-3.5 flex items-center gap-2">
               <button
                 onClick={() => onOpenVoucher(venue)}
-                className="flex-1 py-2.5 px-4 rounded-xl bg-gradient-to-r from-amber-500 to-brand-orange hover:from-amber-400 hover:to-orange-500 text-black font-extrabold text-xs tracking-wide shadow-md flex items-center justify-center gap-2 active:scale-[0.98] transition-all"
+                className="flex-1 py-2 px-3 rounded-xl bg-gradient-to-r from-brand-orange to-amber-500 text-white font-bold text-xs tracking-wide shadow-glow-orange flex items-center justify-center gap-1.5 active:scale-[0.98] transition-all"
               >
-                <Sparkles className="w-4 h-4 text-black" />
+                <Sparkles className="w-3.5 h-3.5 text-white" />
                 <span>Show Voucher to Cashier</span>
               </button>
 
               {onOpenFlyer && (
                 <button
                   onClick={() => onOpenFlyer(venue)}
-                  className="py-2.5 px-3 rounded-xl bg-[#222638] hover:bg-[#2B3044] text-gray-300 hover:text-white border border-[#30364C] text-xs font-bold flex items-center justify-center gap-1.5 transition-all active:scale-[0.98]"
+                  className="py-2 px-3 rounded-xl bg-[#0E1116] hover:bg-[#141720] text-neutral-300 hover:text-white border border-neutral-800/60 text-xs font-semibold flex items-center justify-center gap-1.5 transition-all active:scale-[0.98]"
                   title="Print Merchant Counter Flyer"
                 >
-                  <Printer className="w-4 h-4 text-brand-orange" />
+                  <Printer className="w-3.5 h-3.5 text-brand-orange" />
                   <span className="text-[11px]">Flyer</span>
                 </button>
               )}
@@ -159,16 +159,16 @@ export const VerdictSplitCard: React.FC<VerdictSplitCardProps> = ({
           </div>
 
           {/* Section 1: The Must-Orders */}
-          <div className="space-y-3">
-            <div className="flex items-center gap-2 pb-1 border-b border-emerald-900/40">
-              <div className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-              <h3 className="text-sm font-extrabold text-emerald-400 uppercase tracking-wider flex items-center gap-1.5">
-                <CheckCircle className="w-4 h-4" />
-                <span>🟢 Section 1: The Must-Orders (Non-Negotiable)</span>
+          <div className="space-y-3.5">
+            <div className="flex items-center gap-2 pb-1.5 border-b border-emerald-900/30">
+              <div className="w-2 h-2 rounded-full bg-emerald-400" />
+              <h3 className="text-xs font-black text-emerald-400 uppercase tracking-luxury flex items-center gap-1.5">
+                <CheckCircle className="w-3.5 h-3.5" />
+                <span>Section 1: The Must-Orders (Non-Negotiable)</span>
               </h3>
             </div>
 
-            <div className="space-y-3">
+            <div className="space-y-4">
               {topDishes.map((dish) => {
                 const { saved, item } = isDishSaved(dish.id);
                 const isWritingNote = activeNoteDishId === dish.id;
@@ -178,9 +178,9 @@ export const VerdictSplitCard: React.FC<VerdictSplitCardProps> = ({
                 return (
                   <div
                     key={dish.id}
-                    className="p-3.5 rounded-2xl bg-[#161822] border border-[#262A3B] hover:border-emerald-500/40 transition-all space-y-2.5 relative"
+                    className="p-4 rounded-2xl bg-[#0E1116] border border-neutral-800/50 hover:border-emerald-500/30 transition-all space-y-3 relative shadow-md"
                   >
-                    <div className="flex gap-3">
+                    <div className="flex gap-3.5">
                       <img
                         src={dish.imageUrl}
                         alt={dish.name}
@@ -189,51 +189,51 @@ export const VerdictSplitCard: React.FC<VerdictSplitCardProps> = ({
                       />
                       <div className="flex-1 min-w-0">
                         <div className="flex items-start justify-between gap-1">
-                          <h4 className="text-sm font-bold text-white leading-snug truncate">
+                          <h4 className="text-sm font-black text-white leading-snug truncate">
                             {dish.name}
                           </h4>
-                          <span className="text-xs font-extrabold text-white bg-[#222736] px-2 py-0.5 rounded-md border border-white/10 shrink-0">
+                          <span className="text-xs font-black text-white bg-[#141720] px-2 py-0.5 rounded-md border border-white/10 shrink-0">
                             ₹{dish.price}
                           </span>
                         </div>
 
                         {/* Score Badge */}
                         <div className="flex items-center gap-2 mt-1">
-                          <span className="inline-flex items-center gap-1 text-[10px] font-extrabold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
+                          <span className="inline-flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-400 border border-emerald-500/25">
                             <Sparkles className="w-2.5 h-2.5" />
                             {dish.scorePercent}% {dish.verdict === 'GOD_TIER' ? 'God-Tier' : 'Worth It'}
                           </span>
-                          <span className="text-[11px] text-gray-400">{dish.category}</span>
+                          <span className="text-[11px] text-neutral-400">{dish.category}</span>
                         </div>
                       </div>
                     </div>
 
-                    {/* Micro Verdict */}
-                    <p className="text-xs text-gray-200 bg-[#1D202D] p-2.5 rounded-xl border border-white/5 leading-relaxed font-medium">
+                    {/* Micro Verdict with Increased Padding */}
+                    <p className="text-xs text-neutral-200 bg-[#07090C]/60 p-3 rounded-xl border border-neutral-800/50 leading-relaxed font-normal">
                       “{dish.microVerdict}”
                     </p>
 
                     {/* Flavor Tags & Insider Tip */}
-                    <div className="flex flex-wrap gap-1 pt-0.5">
+                    <div className="flex flex-wrap gap-1.5 pt-0.5">
                       {dish.flavorTags.map((tag, i) => (
-                        <span key={i} className="text-[10px] bg-[#222634] text-gray-300 px-2 py-0.5 rounded-md">
+                        <span key={i} className="text-[10px] bg-[#141720] text-neutral-300 border border-neutral-800/40 px-2 py-0.5 rounded-md">
                           {tag}
                         </span>
                       ))}
                     </div>
 
-                    <div className="text-[11px] text-amber-300/90 bg-amber-950/20 border border-amber-900/30 p-2 rounded-lg flex items-start gap-1.5">
+                    <div className="text-[11px] text-amber-300/90 bg-amber-950/20 border border-amber-900/30 p-2.5 rounded-xl flex items-start gap-2">
                       <Sparkles className="w-3.5 h-3.5 text-amber-400 shrink-0 mt-0.5" />
-                      <span><strong>Insider Order Tip:</strong> {dish.insiderTip}</span>
+                      <span><strong>Insider Tip:</strong> {dish.insiderTip}</span>
                     </div>
 
                     {/* Action Row: Check-in, Share & Vault */}
-                    <div className="flex items-center justify-between pt-1.5 border-t border-white/5 gap-2">
-                      <div className="flex items-center gap-1.5">
+                    <div className="flex items-center justify-between pt-2 border-t border-neutral-800/40 gap-2">
+                      <div className="flex items-center gap-2">
                         {checkedInToday ? (
                           <button
                             onClick={() => onCheckIn?.(dish)}
-                            className="py-1 px-2.5 rounded-lg bg-emerald-950/80 border border-emerald-700/60 text-emerald-300 text-[11px] font-bold flex items-center gap-1 active:scale-95 transition-all cursor-pointer"
+                            className="py-1 px-2.5 rounded-lg bg-emerald-950/60 border border-emerald-700/50 text-emerald-300 text-[11px] font-bold flex items-center gap-1 active:scale-95 transition-all cursor-pointer"
                           >
                             <Flame className="w-3 h-3 text-amber-400 fill-amber-400" />
                             <span>Checked In</span>
@@ -241,7 +241,7 @@ export const VerdictSplitCard: React.FC<VerdictSplitCardProps> = ({
                         ) : (
                           <button
                             onClick={() => onCheckIn?.(dish)}
-                            className="py-1 px-2.5 rounded-lg bg-brand-orange/15 hover:bg-brand-orange/25 border border-brand-orange/40 text-brand-orange text-[11px] font-bold flex items-center gap-1 active:scale-95 transition-all cursor-pointer"
+                            className="py-1 px-2.5 rounded-lg bg-brand-orange/10 hover:bg-brand-orange/20 border border-brand-orange/30 text-brand-orange text-[11px] font-bold flex items-center gap-1 active:scale-95 transition-all cursor-pointer"
                           >
                             <MapPin className="w-3 h-3" />
                             <span>Check-In</span>
@@ -251,7 +251,7 @@ export const VerdictSplitCard: React.FC<VerdictSplitCardProps> = ({
                         {onShare && (
                           <button
                             onClick={() => onShare(dish, latestCheckIn)}
-                            className="p-1.5 rounded-lg bg-[#222736] hover:bg-[#2B3145] text-gray-300 hover:text-white transition-colors cursor-pointer"
+                            className="p-1.5 rounded-lg bg-[#141720] hover:bg-neutral-800 border border-neutral-800/50 text-neutral-300 hover:text-white transition-colors cursor-pointer"
                             title="Share to Story"
                           >
                             <Share2 className="w-3.5 h-3.5" />
@@ -271,7 +271,7 @@ export const VerdictSplitCard: React.FC<VerdictSplitCardProps> = ({
                           className={`inline-flex items-center gap-1 text-[11px] font-semibold px-2.5 py-1 rounded-lg transition-all ${
                             saved
                               ? 'bg-brand-orange text-white'
-                              : 'bg-[#222736] text-gray-300 hover:text-white hover:bg-[#2B3145]'
+                              : 'bg-[#141720] text-neutral-300 hover:text-white border border-neutral-800/50'
                           }`}
                         >
                           {saved ? <BookmarkCheck className="w-3 h-3" /> : <Bookmark className="w-3 h-3" />}
@@ -283,7 +283,7 @@ export const VerdictSplitCard: React.FC<VerdictSplitCardProps> = ({
                             setActiveNoteDishId(isWritingNote ? null : dish.id);
                             setNoteText(item?.userNotes || '');
                           }}
-                          className="text-[11px] text-gray-400 hover:text-gray-200 underline underline-offset-4"
+                          className="text-[11px] text-neutral-400 hover:text-neutral-200 underline underline-offset-4"
                         >
                           {item?.userNotes ? 'Note' : '+ Note'}
                         </button>
@@ -297,13 +297,13 @@ export const VerdictSplitCard: React.FC<VerdictSplitCardProps> = ({
                           value={noteText}
                           onChange={(e) => setNoteText(e.target.value)}
                           placeholder="E.g., Ask for less salt, or extra kadak pav..."
-                          className="w-full text-xs p-2.5 rounded-xl bg-[#0F1015] border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-brand-orange"
+                          className="w-full text-xs p-2.5 rounded-xl bg-[#07090C] border border-neutral-800 text-white placeholder-neutral-500 focus:outline-none focus:border-brand-orange"
                           rows={2}
                         />
                         <div className="flex justify-end gap-2">
                           <button
                             onClick={() => setActiveNoteDishId(null)}
-                            className="text-xs text-gray-400 px-2 py-1"
+                            className="text-xs text-neutral-400 px-2 py-1"
                           >
                             Cancel
                           </button>
@@ -323,35 +323,35 @@ export const VerdictSplitCard: React.FC<VerdictSplitCardProps> = ({
           </div>
 
           {/* Section 2: The Skip List */}
-          <div className="space-y-3 pt-2">
-            <div className="flex items-center gap-2 pb-1 border-b border-red-900/40">
+          <div className="space-y-3.5 pt-2">
+            <div className="flex items-center gap-2 pb-1.5 border-b border-red-900/30">
               <div className="w-2 h-2 rounded-full bg-red-500" />
-              <h3 className="text-sm font-extrabold text-red-400 uppercase tracking-wider flex items-center gap-1.5">
-                <AlertTriangle className="w-4 h-4" />
-                <span>🔴 Section 2: The Skip List (Do Not Order)</span>
+              <h3 className="text-xs font-black text-red-400 uppercase tracking-luxury flex items-center gap-1.5">
+                <AlertTriangle className="w-3.5 h-3.5" />
+                <span>Section 2: The Skip List (Do Not Order)</span>
               </h3>
             </div>
 
-            <div className="space-y-2.5">
+            <div className="space-y-3">
               {venue.skipDishes.map((skip) => (
                 <div
                   key={skip.id}
-                  className="p-3.5 rounded-2xl bg-[#1B1316] border border-red-900/40 hover:border-red-700/60 transition-all space-y-2"
+                  className="p-4 rounded-2xl bg-[#0E1116] border border-red-900/30 hover:border-red-800/50 transition-all space-y-2.5 shadow-md"
                 >
                   <div className="flex items-start justify-between">
                     <div>
                       <div className="flex items-center gap-2">
-                        <span className="text-[10px] font-black uppercase tracking-wider bg-red-950 text-red-300 border border-red-800/60 px-2 py-0.5 rounded-full">
+                        <span className="text-[9px] font-black uppercase tracking-wider bg-red-950/80 text-red-300 border border-red-800/40 px-2 py-0.5 rounded-full">
                           AVOID • SKIP
                         </span>
-                        <h4 className="text-sm font-bold text-red-100">{skip.name}</h4>
+                        <h4 className="text-sm font-bold text-red-200">{skip.name}</h4>
                       </div>
-                      <span className="text-xs text-gray-400 mt-0.5 block">Price: ₹{skip.price}</span>
+                      <span className="text-xs text-neutral-400 mt-1 block">Price: ₹{skip.price}</span>
                     </div>
                   </div>
 
-                  <p className="text-xs text-red-200/90 leading-relaxed bg-black/40 p-2 rounded-xl border border-red-900/30">
-                    <strong className="text-red-400">Why to Avoid:</strong> {skip.reason}
+                  <p className="text-xs text-neutral-300 leading-relaxed bg-[#07090C]/60 p-2.5 rounded-xl border border-red-950/40">
+                    <strong className="text-red-400 font-semibold">Why to Avoid:</strong> {skip.reason}
                   </p>
 
                   <div className="flex items-center gap-1.5 text-xs text-emerald-400 font-medium pt-0.5">
@@ -365,14 +365,14 @@ export const VerdictSplitCard: React.FC<VerdictSplitCardProps> = ({
         </div>
 
         {/* Footer sticky bar */}
-        <div className="p-3 sm:p-4 bg-[#14161F] border-t border-[#232737] flex items-center justify-between text-xs text-gray-400 shrink-0">
-          <span className="flex items-center gap-1.5">
-            <Clock className="w-3.5 h-3.5 text-gray-400" />
+        <div className="p-3.5 sm:p-4 bg-[#0E1116] border-t border-neutral-800/40 flex items-center justify-between text-xs text-neutral-400 shrink-0">
+          <span className="flex items-center gap-1.5 text-[11px]">
+            <Clock className="w-3.5 h-3.5 text-neutral-500" />
             Verified by Palate Field Scouts • 2026
           </span>
           <button
             onClick={onClose}
-            className="px-4 py-2 rounded-xl bg-[#232838] text-white font-bold hover:bg-[#2D3347] transition-colors"
+            className="px-4 py-1.5 rounded-xl bg-[#141720] hover:bg-neutral-800 border border-neutral-800/60 text-white font-bold transition-colors text-xs"
           >
             Done
           </button>
