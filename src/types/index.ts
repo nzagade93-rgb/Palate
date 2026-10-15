@@ -71,3 +71,16 @@ export interface VaultItem {
   updatedAt: number;
   tags?: string[];
 }
+
+export type CheckInReaction = 'GOD_TIER' | 'SKIP';
+
+export interface CheckIn {
+  id: string;
+  dishId: string;
+  dishName: string;
+  venueName: string;
+  reaction: CheckInReaction;
+  timestamp: number;
+  note?: string;
+}
+

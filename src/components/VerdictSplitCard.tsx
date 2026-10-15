@@ -13,11 +13,13 @@ import {
   Ticket,
   Clock,
   HeartHandshake,
-  Printer
+  Printer,
+  Share2
 } from 'lucide-react';
-import type { Venue, Dish } from '../types';
+import type { Venue, Dish, CheckIn } from '../types';
 import { DISHES } from '../data/mockData';
 import { useVault } from '../hooks/useVault';
+import { useCheckIns } from '../hooks/useCheckIns';
 
 interface VerdictSplitCardProps {
   venue: Venue;
@@ -25,6 +27,8 @@ interface VerdictSplitCardProps {
   onClose: () => void;
   onOpenVoucher: (venue: Venue) => void;
   onOpenFlyer?: (venue: Venue) => void;
+  onCheckIn?: (dish: Dish) => void;
+  onShare?: (dish: Dish, checkIn?: CheckIn) => void;
 }
 
 export const VerdictSplitCard: React.FC<VerdictSplitCardProps> = ({
@@ -33,8 +37,11 @@ export const VerdictSplitCard: React.FC<VerdictSplitCardProps> = ({
   onClose,
   onOpenVoucher,
   onOpenFlyer,
+  onCheckIn,
+  onShare,
 }) => {
   const { isDishSaved, saveDishToVault } = useVault();
+  const { isCheckedInToday, getLatestCheckIn } = useCheckIns();
   const [activeNoteDishId, setActiveNoteDishId] = useState<string | null>(null);
   const [noteText, setNoteText] = useState('');
 
@@ -165,6 +172,8 @@ export const VerdictSplitCard: React.FC<VerdictSplitCardProps> = ({
               {topDishes.map((dish) => {
                 const { saved, item } = isDishSaved(dish.id);
                 const isWritingNote = activeNoteDishId === dish.id;
+                const checkedInToday = isCheckedInToday(dish.id);
+                const latestCheckIn = getLatestCheckIn(dish.id);
 
                 return (
                   <div
@@ -218,35 +227,67 @@ export const VerdictSplitCard: React.FC<VerdictSplitCardProps> = ({
                       <span><strong>Insider Order Tip:</strong> {dish.insiderTip}</span>
                     </div>
 
-                    {/* Action Row */}
-                    <div className="flex items-center justify-between pt-1">
-                      <button
-                        onClick={() => {
-                          if (saved) {
-                            saveDishToVault(dish, 'LOVED');
-                          } else {
-                            saveDishToVault(dish, 'SAVED');
-                          }
-                        }}
-                        className={`inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-xl transition-all ${
-                          saved
-                            ? 'bg-brand-orange text-white shadow-sm shadow-orange-500/20'
-                            : 'bg-[#222736] text-gray-300 hover:text-white hover:bg-[#2B3145]'
-                        }`}
-                      >
-                        {saved ? <BookmarkCheck className="w-3.5 h-3.5" /> : <Bookmark className="w-3.5 h-3.5" />}
-                        <span>{saved ? 'In Vault' : 'Save to Vault'}</span>
-                      </button>
+                    {/* Action Row: Check-in, Share & Vault */}
+                    <div className="flex items-center justify-between pt-1.5 border-t border-white/5 gap-2">
+                      <div className="flex items-center gap-1.5">
+                        {checkedInToday ? (
+                          <button
+                            onClick={() => onCheckIn?.(dish)}
+                            className="py-1 px-2.5 rounded-lg bg-emerald-950/80 border border-emerald-700/60 text-emerald-300 text-[11px] font-bold flex items-center gap-1 active:scale-95 transition-all cursor-pointer"
+                          >
+                            <Flame className="w-3 h-3 text-amber-400 fill-amber-400" />
+                            <span>Checked In</span>
+                          </button>
+                        ) : (
+                          <button
+                            onClick={() => onCheckIn?.(dish)}
+                            className="py-1 px-2.5 rounded-lg bg-brand-orange/15 hover:bg-brand-orange/25 border border-brand-orange/40 text-brand-orange text-[11px] font-bold flex items-center gap-1 active:scale-95 transition-all cursor-pointer"
+                          >
+                            <MapPin className="w-3 h-3" />
+                            <span>Check-In</span>
+                          </button>
+                        )}
 
-                      <button
-                        onClick={() => {
-                          setActiveNoteDishId(isWritingNote ? null : dish.id);
-                          setNoteText(item?.userNotes || '');
-                        }}
-                        className="text-xs text-gray-400 hover:text-gray-200 underline underline-offset-4"
-                      >
-                        {item?.userNotes ? 'Edit Personal Note' : '+ Add Note'}
-                      </button>
+                        {onShare && (
+                          <button
+                            onClick={() => onShare(dish, latestCheckIn)}
+                            className="p-1.5 rounded-lg bg-[#222736] hover:bg-[#2B3145] text-gray-300 hover:text-white transition-colors cursor-pointer"
+                            title="Share to Story"
+                          >
+                            <Share2 className="w-3.5 h-3.5" />
+                          </button>
+                        )}
+                      </div>
+
+                      <div className="flex items-center gap-2">
+                        <button
+                          onClick={() => {
+                            if (saved) {
+                              saveDishToVault(dish, 'LOVED');
+                            } else {
+                              saveDishToVault(dish, 'SAVED');
+                            }
+                          }}
+                          className={`inline-flex items-center gap-1 text-[11px] font-semibold px-2.5 py-1 rounded-lg transition-all ${
+                            saved
+                              ? 'bg-brand-orange text-white'
+                              : 'bg-[#222736] text-gray-300 hover:text-white hover:bg-[#2B3145]'
+                          }`}
+                        >
+                          {saved ? <BookmarkCheck className="w-3 h-3" /> : <Bookmark className="w-3 h-3" />}
+                          <span>{saved ? 'Saved' : 'Save'}</span>
+                        </button>
+
+                        <button
+                          onClick={() => {
+                            setActiveNoteDishId(isWritingNote ? null : dish.id);
+                            setNoteText(item?.userNotes || '');
+                          }}
+                          className="text-[11px] text-gray-400 hover:text-gray-200 underline underline-offset-4"
+                        >
+                          {item?.userNotes ? 'Note' : '+ Note'}
+                        </button>
+                      </div>
                     </div>
 
                     {/* Inline Note Box */}

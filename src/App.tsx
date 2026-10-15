@@ -12,9 +12,11 @@ import { VoucherModal } from './components/VoucherModal';
 import { VaultView } from './components/VaultView';
 import { AntiRegretWheel } from './components/AntiRegretWheel';
 import { CounterFlyerModal } from './components/CounterFlyerModal';
+import { CheckInModal } from './components/CheckInModal';
+import { SocialShareModal } from './components/SocialShareModal';
 import { InstallPrompt } from './components/InstallPrompt';
 import { DISHES, VENUES } from './data/mockData';
-import type { CategoryFilter, Dish, Venue } from './types';
+import type { CategoryFilter, Dish, Venue, CheckIn } from './types';
 import { useVault } from './hooks/useVault';
 
 export function App() {
@@ -30,6 +32,8 @@ export function App() {
   const [isWheelOpen, setIsWheelOpen] = useState(false);
   const [isFlyerOpen, setIsFlyerOpen] = useState(false);
   const [activeFlyerVenue, setActiveFlyerVenue] = useState<Venue | null>(null);
+  const [checkInDish, setCheckInDish] = useState<Dish | null>(null);
+  const [shareDishData, setShareDishData] = useState<{ dish: Dish; checkIn?: CheckIn } | null>(null);
 
   const { vaultItems } = useVault();
 
@@ -95,6 +99,14 @@ export function App() {
   const handleOpenFlyer = (venue?: Venue) => {
     setActiveFlyerVenue(venue || null);
     setIsFlyerOpen(true);
+  };
+
+  const handleOpenCheckIn = (dish: Dish) => {
+    setCheckInDish(dish);
+  };
+
+  const handleOpenShare = (dish: Dish, checkIn?: CheckIn) => {
+    setShareDishData({ dish, checkIn });
   };
 
   return (
@@ -218,6 +230,8 @@ export function App() {
                     key={dish.id}
                     dish={dish}
                     onSelectDish={handleSelectDish}
+                    onCheckIn={handleOpenCheckIn}
+                    onShare={handleOpenShare}
                   />
                 ))}
               </div>
@@ -234,6 +248,8 @@ export function App() {
           onClose={() => setActiveSplitVenue(null)}
           onOpenVoucher={handleOpenVoucherFromSplit}
           onOpenFlyer={handleOpenFlyer}
+          onCheckIn={handleOpenCheckIn}
+          onShare={handleOpenShare}
         />
       )}
 
@@ -261,6 +277,22 @@ export function App() {
         isOpen={isFlyerOpen}
         onClose={() => setIsFlyerOpen(false)}
         initialVenue={activeFlyerVenue}
+      />
+
+      {/* 1-Tap Eating Here Check-In Modal */}
+      <CheckInModal
+        isOpen={Boolean(checkInDish)}
+        onClose={() => setCheckInDish(null)}
+        dish={checkInDish}
+        onOpenShare={handleOpenShare}
+      />
+
+      {/* 9:16 Social Flex Story Export Modal */}
+      <SocialShareModal
+        isOpen={Boolean(shareDishData)}
+        onClose={() => setShareDishData(null)}
+        dish={shareDishData?.dish || null}
+        checkIn={shareDishData?.checkIn}
       />
 
       {/* PWA Floating Install Prompt */}
