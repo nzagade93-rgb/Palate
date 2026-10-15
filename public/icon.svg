@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1A1C24" />
+      <stop offset="100%" stop-color="#0B0C0E" />
+    </linearGradient>
+    <linearGradient id="flameGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF7A00" />
+      <stop offset="50%" stop-color="#FF5722" />
+      <stop offset="100%" stop-color="#E53935" />
+    </linearGradient>
+    <linearGradient id="godTierGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#34D399" />
+      <stop offset="100%" stop-color="#059669" />
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="14" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+  
+  <!-- Outer Rounded Squircle -->
+  <rect width="512" height="512" rx="128" fill="url(#bgGrad)" stroke="#272A36" stroke-width="8" />
+  
+  <!-- Subtle Radar Waves -->
+  <circle cx="256" cy="256" r="190" fill="none" stroke="#2B2F3D" stroke-width="3" stroke-dasharray="8 8" opacity="0.6"/>
+  <circle cx="256" cy="256" r="140" fill="none" stroke="#373D4E" stroke-width="4" opacity="0.7"/>
+  <circle cx="256" cy="256" r="85" fill="#181B24" stroke="#FF5722" stroke-width="4" stroke-opacity="0.4"/>
+  
+  <!-- Glowing Target Center / Palate Icon -->
+  <!-- Cloche / Bowl / Fork Symbolism -->
+  <g filter="url(#glow)">
+    <!-- Food Radar Flame / Fork Core -->
+    <path d="M256 120 C230 180, 180 220, 180 290 C180 345, 214 380, 256 380 C298 380, 332 345, 332 290 C332 220, 282 180, 256 120 Z" fill="url(#flameGrad)" />
+    <!-- Inner Core Ember -->
+    <path d="M256 220 C242 255, 218 280, 218 315 C218 340, 235 360, 256 360 C277 360, 294 340, 294 315 C294 280, 270 255, 256 220 Z" fill="#FFD54F" />
+    <!-- God-Tier Beacon dot -->
+    <circle cx="256" cy="310" r="14" fill="#FFFFFF" />
+  </g>
+  
+  <!-- Small God-Tier Accent Pill badge -->
+  <rect x="330" y="90" width="110" height="42" rx="21" fill="url(#godTierGrad)" />
+  <text x="385" y="117" font-family="-apple-system, sans-serif" font-weight="800" font-size="18" fill="#FFFFFF" text-anchor="middle" letter-spacing="1">100%</text>
+</svg>

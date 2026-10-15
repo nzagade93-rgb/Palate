@@ -1,0 +1,48 @@
+{
+  "name": "Palate — Anti-Regret Food Guide",
+  "short_name": "Palate",
+  "description": "Hyper-local, dish-first food radar. Discover God-Tier must-orders and skip menu regrets.",
+  "start_url": "/",
+  "id": "/",
+  "display": "standalone",
+  "background_color": "#0B0C0E",
+  "theme_color": "#0B0C0E",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "categories": ["food", "lifestyle", "navigation"],
+  "shortcuts": [
+    {
+      "name": "Food Radar",
+      "short_name": "Radar",
+      "description": "Browse God-Tier local dishes",
+      "url": "/",
+      "icons": [{ "src": "/icon.svg", "sizes": "any" }]
+    },
+    {
+      "name": "My Food Vault",
+      "short_name": "Vault",
+      "description": "Access your offline saved dishes and notes",
+      "url": "/#vault",
+      "icons": [{ "src": "/icon.svg", "sizes": "any" }]
+    }
+  ]
+}
