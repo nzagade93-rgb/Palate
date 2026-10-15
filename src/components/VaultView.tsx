@@ -97,7 +97,7 @@ export const VaultView: React.FC<VaultViewProps> = ({ onBackToRadar }) => {
   };
 
   return (
-    <div className="max-w-2xl mx-auto px-4 py-4 space-y-5 animate-fade-in pb-24">
+    <div className="w-full px-3.5 sm:px-4 py-4 space-y-4 animate-fade-in pb-24">
       {/* Vault Header Bar */}
       <div className="flex items-center justify-between gap-2 border-b border-[#232737] pb-3">
         <div>

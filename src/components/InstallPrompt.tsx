@@ -61,8 +61,8 @@ export const InstallPrompt: React.FC = () => {
   if (!showPrompt || isInstalled) return null;
 
   return (
-    <div className="fixed bottom-3 left-3 right-3 sm:left-auto sm:right-6 sm:w-96 z-40 animate-slide-up">
-      <div className="p-3.5 rounded-2xl bg-[#151722]/95 backdrop-blur-xl border border-brand-orange/40 shadow-glow-orange flex items-center justify-between gap-3 text-white">
+    <div className="fixed bottom-3 left-1/2 -translate-x-1/2 w-[calc(100%-24px)] max-w-sm z-40 animate-slide-up">
+      <div className="p-3 rounded-2xl bg-[#151722]/95 backdrop-blur-xl border border-brand-orange/40 shadow-glow-orange flex items-center justify-between gap-2.5 text-white">
         <div className="flex items-center gap-3 min-w-0">
           <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-orange to-amber-500 p-0.5 shrink-0 flex items-center justify-center shadow-md">
             <Smartphone className="w-5 h-5 text-white" />

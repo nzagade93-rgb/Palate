@@ -106,7 +106,7 @@ export const CounterFlyerModal: React.FC<CounterFlyerModalProps> = ({
       `}</style>
 
       {/* Outer Modal Container */}
-      <div className="w-full max-w-xl bg-[#141620] border border-[#272B3C] rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[92vh] print:max-h-none print:border-none print:shadow-none print:bg-white">
+      <div className="w-full max-w-md bg-[#141620] border border-[#272B3C] rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[92vh] print:max-h-none print:border-none print:shadow-none print:bg-white">
         
         {/* Top Control Bar (Hidden on print) */}
         <div className="no-print p-4 border-b border-[#242838] bg-[#171926] flex items-center justify-between gap-3 shrink-0">

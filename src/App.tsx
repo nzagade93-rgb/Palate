@@ -98,28 +98,29 @@ export function App() {
   };
 
   return (
-    <div className="min-h-screen bg-background text-gray-100 flex flex-col font-sans">
-      {/* Sticky Top Navigation */}
-      <HeaderNav
-        currentTab={currentTab}
-        setCurrentTab={setCurrentTab}
-        selectedCategory={selectedCategory}
-        setSelectedCategory={setSelectedCategory}
-        searchQuery={searchQuery}
-        setSearchQuery={setSearchQuery}
-        selectedArea={selectedArea}
-        setSelectedArea={setSelectedArea}
-        onOpenWheel={() => setIsWheelOpen(true)}
-        onOpenFlyer={() => handleOpenFlyer()}
-        vaultCount={vaultItems.length}
-      />
+    <div className="min-h-screen w-full bg-[#07090c] flex justify-center">
+      <div className="mx-auto w-full max-w-md min-h-screen bg-[#0e1117] text-white shadow-2xl relative border-x border-neutral-800/60 flex flex-col font-sans">
+        {/* Sticky Top Navigation */}
+        <HeaderNav
+          currentTab={currentTab}
+          setCurrentTab={setCurrentTab}
+          selectedCategory={selectedCategory}
+          setSelectedCategory={setSelectedCategory}
+          searchQuery={searchQuery}
+          setSearchQuery={setSearchQuery}
+          selectedArea={selectedArea}
+          setSelectedArea={setSelectedArea}
+          onOpenWheel={() => setIsWheelOpen(true)}
+          onOpenFlyer={() => handleOpenFlyer()}
+          vaultCount={vaultItems.length}
+        />
 
-      {/* Main View Area */}
-      <main className="flex-1 w-full max-w-2xl mx-auto pb-20">
-        {currentTab === 'vault' ? (
-          <VaultView onBackToRadar={() => setCurrentTab('radar')} />
-        ) : (
-          <div className="px-4 py-3 space-y-4">
+        {/* Main View Area */}
+        <main className="flex-1 w-full pb-20">
+          {currentTab === 'vault' ? (
+            <VaultView onBackToRadar={() => setCurrentTab('radar')} />
+          ) : (
+            <div className="px-3.5 sm:px-4 py-3 space-y-3.5">
             
             {/* Anti-Regret Value Proposition Bar */}
             <div className="p-3.5 rounded-2xl bg-gradient-to-r from-[#171924] via-[#141620] to-[#171924] border border-[#272B3C] flex items-center justify-between gap-3 shadow-sm">
@@ -264,6 +265,7 @@ export function App() {
 
       {/* PWA Floating Install Prompt */}
       <InstallPrompt />
+      </div>
     </div>
   );
 }

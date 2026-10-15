@@ -54,7 +54,7 @@ export const VerdictSplitCard: React.FC<VerdictSplitCardProps> = ({
   return (
     <div className="fixed inset-0 z-40 flex items-end sm:items-center justify-center p-0 sm:p-4 bg-black/80 backdrop-blur-md animate-fade-in overflow-hidden">
       <div 
-        className="w-full max-w-lg max-h-[92vh] sm:max-h-[85vh] bg-[#12141A] border-t sm:border border-[#282C3C] rounded-t-3xl sm:rounded-3xl shadow-2xl flex flex-col overflow-hidden animate-slide-up"
+        className="w-full max-w-md max-h-[92vh] sm:max-h-[88vh] bg-[#12141A] border-t sm:border border-[#282C3C] rounded-t-3xl sm:rounded-3xl shadow-2xl flex flex-col overflow-hidden animate-slide-up"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Top Header Bar */}

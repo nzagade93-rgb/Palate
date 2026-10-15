@@ -54,7 +54,7 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
 
   return (
     <header className="sticky top-0 z-30 w-full glass-nav pt-[env(safe-area-inset-top,0px)]">
-      <div className="max-w-2xl mx-auto px-4 py-2.5 space-y-2.5">
+      <div className="w-full px-3.5 sm:px-4 py-2.5 space-y-2.5">
         
         {/* Top Tier: Logo, Micro-Location & Primary Nav Buttons */}
         <div className="flex items-center justify-between gap-2">
