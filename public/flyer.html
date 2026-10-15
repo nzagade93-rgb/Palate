@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Palate — Sector 17 Counter QR Flyer (Print A5)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #0E1017;
+      color: #121316;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+    @page {
+      size: A5 portrait;
+      margin: 8mm;
+    }
+    @media print {
+      body {
+        background-color: #FFFFFF !important;
+        padding: 0 !important;
+      }
+      .no-print {
+        display: none !important;
+      }
+      #flyer-card {
+        box-shadow: none !important;
+        border: 2px solid #000000 !important;
+        width: 148mm !important;
+        min-height: 205mm !important;
+        margin: 0 auto !important;
+        padding: 10mm !important;
+      }
+    }
+  </style>
+</head>
+<body class="min-h-screen py-6 px-4 flex flex-col items-center justify-center">
+
+  <!-- Top Action Bar (Screen Only) -->
+  <div class="no-print w-full max-w-lg mb-6 bg-[#161824] border border-[#272B3C] rounded-2xl p-4 flex flex-col sm:flex-row items-center justify-between gap-3 shadow-lg">
+    <div class="flex items-center gap-2">
+      <div class="w-8 h-8 rounded-lg bg-[#FF5C00] flex items-center justify-center text-white font-black text-sm">
+        P
+      </div>
+      <div>
+        <h2 class="text-white text-xs font-bold">Palate A5 Merchant Standee Flyer</h2>
+        <p class="text-gray-400 text-[11px]">Select venue & click print for counter acrylic tent</p>
+      </div>
+    </div>
+
+    <div class="flex items-center gap-2 w-full sm:w-auto">
+      <select id="venue-select" onchange="updateVenue()" class="bg-[#1F2333] text-white text-xs border border-[#30364C] rounded-xl px-3 py-2 font-medium focus:outline-none focus:border-[#FF5C00] flex-1 sm:flex-none">
+        <option value="bhagat-tarachand">Bhagat Tarachand (Arenja Corner)</option>
+        <option value="morumal-sweets">Morumal Sweets & Snacks (Sec 17)</option>
+        <option value="shree-durga">Shree Durga Snacks (Sec 17)</option>
+        <option value="kathi-rolls-corner">Kathi Rolls Corner (Arenja Corner)</option>
+        <option value="al-bake-arabian">Al-Bake Arabian Hub (Arenja / Sec 17)</option>
+        <option value="yum-yum-dosa">Yum Yum Fusion Dosa Cart (Sec 17)</option>
+        <option value="tibbs-frankie">Tibbs Frankie Original (Sec 17)</option>
+        <option value="prashant-corner">Prashant Corner (Sec 17)</option>
+        <option value="gupta-sandwich">Gupta Sandwich & Juice (Sec 17)</option>
+        <option value="yewale-amruttulya">Yewale Amruttulya (Arenja Corner)</option>
+        <option value="appetite-momos">Appetite Momo Station (Sec 17)</option>
+        <option value="navratna-veg">Navratna Pure Veg (Sec 17)</option>
+        <option value="hotel-shabari">Hotel Shabari (Sec 17)</option>
+        <option value="natural-icecream">Natural Ice Cream (Sec 17)</option>
+        <option value="arenja-midnight-pavbhaji">Arenja Midnight Pav Bhaji (Arenja)</option>
+      </select>
+
+      <button onclick="window.print()" class="bg-[#FF5C00] hover:bg-orange-600 text-white text-xs font-black px-4 py-2 rounded-xl shadow-md transition-all active:scale-95 flex items-center gap-1.5 shrink-0">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
+        <span>Print A5</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- THE STANDALONE A5 FLYER SHEET -->
+  <div id="flyer-card" class="w-full max-w-[420px] bg-[#FAF8F5] text-[#121316] rounded-2xl shadow-2xl p-6 sm:p-7 flex flex-col justify-between border-2 border-[#121316] relative">
+    
+    <div class="space-y-3.5">
+      <!-- Header -->
+      <div class="flex items-center justify-between border-b-2 border-[#121316] pb-3">
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-lg bg-[#FF5C00] flex items-center justify-center text-white shadow-sm">
+            <svg class="w-5 h-5 fill-white" viewBox="0 0 24 24"><path d="M12 2c1.1 0 2 .9 2 2v1.1c2.8.6 5 3.1 5 6.1 0 3.5-2.8 6.4-6.3 6.4h-.4C8.8 17.6 6 14.8 6 11.2c0-3 2.2-5.5 5-6.1V4c0-1.1.9-2 2-2zm0 17.5c2.5 0 4.5-2 4.5-4.5 0-1.5-.7-2.8-1.8-3.6-.5-.4-.7-.9-.7-1.4 0-.8.7-1.5 1.5-1.5.3 0 .6.1.8.3 1.4 1.1 2.2 2.8 2.2 4.7 0 3.3-2.7 6-6 6s-6-2.7-6-6c0-1.9.8-3.6 2.2-4.7.2-.2.5-.3.8-.3.8 0 1.5.7 1.5 1.5 0 .5-.2 1-.7 1.4-1.1.8-1.8 2.1-1.8 3.6 0 2.5 2 4.5 4.5 4.5z"/></svg>
+          </div>
+          <div>
+            <span class="font-black text-xl tracking-tight text-[#121316]">
+              Palate<span class="text-[#FF5C00]">.</span>
+            </span>
+            <span class="ml-2 text-[10px] font-bold uppercase tracking-wider text-gray-700 bg-gray-200 px-2 py-0.5 rounded">
+              Food Radar
+            </span>
+          </div>
+        </div>
+
+        <div class="text-right">
+          <div class="text-[11px] font-black uppercase text-[#121316]">Sector 17, Vashi</div>
+          <div class="text-[10px] text-gray-600 font-semibold">Navi Mumbai</div>
+        </div>
+      </div>
+
+      <!-- Main Headline & Subhead -->
+      <div class="text-center space-y-1 pt-1">
+        <h1 class="text-2xl font-black tracking-tight leading-tight text-[#121316]">
+          Never Order the Wrong Dish in Sector 17
+        </h1>
+        <p class="text-xs font-semibold text-gray-700 leading-snug max-w-sm mx-auto">
+          Scan to see what locals actually order here — and what to skip.
+        </p>
+      </div>
+
+      <!-- Active Venue Badge -->
+      <div class="bg-white rounded-xl p-2.5 border-1.5 border-[#121316] text-center shadow-xs">
+        <span class="text-[10px] font-bold uppercase tracking-widest text-gray-500">Official Local Verdict For</span>
+        <div id="venue-name" class="text-base font-black text-[#121316] tracking-tight">Bhagat Tarachand</div>
+        <div id="venue-address" class="text-[11px] text-gray-600 font-medium">Shop 14-16, Arenja Corner, Sector 17, Vashi</div>
+      </div>
+
+      <!-- Dynamic QR Code Graphic -->
+      <div class="flex flex-col items-center justify-center py-1">
+        <div class="p-3 bg-white rounded-2xl border-2 border-[#121316] shadow-md flex items-center justify-center relative">
+          <img id="qr-image" class="w-44 h-44" src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https%3A%2F%2Fpalate-vashi.app%2F%3Fvenue%3Dbhagat-tarachand&margin=1" alt="Scan QR Code" />
+          <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+            <div class="w-8 h-8 rounded-lg bg-[#FF5C00] border-2 border-white flex items-center justify-center shadow-sm">
+              <span class="text-white text-xs font-black">P</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center mt-2 space-y-0.5">
+          <span class="text-[11px] font-black text-[#121316] tracking-wide uppercase">
+            📷 Point Phone Camera to Scan
+          </span>
+          <p class="text-[10px] text-gray-600 font-medium">
+            Instant Web App • No Download • Works on Any Phone
+          </p>
+        </div>
+      </div>
+
+      <!-- Split Verdict Quick Highlights -->
+      <div class="grid grid-cols-2 gap-2 text-left pt-1">
+        <div class="p-2.5 rounded-xl bg-emerald-50 border border-emerald-400">
+          <div class="flex items-center gap-1 text-[11px] font-black text-emerald-800">
+            <span>🟢 Must-Order</span>
+          </div>
+          <div id="dish-must-order" class="text-xs font-bold text-gray-900 mt-1 line-clamp-1">
+            Special Veg Thali with Kutchi Chaas
+          </div>
+          <div id="dish-must-verdict" class="text-[10px] text-emerald-900 mt-0.5 font-medium line-clamp-2">
+            Kadak chapati with white makhan & chilled amber beer bottle buttermilk.
+          </div>
+        </div>
+
+        <div class="p-2.5 rounded-xl bg-red-50 border border-red-300">
+          <div class="flex items-center gap-1 text-[11px] font-black text-red-800">
+            <span>🔴 Skip This</span>
+          </div>
+          <div id="dish-skip-order" class="text-xs font-bold text-gray-900 mt-1 line-clamp-1">
+            Veg Hakka Noodles & Manchurian
+          </div>
+          <div id="dish-skip-verdict" class="text-[10px] text-red-900 mt-0.5 font-medium line-clamp-2">
+            Greasy MSG sauce; stick strictly to North Indian thalis and Sev Tamatar.
+          </div>
+        </div>
+      </div>
+
+      <!-- High-Contrast Counter Incentive Badge -->
+      <div class="p-3 rounded-xl bg-[#121316] text-white border-2 border-[#121316] flex items-center gap-2.5 shadow-sm">
+        <div class="w-8 h-8 rounded-lg bg-[#FF5C00] flex items-center justify-center text-white shrink-0 text-sm font-black">
+          🎁
+        </div>
+        <div class="min-w-0">
+          <div class="text-[10px] font-black uppercase text-[#FF5C00] tracking-wider">
+            Counter Diner Perk
+          </div>
+          <div class="text-[11px] font-bold text-white leading-tight">
+            Show your Palate Screen at the Counter for Today's Diner Perk
+          </div>
+          <div id="perk-desc" class="text-[10px] text-gray-300 font-medium truncate mt-0.5">
+            Complimentary Chilled Glass-Bottle Kutchi Chaas
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Footer Trust Markers -->
+    <div class="mt-4 pt-3 border-t-2 border-[#121316] flex items-center justify-between text-[9px] font-semibold text-gray-600">
+      <span>Verified by Sector 17 Locals</span>
+      <span>No Paid Ads • No Fake 5-Stars</span>
+      <span class="font-mono text-[#FF5C00]">palate-vashi.app</span>
+    </div>
+
+  </div>
+
+  <script>
+    const DATA = {
+      'bhagat-tarachand': {
+        name: 'Bhagat Tarachand',
+        address: 'Shop 14-16, Arenja Corner, Sector 17, Vashi',
+        must: 'Special Veg Thali with Kutchi Chaas',
+        mustVerdict: 'Kadak chapati with white makhan & chilled amber beer bottle buttermilk.',
+        skip: 'Veg Hakka Noodles & Manchurian',
+        skipVerdict: 'Greasy MSG sauce; stick strictly to North Indian thalis and Sev Tamatar.',
+        perk: 'Complimentary Chilled Glass-Bottle Kutchi Chaas'
+      },
+      'morumal-sweets': {
+        name: 'Morumal Sweets & Snacks',
+        address: 'Near Blue Diamond Hotel, Sector 17, Vashi',
+        must: 'Sunday Morning Dal Pakwan (Till 11 AM)',
+        mustVerdict: 'Glass-crackling cumin pakwan, thick chana dal & amchur tamarind drizzle.',
+        skip: 'Samosa Dahi Chaat',
+        skipVerdict: 'Soggy crust drowned in sweet curd; loses all crunch within 30 seconds.',
+        perk: 'Extra Crispy Double-Blistered Pakwan'
+      },
+      'shree-durga': {
+        name: 'Shree Durga Snacks',
+        address: 'Opposite Municipal Market, Sector 17, Vashi',
+        must: 'Butter Mysore Masala Dosa & Medu Vada Dip',
+        mustVerdict: 'Red garlic podi paste on crisp crepe with boiling hot drumstick sambhar.',
+        skip: 'Street Pav Bhaji',
+        skipVerdict: 'Dull tomato paste flavor; an afterthought on an authentic Udupi griddle.',
+        perk: 'Secret Fiery Red Garlic Podi Bowl'
+      },
+      'kathi-rolls-corner': {
+        name: 'Kathi Rolls Corner',
+        address: 'Stall 4, Arenja Corner Shopping Arcade, Sector 17',
+        must: 'Double Chicken Egg Kathi Roll',
+        mustVerdict: 'Flaky laccha paratha with charred tawa chicken chunks and vinegar onions.',
+        skip: 'Paneer Tikka Roll',
+        skipVerdict: 'Rubbery cold paneer in bottled mint mayo; lacks authentic tandoor smoke.',
+        perk: 'Free Double Farm Egg Layer Upgrade'
+      },
+      'al-bake-arabian': {
+        name: 'Al-Bake Arabian Hub',
+        address: 'Arenja Corner / Vashi Plaza, Sector 17',
+        must: 'Charcoal Smoked Chicken Rumali Shawarma',
+        mustVerdict: 'Pure spit-roasted chicken wrapped with pungent garlic toum (no cabbage fillers).',
+        skip: 'Falafel Pita Pocket',
+        skipVerdict: 'Over-fried dry chickpea patties inside thick floury pita without tahini.',
+        perk: 'Free Extra House Garlic Toum Dip'
+      },
+      'yum-yum-dosa': {
+        name: 'Yum Yum Fusion Dosa Cart',
+        address: 'Near City Center Mall Back Alley, Sector 17',
+        must: 'Special Amul Cheese Jinny Dosa',
+        mustVerdict: 'Crispy wafer cylinders loaded with butter, garlic sauce & shredded cheese snow.',
+        skip: 'Plain Sada Dosa',
+        skipVerdict: 'Thick and under-fermented; misses the point of a high-butter fusion cart.',
+        perk: 'Extra Avalanche of Grated Amul Cheese'
+      },
+      'tibbs-frankie': {
+        name: 'Tibbs Frankie Original',
+        address: 'Shop 7, Sector 17 Main Road Market, Vashi',
+        must: 'Classic Mutton Frankie with Egg',
+        mustVerdict: '1969 Bombay original dusted in secret masala and vinegar green chilies.',
+        skip: 'Veg Cheese Schezwan Frankie',
+        skipVerdict: 'Liquid cheese spread and sugary chili sauce create a mushy texture.',
+        perk: 'Extra Secret 1969 Masala Dust & Green Chilies'
+      },
+      'prashant-corner': {
+        name: 'Prashant Corner',
+        address: 'Plot 31, Sector 17, Near Arenja Circle, Vashi',
+        must: 'Fresh Steamed Ukadiche Modak',
+        mustVerdict: 'Thin rice flour skin encasing warm fresh coconut and amber jaggery.',
+        skip: 'Nylon Khaman Dhokla',
+        skipVerdict: 'Dry center with uneven sugar-water tempering; often cold in evening.',
+        perk: 'Warm Pure Ghee Steamed Modak Sample'
+      },
+      'gupta-sandwich': {
+        name: 'Gupta Sandwich & Juice Bar',
+        address: 'Sector 17 Center Square, Near Shabari Hotel, Vashi',
+        must: 'Special Toast Masala Cheese Sandwich',
+        mustVerdict: 'Vintage hand-clamp flame grill crowned with snowy Amul cheese and sev.',
+        skip: 'Cold Coffee with Ice Cream',
+        skipVerdict: 'Icy dairy powder crystals with cheap syrup; zero espresso flavor.',
+        perk: 'Extra Spicy Green Mint Chutney Jar'
+      },
+      'yewale-amruttulya': {
+        name: 'Yewale Amruttulya',
+        address: 'Arenja Arcade Corner, Sector 17, Vashi',
+        must: 'Kadak Ginger Cardamom Cutting Chai',
+        mustVerdict: 'Thick buffalo milk boiled down with crushed ginger and green cardamom.',
+        skip: 'Packaged Ready Upma / Poha',
+        skipVerdict: 'Microwaved, dry, and bland; stick strictly to the tea kettle and buns.',
+        perk: 'Free Butter Khari Biscuit Pair'
+      },
+      'appetite-momos': {
+        name: 'Appetite Momo Station',
+        address: 'Real Tech Park Lane, Sector 17, Vashi',
+        must: 'Kurkure Crispy Fried Chicken Momos',
+        mustVerdict: 'Loud crunch panko jacket with juicy core and fiery Himalayan dalle dip.',
+        skip: 'Veg Cheesy Fried Momos',
+        skipVerdict: 'Processed cheese sauce solidifies into rubber when cooled.',
+        perk: 'Free Extra Fiery Garlic Chili Dip Refill'
+      },
+      'navratna-veg': {
+        name: 'Navratna Pure Veg',
+        address: 'Opposite Vashi Bus Depot, Sector 17, Vashi',
+        must: 'Butter Rava Mysore Dosa & Shahi Kaju Curry',
+        mustVerdict: 'Intricate semolina lace with whole cashews and roasted garlic chutney.',
+        skip: 'Veg Manchurian Gravy',
+        skipVerdict: 'Cornstarch heavy sludge with soggy dumplings; avoid Indo-Chinese here.',
+        perk: 'Free Silver-Leaf Saffron Badam Kheer Cup'
+      },
+      'hotel-shabari': {
+        name: 'Hotel Shabari',
+        address: 'Plot 32, Sector 17 Center Square, Vashi',
+        must: 'Mangalorean Surmai Rava Fry & Neer Dosa',
+        mustVerdict: 'Dock-fresh kingfish in Byadgi chili crust with cloud-soft rice crepes.',
+        skip: 'Chicken Dum Biryani',
+        skipVerdict: 'Dry rice grains lacking dum aromatics; stick strictly to coastal seafood.',
+        perk: 'Free Kokum Sol Kadhi Digestive Shot'
+      },
+      'natural-icecream': {
+        name: 'Natural Ice Cream',
+        address: 'Shop 4, Sector 17 Market Road, Vashi',
+        must: 'Fresh Tender Coconut (Malai) & Sitaphal',
+        mustVerdict: 'Real fresh coconut malai chunks churned with whole milk and light sugar.',
+        skip: 'Choco Bite / Generic Chocolate Scoop',
+        skipVerdict: 'Basic cocoa flavoring; coming here for chocolate misses their entire legacy.',
+        perk: 'Free Freshly Baked Crisp Waffle Cone Upgrade'
+      },
+      'arenja-midnight-pavbhaji': {
+        name: 'Arenja Midnight Pav Bhaji Corner',
+        address: 'Opposite Arenja Tower, Sector 17, Vashi',
+        must: 'Midnight Special Black Masala Pav Bhaji',
+        mustVerdict: 'Simmered on giant iron tawa with stone-ground black masala & molten Amul butter.',
+        skip: 'Tawa Veg Pulav',
+        skipVerdict: 'Pre-cooked basmati tossed with artificial red food color; dry and bland.',
+        perk: 'Free Kadak Masala Butter Pav Pair'
+      }
+    };
+
+    function updateVenue() {
+      const select = document.getElementById('venue-select');
+      const key = select.value;
+      const v = DATA[key] || DATA['bhagat-tarachand'];
+
+      document.getElementById('venue-name').innerText = v.name;
+      document.getElementById('venue-address').innerText = v.address;
+      document.getElementById('dish-must-order').innerText = v.must;
+      document.getElementById('dish-must-verdict').innerText = v.mustVerdict;
+      document.getElementById('dish-skip-order').innerText = v.skip;
+      document.getElementById('dish-skip-verdict').innerText = v.skipVerdict;
+      document.getElementById('perk-desc').innerText = v.perk;
+
+      // Update QR Code
+      const appUrl = encodeURIComponent(window.location.origin ? window.location.origin + '/?venue=' + key : 'https://palate-vashi.app/?venue=' + key);
+      document.getElementById('qr-image').src = 'https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=' + appUrl + '&margin=1';
+    }
+
+    // Check URL parameters for ?venue=...
+    const urlParams = new URLSearchParams(window.location.search);
+    const paramVenue = urlParams.get('venue');
+    if (paramVenue && DATA[paramVenue]) {
+      document.getElementById('venue-select').value = paramVenue;
+      updateVenue();
+    }
+  </script>
+</body>
+</html>

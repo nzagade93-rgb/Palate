@@ -11,6 +11,7 @@ import { VerdictSplitCard } from './components/VerdictSplitCard';
 import { VoucherModal } from './components/VoucherModal';
 import { VaultView } from './components/VaultView';
 import { AntiRegretWheel } from './components/AntiRegretWheel';
+import { CounterFlyerModal } from './components/CounterFlyerModal';
 import { InstallPrompt } from './components/InstallPrompt';
 import { DISHES, VENUES } from './data/mockData';
 import type { CategoryFilter, Dish, Venue } from './types';
@@ -27,6 +28,8 @@ export function App() {
   const [activeSplitVenue, setActiveSplitVenue] = useState<Venue | null>(null);
   const [activeVoucherVenue, setActiveVoucherVenue] = useState<Venue | null>(null);
   const [isWheelOpen, setIsWheelOpen] = useState(false);
+  const [isFlyerOpen, setIsFlyerOpen] = useState(false);
+  const [activeFlyerVenue, setActiveFlyerVenue] = useState<Venue | null>(null);
 
   const { vaultItems } = useVault();
 
@@ -50,13 +53,15 @@ export function App() {
         return false;
       }
 
-      // 3. Area Filter (if not 'All Navi Mumbai')
-      if (selectedArea !== 'All Navi Mumbai') {
+      // 3. Area Filter (if not 'All Navi Mumbai' or 'All Sector 17 & Arenja')
+      if (selectedArea !== 'All Navi Mumbai' && selectedArea !== 'All Sector 17 & Arenja') {
         const areaClean = selectedArea.toLowerCase();
         const dishAreaClean = dish.venueArea.toLowerCase();
         if (!dishAreaClean.includes(areaClean) && !areaClean.includes(dishAreaClean)) {
           // If searching for Sector 17, also include Arenja Corner which is inside Sector 17
-          if (selectedArea.includes('Sector 17') && dish.venueArea.includes('Sector 17')) {
+          const isSector17 = areaClean.includes('sector 17') || areaClean.includes('sec 17') || areaClean.includes('arenja');
+          const isDishSector17 = dishAreaClean.includes('sector 17') || dishAreaClean.includes('sec 17') || dishAreaClean.includes('arenja');
+          if (isSector17 && isDishSector17) {
             // match
           } else {
             return false;
@@ -87,6 +92,11 @@ export function App() {
     setActiveVoucherVenue(venue);
   };
 
+  const handleOpenFlyer = (venue?: Venue) => {
+    setActiveFlyerVenue(venue || null);
+    setIsFlyerOpen(true);
+  };
+
   return (
     <div className="min-h-screen bg-background text-gray-100 flex flex-col font-sans">
       {/* Sticky Top Navigation */}
@@ -100,6 +110,7 @@ export function App() {
         selectedArea={selectedArea}
         setSelectedArea={setSelectedArea}
         onOpenWheel={() => setIsWheelOpen(true)}
+        onOpenFlyer={() => handleOpenFlyer()}
         vaultCount={vaultItems.length}
       />
 
@@ -221,6 +232,7 @@ export function App() {
           isOpen={Boolean(activeSplitVenue)}
           onClose={() => setActiveSplitVenue(null)}
           onOpenVoucher={handleOpenVoucherFromSplit}
+          onOpenFlyer={handleOpenFlyer}
         />
       )}
 
@@ -241,6 +253,13 @@ export function App() {
         isOpen={isWheelOpen}
         onClose={() => setIsWheelOpen(false)}
         onSelectDish={handleSelectDish}
+      />
+
+      {/* Merchant Table-Tent Flyer Modal */}
+      <CounterFlyerModal
+        isOpen={isFlyerOpen}
+        onClose={() => setIsFlyerOpen(false)}
+        initialVenue={activeFlyerVenue}
       />
 
       {/* PWA Floating Install Prompt */}

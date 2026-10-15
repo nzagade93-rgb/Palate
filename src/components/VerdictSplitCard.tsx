@@ -12,7 +12,8 @@ import {
   Flame,
   Ticket,
   Clock,
-  HeartHandshake
+  HeartHandshake,
+  Printer
 } from 'lucide-react';
 import type { Venue, Dish } from '../types';
 import { DISHES } from '../data/mockData';
@@ -23,6 +24,7 @@ interface VerdictSplitCardProps {
   isOpen: boolean;
   onClose: () => void;
   onOpenVoucher: (venue: Venue) => void;
+  onOpenFlyer?: (venue: Venue) => void;
 }
 
 export const VerdictSplitCard: React.FC<VerdictSplitCardProps> = ({
@@ -30,6 +32,7 @@ export const VerdictSplitCard: React.FC<VerdictSplitCardProps> = ({
   isOpen,
   onClose,
   onOpenVoucher,
+  onOpenFlyer,
 }) => {
   const { isDishSaved, saveDishToVault } = useVault();
   const [activeNoteDishId, setActiveNoteDishId] = useState<string | null>(null);
@@ -126,13 +129,26 @@ export const VerdictSplitCard: React.FC<VerdictSplitCardProps> = ({
               </div>
             </div>
             
-            <button
-              onClick={() => onOpenVoucher(venue)}
-              className="mt-3.5 w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-amber-500 to-brand-orange hover:from-amber-400 hover:to-orange-500 text-black font-extrabold text-xs tracking-wide shadow-md flex items-center justify-center gap-2 active:scale-[0.98] transition-all"
-            >
-              <Sparkles className="w-4 h-4 text-black" />
-              <span>Show Digital Voucher to Cashier</span>
-            </button>
+            <div className="mt-3.5 flex items-center gap-2">
+              <button
+                onClick={() => onOpenVoucher(venue)}
+                className="flex-1 py-2.5 px-4 rounded-xl bg-gradient-to-r from-amber-500 to-brand-orange hover:from-amber-400 hover:to-orange-500 text-black font-extrabold text-xs tracking-wide shadow-md flex items-center justify-center gap-2 active:scale-[0.98] transition-all"
+              >
+                <Sparkles className="w-4 h-4 text-black" />
+                <span>Show Voucher to Cashier</span>
+              </button>
+
+              {onOpenFlyer && (
+                <button
+                  onClick={() => onOpenFlyer(venue)}
+                  className="py-2.5 px-3 rounded-xl bg-[#222638] hover:bg-[#2B3044] text-gray-300 hover:text-white border border-[#30364C] text-xs font-bold flex items-center justify-center gap-1.5 transition-all active:scale-[0.98]"
+                  title="Print Merchant Counter Flyer"
+                >
+                  <Printer className="w-4 h-4 text-brand-orange" />
+                  <span className="text-[11px]">Flyer</span>
+                </button>
+              )}
+            </div>
           </div>
 
           {/* Section 1: The Must-Orders */}

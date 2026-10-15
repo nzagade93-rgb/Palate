@@ -4,7 +4,7 @@ export const VENUES: Record<string, Venue> = {
   'bhagat-tarachand': {
     id: 'bhagat-tarachand',
     name: 'Bhagat Tarachand',
-    area: 'Sector 17, Vashi',
+    area: 'Arenja Corner, Sec 17',
     fullAddress: 'Shop 14-16, Arenja Corner, Sector 17, Vashi, Navi Mumbai',
     distanceMeters: 350,
     walkingMinutes: 4,
@@ -15,21 +15,21 @@ export const VENUES: Record<string, Venue> = {
       description: 'Present this badge when ordering Pav Bhaji or Thali to get a complimentary chilled glass-bottle Kutchi Chaas.',
       code: 'PALATE-BTC-CHAAS99'
     },
-    topDishIds: ['dish-btc-pavbhaji', 'dish-btc-kutchi-beer', 'dish-btc-sev-tamatar'],
+    topDishIds: ['dish-btc-thali', 'dish-btc-pavbhaji', 'dish-btc-kutchi-beer'],
     skipDishes: [
       {
         id: 'skip-btc-1',
-        name: 'Veg Schezwan Fried Rice',
-        price: 240,
-        reason: 'Greasy, overly sweet MSG sauce that contradicts their classic pure vegetarian Punjabi-Sindhi legacy.',
-        alternativeRecommendation: 'Stick to Sev Tamatar or Special Amul Pav Bhaji.'
+        name: 'Veg Hakka Noodles & Manchurian',
+        price: 210,
+        reason: 'Greasy, overly sweet MSG sauce that contradicts their classic pure vegetarian Punjabi-Sindhi legacy. Strictly an afterthought.',
+        alternativeRecommendation: 'Stick to the Special Veg Thali, Sev Tamatar, or Special Amul Pav Bhaji.'
       },
       {
         id: 'skip-btc-2',
         name: 'Tava Veg Pulav',
-        price: 220,
-        reason: 'Lacks the tawa punch; rice is clumpy and pre-boiled with excessive artificial food color.',
-        alternativeRecommendation: 'Order the freshly toasted Kadak Chapati with white makhan.'
+        price: 180,
+        reason: 'Clumpy pre-boiled rice with artificial red food color; dry and lacks genuine tawa punch.',
+        alternativeRecommendation: 'Order freshly griddled Kadak Chapati with white makhan.'
       }
     ]
   },
@@ -45,17 +45,17 @@ export const VENUES: Record<string, Venue> = {
     mapsUrl: 'https://maps.google.com/?q=Morumal+Sweets+Sector+17+Vashi',
     counterPerk: {
       title: 'Show at Counter: Extra Crispy Pakwan',
-      description: 'Show voucher to cashier Suresh for a complimentary extra round of double-blistered pepper pakwan.',
+      description: 'Show voucher to cashier for a complimentary extra round of double-blistered black-pepper pakwan.',
       code: 'PALATE-MORU-PAKWAN'
     },
-    topDishIds: ['dish-moru-dalpakwan', 'dish-moru-sindhikoki', 'dish-moru-gulabjamun'],
+    topDishIds: ['dish-moru-dalpakwan', 'dish-moru-sindhikoki', 'dish-moru-sevbarfi'],
     skipDishes: [
       {
         id: 'skip-moru-1',
         name: 'Samosa Dahi Chaat',
-        price: 90,
+        price: 60,
         reason: 'Soggy crust drowned in overly sweet supermarket curd; loses all crunch within 30 seconds.',
-        alternativeRecommendation: 'Get the fiery Sunday Dal Pakwan or fresh hot Sindhi Koki.'
+        alternativeRecommendation: 'Get the fiery Sunday morning Dal Pakwan or fresh hot Sindhi Koki.'
       }
     ]
   },
@@ -70,18 +70,18 @@ export const VENUES: Record<string, Venue> = {
     vibeTags: ['☕ Filter Coffee Sips', '⚡ Udupi Fast Service', '🥥 Fresh Chutney Refills'],
     mapsUrl: 'https://maps.google.com/?q=Shree+Durga+Snacks+Sector+17+Vashi',
     counterPerk: {
-      title: 'Show at Counter: Secret Red Garlic Dip Bowl',
+      title: 'Show at Counter: Secret Red Garlic Podi Bowl',
       description: 'Unlock their reserve fiery dry-roasted coconut garlic podi chutney bowl with any dosa.',
       code: 'PALATE-DURGA-PODI'
     },
-    topDishIds: ['dish-durga-mysoredosa', 'dish-durga-meduvada', 'dish-durga-ravadosa'],
+    topDishIds: ['dish-durga-mysoredosa', 'dish-durga-meduvada', 'dish-durga-filtercoffee'],
     skipDishes: [
       {
         id: 'skip-durga-1',
-        name: 'Pav Bhaji',
-        price: 160,
-        reason: 'Dull tomato paste flavor that lacks street spice aromatics; clearly an afterthought on a South Indian menu.',
-        alternativeRecommendation: 'Order the butter-slathered Mysore Masala Dosa.'
+        name: 'Street Pav Bhaji',
+        price: 130,
+        reason: 'Dull canned tomato paste flavor that lacks street spice aromatics; an afterthought on an authentic South Indian griddle.',
+        alternativeRecommendation: 'Order the butter-slathered Mysore Masala Dosa with red garlic paste.'
       }
     ]
   },
@@ -105,9 +105,35 @@ export const VENUES: Record<string, Venue> = {
       {
         id: 'skip-kathi-1',
         name: 'Paneer Tikka Roll',
-        price: 150,
-        reason: 'Rubbery, bland paneer cubes drowned in bottled mint mayonnaise; lacks authentic tandoori smoke.',
-        alternativeRecommendation: 'Go for the Double Chicken Egg Roll with pickled vinegar onions.'
+        price: 120,
+        reason: 'Rubbery, bland paneer cubes drowned in bottled mint mayonnaise; lacks authentic tandoori charcoal smoke.',
+        alternativeRecommendation: 'Go for the Double Chicken Egg Roll with vinegar pickled onions.'
+      }
+    ]
+  },
+
+  'al-bake-arabian': {
+    id: 'al-bake-arabian',
+    name: 'Al-Bake Arabian Hub',
+    area: 'Arenja Corner, Sec 17',
+    fullAddress: 'Shop 12, Ground Floor, Vashi Plaza / Arenja Arcade, Sector 17, Vashi',
+    distanceMeters: 330,
+    walkingMinutes: 4,
+    vibeTags: ['🌙 Open Till 2:00 AM', '🥩 Rotating Vertical Spit', '🧄 House-made Garlic Toum'],
+    mapsUrl: 'https://maps.google.com/?q=Al+Bake+Shawarma+Vashi+Sector+17',
+    counterPerk: {
+      title: 'Show at Counter: Free Garlic Toum Extra Dip',
+      description: 'Double portion of their velvety authentic Lebanese egg-white garlic toum dip.',
+      code: 'PALATE-ALBAKE-TOUM'
+    },
+    topDishIds: ['dish-albake-rumalishawarma', 'dish-albake-openplate'],
+    skipDishes: [
+      {
+        id: 'skip-albake-1',
+        name: 'Falafel Pita Pocket',
+        price: 110,
+        reason: 'Hard, over-fried dry chickpea patties with thick floury pita pockets; completely lacks tahini moisture.',
+        alternativeRecommendation: 'The slow-roasted Charcoal Chicken Shawarma in paper-thin Rumali.'
       }
     ]
   },
@@ -117,7 +143,7 @@ export const VENUES: Record<string, Venue> = {
     name: 'Yum Yum Fusion Dosa Cart',
     area: 'Sector 17, Vashi',
     fullAddress: 'Near City Center Mall Back Alley, Sector 17, Vashi',
-    distanceMeters: 500,
+    distanceMeters: 480,
     walkingMinutes: 6,
     vibeTags: ['🧀 Molten Cheese Cascades', '🔥 Late Night Street Eats', '⚡ High Energy Griddle'],
     mapsUrl: 'https://maps.google.com/?q=Yum+Yum+Dosa+Sector+17+Vashi',
@@ -126,14 +152,14 @@ export const VENUES: Record<string, Venue> = {
       description: 'Get an avalanche of freshly shredded Amul cheese crowned on your Jinny Dosa roll cuts.',
       code: 'PALATE-YUM-CHEESE'
     },
-    topDishIds: ['dish-yum-jinnydosa', 'dish-yum-dilkhushdosa'],
+    topDishIds: ['dish-yum-jinnydosa', 'dish-yum-matkadosa'],
     skipDishes: [
       {
         id: 'skip-yum-1',
         name: 'Plain Sada Dosa',
-        price: 80,
-        reason: 'Too thick and under-fermented; buying a plain dosa at a fusion cheese cart misses the whole point.',
-        alternativeRecommendation: 'Jinny Dosa with sweet-spicy garlic butter glaze.'
+        price: 70,
+        reason: 'Too thick and under-fermented; buying a plain dosa at a high-butter fusion cheese griddle misses the whole point.',
+        alternativeRecommendation: 'Amul Cheese Jinny Dosa with spicy-sweet garlic butter glaze.'
       }
     ]
   },
@@ -142,7 +168,7 @@ export const VENUES: Record<string, Venue> = {
     id: 'tibbs-frankie',
     name: 'Tibbs Frankie Original',
     area: 'Sector 17 Market',
-    fullAddress: 'Shop 7, Sector 17 Main Road, Vashi, Navi Mumbai',
+    fullAddress: 'Shop 7, Sector 17 Main Road Market, Vashi, Navi Mumbai',
     distanceMeters: 240,
     walkingMinutes: 3,
     vibeTags: ['🌯 The Bombay Original', '⚡ Grab & Walk', '🌶️ Vinegar Chilies'],
@@ -157,35 +183,9 @@ export const VENUES: Record<string, Venue> = {
       {
         id: 'skip-tibbs-1',
         name: 'Veg Cheese Schezwan Frankie',
-        price: 130,
+        price: 110,
         reason: 'Overpowered by artificial liquid cheese spread and syrupy chili sauce; mushy texture.',
-        alternativeRecommendation: 'Stick to the classic Mutton Frankie with egg roti.'
-      }
-    ]
-  },
-
-  'navratna-veg': {
-    id: 'navratna-veg',
-    name: 'Navratna Pure Veg',
-    area: 'Sector 17, Vashi',
-    fullAddress: 'Opposite Vashi Bus Depot, Sector 17, Vashi, Navi Mumbai',
-    distanceMeters: 450,
-    walkingMinutes: 5,
-    vibeTags: ['❄️ AC Family Dining', '🥘 North & South Curries', '🥛 Thick Badam Milk'],
-    mapsUrl: 'https://maps.google.com/?q=Navratna+Pure+Veg+Sector+17+Vashi',
-    counterPerk: {
-      title: 'Show at Counter: Free Saffron Kheer Cup',
-      description: 'Show code with any main course order to get a complimentary silver-leaf saffron badam kheer.',
-      code: 'PALATE-NAV-KHEER'
-    },
-    topDishIds: ['dish-nav-kajucurry', 'dish-nav-ravamasala'],
-    skipDishes: [
-      {
-        id: 'skip-nav-1',
-        name: 'Veg Manchurian Gravy',
-        price: 230,
-        reason: 'Cornstarch heavy sludge with spongy dough balls; zero wok breath or ginger punch.',
-        alternativeRecommendation: 'Rich Kaju Curry with crisp Butter Naan.'
+        alternativeRecommendation: 'Stick to the classic Mutton Frankie with egg-washed roti.'
       }
     ]
   },
@@ -204,40 +204,66 @@ export const VENUES: Record<string, Venue> = {
       description: 'Taste a warm, hand-rolled coconut-jaggery steamed Ukadiche Modak fresh off the steamer.',
       code: 'PALATE-PRASHANT-MODAK'
     },
-    topDishIds: ['dish-prashant-modak', 'dish-prashant-ragdapattice', 'dish-prashant-kajukatli'],
+    topDishIds: ['dish-prashant-modak', 'dish-prashant-ragdapattice'],
     skipDishes: [
       {
         id: 'skip-prashant-1',
         name: 'Nylon Khaman Dhokla',
-        price: 90,
+        price: 60,
         reason: 'Dry center and uneven sugar-water tempering; often cold if bought in the evening.',
         alternativeRecommendation: 'Order the freshly griddled, steaming hot Ragda Pattice.'
       }
     ]
   },
 
-  'al-bake-arabian': {
-    id: 'al-bake-arabian',
-    name: 'Al-Bake Arabian Hub',
-    area: 'Vashi Plaza, Sector 17',
-    fullAddress: 'Shop 12, Ground Floor, Vashi Plaza, Sector 17, Navi Mumbai',
-    distanceMeters: 550,
-    walkingMinutes: 7,
-    vibeTags: ['🌙 Open Till 2:00 AM', '🥩 Rotating Vertical Spit', '🧄 House-made Garlic Toum'],
-    mapsUrl: 'https://maps.google.com/?q=Al+Bake+Shawarma+Vashi+Plaza',
+  'gupta-sandwich': {
+    id: 'gupta-sandwich',
+    name: 'Gupta Sandwich & Juice Bar',
+    area: 'Sector 17, Vashi',
+    fullAddress: 'Sector 17 Center Square, Near Shabari Hotel, Vashi',
+    distanceMeters: 320,
+    walkingMinutes: 4,
+    vibeTags: ['🥪 Hand Clamp Toasties', '🍉 Cold Pressed Juices', '⚡ Bustling Evening Hangout'],
+    mapsUrl: 'https://maps.google.com/?q=Gupta+Sandwich+Sector+17+Vashi',
     counterPerk: {
-      title: 'Show at Counter: Free Garlic Toum Extra Dip',
-      description: 'Double portion of their velvety authentic Lebanese egg-white garlic toum dip.',
-      code: 'PALATE-ALBAKE-TOUM'
+      title: 'Show at Counter: Extra Spicy Green Mint Chutney Jar',
+      description: 'Fresh portion of spicy mint chutney and crunchy sev toppings.',
+      code: 'PALATE-GUPTA-CHUTNEY'
     },
-    topDishIds: ['dish-albake-rumalishawarma', 'dish-albake-alfaham'],
+    topDishIds: ['dish-gupta-toastsandwich', 'dish-gupta-maramari'],
     skipDishes: [
       {
-        id: 'skip-albake-1',
-        name: 'Falafel Pita Pocket',
-        price: 130,
-        reason: 'Hard, over-fried dry chickpea patties with thick floury pita pockets; lacks tahini moisture.',
-        alternativeRecommendation: 'The slow-roasted Charcoal Chicken Shawarma in thin Rumali.'
+        id: 'skip-gupta-1',
+        name: 'Cold Coffee with Ice Cream',
+        price: 90,
+        reason: 'Filled with icy water crystals and overly sugary dairy creamer powder instead of brewed espresso.',
+        alternativeRecommendation: 'Fresh Cold Pressed Mara-Mari (Pineapple + Mosambi) Juice with black salt.'
+      }
+    ]
+  },
+
+  'yewale-amruttulya': {
+    id: 'yewale-amruttulya',
+    name: 'Yewale Amruttulya',
+    area: 'Arenja Corner, Sec 17',
+    fullAddress: 'Arenja Arcade Corner, Sector 17, Vashi, Navi Mumbai',
+    distanceMeters: 290,
+    walkingMinutes: 3,
+    vibeTags: ['☕ 2-Minute Cutting Chai', '🫚 Cardamom Ginger Brew', '⚡ Standing Only'],
+    mapsUrl: 'https://maps.google.com/?q=Yewale+Amruttulya+Sector+17+Vashi',
+    counterPerk: {
+      title: 'Show at Counter: Free Butter Khari Biscuit Pair',
+      description: 'Two golden, flaky bakery khari biscuits to dunk into your piping hot cutting chai.',
+      code: 'PALATE-YEWALE-KHARI'
+    },
+    topDishIds: ['dish-yewale-chai', 'dish-yewale-bunmaska'],
+    skipDishes: [
+      {
+        id: 'skip-yewale-1',
+        name: 'Packaged Ready Upma / Poha',
+        price: 35,
+        reason: 'Microwaved, dry, and bland with rubbery texture; stick strictly to the tea kettle and bakery buns.',
+        alternativeRecommendation: 'Steaming Hot Special Cardamom Tea with salted Khari biscuits.'
       }
     ]
   },
@@ -245,10 +271,10 @@ export const VENUES: Record<string, Venue> = {
   'appetite-momos': {
     id: 'appetite-momos',
     name: 'Appetite Momo Station',
-    area: 'Sector 17, Near Real Tech',
-    fullAddress: 'Stall 2, Opposite Real Tech Park, Sector 17, Vashi',
-    distanceMeters: 480,
-    walkingMinutes: 6,
+    area: 'Sector 17, Vashi',
+    fullAddress: 'Stall 2, Real Tech Park Lane, Sector 17, Vashi',
+    distanceMeters: 450,
+    walkingMinutes: 5,
     vibeTags: ['🔥 Fiery Dalle Chutney', '⚡ Crispy Panko Batter', '🥟 College Crowd Favorite'],
     mapsUrl: 'https://maps.google.com/?q=Appetite+Momos+Sector+17+Vashi',
     counterPerk: {
@@ -261,139 +287,113 @@ export const VENUES: Record<string, Venue> = {
       {
         id: 'skip-momo-1',
         name: 'Veg Cheesy Fried Momos',
-        price: 140,
-        reason: 'Dense, oily outer jacket with processed cheese sauce that turns unpleasantly coagulated.',
-        alternativeRecommendation: 'Super crunchy Kurkure Chicken Momos.'
+        price: 110,
+        reason: 'Dense, oily outer jacket with processed cheese spread that solidifies into rubber when cooled.',
+        alternativeRecommendation: 'Super crunchy Kurkure Chicken Momos with roasted chili dip.'
       }
     ]
   },
 
-  'vashi-fast-food': {
-    id: 'vashi-fast-food',
-    name: 'Vashi Fast Food Center (VFF)',
-    area: 'Sector 9, Near Vashi Depot',
-    fullAddress: 'Near Father Agnel School Corner, Sector 9, Vashi',
-    distanceMeters: 750,
-    walkingMinutes: 9,
-    vibeTags: ['🧀 Cheese Grater Heaven', '🥪 Legendary Toasties', '🥤 Cold Fresh Juices'],
-    mapsUrl: 'https://maps.google.com/?q=Vashi+Fast+Food+Sector+9',
+  'navratna-veg': {
+    id: 'navratna-veg',
+    name: 'Navratna Pure Veg',
+    area: 'Sector 17, Vashi',
+    fullAddress: 'Opposite Vashi Bus Depot, Sector 17, Vashi, Navi Mumbai',
+    distanceMeters: 450,
+    walkingMinutes: 5,
+    vibeTags: ['❄️ AC Family Dining', '🥘 South & North Classics', '🥛 Thick Filter Coffee'],
+    mapsUrl: 'https://maps.google.com/?q=Navratna+Pure+Veg+Sector+17+Vashi',
     counterPerk: {
-      title: 'Show at Counter: Extra Grated Butter Amul Dome',
-      description: 'Free extra mountain of finely grated salted Amul cheese over your toast sandwich.',
-      code: 'PALATE-VFF-CHEESE'
+      title: 'Show at Counter: Free Saffron Badam Kheer Cup',
+      description: 'Show code with any main course order to get a complimentary silver-leaf saffron badam kheer.',
+      code: 'PALATE-NAV-KHEER'
     },
-    topDishIds: ['dish-vff-cheesetoast', 'dish-vff-sevpuri'],
+    topDishIds: ['dish-nav-ravamasala', 'dish-nav-kajucurry'],
     skipDishes: [
       {
-        id: 'skip-vff-1',
-        name: 'Grilled Chocolate Cheese Sandwich',
-        price: 150,
-        reason: 'Cheap artificial syrup mixed with salted cheddar creates an intensely cloying, oily disaster.',
-        alternativeRecommendation: 'Special Vegetable Cheese Masala Toast Sandwich.'
+        id: 'skip-nav-1',
+        name: 'Veg Manchurian Gravy',
+        price: 180,
+        reason: 'Cornstarch heavy sludge with spongy dough balls; zero wok breath or ginger punch. Avoid Indo-Chinese at classic Udipi family diners.',
+        alternativeRecommendation: 'Rich Kaju Curry with crisp Butter Naan or Golden Rava Dosa.'
       }
     ]
   },
 
-  'gupta-sandwich': {
-    id: 'gupta-sandwich',
-    name: 'Gupta Sandwich & Juice Bar',
+  'hotel-shabari': {
+    id: 'hotel-shabari',
+    name: 'Hotel Shabari',
     area: 'Sector 17, Vashi',
-    fullAddress: 'Sector 17 Center Square, Near Shabari Hotel, Vashi',
-    distanceMeters: 320,
+    fullAddress: 'Plot 32, Sector 17 Center Square, Vashi, Navi Mumbai',
+    distanceMeters: 310,
     walkingMinutes: 4,
-    vibeTags: ['🥪 Triple Decker Grills', '🍉 Cold Pressed Seasonal', '⚡ Bustling Evening Hangout'],
-    mapsUrl: 'https://maps.google.com/?q=Gupta+Sandwich+Sector+17+Vashi',
+    vibeTags: ['🦀 Legendary Coastal Seafood', '🌶️ Mangalorean Ghee Roast', '🥥 Silky Neer Dosas'],
+    mapsUrl: 'https://maps.google.com/?q=Hotel+Shabari+Sector+17+Vashi',
     counterPerk: {
-      title: 'Show at Counter: Extra Spicy Green Coriander Chutney Jar',
-      description: 'Fresh portion of spicy mint chutney and crunchy sev toppings.',
-      code: 'PALATE-GUPTA-CHUTNEY'
+      title: 'Show at Counter: Free Sol Kadhi Shot',
+      description: 'Authentic freshly pressed kokum and coconut milk digestive shot to begin your coastal meal.',
+      code: 'PALATE-SHABARI-SOL'
     },
-    topDishIds: ['dish-gupta-bahubali', 'dish-gupta-gangajamuna'],
+    topDishIds: ['dish-shabari-surmairava', 'dish-shabari-neerdosa-gheeroast'],
     skipDishes: [
       {
-        id: 'skip-gupta-1',
-        name: 'Cold Coffee with Ice Cream',
-        price: 120,
-        reason: 'Filled with icy water crystals and overly sugary dairy creamer instead of brewed espresso.',
-        alternativeRecommendation: 'Fresh Cold Pressed Mara-Mari (Pineapple + Mosambi) Juice.'
-      }
-    ]
-  },
-
-  'mahesh-lunch-home': {
-    id: 'mahesh-lunch-home',
-    name: 'Mahesh Lunch Home',
-    area: 'Palm Beach Road, Sec 15',
-    fullAddress: 'Platinum Techno Park, Sector 30A / Near Palm Beach Rd, Vashi',
-    distanceMeters: 850,
-    walkingMinutes: 11,
-    vibeTags: ['🦀 Legendary Coastal Seafood', '🌶️ Mangalorean Ghee Roast', '🍷 Premium Dining'],
-    mapsUrl: 'https://maps.google.com/?q=Mahesh+Lunch+Home+Vashi',
-    counterPerk: {
-      title: 'Show at Counter: Complimentary Sol Kadhi Shot',
-      description: 'Authentic freshly pressed kokum and coconut milk digestive shot to start your coastal feast.',
-      code: 'PALATE-MAHESH-SOLKADHI'
-    },
-    topDishIds: ['dish-mahesh-surmairava', 'dish-mahesh-buttergarliccrab', 'dish-mahesh-neerdosa'],
-    skipDishes: [
-      {
-        id: 'skip-mahesh-1',
+        id: 'skip-shabari-1',
         name: 'Chicken Dum Biryani',
-        price: 390,
-        reason: 'Lacks fragrant aromatics; rice grains are overly dry and chicken feels reheated.',
-        alternativeRecommendation: 'Order Neer Dosa with Fiery Prawns Ghee Roast.'
+        price: 260,
+        reason: 'Lacks fragrant aromatics; rice grains are dry and meat feels reheated. Avoid non-coastal items.',
+        alternativeRecommendation: 'Order 3 stacks of Neer Dosa with spicy Chicken or Prawns Ghee Roast.'
       }
     ]
   },
 
-  'yewale-amruttulya': {
-    id: 'yewale-amruttulya',
-    name: 'Yewale Amruttulya',
-    area: 'Sector 17, Vashi',
-    fullAddress: 'Arenja Arcade Corner, Sector 17, Vashi, Navi Mumbai',
-    distanceMeters: 290,
+  'natural-icecream': {
+    id: 'natural-icecream',
+    name: 'Natural Ice Cream',
+    area: 'Sector 17 Market',
+    fullAddress: 'Shop 4, Sector 17 Market Road, Vashi, Navi Mumbai',
+    distanceMeters: 260,
     walkingMinutes: 3,
-    vibeTags: ['☕ 2-Minute Cutting Chai', '🫚 Cardamom Ginger Brew', '⚡ Standing Only'],
-    mapsUrl: 'https://maps.google.com/?q=Yewale+Amruttulya+Sector+17+Vashi',
+    vibeTags: ['🥥 Fresh Fruit Artisans', '🍨 100% Real Milk & Cream', '👑 Vashi Post-Dinner Ritual'],
+    mapsUrl: 'https://maps.google.com/?q=Natural+Ice+Cream+Sector+17+Vashi',
     counterPerk: {
-      title: 'Show at Counter: Free Butter Khari Biscuit Pair',
-      description: 'Two golden, flaky bakery khari biscuits to dunk into your piping hot cutting chai.',
-      code: 'PALATE-YEWALE-KHARI'
+      title: 'Show at Counter: Free Waffle Cone Upgrade',
+      description: 'Upgrade any single or double seasonal fruit scoop to a freshly baked crisp waffle cone.',
+      code: 'PALATE-NATURAL-WAFFLE'
     },
-    topDishIds: ['dish-yewale-chai', 'dish-yewale-creambun'],
+    topDishIds: ['dish-natural-tendercoconut', 'dish-natural-sitaphal'],
     skipDishes: [
       {
-        id: 'skip-yewale-1',
-        name: 'Packaged Upma',
-        price: 45,
-        reason: 'Microwaved, dry, and bland with rubbery texture; stick strictly to the tea kettle.',
-        alternativeRecommendation: 'Steaming Hot Special Cardamom Tea with Khari.'
+        id: 'skip-natural-1',
+        name: 'Choco Bite / Generic Chocolate Scoop',
+        price: 85,
+        reason: 'Standard cocoa flavor. Coming to Natural Ice Cream for chocolate instead of seasonal fresh fruit is the quintessential rookie mistake.',
+        alternativeRecommendation: 'Fresh Tender Coconut (Malai) or seasonal Sitaphal / Mango.'
       }
     ]
   },
 
-  'pop-tates-vashi': {
-    id: 'pop-tates-vashi',
-    name: 'Pop Tate’s Unplugged',
-    area: 'Sector 19, Vashi',
-    fullAddress: 'First Floor, Haware Infotech Park, Sector 30A / 19, Vashi',
-    distanceMeters: 920,
-    walkingMinutes: 12,
-    vibeTags: ['🍕 Thin Crust Bar Bites', '🎵 Retro Rock Vibes', '🌙 Late Night Hangout'],
-    mapsUrl: 'https://maps.google.com/?q=Pop+Tates+Vashi',
+  'arenja-midnight-pavbhaji': {
+    id: 'arenja-midnight-pavbhaji',
+    name: 'Arenja Midnight Pav Bhaji Corner',
+    area: 'Arenja Corner, Sec 17',
+    fullAddress: 'Opposite Arenja Tower, Sector 17, Vashi, Navi Mumbai',
+    distanceMeters: 360,
+    walkingMinutes: 4,
+    vibeTags: ['🌙 Open Till 2:30 AM', '🧈 Half Slab Amul Butter', '🔥 Giant Cast Iron Tawa'],
+    mapsUrl: 'https://maps.google.com/?q=Arenja+Corner+Pav+Bhaji+Vashi',
     counterPerk: {
-      title: 'Show at Counter: Free Loaded Jalapeño Dip',
-      description: 'Complimentary molten smoked cheddar dip served alongside your sizzling loaded nachos.',
-      code: 'PALATE-POPTATES-DIP'
+      title: 'Show at Counter: Free Kadak Masala Pav Pair',
+      description: 'Show code for an extra pair of pavs griddled in hot red garlic bhaji butter.',
+      code: 'PALATE-ARENJA-PAV'
     },
-    topDishIds: ['dish-poptates-nachos', 'dish-poptates-wings'],
+    topDishIds: ['dish-arenja-blackpavbhaji', 'dish-arenja-masalapav'],
     skipDishes: [
       {
-        id: 'skip-poptates-1',
-        name: 'Sizzling Chocolate Brownie',
-        price: 240,
-        reason: 'Burned sizzling plate smokes out the vanilla ice cream; brownie has a dense rubbery center.',
-        alternativeRecommendation: 'Classic BBQ Glazed Crispy Chicken Wings.'
+        id: 'skip-arenja-1',
+        name: 'Tawa Veg Pulav',
+        price: 150,
+        reason: 'Pre-cooked basmati tossed with artificial red food color; dry and lacking wok char.',
+        alternativeRecommendation: 'Stick to the Midnight Special Black Masala Pav Bhaji.'
       }
     ]
   }
@@ -402,18 +402,37 @@ export const VENUES: Record<string, Venue> = {
 export const DISHES: Dish[] = [
   // 1. Bhagat Tarachand
   {
+    id: 'dish-btc-thali',
+    name: 'Special Veg Thali with Kutchi Chaas',
+    venueId: 'bhagat-tarachand',
+    venueName: 'Bhagat Tarachand',
+    venueArea: 'Arenja Corner, Sec 17',
+    distanceMeters: 350,
+    walkingMinutes: 4,
+    price: 260,
+    verdict: 'GOD_TIER',
+    scorePercent: 98,
+    microVerdict: 'Pure ghee thali, kadak chapati with white makhan, kachori, paneer sabzi & chilled kutchi beer chaas.',
+    detailedReview: 'The quintessential Vashi feast. Served in glistening brass plates, the thali comes loaded with piping hot Kadak Phulkas dripping in pure white butter, spiced dal fry, seasonal vegetable, crisp kachori, and their signature amber beer bottle buttermilk. Unbeatable value and comfort.',
+    category: 'Must-Try Icons',
+    flavorTags: ['🧈 Pure Ghee', '🍞 Kadak Chapati & Makhan', '👑 Vashi Legend'],
+    isVeg: true,
+    imageUrl: 'https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=900&q=80',
+    insiderTip: 'Ask the captain for "Kadak Roti" so they toast your chapatis extra crisp directly on the tawa.'
+  },
+  {
     id: 'dish-btc-pavbhaji',
     name: 'Special Amul Butter Pav Bhaji',
     venueId: 'bhagat-tarachand',
     venueName: 'Bhagat Tarachand',
-    venueArea: 'Sector 17, Vashi',
+    venueArea: 'Arenja Corner, Sec 17',
     distanceMeters: 350,
     walkingMinutes: 4,
-    price: 190,
+    price: 150,
     verdict: 'GOD_TIER',
     scorePercent: 96,
-    microVerdict: 'Extra crisp double-roasted pav with rich, dark spiced masala. Don\'t touch the pulav here.',
-    detailedReview: 'The defining benchmark for Sector 17 street dining. The bhaji is simmered on heavy cast iron until deeply caramelized, finished with molten Amul butter and hand-crushed roasted cumin. The pavs arrive golden and blistered, perfectly crackling on the outside.',
+    microVerdict: 'Extra crisp double-roasted pav with rich, dark spiced masala. Don\'t order Chinese or pulav here.',
+    detailedReview: 'Simmered slowly on heavy cast iron until deeply caramelized, finished with molten Amul butter and hand-crushed roasted cumin. The pavs arrive golden and blistered, perfectly crackling on the outside.',
     category: 'Must-Try Icons',
     flavorTags: ['🧈 High Amul Butter', '🍞 Extra Crisp Pav', '👑 Neighborhood Icon'],
     isVeg: true,
@@ -425,38 +444,19 @@ export const DISHES: Dish[] = [
     name: 'Kutchi Beer (Spiced Buttermilk)',
     venueId: 'bhagat-tarachand',
     venueName: 'Bhagat Tarachand',
-    venueArea: 'Sector 17, Vashi',
+    venueArea: 'Arenja Corner, Sec 17',
     distanceMeters: 350,
     walkingMinutes: 4,
-    price: 85,
+    price: 50,
     verdict: 'GOD_TIER',
     scorePercent: 95,
-    microVerdict: 'Chilled glass bottle chaas with fresh mint, hing & crushed roasted jeera. The ultimate palate refresher.',
-    detailedReview: 'Served tongue-in-cheek in a chilled amber beer bottle, this churned buttermilk is thick, tangy, and bursting with black salt, asafetida, and fresh mint leaves. It cuts through buttery bhaji grease instantly.',
+    microVerdict: 'Chilled glass bottle chaas with fresh mint, hing & crushed roasted jeera. The ultimate palate cleanser.',
+    detailedReview: 'Served tongue-in-cheek in a chilled amber beer bottle, this churned buttermilk is thick, tangy, and bursting with black salt, asafetida, and fresh mint leaves. It cuts through buttery grease instantly.',
     category: 'Quick Bites',
     flavorTags: ['🧊 Ice Chilled', '🌿 Roasted Jeera & Mint', '⚡ Instant Digestif'],
     isVeg: true,
     imageUrl: 'https://images.unsplash.com/photo-1556679343-c7306c1976bc?auto=format&fit=crop&w=900&q=80',
     insiderTip: 'Order it before your food arrives so you can sip it as an aperitif while waiting for your table.'
-  },
-  {
-    id: 'dish-btc-sev-tamatar',
-    name: 'Kathiyawadi Sev Tamatar',
-    venueId: 'bhagat-tarachand',
-    venueName: 'Bhagat Tarachand',
-    venueArea: 'Sector 17, Vashi',
-    distanceMeters: 350,
-    walkingMinutes: 4,
-    price: 180,
-    verdict: 'WORTH_IT',
-    scorePercent: 88,
-    microVerdict: 'Sweet-tangy tomato gravy topped with crunchy ratlami sev. Eat within 2 minutes before sev softens.',
-    detailedReview: 'Juicy country tomatoes stewed with ginger and green chilies, finished with a fresh handful of thick Ratlami sev right before landing on the table. Pair with soft Phulkas dripping in pure ghee.',
-    category: 'Must-Try Icons',
-    flavorTags: ['🍅 Tangy Desi Tomato', '🌶️ Ratlami Sev Crunch', '🧈 Pure Ghee'],
-    isVeg: true,
-    imageUrl: 'https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=900&q=80',
-    insiderTip: 'Ask for extra sev on the side so you can refresh the crunch throughout the meal.'
   },
 
   // 2. Morumal Sweets
@@ -468,16 +468,16 @@ export const DISHES: Dish[] = [
     venueArea: 'Sector 17, Vashi',
     distanceMeters: 280,
     walkingMinutes: 3,
-    price: 110,
+    price: 70,
     verdict: 'GOD_TIER',
     scorePercent: 98,
     microVerdict: 'Shatteringly crisp cumin pakwan layered with creamy chana dal, raw onions & tamarind drizzle.',
-    detailedReview: 'Only served until 11:30 AM before selling out. The pakwan is hand-docked and deep-fried to a golden glass-like crackle. The chana dal is cooked al-dente, seasoned with dried amchur and green chilies, topped with diced red onions.',
+    detailedReview: 'Only served until 11:00 AM before selling out. The pakwan is hand-docked and deep-fried to a golden glass-like crackle. The chana dal is cooked al-dente, seasoned with dried amchur and green chilies, topped with diced red onions.',
     category: 'Must-Try Icons',
     flavorTags: ['✨ Shatter Crisp', '👑 Authentic Sindhi Heritage', '🧅 Raw Onion Crunch'],
     isVeg: true,
     imageUrl: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=900&q=80',
-    insiderTip: 'Reach before 9:45 AM on Sundays; the line stretches around the corner and pakwans run out fast.'
+    insiderTip: 'Reach before 9:45 AM on Sundays; the crowd swells and pakwans run out fast.'
   },
   {
     id: 'dish-moru-sindhikoki',
@@ -487,16 +487,35 @@ export const DISHES: Dish[] = [
     venueArea: 'Sector 17, Vashi',
     distanceMeters: 280,
     walkingMinutes: 3,
-    price: 70,
+    price: 50,
     verdict: 'WORTH_IT',
     scorePercent: 89,
     microVerdict: 'Dense, flaky griddled flatbread stuffed with chopped onions, crushed black pepper & ajwain.',
-    detailedReview: 'A breakfast masterpiece. Double rolled with shortening ghee and spiced with cracked peppercorns and carom seeds. Golden brown blistered exterior with a crumbly, melt-in-mouth texture.',
+    detailedReview: 'A Sindhi breakfast classic. Double rolled with shortening ghee and spiced with cracked peppercorns and carom seeds. Golden brown blistered exterior with a crumbly, melt-in-mouth texture.',
     category: 'Quick Bites',
     flavorTags: ['🧈 Ghee Infused', '🌱 Carom & Black Pepper', '☕ Best with Chai'],
     isVeg: true,
     imageUrl: 'https://images.unsplash.com/photo-1626074353765-517a681e40be?auto=format&fit=crop&w=900&q=80',
-    insiderTip: 'Pair with their house raw mango pickle and a cup of ginger tea.'
+    insiderTip: 'Pair with their house raw mango pickle and a cup of cutting chai.'
+  },
+  {
+    id: 'dish-moru-sevbarfi',
+    name: 'Signature Singhar Ji Mithai (Sev Barfi)',
+    venueId: 'morumal-sweets',
+    venueName: 'Morumal Sweets & Snacks',
+    venueArea: 'Sector 17, Vashi',
+    distanceMeters: 280,
+    walkingMinutes: 3,
+    price: 60,
+    verdict: 'GOD_TIER',
+    scorePercent: 94,
+    microVerdict: 'Rich, melt-in-mouth Sindhi fudge made of unsalted sev, thickened mawa, rose water & cardamom.',
+    detailedReview: 'Crafted following decades-old Sindhi tradition. The unsalted gram flour vermicelli is slow-cooked in whole milk solids and sugar syrup, creating a distinct fudgy chew finished with slivered pistachios.',
+    category: 'Sweet Tooth',
+    flavorTags: ['🥮 Pure Mawa Chew', '🌹 Rose & Cardamom', '👑 Sindhi Specialty'],
+    isVeg: true,
+    imageUrl: 'https://images.unsplash.com/photo-1599488615731-7e5c2823ff28?auto=format&fit=crop&w=900&q=80',
+    insiderTip: 'Ask for pieces cut from the center of the fresh morning batch for the softest texture.'
   },
 
   // 3. Shree Durga Snacks
@@ -508,9 +527,9 @@ export const DISHES: Dish[] = [
     venueArea: 'Sector 17, Vashi',
     distanceMeters: 420,
     walkingMinutes: 5,
-    price: 130,
+    price: 110,
     verdict: 'GOD_TIER',
-    scorePercent: 94,
+    scorePercent: 95,
     microVerdict: 'Molten red garlic paste smeared on crisp crepe with warm spiced potato mash.',
     detailedReview: 'The crepe has an unmistakable fermented tang and uniform golden brown crispness. The inside is painted with their signature red chili, roasted chana dal, and garlic paste that delivers a slow, warming heat.',
     category: 'Must-Try Icons',
@@ -521,22 +540,41 @@ export const DISHES: Dish[] = [
   },
   {
     id: 'dish-durga-meduvada',
-    name: 'Piping Hot Medu Vada Sambhar',
+    name: 'Piping Hot Medu Vada Dip',
     venueId: 'shree-durga',
     venueName: 'Shree Durga Snacks',
     venueArea: 'Sector 17, Vashi',
     distanceMeters: 420,
     walkingMinutes: 5,
-    price: 80,
-    verdict: 'WORTH_IT',
-    scorePercent: 87,
-    microVerdict: 'Cloud-soft fermented urad interior encased in a golden, non-greasy crackling donut shell.',
-    detailedReview: 'Fried continuously in small batches during peak breakfast and tea hours. The sambhar is light, drumstick-infused, and not excessively sweet like Udipi chains in malls.',
+    price: 50,
+    verdict: 'GOD_TIER',
+    scorePercent: 94,
+    microVerdict: 'Feather-light fermented urad interior encased in a golden crackling shell submerged in drumstick sambhar.',
+    detailedReview: 'Fried continuously in small batches during peak breakfast hours. The exterior stays audibly crisp even while soaking in boiling hot, drumstick-infused sambhar.',
     category: 'Quick Bites',
     flavorTags: ['⚡ Golden Crisp Shell', '🌱 Fresh Curry Leaves', '🥣 Drumstick Sambhar'],
     isVeg: true,
     imageUrl: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=900&q=80',
-    insiderTip: 'Ask for "Sambhar Dip" to have the vadas submerged in boiling hot broth.'
+    insiderTip: 'Ask for "Sambhar Dip" to have the vadas submerged directly in a boiling bowl of sambhar.'
+  },
+  {
+    id: 'dish-durga-filtercoffee',
+    name: 'Strong Degree Filter Coffee',
+    venueId: 'shree-durga',
+    venueName: 'Shree Durga Snacks',
+    venueArea: 'Sector 17, Vashi',
+    distanceMeters: 420,
+    walkingMinutes: 5,
+    price: 40,
+    verdict: 'WORTH_IT',
+    scorePercent: 92,
+    microVerdict: 'Chicory-rich decoction poured back and forth from brass tumbler with dense milk foam froth.',
+    detailedReview: 'Freshly brewed South Indian filter coffee with an intense aroma, strong chicory spine, and velvet-smooth froth. The quintessential morning fuel.',
+    category: 'Quick Bites',
+    flavorTags: ['☕ Chicory Decoction', '🥛 Frothy Milk Head', '⚡ Morning Energizer'],
+    isVeg: true,
+    imageUrl: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=900&q=80',
+    insiderTip: 'Drink it immediately while the foam is towering over the brass tumbler rim.'
   },
 
   // 4. Kathi Rolls Corner
@@ -548,7 +586,7 @@ export const DISHES: Dish[] = [
     venueArea: 'Arenja Corner, Sec 17',
     distanceMeters: 310,
     walkingMinutes: 3,
-    price: 180,
+    price: 140,
     verdict: 'GOD_TIER',
     scorePercent: 97,
     microVerdict: 'Flaky laccha paratha glued to golden egg, stuffed with juicy charred tawa chicken chunks.',
@@ -557,7 +595,7 @@ export const DISHES: Dish[] = [
     flavorTags: ['🥩 Charred Tawa Chicken', '🧅 Vinegar Pickled Onions', '🌙 Open till 1:30 AM'],
     isVeg: false,
     imageUrl: 'https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=900&q=80',
-    insiderTip: 'Tell the roll master "Bhaiya chilies double, sauce mat daalna" to avoid ketchup ruining the spices.'
+    insiderTip: 'Tell the roll master "Bhaiya chilies double, ketchup mat daalna" to avoid sweet sauce ruining the spices.'
   },
   {
     id: 'dish-kathi-bhunamutton',
@@ -567,7 +605,7 @@ export const DISHES: Dish[] = [
     venueArea: 'Arenja Corner, Sec 17',
     distanceMeters: 310,
     walkingMinutes: 3,
-    price: 220,
+    price: 180,
     verdict: 'WORTH_IT',
     scorePercent: 90,
     microVerdict: 'Shredded tender mutton braised in whole spices wrapped in a crisp egg-washed paratha.',
@@ -576,19 +614,59 @@ export const DISHES: Dish[] = [
     flavorTags: ['🥩 Slow Braised Mutton', '🌶️ Cracked Black Pepper', '🔥 Late Night Fuel'],
     isVeg: false,
     imageUrl: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=900&q=80',
-    insiderTip: 'Get it with a cold Thums Up from the adjacent paan kiosk for the classic Vashi night out.'
+    insiderTip: 'Get it with a chilled Thums Up from the adjacent stall for the quintessential Vashi night-out ritual.'
   },
 
-  // 5. Yum Yum Fusion Dosa Cart
+  // 5. Al-Bake Arabian Hub
+  {
+    id: 'dish-albake-rumalishawarma',
+    name: 'Smoked Charcoal Rumali Shawarma',
+    venueId: 'al-bake-arabian',
+    venueName: 'Al-Bake Arabian Hub',
+    venueArea: 'Arenja Corner, Sec 17',
+    distanceMeters: 330,
+    walkingMinutes: 4,
+    price: 130,
+    verdict: 'GOD_TIER',
+    scorePercent: 96,
+    microVerdict: 'Pure slow-roasted chicken shaved off the vertical spit, wrapped with pungent garlic toum.',
+    detailedReview: 'No shredded cabbage fillers, no mayonnaise dilution. Pure chicken slices crisping over charcoal heat, wrapped in translucent rumali with pickled turnip batons and house garlic toum.',
+    category: 'Late Night',
+    flavorTags: ['🥩 Real Charcoal Smoke', '🧄 Pure Garlic Toum', '🌙 Open till 2 AM'],
+    isVeg: false,
+    imageUrl: 'https://images.unsplash.com/photo-1529006557810-274b9b2fc783?auto=format&fit=crop&w=900&q=80',
+    insiderTip: 'Tell them "Extra Garlic Toum, no cabbage" to get the purist Middle-Eastern flavor profile.'
+  },
+  {
+    id: 'dish-albake-openplate',
+    name: 'Open Plate Chicken Shawarma Platter',
+    venueId: 'al-bake-arabian',
+    venueName: 'Al-Bake Arabian Hub',
+    venueArea: 'Arenja Corner, Sec 17',
+    distanceMeters: 330,
+    walkingMinutes: 4,
+    price: 180,
+    verdict: 'GOD_TIER',
+    scorePercent: 94,
+    microVerdict: 'Heaping mound of shaved spit chicken served with 2 fresh kuboos, pickled veggies & garlic dip bowl.',
+    detailedReview: 'Perfect for dining at the standing tables. You get a double portion of juicy spit chicken, charred on edges, ready to dip directly into an overflowing tub of garlic toum.',
+    category: 'Must-Try Icons',
+    flavorTags: ['🥩 Double Chicken Portion', '🫓 Warm Fluffy Kuboos', '🧄 Velvet Garlic Dip'],
+    isVeg: false,
+    imageUrl: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=900&q=80',
+    insiderTip: 'Drizzle the spicy pickled chili oil over the meat before wrapping into kuboos.'
+  },
+
+  // 6. Yum Yum Fusion Dosa Cart
   {
     id: 'dish-yum-jinnydosa',
     name: 'Special Amul Cheese Jinny Dosa',
     venueId: 'yum-yum-dosa',
     venueName: 'Yum Yum Fusion Dosa Cart',
     venueArea: 'Sector 17, Vashi',
-    distanceMeters: 500,
+    distanceMeters: 480,
     walkingMinutes: 6,
-    price: 180,
+    price: 150,
     verdict: 'GOD_TIER',
     scorePercent: 96,
     microVerdict: 'Crispy rolled dosa cylinders filled with molten cheese, capsicum, garlic sauce & butter pool.',
@@ -599,8 +677,27 @@ export const DISHES: Dish[] = [
     imageUrl: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=900&q=80',
     insiderTip: 'Eat immediately at the counter — after 5 minutes the crispy towers absorb steam and soften.'
   },
+  {
+    id: 'dish-yum-matkadosa',
+    name: 'Cheese Matka Gravy Dosa',
+    venueId: 'yum-yum-dosa',
+    venueName: 'Yum Yum Fusion Dosa Cart',
+    venueArea: 'Sector 17, Vashi',
+    distanceMeters: 480,
+    walkingMinutes: 6,
+    price: 160,
+    verdict: 'WORTH_IT',
+    scorePercent: 90,
+    microVerdict: 'Bubbling terracotta pot filled with spiced buttery cheese gravy served with 3 crisp dosa cones.',
+    detailedReview: 'Simmered in an earthen pot right on the tawa. The gravy is rich with butter, paneer, and schezwan spices, meant for tearing and dipping the wafer-thin dosa cones.',
+    category: 'Must-Try Icons',
+    flavorTags: ['🏺 Terracotta Clay Pot', '🧀 Molten Butter Gravy', '🍦 Wafer Dosa Cones'],
+    isVeg: true,
+    imageUrl: 'https://images.unsplash.com/photo-1668236543090-82eba5ee5976?auto=format&fit=crop&w=900&q=80',
+    insiderTip: 'Dunk the cones fast before the bubbling cheese skin hardens.'
+  },
 
-  // 6. Tibbs Frankie Original
+  // 7. Tibbs Frankie Original
   {
     id: 'dish-tibbs-mutton',
     name: 'Classic Mutton Frankie with Egg',
@@ -609,7 +706,7 @@ export const DISHES: Dish[] = [
     venueArea: 'Sector 17 Market',
     distanceMeters: 240,
     walkingMinutes: 3,
-    price: 170,
+    price: 140,
     verdict: 'GOD_TIER',
     scorePercent: 95,
     microVerdict: 'The nostalgic Mumbai original. Egg-washed roti dusted with Tibbs secret masala powder.',
@@ -620,8 +717,27 @@ export const DISHES: Dish[] = [
     imageUrl: 'https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=900&q=80',
     insiderTip: 'Ask the counter guy for "Extra spice powder sprinkle on top" before folding.'
   },
+  {
+    id: 'dish-tibbs-bbqchicken',
+    name: 'Tangy Chicken Frankie with Egg',
+    venueId: 'tibbs-frankie',
+    venueName: 'Tibbs Frankie Original',
+    venueArea: 'Sector 17 Market',
+    distanceMeters: 240,
+    walkingMinutes: 3,
+    price: 120,
+    verdict: 'WORTH_IT',
+    scorePercent: 91,
+    microVerdict: 'Shredded chicken boti in spiced gravy with chopped red onions and vinegar chilies inside egg wrap.',
+    detailedReview: 'A staple after-school and after-work snack in Sector 17. The chicken stays tender, accented by the crunch of raw onions and the sharp kick of pickled green chilies.',
+    category: 'Quick Bites',
+    flavorTags: ['🍗 Spiced Chicken Boti', '🧅 Raw Onion Crunch', '🌯 Hot Foil Wrap'],
+    isVeg: false,
+    imageUrl: 'https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=900&q=80',
+    insiderTip: 'Request extra pickled chilies for maximum tang.'
+  },
 
-  // 7. Prashant Corner
+  // 8. Prashant Corner
   {
     id: 'dish-prashant-modak',
     name: 'Fresh Steamed Ukadiche Modak',
@@ -630,7 +746,7 @@ export const DISHES: Dish[] = [
     venueArea: 'Sector 17, Vashi',
     distanceMeters: 380,
     walkingMinutes: 4,
-    price: 60,
+    price: 50,
     verdict: 'GOD_TIER',
     scorePercent: 98,
     microVerdict: 'Velvety rice flour casing filled with juicy freshly grated coconut, organic jaggery & nutmeg.',
@@ -649,7 +765,7 @@ export const DISHES: Dish[] = [
     venueArea: 'Sector 17, Vashi',
     distanceMeters: 380,
     walkingMinutes: 4,
-    price: 95,
+    price: 65,
     verdict: 'WORTH_IT',
     scorePercent: 91,
     microVerdict: 'Golden shallow-fried potato patties submerged in piping hot white vatana stew with saunth chutney.',
@@ -661,37 +777,96 @@ export const DISHES: Dish[] = [
     insiderTip: 'Tell them to go heavy on green chutney and light on sweet dates chutney for optimal balance.'
   },
 
-  // 8. Al-Bake Arabian Hub
+  // 9. Gupta Sandwich & Juice Bar
   {
-    id: 'dish-albake-rumalishawarma',
-    name: 'Smoked Charcoal Rumali Shawarma',
-    venueId: 'al-bake-arabian',
-    venueName: 'Al-Bake Arabian Hub',
-    venueArea: 'Vashi Plaza, Sector 17',
-    distanceMeters: 550,
-    walkingMinutes: 7,
-    price: 160,
+    id: 'dish-gupta-toastsandwich',
+    name: 'Special Toast Masala Cheese Sandwich',
+    venueId: 'gupta-sandwich',
+    venueName: 'Gupta Sandwich & Juice Bar',
+    venueArea: 'Sector 17, Vashi',
+    distanceMeters: 320,
+    walkingMinutes: 4,
+    price: 90,
     verdict: 'GOD_TIER',
-    scorePercent: 95,
-    microVerdict: 'Pure slow-roasted chicken shaved off the vertical spit, wrapped with pungent garlic toum.',
-    detailedReview: 'No cabbage fillers, no mayo dilution. Only paper-thin rumali roti wrapped around succulent chicken slices crisped by charcoal heat, laced with pickle batons and creamy garlic sauce.',
-    category: 'Late Night',
-    flavorTags: ['🥩 Real Charcoal Smoke', '🧄 Pure Garlic Toum', '🌙 Open till 2 AM'],
-    isVeg: false,
-    imageUrl: 'https://images.unsplash.com/photo-1529006557810-274b9b2fc783?auto=format&fit=crop&w=900&q=80',
-    insiderTip: 'Ask for "Open Plate Shawarma" if you want to dip the meat directly into extra garlic cream.'
+    scorePercent: 96,
+    microVerdict: 'Smoky hand-clamped cast iron grill toast topped with a snowy dome of grated Amul cheese.',
+    detailedReview: 'Bread buttered on both sides, loaded with boiled potato masala, onions, beetroot, and capsicum. Grilled in a vintage hand clamp over open flames, then showered in an avalanche of freshly grated cheese and nylon sev.',
+    category: 'Must-Try Icons',
+    flavorTags: ['🧀 Snowy Amul Cheese Dome', '🔥 Open Flame Clamp Grill', '🥪 Street Toast Icon'],
+    isVeg: true,
+    imageUrl: 'https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=900&q=80',
+    insiderTip: 'Ask them to trim the crusts and slice it into 6 bite-sized pieces for optimal sharing.'
+  },
+  {
+    id: 'dish-gupta-maramari',
+    name: 'Fresh Cold-Pressed Mara-Mari Juice',
+    venueId: 'gupta-sandwich',
+    venueName: 'Gupta Sandwich & Juice Bar',
+    venueArea: 'Sector 17, Vashi',
+    distanceMeters: 320,
+    walkingMinutes: 4,
+    price: 70,
+    verdict: 'GOD_TIER',
+    scorePercent: 94,
+    microVerdict: 'Sweet mosambi & tart pineapple freshly pressed together with black salt & roasted jeera.',
+    detailedReview: 'Pressed on demand without added sugar or ice dilution. The blend balances sweet citrus with refreshing pineapple acidity, seasoned with black rock salt.',
+    category: 'Quick Bites',
+    flavorTags: ['🍍 Tart Pineapple Press', '🍊 Sweet Mosambi Juice', '🧂 Black Salt Kick'],
+    isVeg: true,
+    imageUrl: 'https://images.unsplash.com/photo-1613478223719-2ab802602423?auto=format&fit=crop&w=900&q=80',
+    insiderTip: 'Always order "Bina Barf" (no ice) to enjoy the pure 100% cold-pressed fruit nectar.'
   },
 
-  // 9. Appetite Momo Station
+  // 10. Yewale Amruttulya
+  {
+    id: 'dish-yewale-chai',
+    name: 'Kadak Ginger Cardamom Cutting Chai',
+    venueId: 'yewale-amruttulya',
+    venueName: 'Yewale Amruttulya',
+    venueArea: 'Arenja Corner, Sec 17',
+    distanceMeters: 290,
+    walkingMinutes: 3,
+    price: 15,
+    verdict: 'GOD_TIER',
+    scorePercent: 97,
+    microVerdict: 'Boiled down full cream milk steeped with crushed ginger and green cardamom. Pure comfort.',
+    detailedReview: 'Served piping hot in mini glass cutting cups. The brew is thick, velvety, and naturally sweetened, balancing ginger sting with floral cardamom aroma. Zero bitterness.',
+    category: 'Sweet Tooth',
+    flavorTags: ['🫚 Crushed Fresh Ginger', '☕ Thick Cream Milk', '⚡ Instant Energy Shot'],
+    isVeg: true,
+    imageUrl: 'https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=900&q=80',
+    insiderTip: 'Ask for it "Extra Kadak" if you want a sharper ginger sting.'
+  },
+  {
+    id: 'dish-yewale-bunmaska',
+    name: 'Fresh Bun Maska with Amul Butter',
+    venueId: 'yewale-amruttulya',
+    venueName: 'Yewale Amruttulya',
+    venueArea: 'Arenja Corner, Sec 17',
+    distanceMeters: 290,
+    walkingMinutes: 3,
+    price: 30,
+    verdict: 'WORTH_IT',
+    scorePercent: 91,
+    microVerdict: 'Ultra-soft local bakery bun sliced open and layered thick with salted Amul butter for dunking.',
+    detailedReview: 'Pillowy soft bun slathered with refrigerated salted butter that slowly melts when dunked into boiling hot cardamom tea.',
+    category: 'Quick Bites',
+    flavorTags: ['🧈 Salted Amul Butter', '🍞 Soft Bakery Bun', '☕ Dunking Perfection'],
+    isVeg: true,
+    imageUrl: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=900&q=80',
+    insiderTip: 'Dunk only half of the slice so the crust stays intact while soaking up tea.'
+  },
+
+  // 11. Appetite Momo Station
   {
     id: 'dish-momo-kurkurechicken',
     name: 'Kurkure Crispy Fried Chicken Momos',
     venueId: 'appetite-momos',
     venueName: 'Appetite Momo Station',
-    venueArea: 'Sector 17, Near Real Tech',
-    distanceMeters: 480,
-    walkingMinutes: 6,
-    price: 160,
+    venueArea: 'Sector 17, Vashi',
+    distanceMeters: 450,
+    walkingMinutes: 5,
+    price: 130,
     verdict: 'GOD_TIER',
     scorePercent: 94,
     microVerdict: 'Loud crunch panko jacket with juicy minced chicken center and incendiary red chili paste.',
@@ -702,111 +877,46 @@ export const DISHES: Dish[] = [
     imageUrl: 'https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=900&q=80',
     insiderTip: 'Keep a cold beverage handy — their fiery red chutney is not for beginners.'
   },
-
-  // 10. Vashi Fast Food Center (VFF)
   {
-    id: 'dish-vff-cheesetoast',
-    name: 'Special Cheese Masala Toast Sandwich',
-    venueId: 'vashi-fast-food',
-    venueName: 'Vashi Fast Food Center (VFF)',
-    venueArea: 'Sector 9, Near Vashi Depot',
-    distanceMeters: 750,
-    walkingMinutes: 9,
-    price: 140,
-    verdict: 'GOD_TIER',
-    scorePercent: 96,
-    microVerdict: 'Smoky hand-clamped cast iron grill toast topped with a snowy dome of grated Amul cheese.',
-    detailedReview: 'Bread buttered on both sides, loaded with boiled potato masala, onions, beetroot, and capsicum. Grilled in a vintage hand clamp over open flames, then showered in an avalanche of freshly grated cheese and nylon sev.',
-    category: 'Must-Try Icons',
-    flavorTags: ['🧀 Snowy Amul Cheese Dome', '🔥 Open Flame Clamp Grill', '🥪 Street Toast Icon'],
-    isVeg: true,
-    imageUrl: 'https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=900&q=80',
-    insiderTip: 'Ask them to trim the crusts and slice it into 6 pieces for easier sharing.'
-  },
-
-  // 11. Mahesh Lunch Home
-  {
-    id: 'dish-mahesh-surmairava',
-    name: 'Mangalorean Surmai Rava Fry',
-    venueId: 'mahesh-lunch-home',
-    venueName: 'Mahesh Lunch Home',
-    venueArea: 'Palm Beach Road, Sec 15',
-    distanceMeters: 850,
-    walkingMinutes: 11,
-    price: 520,
-    verdict: 'GOD_TIER',
-    scorePercent: 97,
-    microVerdict: 'Fresh kingfish steak coated in fiery Byadgi chili marinade and golden semolina crust.',
-    detailedReview: 'Direct from the morning catch. The kingfish steak is thick, moist, and flaky under a micro-crisp semolina shell spiced with tamarind, garlic, and authentic Mangalorean red chili paste.',
-    category: 'Must-Try Icons',
-    flavorTags: ['🐟 Fresh Catch Kingfish', '🌶️ Fiery Byadgi Chili', '✨ Crisp Semolina Shell'],
-    isVeg: false,
-    imageUrl: 'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=900&q=80',
-    insiderTip: 'Drizzle fresh lemon wedge immediately while the rava crust is sizzling.'
-  },
-  {
-    id: 'dish-mahesh-buttergarliccrab',
-    name: 'Coastal Butter Garlic Crab Meat',
-    venueId: 'mahesh-lunch-home',
-    venueName: 'Mahesh Lunch Home',
-    venueArea: 'Palm Beach Road, Sec 15',
-    distanceMeters: 850,
-    walkingMinutes: 11,
-    price: 680,
-    verdict: 'GOD_TIER',
-    scorePercent: 96,
-    microVerdict: 'Sweet lump mud crab meat swimming in silky golden butter and slow-simmered garlic cloves.',
-    detailedReview: 'An iconic coastal indulgence. Tender sweet crab meat tossed gently in clarified butter and sweet mellowed garlic. Best scooped up with paper-thin Neer Dosas.',
-    category: 'Must-Try Icons',
-    flavorTags: ['🦀 Sweet Mud Crab', '🧄 Mellowed Golden Garlic', '🧈 Decadent Butter Emulsion'],
-    isVeg: false,
-    imageUrl: 'https://images.unsplash.com/photo-1559742811-822863ccbaee?auto=format&fit=crop&w=900&q=80',
-    insiderTip: 'Order 3 stacks of Neer Dosa to soak up every drop of the garlic butter emulsion.'
-  },
-
-  // 12. Yewale Amruttulya
-  {
-    id: 'dish-yewale-chai',
-    name: 'Kadak Ginger Cardamom Cutting Chai',
-    venueId: 'yewale-amruttulya',
-    venueName: 'Yewale Amruttulya',
+    id: 'dish-momo-steamedchicken',
+    name: 'Classic Steamed Chicken Momos',
+    venueId: 'appetite-momos',
+    venueName: 'Appetite Momo Station',
     venueArea: 'Sector 17, Vashi',
-    distanceMeters: 290,
-    walkingMinutes: 3,
-    price: 20,
+    distanceMeters: 450,
+    walkingMinutes: 5,
+    price: 100,
+    verdict: 'WORTH_IT',
+    scorePercent: 90,
+    microVerdict: 'Thin gossamer dumpling skin bursting with coriander and scallion spiced chicken broth.',
+    detailedReview: 'Served piping hot in traditional aluminum steamers. The casing is thin and supple, holding together seasoned minced chicken and aromatics that release savoury juices on first bite.',
+    category: 'Quick Bites',
+    flavorTags: ['🥟 Thin Gossamer Skin', '🍗 Steaming Broth Pocket', '🌱 Fresh Scallions'],
+    isVeg: false,
+    imageUrl: 'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&w=900&q=80',
+    insiderTip: 'Dip halfway in mayonnaise first to coat your tongue before hitting the red chili paste.'
+  },
+
+  // 12. Navratna Pure Veg
+  {
+    id: 'dish-nav-ravamasala',
+    name: 'Butter Rava Mysore Masala Dosa',
+    venueId: 'navratna-veg',
+    venueName: 'Navratna Pure Veg',
+    venueArea: 'Sector 17, Vashi',
+    distanceMeters: 450,
+    walkingMinutes: 5,
+    price: 130,
     verdict: 'GOD_TIER',
     scorePercent: 95,
-    microVerdict: 'Boiled down full cream milk steeped with crushed ginger and green cardamom. Pure comfort.',
-    detailedReview: 'Served piping hot in mini glass cutting cups. The brew is thick, velvety, and naturally sweetened, balancing ginger sting with floral cardamom aroma. Zero bitterness.',
-    category: 'Sweet Tooth',
-    flavorTags: ['🫚 Crushed Fresh Ginger', '☕ Thick Cream Milk', '⚡ Instant Energy Shot'],
+    microVerdict: 'Golden semolina web laced with roasted cashews, curry leaves & fiery red garlic chutney.',
+    detailedReview: 'Pouring the watery rava batter on smoking hot cast iron creates an intricate crispy lace. Golden fried cashews, whole cumin, and cracked black pepper are embedded in the lattice, lined with spiced potato mash.',
+    category: 'Must-Try Icons',
+    flavorTags: ['✨ Golden Semolina Lace', '🌰 Roasted Whole Cashews', '🧄 Red Garlic Podi'],
     isVeg: true,
-    imageUrl: 'https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=900&q=80',
-    insiderTip: 'Ask for it "Extra Kadak" if you love a sharper ginger punch.'
+    imageUrl: 'https://images.unsplash.com/photo-1668236543090-82eba5ee5976?auto=format&fit=crop&w=900&q=80',
+    insiderTip: 'Tell the captain "Rava extra kadak roast" to guarantee maximum wafer crunch.'
   },
-
-  // 13. Gupta Sandwich & Juice Bar
-  {
-    id: 'dish-gupta-bahubali',
-    name: 'Bahubali 3-Tier Grilled Sandwich',
-    venueId: 'gupta-sandwich',
-    venueName: 'Gupta Sandwich & Juice Bar',
-    venueArea: 'Sector 17, Vashi',
-    distanceMeters: 320,
-    walkingMinutes: 4,
-    price: 190,
-    verdict: 'WORTH_IT',
-    scorePercent: 88,
-    microVerdict: 'Three tiers of spicy aloo, fresh veggies, paneer tikka shreds & molten cheese.',
-    detailedReview: 'An absolute beast of a sandwich built for sharing between two people. Perfectly toasted on heavy commercial panini grills with garlic butter and spicy green mint sauce.',
-    category: 'Quick Bites',
-    flavorTags: ['🥪 Triple Decker', '🧀 Molten Mozzarella', '⚡ Sharing Sized'],
-    isVeg: true,
-    imageUrl: 'https://images.unsplash.com/photo-1554433607-66b5efe9d304?auto=format&fit=crop&w=900&q=80',
-    insiderTip: 'Order it half-spicy if eating with family as the chutney layer packs a kick.'
-  },
-
-  // 14. Navratna Pure Veg
   {
     id: 'dish-nav-kajucurry',
     name: 'Navratna Special Shahi Kaju Curry',
@@ -815,45 +925,142 @@ export const DISHES: Dish[] = [
     venueArea: 'Sector 17, Vashi',
     distanceMeters: 450,
     walkingMinutes: 5,
-    price: 260,
+    price: 240,
     verdict: 'WORTH_IT',
     scorePercent: 89,
     microVerdict: 'Whole roasted cashew nuts simmered in a velvety onion-cashew brown gravy with butter naan.',
-    detailedReview: 'Generous quantity of whole golden cashews that still maintain a slight toothsome crunch inside a fragrant, mildly spiced Mughlai-style gravy.',
+    detailedReview: 'Generous quantity of whole golden cashews that maintain a toothsome crunch inside a fragrant, mildly spiced Mughlai-style gravy.',
     category: 'Must-Try Icons',
     flavorTags: ['🌰 Whole Roasted Cashews', '🥘 Creamy Onion Gravy', '🧈 Butter Tandoori Naan'],
     isVeg: true,
     imageUrl: 'https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=900&q=80',
-    insiderTip: 'Pair with Tandoori Garlic Naan to contrast the mild richness of the cashew gravy.'
+    insiderTip: 'Pair with Tandoori Garlic Naan to contrast the rich sweetness of the cashew gravy.'
   },
 
-  // 15. Pop Tate's Unplugged
+  // 13. Hotel Shabari
   {
-    id: 'dish-poptates-nachos',
-    name: 'Loaded Sizzling Mexican Nachos',
-    venueId: 'pop-tates-vashi',
-    venueName: 'Pop Tate’s Unplugged',
-    venueArea: 'Sector 19, Vashi',
-    distanceMeters: 920,
-    walkingMinutes: 12,
-    price: 290,
-    verdict: 'WORTH_IT',
-    scorePercent: 86,
-    microVerdict: 'Warm corn tortilla chips drowned in house refried beans, pico de gallo, salsa & smoked cheese.',
-    detailedReview: 'Arrives piping hot with crisp edges and great cheese coverage that reaches all the way to the bottom layers without getting soggy.',
-    category: 'Late Night',
-    flavorTags: ['🧀 Smoked Melted Cheese', '🌶️ Spicy Pickled Jalapeños', '🌽 Crisp Tortilla Base'],
+    id: 'dish-shabari-surmairava',
+    name: 'Mangalorean Surmai Rava Fry',
+    venueId: 'hotel-shabari',
+    venueName: 'Hotel Shabari',
+    venueArea: 'Sector 17, Vashi',
+    distanceMeters: 310,
+    walkingMinutes: 4,
+    price: 360,
+    verdict: 'GOD_TIER',
+    scorePercent: 97,
+    microVerdict: 'Fresh kingfish steak coated in fiery Byadgi chili marinade and golden semolina crust.',
+    detailedReview: 'Direct from the morning dock catch. The kingfish steak is thick, moist, and flaky under a micro-crisp semolina shell spiced with tamarind, garlic, and authentic Mangalorean red chili paste.',
+    category: 'Must-Try Icons',
+    flavorTags: ['🐟 Fresh Catch Kingfish', '🌶️ Fiery Byadgi Chili', '✨ Crisp Semolina Shell'],
+    isVeg: false,
+    imageUrl: 'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=900&q=80',
+    insiderTip: 'Drizzle fresh lemon wedge immediately while the rava crust is sizzling.'
+  },
+  {
+    id: 'dish-shabari-neerdosa-gheeroast',
+    name: 'Neer Dosa with Chicken Ghee Roast',
+    venueId: 'hotel-shabari',
+    venueName: 'Hotel Shabari',
+    venueArea: 'Sector 17, Vashi',
+    distanceMeters: 310,
+    walkingMinutes: 4,
+    price: 280,
+    verdict: 'GOD_TIER',
+    scorePercent: 96,
+    microVerdict: 'Gossamer-thin rice crepes paired with Kundapur-style slow-roasted chicken in clarified butter.',
+    detailedReview: 'Three layers of cloud-like Neer Dosa that melt on your tongue, paired with chicken chunks braised in whole coriander, peppercorns, roasted red chilies, and generous ladlefuls of aromatic pure ghee.',
+    category: 'Must-Try Icons',
+    flavorTags: ['🧈 Kundapur Pure Ghee', '🫓 Cloud-Soft Neer Dosa', '🌶️ Byadgi Chili Roast'],
+    isVeg: false,
+    imageUrl: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=900&q=80',
+    insiderTip: 'Order 2 extra plates of Neer Dosa — the ghee roast masala gravy is impossible to leave behind.'
+  },
+
+  // 14. Natural Ice Cream
+  {
+    id: 'dish-natural-tendercoconut',
+    name: 'Fresh Tender Coconut (Malai) Scoop',
+    venueId: 'natural-icecream',
+    venueName: 'Natural Ice Cream',
+    venueArea: 'Sector 17 Market',
+    distanceMeters: 260,
+    walkingMinutes: 3,
+    price: 85,
+    verdict: 'GOD_TIER',
+    scorePercent: 98,
+    microVerdict: 'Real fresh coastal tender coconut malai chunks churned with whole milk and light sugar.',
+    detailedReview: 'The uncontested gold standard of fresh fruit ice cream in Mumbai. Every spoonful contains crunchy-soft shreds of young green coconut tender meat suspended in smooth, non-crystallized whole milk ice cream.',
+    category: 'Sweet Tooth',
+    flavorTags: ['🥥 Real Fresh Malai', '🥛 100% Whole Milk', '👑 Vashi Legend'],
     isVeg: true,
-    imageUrl: 'https://images.unsplash.com/photo-1513456852971-30c0b8199d4d?auto=format&fit=crop&w=900&q=80',
-    insiderTip: 'Ask for the sour cream in a side ramekin to keep the top chips extra crunchy.'
+    imageUrl: 'https://images.unsplash.com/photo-1560008581-09826d1de69e?auto=format&fit=crop&w=900&q=80',
+    insiderTip: 'Pair one scoop of Tender Coconut with one scoop of roasted almond for an incredible contrast.'
+  },
+  {
+    id: 'dish-natural-sitaphal',
+    name: 'Seasonal Sitaphal (Custard Apple) Scoop',
+    venueId: 'natural-icecream',
+    venueName: 'Natural Ice Cream',
+    venueArea: 'Sector 17 Market',
+    distanceMeters: 260,
+    walkingMinutes: 3,
+    price: 85,
+    verdict: 'GOD_TIER',
+    scorePercent: 96,
+    microVerdict: 'Hand-deseeded fresh custard apple pulp with delicate floral sweetness and zero artificial essence.',
+    detailedReview: 'Available during autumn/winter season. The natural granular texture of custard apple is preserved perfectly without feeling icy or overly sweetened.',
+    category: 'Sweet Tooth',
+    flavorTags: ['🍐 Hand Deseeded Sitaphal', '🍯 Floral Natural Sugar', '❄️ Winter Special'],
+    isVeg: true,
+    imageUrl: 'https://images.unsplash.com/photo-1501443762994-82bd5dace89a?auto=format&fit=crop&w=900&q=80',
+    insiderTip: 'Ask the server if today\'s batch is freshly opened — peak seasonal batches are unmatched.'
+  },
+
+  // 15. Arenja Midnight Pav Bhaji Corner
+  {
+    id: 'dish-arenja-blackpavbhaji',
+    name: 'Midnight Special Black Masala Pav Bhaji',
+    venueId: 'arenja-midnight-pavbhaji',
+    venueName: 'Arenja Midnight Pav Bhaji Corner',
+    venueArea: 'Arenja Corner, Sec 17',
+    distanceMeters: 360,
+    walkingMinutes: 4,
+    price: 140,
+    verdict: 'GOD_TIER',
+    scorePercent: 97,
+    microVerdict: 'Simmered on giant iron tawa with stone-ground black garam masala & molten Amul butter pool.',
+    detailedReview: 'The ultimate late-night savior in Vashi. Unlike standard red food-colored bhaji, this uses roasted black whole spices (dagad phool, cloves, peppercorns) simmered for hours, served with butter-soaked toasted pavs and lemon slices.',
+    category: 'Late Night',
+    flavorTags: ['🧈 Half Slab Amul Butter', '🌶️ Stone Ground Black Masala', '🌙 Open till 2:30 AM'],
+    isVeg: true,
+    imageUrl: 'https://images.unsplash.com/photo-1606491956689-2ea866880c84?auto=format&fit=crop&w=900&q=80',
+    insiderTip: 'Tell them "Bhaji extra spicy aur pav kadak butter" for the authentic late-night experience.'
+  },
+  {
+    id: 'dish-arenja-masalapav',
+    name: 'Tawa Kadak Masala Butter Pav',
+    venueId: 'arenja-midnight-pavbhaji',
+    venueName: 'Arenja Midnight Pav Bhaji Corner',
+    venueArea: 'Arenja Corner, Sec 17',
+    distanceMeters: 360,
+    walkingMinutes: 4,
+    price: 80,
+    verdict: 'WORTH_IT',
+    scorePercent: 92,
+    microVerdict: 'Pavs split open on cast iron and drenched in bubbling red garlic bhaji butter and coriander.',
+    detailedReview: 'Two fluffy local bakery pavs fried directly in the rich residual spicy butter and masala gravy coating the tawa edge. Crispy bottoms, moist spiced interiors.',
+    category: 'Quick Bites',
+    flavorTags: ['🧈 Tawa Spiced Butter', '🍞 Fluffy Bakery Pav', '🧄 Red Garlic Masala'],
+    isVeg: true,
+    imageUrl: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=900&q=80',
+    insiderTip: 'Order this alongside your bhaji instead of plain pavs for double the flavor punch.'
   }
 ];
 
 export const NEIGHBORHOODS = [
   'Sector 17, Vashi',
-  'Vashi Plaza / Sec 17',
   'Arenja Corner, Sec 17',
-  'Palm Beach Road, Sec 15',
-  'Sector 9, Vashi',
-  'Sector 19, Vashi'
+  'Sector 17 Market',
+  'All Sector 17 & Arenja'
 ];

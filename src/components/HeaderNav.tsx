@@ -8,6 +8,7 @@ import {
   Dices, 
   ChevronDown,
   Flame,
+  Printer,
   Check
 } from 'lucide-react';
 import type { CategoryFilter } from '../types';
@@ -23,6 +24,7 @@ interface HeaderNavProps {
   selectedArea: string;
   setSelectedArea: (area: string) => void;
   onOpenWheel: () => void;
+  onOpenFlyer?: () => void;
   vaultCount: number;
 }
 
@@ -45,6 +47,7 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
   selectedArea,
   setSelectedArea,
   onOpenWheel,
+  onOpenFlyer,
   vaultCount,
 }) => {
   const [showLocationPicker, setShowLocationPicker] = useState(false);
@@ -110,12 +113,12 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
                     ))}
                     <button
                       onClick={() => {
-                        setSelectedArea('All Navi Mumbai');
+                        setSelectedArea('All Sector 17 & Arenja');
                         setShowLocationPicker(false);
                       }}
                       className="w-full text-xs text-center text-brand-orange font-semibold py-1.5 mt-1 border-t border-white/5"
                     >
-                      Show All Hubs
+                      Show All Sector 17 & Arenja
                     </button>
                   </div>
                 </>
@@ -123,8 +126,20 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
             </div>
           </div>
 
-          {/* Action Icons: Surprise Wheel & Vault Tab */}
+          {/* Action Icons: Flyer, Surprise Wheel & Vault Tab */}
           <div className="flex items-center gap-1.5">
+            {/* Merchant Flyer Button */}
+            {onOpenFlyer && (
+              <button
+                onClick={onOpenFlyer}
+                title="Print Merchant Table-Tent Flyer"
+                className="flex items-center gap-1 text-xs font-bold bg-[#1C1F2B] hover:bg-[#282E40] text-gray-300 hover:text-white border border-[#2B3144] px-2.5 py-1.5 rounded-full shadow-sm transition-all active:scale-95"
+              >
+                <Printer className="w-3.5 h-3.5 text-brand-orange" />
+                <span className="hidden sm:inline text-[11px]">Flyer</span>
+              </button>
+            )}
+
             {/* Surprise Me / Wheel */}
             <button
               onClick={onOpenWheel}
