@@ -59,48 +59,66 @@ const broadcastChannel = typeof window !== 'undefined' && 'BroadcastChannel' in 
 const INITIAL_COMMUNITY_CHECKINS: CheckIn[] = [
   {
     id: 'live-pulse-1',
-    dishId: 'dish-moru-dalpakwan',
-    dishName: 'Sunday Morning Dal Pakwan',
-    venueName: 'Morumal Sweets & Snacks',
+    dishId: 'dish-shabari-surmai',
+    dishName: 'Neer Dosa with Surmai Gawa Curry',
+    venueName: 'Shabari Coastal Dining (CBD Belapur)',
     reaction: 'GOD_TIER',
-    timestamp: Date.now() - 1000 * 60 * 12, // 12 mins ago
-    note: 'Got here before 9:30 AM, double blistered pakwan was piping hot!'
+    timestamp: Date.now() - 1000 * 60 * 8, // 8 mins ago
+    note: 'Lacy sheer neer dosas soaking up the fresh coconut-kokum surmai gravy. Unbelievable.'
   },
   {
     id: 'live-pulse-2',
-    dishId: 'dish-btc-pavbhaji',
-    dishName: 'Special Amul Butter Pav Bhaji',
-    venueName: 'Bhagat Tarachand',
+    dishId: 'dish-alshams-shawarma',
+    dishName: 'Classic Lebanese Garlic Shawarma (Rumali)',
+    venueName: 'Al-Shams Lebanese Shawarma (Kharghar)',
     reaction: 'GOD_TIER',
-    timestamp: Date.now() - 1000 * 60 * 35, // 35 mins ago
-    note: 'The Kutchi beer chaas bottle pairing is unbeatable.'
+    timestamp: Date.now() - 1000 * 60 * 18, // 18 mins ago
+    note: 'Zero cabbage, pure tender charred chicken in authentic pungent toum.'
   },
   {
     id: 'live-pulse-3',
-    dishId: 'dish-arenja-bhurji',
-    dishName: '4-Egg Butter Boil Bhurji Pav',
-    venueName: 'Arenja Corner Midnight Bhurji',
+    dishId: 'dish-moru-dalpakwan',
+    dishName: 'Sunday Morning Dal Pakwan',
+    venueName: 'Morumal Sweets & Snacks (Vashi)',
     reaction: 'GOD_TIER',
-    timestamp: Date.now() - 1000 * 60 * 78, // 1h 18m ago
-    note: 'Midnight fuel. Asked for extra kadak pav.'
+    timestamp: Date.now() - 1000 * 60 * 32, // 32 mins ago
+    note: 'Got here before 9:30 AM, double blistered pakwan was piping hot!'
   },
   {
     id: 'live-pulse-4',
-    dishId: 'dish-sai-thatte-idli',
-    dishName: 'Thatte Idli with Ghee Podi',
-    venueName: 'Sai Krupa Udupi (Sector 19)',
+    dishId: 'dish-udipi-krishna-ghee-roast',
+    dishName: 'Ghee Roast Masala Dosa & Filter Coffee',
+    venueName: 'Udipi Shri Krishna (Nerul LP)',
     reaction: 'GOD_TIER',
-    timestamp: Date.now() - 1000 * 60 * 140, // 2h 20m ago
-    note: 'Soft as cotton, dripping with hot spiced podi ghee.'
+    timestamp: Date.now() - 1000 * 60 * 55, // 55 mins ago
+    note: 'Crisp golden crepe drowned in hot Mangalore ghee. Filter coffee is strong and foamy.'
   },
   {
     id: 'live-pulse-5',
-    dishId: 'dish-durga-dosa',
-    dishName: 'Butter Mysore Masala Dosa',
-    venueName: 'Shree Durga Snacks',
+    dishId: 'dish-sk-podi-dosa',
+    dishName: 'Podi Ghee Masala Dosa',
+    venueName: 'Sri Krishna Udupi (Sanpada Station)',
     reaction: 'GOD_TIER',
-    timestamp: Date.now() - 1000 * 60 * 210,
-    note: 'The red garlic chutney in the fold is legendary.'
+    timestamp: Date.now() - 1000 * 60 * 85, // 1h 25m ago
+    note: 'Coarse gun-powder podi smeared inside with bubbling amul butter.'
+  },
+  {
+    id: 'live-pulse-6',
+    dishId: 'dish-arenja-bhurji',
+    dishName: '4-Egg Butter Boil Bhurji Pav',
+    venueName: 'Arenja Corner Midnight Bhurji (Vashi)',
+    reaction: 'GOD_TIER',
+    timestamp: Date.now() - 1000 * 60 * 115, // 1h 55m ago
+    note: 'Midnight fuel. Asked for extra kadak pav.'
+  },
+  {
+    id: 'live-pulse-7',
+    dishId: 'dish-commons-truffle-fries',
+    dishName: 'Truffle Parmesan Hand-Cut Fries & Cold Brew',
+    venueName: 'Commons Cafe & Roastery (CBD Belapur)',
+    reaction: 'GOD_TIER',
+    timestamp: Date.now() - 1000 * 60 * 160, // 2h 40m ago
+    note: 'Freshly shaved grana padano and pungent white truffle oil.'
   }
 ];
 

@@ -5,7 +5,8 @@ import {
   X, 
   ChevronDown,
   Flame,
-  Check
+  Check,
+  Compass
 } from 'lucide-react';
 import type { CategoryFilter } from '../types';
 import { NEIGHBORHOODS } from '../data/mockData';
@@ -42,7 +43,7 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
 
   return (
     <header className="sticky top-0 z-30 w-full glass-nav pt-[env(safe-area-inset-top,0px)] border-b border-[#262C36]">
-      <div className="w-full px-4 py-3 space-y-3">
+      <div className="w-full px-4 py-3 space-y-2.5">
         
         {/* Tier 1: Brand & Integrated Location Chip (Zero Clipping) */}
         <div className="flex items-center justify-between gap-3">
@@ -81,9 +82,10 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
                   className="fixed inset-0 z-40 bg-black/60 backdrop-blur-xs"
                   onClick={() => setShowLocationPicker(false)}
                 />
-                <div className="absolute top-full right-0 mt-2 z-50 w-60 rounded-2xl bg-[#0E1116] border border-[#262C36] shadow-2xl p-2 animate-fade-in">
-                  <div className="text-[10px] font-bold text-slate-400 uppercase tracking-widest px-3 py-1.5">
-                    Navi Mumbai Hubs
+                <div className="absolute top-full right-0 mt-2 z-50 w-64 rounded-2xl bg-[#0E1116] border border-[#262C36] shadow-2xl p-2 animate-fade-in">
+                  <div className="text-[10px] font-bold text-slate-400 uppercase tracking-widest px-3 py-1.5 flex items-center justify-between">
+                    <span>Navi Mumbai Corridors</span>
+                    <span className="text-brand-orange text-[9px]">Spine</span>
                   </div>
                   <div className="space-y-0.5 mt-1">
                     {NEIGHBORHOODS.map((area) => (
@@ -111,7 +113,7 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
                     }}
                     className="w-full text-[11px] text-center text-brand-orange font-semibold py-2 mt-1.5 border-t border-[#262C36] hover:underline"
                   >
-                    Show All Navi Mumbai Hubs
+                    Reset to All Navi Mumbai
                   </button>
                 </div>
               </>
@@ -139,6 +141,31 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
           )}
         </div>
 
+        {/* Tier 2.5: Horizontal Corridor Selector (1-Tap Quick Corridor Switcher) */}
+        <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-0.5 pt-0.5 -mx-1 px-1">
+          {NEIGHBORHOODS.map((corridor) => {
+            const isSelected = selectedArea === corridor;
+            return (
+              <button
+                key={corridor}
+                onClick={() => setSelectedArea(corridor)}
+                className={`whitespace-nowrap px-2.5 py-1 rounded-lg text-[11px] font-semibold transition-all shrink-0 active:scale-95 flex items-center gap-1 ${
+                  isSelected
+                    ? 'bg-brand-orange text-white font-bold shadow-glow-orange border border-brand-orange'
+                    : 'bg-[#161B22] text-slate-300 hover:text-white border border-[#262C36]'
+                }`}
+              >
+                {corridor === 'All Navi Mumbai' ? (
+                  <Compass className={`w-3 h-3 ${isSelected ? 'text-white' : 'text-slate-400'}`} />
+                ) : (
+                  <MapPin className={`w-3 h-3 ${isSelected ? 'text-white' : 'text-brand-orange'}`} />
+                )}
+                <span>{corridor}</span>
+              </button>
+            );
+          })}
+        </div>
+
         {/* Tier 3: Scaled Horizontal Category Filters with Small Padding */}
         <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-0.5 pt-0.5">
           {CATEGORIES.map((cat) => {
@@ -163,3 +190,4 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
     </header>
   );
 };
+

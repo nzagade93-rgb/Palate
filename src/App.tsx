@@ -62,19 +62,45 @@ export function App() {
         return false;
       }
 
-      // 3. Area Filter (if not 'All Navi Mumbai' or 'All Sector 17 & Arenja')
-      if (selectedArea !== 'All Navi Mumbai' && selectedArea !== 'All Sector 17 & Arenja') {
-        const areaClean = selectedArea.toLowerCase();
+      // 3. Corridor / Node Area Filter
+      if (selectedArea && selectedArea !== 'All Navi Mumbai' && selectedArea !== 'All Sector 17 & Arenja') {
+        const areaClean = selectedArea.toLowerCase().trim();
         const dishAreaClean = dish.venueArea.toLowerCase();
-        if (!dishAreaClean.includes(areaClean) && !areaClean.includes(dishAreaClean)) {
-          // If searching for Sector 17, also include Arenja Corner which is inside Sector 17
-          const isSector17 = areaClean.includes('sector 17') || areaClean.includes('sec 17') || areaClean.includes('arenja');
-          const isDishSector17 = dishAreaClean.includes('sector 17') || dishAreaClean.includes('sec 17') || dishAreaClean.includes('arenja');
-          if (isSector17 && isDishSector17) {
-            // match
-          } else {
-            return false;
-          }
+
+        let matchesCorridor = false;
+        if (areaClean === 'vashi') {
+          matchesCorridor =
+            dishAreaClean.includes('vashi') ||
+            dishAreaClean.includes('sector 17') ||
+            dishAreaClean.includes('sec 17') ||
+            dishAreaClean.includes('arenja') ||
+            dishAreaClean.includes('apmc') ||
+            dishAreaClean.includes('sector 9');
+        } else if (areaClean === 'sanpada') {
+          matchesCorridor = dishAreaClean.includes('sanpada');
+        } else if (areaClean === 'juinagar') {
+          matchesCorridor = dishAreaClean.includes('juinagar');
+        } else if (areaClean === 'nerul') {
+          matchesCorridor =
+            dishAreaClean.includes('nerul') ||
+            dishAreaClean.includes('seawoods') ||
+            dishAreaClean.includes('lp');
+        } else if (areaClean === 'cbd belapur' || areaClean === 'belapur') {
+          matchesCorridor =
+            dishAreaClean.includes('belapur') ||
+            dishAreaClean.includes('cbd');
+        } else if (areaClean === 'kharghar') {
+          matchesCorridor =
+            dishAreaClean.includes('kharghar') ||
+            dishAreaClean.includes('shilp') ||
+            dishAreaClean.includes('utsav') ||
+            dishAreaClean.includes('hiranandani');
+        } else {
+          matchesCorridor = dishAreaClean.includes(areaClean) || areaClean.includes(dishAreaClean);
+        }
+
+        if (!matchesCorridor) {
+          return false;
         }
       }
 
