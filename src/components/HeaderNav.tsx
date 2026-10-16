@@ -43,10 +43,10 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
 
   return (
     <header className="sticky top-0 z-30 w-full glass-nav pt-[env(safe-area-inset-top,0px)] border-b border-[#262C36]">
-      <div className="w-full px-4 py-3 space-y-2.5">
+      <div className="w-full px-4 py-2.5 space-y-2.5">
         
-        {/* Tier 1: Brand & Integrated Location Chip (Zero Clipping) */}
-        <div className="flex items-center justify-between gap-3">
+        {/* Tier 1: Brand & Integrated Location Chip (Vertically Centered, Zero Clipping) */}
+        <div className="h-12 flex items-center justify-between gap-3">
           {/* Brand Logo & Wordmark */}
           <button
             onClick={onBrandClick}
@@ -64,7 +64,7 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
           </button>
 
           {/* Micro-Location Indicator Pill with Tight Elegant Border */}
-          <div className="relative">
+          <div className="relative flex items-center">
             <button
               onClick={() => setShowLocationPicker(!showLocationPicker)}
               aria-label="Select Neighborhood Hub"
@@ -142,7 +142,7 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
         </div>
 
         {/* Tier 2.5: Horizontal Corridor Selector (1-Tap Quick Corridor Switcher) */}
-        <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-0.5 pt-0.5 -mx-1 px-1">
+        <div className="-mx-4 px-4 flex items-center gap-1.5 overflow-x-auto no-scrollbar py-0.5">
           {NEIGHBORHOODS.map((corridor) => {
             const isSelected = selectedArea === corridor;
             return (
@@ -167,7 +167,7 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
         </div>
 
         {/* Tier 3: Scaled Horizontal Category Filters with Small Padding */}
-        <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-0.5 pt-0.5">
+        <div className="-mx-4 px-4 flex items-center gap-2 overflow-x-auto no-scrollbar py-0.5">
           {CATEGORIES.map((cat) => {
             const isSelected = selectedCategory === cat;
             return (

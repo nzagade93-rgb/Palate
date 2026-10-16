@@ -24,9 +24,9 @@ export const BottomNav: React.FC<BottomNavProps> = ({
   return (
     <nav 
       aria-label="Bottom Navigation"
-      className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-md z-40 bg-[#0E1116]/90 backdrop-blur-xl border-t border-[#262C36] px-3 py-2 pb-[max(0.75rem,env(safe-area-inset-bottom))] shadow-2xl select-none"
+      className="fixed bottom-0 inset-x-0 mx-auto w-full max-w-[430px] z-50 h-16 bg-[#0E1116]/95 backdrop-blur-xl border-t border-[#262C36] px-3 flex items-center pb-[env(safe-area-inset-bottom,0px)] shadow-2xl select-none"
     >
-      <div className="grid grid-cols-4 items-center justify-items-center w-full">
+      <div className="grid grid-cols-4 items-center text-center w-full">
         {/* Tab 1: Radar (Discovery) */}
         <button
           onClick={() => setCurrentTab('radar')}

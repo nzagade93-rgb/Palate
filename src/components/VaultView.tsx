@@ -97,33 +97,28 @@ export const VaultView: React.FC<VaultViewProps> = ({ onBackToRadar }) => {
   };
 
   return (
-    <div className="w-full px-3.5 sm:px-4 py-4 space-y-4 animate-fade-in pb-24">
-      {/* Vault Header Bar */}
-      <div className="flex items-center justify-between gap-2 border-b border-[#262C36] pb-3.5">
-        <div>
-          <div className="flex items-center gap-2">
-            <h1 className="text-xl font-extrabold text-white tracking-tight">My Food Vault</h1>
-            <span className="inline-flex items-center gap-1 text-[10px] font-bold text-emerald-400 bg-emerald-500/15 border border-emerald-500/30 px-2.5 py-0.5 rounded-full">
-              <WifiOff className="w-2.5 h-2.5" />
-              <span>Offline Ready</span>
-            </span>
-          </div>
-          <p className="text-xs text-slate-400 mt-0.5">
-            Your personal anti-regret notebook. Zero account friction, 100% saved on device.
-          </p>
+    <div className="w-full px-4 sm:px-5 py-4 space-y-4 animate-fade-in pb-28">
+      {/* Vault Header Bar (Clean Row Alignment) */}
+      <div className="flex items-center justify-between gap-3 border-b border-[#262C36] pb-3.5">
+        <div className="flex items-center gap-2">
+          <h1 className="text-xl font-extrabold text-white tracking-tight">My Food Vault</h1>
+          <span className="inline-flex items-center gap-1 text-[10px] font-bold text-emerald-400 bg-emerald-500/15 border border-emerald-500/30 px-2.5 py-0.5 rounded-full">
+            <WifiOff className="w-2.5 h-2.5" />
+            <span>Offline</span>
+          </span>
         </div>
 
         <div className="flex items-center gap-2">
           <button
             onClick={handleShareVault}
             title="Export Vault Summary"
-            className="min-h-[44px] min-w-[44px] flex items-center justify-center p-2 rounded-xl bg-[#161B22] hover:bg-[#1E242E] text-slate-300 hover:text-white border border-[#262C36] transition-all active:scale-95"
+            className="w-9 h-9 flex items-center justify-center rounded-xl bg-[#161B22] hover:bg-[#1E242E] text-slate-300 hover:text-white border border-[#262C36] transition-all active:scale-95"
           >
             <Share2 className="w-4 h-4" />
           </button>
           <button
             onClick={() => setShowAddModal(true)}
-            className="min-h-[44px] flex items-center gap-1.5 text-xs font-bold bg-brand-orange hover:bg-orange-600 text-white px-3.5 py-2 rounded-xl shadow-glow-orange transition-all active:scale-95"
+            className="h-9 flex items-center gap-1.5 text-xs font-bold bg-brand-orange hover:bg-orange-600 text-white px-3 rounded-xl shadow-glow-orange transition-all active:scale-95"
           >
             <PlusCircle className="w-4 h-4" />
             <span>Log Dish</span>
@@ -137,56 +132,50 @@ export const VaultView: React.FC<VaultViewProps> = ({ onBackToRadar }) => {
         </div>
       )}
 
-      {/* Tabs Switcher: Tried & Loved | Never Again | Saved for Later */}
-      <div className="grid grid-cols-3 gap-1 bg-[#0E1116] p-1.5 rounded-2xl border border-[#262C36]">
+      {/* Segment Switcher: 3-column segmented control */}
+      <div className="grid grid-cols-3 p-1 bg-[#161B22] rounded-xl text-xs text-center border border-[#262C36]">
         <button
           onClick={() => setActiveTab('LOVED')}
-          className={`min-h-[44px] flex items-center justify-center gap-1.5 py-2.5 px-2 rounded-xl text-xs font-bold transition-all active:scale-95 ${
+          className={`py-2 px-2 text-xs transition-all active:scale-95 flex items-center justify-center gap-1.5 ${
             activeTab === 'LOVED'
-              ? 'bg-emerald-500 text-white shadow-md shadow-emerald-500/20'
-              : 'text-slate-400 hover:text-slate-200'
+              ? 'bg-[#0E1116] text-white shadow-sm font-medium rounded-lg'
+              : 'text-neutral-400 hover:text-white transition-colors'
           }`}
         >
-          <Heart className="w-3.5 h-3.5" />
-          <span>Tried & Loved</span>
-          <span className="text-[10px] font-black px-1.5 py-0.5 rounded-full bg-black/30">
-            {countLoved}
-          </span>
+          <Heart className={`w-3.5 h-3.5 ${activeTab === 'LOVED' ? 'text-emerald-400' : ''}`} />
+          <span className="truncate">Tried & Loved</span>
+          <span className="text-[10px] font-bold opacity-80">({countLoved})</span>
         </button>
 
         <button
           onClick={() => setActiveTab('AVOID')}
-          className={`min-h-[44px] flex items-center justify-center gap-1.5 py-2.5 px-2 rounded-xl text-xs font-bold transition-all active:scale-95 ${
+          className={`py-2 px-2 text-xs transition-all active:scale-95 flex items-center justify-center gap-1.5 ${
             activeTab === 'AVOID'
-              ? 'bg-red-500 text-white shadow-md shadow-red-500/20'
-              : 'text-slate-400 hover:text-slate-200'
+              ? 'bg-[#0E1116] text-white shadow-sm font-medium rounded-lg'
+              : 'text-neutral-400 hover:text-white transition-colors'
           }`}
         >
-          <Ban className="w-3.5 h-3.5" />
-          <span>Never Again</span>
-          <span className="text-[10px] font-black px-1.5 py-0.5 rounded-full bg-black/30">
-            {countAvoid}
-          </span>
+          <Ban className={`w-3.5 h-3.5 ${activeTab === 'AVOID' ? 'text-red-400' : ''}`} />
+          <span className="truncate">Never Again</span>
+          <span className="text-[10px] font-bold opacity-80">({countAvoid})</span>
         </button>
 
         <button
           onClick={() => setActiveTab('SAVED')}
-          className={`min-h-[44px] flex items-center justify-center gap-1.5 py-2.5 px-2 rounded-xl text-xs font-bold transition-all active:scale-95 ${
+          className={`py-2 px-2 text-xs transition-all active:scale-95 flex items-center justify-center gap-1.5 ${
             activeTab === 'SAVED'
-              ? 'bg-brand-orange text-white shadow-md shadow-orange-500/20'
-              : 'text-slate-400 hover:text-slate-200'
+              ? 'bg-[#0E1116] text-white shadow-sm font-medium rounded-lg'
+              : 'text-neutral-400 hover:text-white transition-colors'
           }`}
         >
-          <Bookmark className="w-3.5 h-3.5" />
-          <span>Saved</span>
-          <span className="text-[10px] font-black px-1.5 py-0.5 rounded-full bg-black/30">
-            {countSaved}
-          </span>
+          <Bookmark className={`w-3.5 h-3.5 ${activeTab === 'SAVED' ? 'text-brand-orange' : ''}`} />
+          <span className="truncate">Saved</span>
+          <span className="text-[10px] font-bold opacity-80">({countSaved})</span>
         </button>
       </div>
 
-      {/* Vault Items List */}
-      <div className="space-y-3.5">
+      {/* Vault Items List: Clean breathable card spacing */}
+      <div className="space-y-4">
         {filteredItems.length === 0 ? (
           <div className="p-8 rounded-3xl bg-[#0E1116] border border-[#262C36] text-center space-y-3">
             <div className="w-12 h-12 rounded-full bg-[#161B22] border border-[#262C36] text-slate-400 flex items-center justify-center mx-auto">
@@ -204,11 +193,11 @@ export const VaultView: React.FC<VaultViewProps> = ({ onBackToRadar }) => {
                 ? 'Save your favorite God-Tier dishes to create your personal hall of fame.'
                 : activeTab === 'AVOID'
                 ? 'Record meals that let you down so you never repeat the regret.'
-                : 'Bookmark spots you want to visit on your next Sector 17 food crawl.'}
+                : 'Bookmark spots you want to visit on your next Navi Mumbai food crawl.'}
             </p>
             <button
               onClick={onBackToRadar}
-              className="min-h-[44px] inline-flex items-center gap-1.5 text-xs font-bold text-brand-orange bg-brand-orange/10 hover:bg-brand-orange/20 border border-brand-orange/30 px-4 py-2 rounded-xl transition-all active:scale-95"
+              className="min-h-[40px] inline-flex items-center gap-1.5 text-xs font-bold text-brand-orange bg-brand-orange/10 hover:bg-brand-orange/20 border border-brand-orange/30 px-4 py-2 rounded-xl transition-all active:scale-95"
             >
               <span>Explore The Food Radar</span>
               <ArrowRight className="w-3.5 h-3.5" />
@@ -221,41 +210,41 @@ export const VaultView: React.FC<VaultViewProps> = ({ onBackToRadar }) => {
             return (
               <div
                 key={item.id}
-                className="p-4 rounded-2xl bg-[#0E1116] border border-[#262C36] hover:border-neutral-700 transition-all space-y-3 relative group shadow-md"
+                className="p-3.5 rounded-2xl bg-[#0E1116] border border-[#262C36] hover:border-neutral-700 transition-all space-y-3 relative group shadow-md"
               >
-                {/* Header Row */}
-                <div className="flex gap-3.5">
+                {/* Header Row: 64x64px thumbnail & metadata column */}
+                <div className="flex items-start gap-3.5">
                   <img
                     src={item.imageUrl}
                     alt={item.dishName}
-                    className="w-14 h-14 rounded-xl object-cover shrink-0 border border-[#262C36]"
+                    className="w-16 h-16 rounded-xl object-cover flex-shrink-0 border border-[#262C36]"
                     loading="lazy"
                   />
-                  <div className="flex-1 min-w-0">
+                  <div className="flex-1 min-w-0 flex flex-col justify-between self-stretch">
                     <div className="flex items-start justify-between gap-2">
                       <h3 className="text-sm font-bold text-white leading-tight truncate">
                         {item.dishName}
                       </h3>
                       <button
                         onClick={() => removeVaultItem(item.id)}
-                        className="text-slate-500 hover:text-red-400 p-1 rounded-lg transition-colors"
+                        className="text-slate-500 hover:text-red-400 p-0.5 rounded transition-colors"
                         title="Remove from vault"
                       >
                         <Trash2 className="w-3.5 h-3.5" />
                       </button>
                     </div>
 
-                    <div className="flex items-center gap-1.5 text-xs text-slate-400 mt-0.5">
-                      <span className="font-medium text-slate-300">{item.venueName}</span>
+                    <div className="flex items-center gap-1.5 text-xs text-slate-400 my-0.5">
+                      <span className="font-medium text-slate-300 truncate">{item.venueName}</span>
                       <span>•</span>
-                      <span className="flex items-center gap-0.5 text-slate-400">
+                      <span className="flex items-center gap-0.5 text-slate-400 shrink-0">
                         <MapPin className="w-3 h-3 text-brand-orange" />
                         {item.venueArea}
                       </span>
                     </div>
 
                     {/* Verdict Score Badge */}
-                    <div className="flex items-center gap-2 mt-1">
+                    <div className="flex items-center justify-between gap-2 mt-0.5">
                       <span
                         className={`text-[10px] font-extrabold px-2 py-0.5 rounded-full border ${
                           item.verdict === 'GOD_TIER'

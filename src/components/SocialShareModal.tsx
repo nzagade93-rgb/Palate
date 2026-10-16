@@ -245,13 +245,13 @@ export const SocialShareModal: React.FC<SocialShareModalProps> = ({
   const isSpotlight = activeFilter === 'spotlight';
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/90 backdrop-blur-xl animate-fade-in overflow-y-auto">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/90 backdrop-blur-xl animate-fade-in">
       <div 
-        className="w-full max-w-md bg-[#0E1116] border border-[#262C36] rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[96vh] relative animate-slide-up"
+        className="w-full max-w-md max-h-[92dvh] bg-[#0E1116] border border-[#262C36] rounded-3xl shadow-2xl overflow-hidden flex flex-col relative animate-slide-up"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Minimal Header */}
-        <div className="px-4 py-3 border-b border-[#262C36] bg-[#0E1116] flex items-center justify-between shrink-0">
+        {/* Minimal Header: Fixed h-12 */}
+        <div className="h-12 px-4 border-b border-[#262C36] bg-[#0E1116] flex items-center justify-between shrink-0">
           <div className="flex items-center gap-2">
             <span className="text-[11px] font-bold text-slate-400 tracking-widest uppercase">
               Social Flex • Story Export
@@ -268,12 +268,12 @@ export const SocialShareModal: React.FC<SocialShareModalProps> = ({
         </div>
 
         {/* Scrollable Story Editor Body */}
-        <div className="overflow-y-auto p-4 space-y-4 flex flex-col items-center">
+        <div className="flex-1 overflow-y-auto p-4 space-y-4 flex flex-col items-center">
           
           {/* THE 9:16 STORY CARD (CENTERED CINEMATIC PREVIEW CONTAINER) */}
           <div 
             ref={storyCardRef}
-            className={`w-[275px] sm:w-[305px] aspect-[9/16] rounded-3xl p-4 flex flex-col justify-between relative shadow-2xl overflow-hidden shrink-0 select-none transition-all duration-300 ${
+            className={`w-[260px] sm:w-[285px] aspect-[9/16] rounded-3xl p-4 flex flex-col justify-between relative shadow-2xl overflow-hidden shrink-0 select-none transition-all duration-300 ${
               isSpotlight
                 ? 'bg-[#07090C] border-2 border-amber-500/50 story-vignette'
                 : isCyber

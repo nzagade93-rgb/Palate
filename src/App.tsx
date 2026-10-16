@@ -141,8 +141,8 @@ export function App() {
   };
 
   return (
-    <div className="min-h-screen w-full bg-[#07090C] flex justify-center selection:bg-brand-orange selection:text-white">
-      <div className="mx-auto w-full max-w-md min-h-screen bg-[#07090C] text-white shadow-2xl relative border-x border-[#262C36] flex flex-col font-sans">
+    <div className="min-h-screen w-full bg-[#07090C] flex justify-center items-center p-0 sm:py-6 selection:bg-brand-orange selection:text-white">
+      <div className="mx-auto w-full max-w-[430px] min-h-[100dvh] bg-[#0E1116] text-white shadow-2xl relative border-x border-[#262C36] flex flex-col font-sans overflow-x-hidden">
         {/* Network & Offline Status Banner */}
         <OfflineBanner />
 
@@ -162,7 +162,7 @@ export function App() {
           {currentTab === 'vault' ? (
             <VaultView onBackToRadar={() => setCurrentTab('radar')} />
           ) : (
-            <div className="px-4 py-4 space-y-4">
+            <div className="px-4 sm:px-5 py-4 space-y-4">
             
             {/* Anti-Regret Value Proposition Bar (High-Luxury Minimal) */}
             <div className="p-4 rounded-2xl bg-[#0E1116] border border-[#262C36] flex items-center justify-between gap-3 shadow-md">

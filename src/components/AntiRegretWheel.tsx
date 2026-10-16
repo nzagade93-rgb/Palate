@@ -51,13 +51,14 @@ export const AntiRegretWheel: React.FC<AntiRegretWheelProps> = ({
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-fade-in">
       <div 
-        className="w-full max-w-sm rounded-3xl bg-[#0E1116] border border-[#262C36] shadow-glow-orange overflow-hidden text-center relative p-6 space-y-4 animate-slide-up"
+        className="w-full max-w-sm mx-auto rounded-3xl bg-[#0E1116] border border-[#262C36] shadow-glow-orange overflow-hidden text-center relative p-5 space-y-4 animate-slide-up"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button */}
         <button
           onClick={onClose}
           className="absolute top-4 right-4 p-2 rounded-full bg-[#161B22] text-slate-400 hover:text-white border border-[#262C36] transition-colors"
+          aria-label="Close anti-regret wheel"
         >
           <X className="w-4 h-4" />
         </button>
@@ -76,7 +77,7 @@ export const AntiRegretWheel: React.FC<AntiRegretWheelProps> = ({
 
         {/* Featured Dish Card */}
         {selectedDish && (
-          <div className={`p-4 rounded-2xl bg-[#161B22] border ${isSpinning ? 'border-amber-400/50 blur-[0.5px]' : 'border-emerald-500/40 shadow-glow-green'} transition-all space-y-3`}>
+          <div className={`p-3.5 rounded-2xl bg-[#161B22] border ${isSpinning ? 'border-amber-400/50 blur-[0.5px]' : 'border-emerald-500/40 shadow-glow-green'} transition-all space-y-2.5`}>
             <div className="relative aspect-[16/9] w-full rounded-xl overflow-hidden border border-[#262C36]">
               <img
                 src={selectedDish.imageUrl}
@@ -89,22 +90,22 @@ export const AntiRegretWheel: React.FC<AntiRegretWheelProps> = ({
             </div>
 
             <div>
-              <h4 className="text-base font-extrabold text-white leading-snug">
+              <h4 className="text-base font-extrabold text-white leading-snug truncate">
                 {selectedDish.name}
               </h4>
-              <p className="text-xs text-slate-300 mt-0.5 font-medium">
+              <p className="text-xs text-slate-300 mt-0.5 font-medium truncate">
                 {selectedDish.venueName} • {selectedDish.venueArea}
               </p>
             </div>
 
-            <p className="text-xs text-neutral-300 italic bg-[#07090C] p-3 rounded-xl border border-[#262C36]">
+            <p className="text-xs text-neutral-300 italic bg-[#07090C] p-2.5 rounded-xl border border-[#262C36] leading-relaxed line-clamp-2">
               “{selectedDish.microVerdict}”
             </p>
           </div>
         )}
 
-        {/* Action Controls */}
-        <div className="space-y-2.5 pt-2">
+        {/* Action Controls: Standard h-12 touch targets */}
+        <div className="space-y-2 pt-1">
           <button
             onClick={() => {
               if (selectedDish) {
@@ -113,7 +114,7 @@ export const AntiRegretWheel: React.FC<AntiRegretWheelProps> = ({
               }
             }}
             disabled={isSpinning}
-            className="w-full min-h-[44px] py-3.5 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-white font-bold text-sm shadow-lg shadow-emerald-500/25 flex items-center justify-center gap-2 transition-all active:scale-95 disabled:opacity-50"
+            className="w-full h-12 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-white font-bold text-sm shadow-lg shadow-emerald-500/25 flex items-center justify-center gap-2 transition-all active:scale-95 disabled:opacity-50"
           >
             <span>Lock In & View Split-Card</span>
             <ArrowRight className="w-4 h-4" />
@@ -122,7 +123,7 @@ export const AntiRegretWheel: React.FC<AntiRegretWheelProps> = ({
           <button
             onClick={handleSpin}
             disabled={isSpinning}
-            className="w-full min-h-[44px] py-3 rounded-2xl bg-[#161B22] hover:bg-[#1E242E] text-amber-300 border border-[#262C36] font-bold text-xs flex items-center justify-center gap-1.5 transition-all active:scale-95"
+            className="w-full h-12 rounded-2xl bg-[#161B22] hover:bg-[#1E242E] text-amber-300 border border-[#262C36] font-bold text-xs flex items-center justify-center gap-1.5 transition-all active:scale-95"
           >
             <Dices className={`w-4 h-4 ${isSpinning ? 'animate-spin' : ''}`} />
             <span>{isSpinning ? 'Deciding...' : 'Reroll / Spin Again'}</span>
