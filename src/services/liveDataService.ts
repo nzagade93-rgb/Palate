@@ -242,3 +242,6 @@ export function getLiveDishes(): Dish[] {
 export function getLiveVenues(): Record<string, Venue> {
   return VENUES;
 }
+
+// Re-export liveDataService instance for universal import compatibility
+export { liveDataService } from './supabase';

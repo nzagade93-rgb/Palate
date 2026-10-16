@@ -24,18 +24,29 @@ export interface DbPerkRedemption {
   bill_amount?: number;
 }
 
-// Read environment variables
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+// Read & cleanse environment variables
+const rawUrl = import.meta.env.VITE_SUPABASE_URL || '';
+export const sanitizedUrl = rawUrl.replace(/\/rest\/v1\/?$/, '').replace(/\/+$/, '');
+export const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || '';
 
 export const isSupabaseConfigured = Boolean(
-  supabaseUrl && 
+  sanitizedUrl && 
   supabaseAnonKey && 
-  supabaseUrl !== 'https://your-project.supabase.co'
+  sanitizedUrl !== 'https://your-project.supabase.co'
 );
 
 export const supabase: SupabaseClient | null = isSupabaseConfigured
-  ? createClient(supabaseUrl!, supabaseAnonKey!)
+  ? createClient(sanitizedUrl, supabaseAnonKey, {
+      auth: {
+        persistSession: true,
+        autoRefreshToken: true
+      },
+      realtime: {
+        params: {
+          eventsPerSecond: 10
+        }
+      }
+    })
   : null;
 
 // Multi-Tab & Local Offline Synchronization Bus
