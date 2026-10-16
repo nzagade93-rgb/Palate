@@ -16,6 +16,9 @@ import { CounterFlyerModal } from './components/CounterFlyerModal';
 import { CheckInModal } from './components/CheckInModal';
 import { SocialShareModal } from './components/SocialShareModal';
 import { InstallPrompt } from './components/InstallPrompt';
+import { OfflineBanner } from './components/OfflineBanner';
+import { LiveCommunityTicker } from './components/LiveCommunityTicker';
+import { MerchantValidatorModal } from './components/MerchantValidatorModal';
 import { DISHES, VENUES } from './data/mockData';
 import type { CategoryFilter, Dish, Venue, CheckIn } from './types';
 import { useVault } from './hooks/useVault';
@@ -24,7 +27,7 @@ export function App() {
   const [currentTab, setCurrentTab] = useState<'radar' | 'vault'>('radar');
   const [selectedCategory, setSelectedCategory] = useState<CategoryFilter>('All');
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedArea, setSelectedArea] = useState('Sector 17, Vashi');
+  const [selectedArea, setSelectedArea] = useState('All Navi Mumbai');
   const [verdictFilter, setVerdictFilter] = useState<'ALL' | 'GOD_TIER' | 'UNDER_150'>('ALL');
 
   // Modals
@@ -32,6 +35,7 @@ export function App() {
   const [activeVoucherVenue, setActiveVoucherVenue] = useState<Venue | null>(null);
   const [isWheelOpen, setIsWheelOpen] = useState(false);
   const [isFlyerOpen, setIsFlyerOpen] = useState(false);
+  const [isValidatorOpen, setIsValidatorOpen] = useState(false);
   const [activeFlyerVenue, setActiveFlyerVenue] = useState<Venue | null>(null);
   const [checkInDish, setCheckInDish] = useState<Dish | null>(null);
   const [shareDishData, setShareDishData] = useState<{ dish: Dish; checkIn?: CheckIn } | null>(null);
@@ -113,6 +117,9 @@ export function App() {
   return (
     <div className="min-h-screen w-full bg-[#07090C] flex justify-center selection:bg-brand-orange selection:text-white">
       <div className="mx-auto w-full max-w-md min-h-screen bg-[#07090C] text-white shadow-2xl relative border-x border-[#262C36] flex flex-col font-sans">
+        {/* Network & Offline Status Banner */}
+        <OfflineBanner />
+
         {/* Sticky Top Navigation (Zero Clipping) */}
         <HeaderNav
           selectedCategory={selectedCategory}
@@ -129,7 +136,7 @@ export function App() {
           {currentTab === 'vault' ? (
             <VaultView onBackToRadar={() => setCurrentTab('radar')} />
           ) : (
-            <div className="px-4 py-4 space-y-6">
+            <div className="px-4 py-4 space-y-4">
             
             {/* Anti-Regret Value Proposition Bar (High-Luxury Minimal) */}
             <div className="p-4 rounded-2xl bg-[#0E1116] border border-[#262C36] flex items-center justify-between gap-3 shadow-md">
@@ -158,6 +165,9 @@ export function App() {
                 <span>Spin</span>
               </button>
             </div>
+
+            {/* Live Community Food Pulse Stream */}
+            <LiveCommunityTicker />
 
             {/* Quick Verdict Sub-Filter Pills with Ample Negative Space */}
             <div className="flex items-center justify-between gap-2 text-xs pt-1">
@@ -274,6 +284,16 @@ export function App() {
         isOpen={isFlyerOpen}
         onClose={() => setIsFlyerOpen(false)}
         initialVenue={activeFlyerVenue}
+        onOpenValidator={() => {
+          setIsFlyerOpen(false);
+          setIsValidatorOpen(true);
+        }}
+      />
+
+      {/* Cashier Perk Validator Modal */}
+      <MerchantValidatorModal
+        isOpen={isValidatorOpen}
+        onClose={() => setIsValidatorOpen(false)}
       />
 
       {/* 1-Tap Eating Here Check-In Modal */}

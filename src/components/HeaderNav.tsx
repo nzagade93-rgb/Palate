@@ -106,12 +106,12 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
                   </div>
                   <button
                     onClick={() => {
-                      setSelectedArea('All Sector 17 & Arenja');
+                      setSelectedArea('All Navi Mumbai');
                       setShowLocationPicker(false);
                     }}
                     className="w-full text-[11px] text-center text-brand-orange font-semibold py-2 mt-1.5 border-t border-[#262C36] hover:underline"
                   >
-                    Show All Sector 17 & Arenja
+                    Show All Navi Mumbai Hubs
                   </button>
                 </div>
               </>

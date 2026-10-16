@@ -1,26 +1,32 @@
-const CACHE_NAME = 'palate-v1.1';
-const STATIC_ASSETS = [
+const CACHE_NAME = 'palate-shell-v2.0';
+const IMAGE_CACHE_NAME = 'palate-images-v2.0';
+
+const PRECACHE_ASSETS = [
   '/',
   '/index.html',
   '/manifest.json',
-  '/icon.svg'
+  '/icon.svg',
+  '/favicon.svg',
+  '/flyer.html'
 ];
 
+// Precache App Shell
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll(STATIC_ASSETS);
+      return cache.addAll(PRECACHE_ASSETS);
     })
   );
   self.skipWaiting();
 });
 
+// Purge obsolete cache versions
 self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches.keys().then((keys) => {
       return Promise.all(
         keys.map((key) => {
-          if (key !== CACHE_NAME) {
+          if (key !== CACHE_NAME && key !== IMAGE_CACHE_NAME) {
             return caches.delete(key);
           }
         })
@@ -31,46 +37,80 @@ self.addEventListener('activate', (event) => {
 });
 
 self.addEventListener('fetch', (event) => {
-  // Ignore chrome extensions or non-http requests
+  const url = new URL(event.request.url);
+
+  // Ignore non-HTTP / browser extension requests
   if (!event.request.url.startsWith('http')) return;
 
-  // Stale-While-Revalidate for images & static assets, Network-First for navigation
+  // 1. Navigation (HTML Pages): Network-First, Fallback to cached index.html
   if (event.request.mode === 'navigate') {
     event.respondWith(
-      fetch(event.request).catch(() => {
-        return caches.match('/index.html') || caches.match('/');
+      fetch(event.request)
+        .then((networkResponse) => {
+          if (networkResponse && networkResponse.status === 200) {
+            const clone = networkResponse.clone();
+            caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
+          }
+          return networkResponse;
+        })
+        .catch(() => {
+          return caches.match('/index.html') || caches.match('/');
+        })
+    );
+    return;
+  }
+
+  // 2. Images (Unsplash, local SVGs): Cache-First with Network Fallback
+  if (
+    event.request.destination === 'image' || 
+    url.pathname.match(/\.(png|jpg|jpeg|svg|webp|gif)$/i) ||
+    url.hostname.includes('unsplash.com')
+  ) {
+    event.respondWith(
+      caches.match(event.request).then((cachedResponse) => {
+        if (cachedResponse) {
+          // Opportunistic background refresh
+          fetch(event.request)
+            .then((networkResponse) => {
+              if (networkResponse && networkResponse.status === 200) {
+                caches.open(IMAGE_CACHE_NAME).then((cache) => cache.put(event.request, networkResponse));
+              }
+            })
+            .catch(() => {});
+          return cachedResponse;
+        }
+
+        return fetch(event.request)
+          .then((networkResponse) => {
+            if (networkResponse && networkResponse.status === 200) {
+              const clone = networkResponse.clone();
+              caches.open(IMAGE_CACHE_NAME).then((cache) => cache.put(event.request, clone));
+            }
+            return networkResponse;
+          })
+          .catch(() => {
+            // Return cached SVG icon as fallback if available
+            return caches.match('/icon.svg');
+          });
       })
     );
     return;
   }
 
+  // 3. Static JS/CSS / Bundled Assets: Stale-While-Revalidate
   event.respondWith(
     caches.match(event.request).then((cachedResponse) => {
-      if (cachedResponse) {
-        // Fetch new copy in background
-        fetch(event.request).then((networkResponse) => {
+      const fetchPromise = fetch(event.request)
+        .then((networkResponse) => {
           if (networkResponse && networkResponse.status === 200) {
-            caches.open(CACHE_NAME).then((cache) => {
-              cache.put(event.request, networkResponse.clone());
-            });
+            const clone = networkResponse.clone();
+            caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
           }
-        }).catch(() => {});
-        return cachedResponse;
-      }
-
-      return fetch(event.request).then((networkResponse) => {
-        if (!networkResponse || networkResponse.status !== 200 || networkResponse.type !== 'basic') {
           return networkResponse;
-        }
-        const responseToCache = networkResponse.clone();
-        caches.open(CACHE_NAME).then((cache) => {
-          cache.put(event.request, responseToCache);
-        });
-        return networkResponse;
-      }).catch(() => {
-        // Fallback for offline if not found
-        return new Response('Offline', { status: 503, statusText: 'Offline' });
-      });
+        })
+        .catch(() => cachedResponse);
+
+      return cachedResponse || fetchPromise;
     })
   );
 });

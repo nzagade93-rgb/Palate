@@ -7,7 +7,8 @@ import {
   Gift, 
   CheckCircle2, 
   AlertTriangle,
-  ChevronDown
+  ChevronDown,
+  ShieldCheck
 } from 'lucide-react';
 import QRCode from 'qrcode';
 import { VENUES, DISHES } from '../data/mockData';
@@ -17,12 +18,14 @@ interface CounterFlyerModalProps {
   isOpen: boolean;
   onClose: () => void;
   initialVenue?: Venue | null;
+  onOpenValidator?: () => void;
 }
 
 export const CounterFlyerModal: React.FC<CounterFlyerModalProps> = ({
   isOpen,
   onClose,
-  initialVenue = null
+  initialVenue = null,
+  onOpenValidator
 }) => {
   const [selectedVenueId, setSelectedVenueId] = useState<string>(
     initialVenue?.id || 'bhagat-tarachand'
@@ -130,6 +133,16 @@ export const CounterFlyerModal: React.FC<CounterFlyerModalProps> = ({
               <span>HTML</span>
               <ExternalLink className="w-3 h-3" />
             </a>
+
+            {onOpenValidator && (
+              <button
+                onClick={onOpenValidator}
+                className="text-xs font-bold text-emerald-400 bg-emerald-950/80 hover:bg-emerald-900 border border-emerald-700/60 px-3 py-1.5 rounded-xl flex items-center gap-1.5 transition-all active:scale-95 shadow-sm"
+              >
+                <ShieldCheck className="w-3.5 h-3.5" />
+                <span>Cashier PIN</span>
+              </button>
+            )}
 
             <button
               onClick={handlePrint}

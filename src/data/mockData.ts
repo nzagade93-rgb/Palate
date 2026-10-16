@@ -396,6 +396,249 @@ export const VENUES: Record<string, Venue> = {
         alternativeRecommendation: 'Stick to the Midnight Special Black Masala Pav Bhaji.'
       }
     ]
+  },
+
+  // 11. Shiv Krupa Farsan & Jalebi (Sector 9 Vashi)
+  'shiv-krupa-farsan': {
+    id: 'shiv-krupa-farsan',
+    name: 'Shiv Krupa Farsan & Sweets',
+    area: 'Sector 9 Food Street',
+    fullAddress: 'Shop 12, Sector 9 Market Lane, Vashi, Navi Mumbai',
+    distanceMeters: 620,
+    walkingMinutes: 8,
+    vibeTags: ['🌅 7:00 AM Morning Rush', '🍯 Piping Hot Kesar Jalebis', '⚡ Authentic Gujarati Farsan'],
+    mapsUrl: 'https://maps.google.com/?q=Shiv+Krupa+Farsan+Sector+9+Vashi',
+    counterPerk: {
+      title: 'Show at Counter: Free Papaya Sambharo Bowl',
+      description: 'Show code with any 250g jalebi or fafda order for a complimentary spiced raw papaya & kadhi bowl.',
+      code: 'PALATE-SHIV-SAMBHARO'
+    },
+    topDishIds: ['dish-shiv-jalebi-fafda', 'dish-shiv-khaman'],
+    skipDishes: [
+      {
+        id: 'skip-shiv-1',
+        name: 'Samosa Chaat',
+        price: 65,
+        reason: 'Pre-fried samosa crushed under cold sweetened curd; gets limp in seconds.',
+        alternativeRecommendation: 'Stick to hot golden Kesar Jalebi with wafer-thin crispy Fafda.'
+      }
+    ]
+  },
+
+  // 12. Sector 9 Khau Galli Frankies (Sector 9 Vashi)
+  'sec9-frankie-corner': {
+    id: 'sec9-frankie-corner',
+    name: 'Sector 9 Khau Galli Frankies',
+    area: 'Sector 9 Food Street',
+    fullAddress: 'Khau Galli, Near Shabari Corner, Sector 9, Vashi',
+    distanceMeters: 680,
+    walkingMinutes: 9,
+    vibeTags: ['🌯 Flaky Egg Paratha Wraps', '🔥 Chatpata Secret Masala', '🌙 Late Night Khau Galli'],
+    mapsUrl: 'https://maps.google.com/?q=Sector+9+Khau+Galli+Vashi',
+    counterPerk: {
+      title: 'Show at Counter: Free Double Egg / Cheese Grating',
+      description: 'Upgrade any chicken or mutton roll to double egg or melted Amul cheese layer.',
+      code: 'PALATE-SEC9-CHEESE'
+    },
+    topDishIds: ['dish-sec9-mutton-frankie', 'dish-sec9-paneer-frankie'],
+    skipDishes: [
+      {
+        id: 'skip-sec9-1',
+        name: 'Schezwan Cheese Mayo Frankie',
+        price: 140,
+        reason: 'Bottled sweet sour schezwan sauce drowns all meat and masala flavor.',
+        alternativeRecommendation: 'Authentic Mutton Bhuna Masala or Tawa Paneer Tikka Frankie.'
+      }
+    ]
+  },
+
+  // 13. Arenja Midnight Egg & Bhurji King (Arenja Corner Evening)
+  'arenja-midnight-bhurji': {
+    id: 'arenja-midnight-bhurji',
+    name: 'Arenja Midnight Egg & Bhurji King',
+    area: 'Arenja Corner Evening',
+    fullAddress: 'Arenja Arcade Corner, Sector 17 / Arenja Junction, Vashi',
+    distanceMeters: 380,
+    walkingMinutes: 4,
+    vibeTags: ['🌙 Open Till 3:00 AM', '🍳 4-Egg Giant Tawa Boil Bhurji', '🧈 Drenched in Amul Makhan'],
+    mapsUrl: 'https://maps.google.com/?q=Arenja+Corner+Vashi',
+    counterPerk: {
+      title: 'Show at Counter: Free Extra Buttery Kadak Pav Pair',
+      description: 'Complimentary pair of extra toasted butter pavs to wipe clean your bhurji plate.',
+      code: 'PALATE-ARENJA-BHURJI-PAV'
+    },
+    topDishIds: ['dish-arenja-bhurji', 'dish-arenja-egg-ghotala'],
+    skipDishes: [
+      {
+        id: 'skip-arenja-bhurji-1',
+        name: 'Plain Boiled Egg Plate',
+        price: 40,
+        reason: 'Cold hard yolks sprinkled with generic salt; total disservice to an artisan tawa cart.',
+        alternativeRecommendation: 'Get the legendary 4-Egg Butter Boil Bhurji with green thecha.'
+      }
+    ]
+  },
+
+  // 14. The Royal Shawarma Cart (Arenja Evening)
+  'royal-shawarma-cart': {
+    id: 'royal-shawarma-cart',
+    name: 'The Royal Charcoal Shawarma',
+    area: 'Arenja Corner Evening',
+    fullAddress: 'Opposite Arenja Plaza, Sector 17, Vashi',
+    distanceMeters: 340,
+    walkingMinutes: 4,
+    vibeTags: ['🍗 Vertical Spit Rotisserie', '🧄 Hand-Whipped Garlic Toum', '🌙 Post-Midnight Crowds'],
+    mapsUrl: 'https://maps.google.com/?q=Arenja+Corner+Vashi',
+    counterPerk: {
+      title: 'Show at Counter: Free Extra Lebanese Toum Tub',
+      description: 'Free extra tub of whipped garlic toum and pickled beetroot with your open plate.',
+      code: 'PALATE-ROYAL-TOUM'
+    },
+    topDishIds: ['dish-royal-open-shawarma'],
+    skipDishes: [
+      {
+        id: 'skip-royal-1',
+        name: 'Crispy Chicken Mayo Burger',
+        price: 110,
+        reason: 'Frozen factory breaded patty; completely misses the authentic charcoal rotisserie magic.',
+        alternativeRecommendation: 'Smoked Charcoal Chicken Open Shawarma Plate with garlic toum.'
+      }
+    ]
+  },
+
+  // 15. Sai Krupa Udupi Restaurant (Sector 19 Nerul)
+  'sai-krupa-nerul': {
+    id: 'sai-krupa-nerul',
+    name: 'Sai Krupa Udupi Restaurant',
+    area: 'Nerul Food Corridor',
+    fullAddress: 'Plot 18, Sector 19, Near Nerul Railway Station (East), Navi Mumbai',
+    distanceMeters: 2800,
+    walkingMinutes: 28,
+    vibeTags: ['🥞 Giant Karnataka Thatte Idli', '🧈 Sizzling Podi Ghee', '☕ Authentic Decoction Coffee'],
+    mapsUrl: 'https://maps.google.com/?q=Sai+Krupa+Restaurant+Sector+19+Nerul',
+    counterPerk: {
+      title: 'Show at Counter: Extra Hot Desi Ghee Ladle',
+      description: 'Show voucher for an extra ladle of smoking desi ghee and podi over your Thatte Idli.',
+      code: 'PALATE-SAI-GHEE'
+    },
+    topDishIds: ['dish-sai-thatte-idli', 'dish-sai-benne-dosa'],
+    skipDishes: [
+      {
+        id: 'skip-sai-1',
+        name: 'Veg Dum Biryani',
+        price: 170,
+        reason: 'Dry rice grains tossed with canned peas and carrots; no dum aroma.',
+        alternativeRecommendation: 'Stick strictly to Karnataka Thatte Idli or Davangere Benne Dosa.'
+      }
+    ]
+  },
+
+  // 16. Shri Krishna Kolhapuri Misal (Nerul)
+  'shri-krishna-misal-nerul': {
+    id: 'shri-krishna-misal-nerul',
+    name: 'Shri Krishna Kolhapuri Misal',
+    area: 'Nerul Food Corridor',
+    fullAddress: 'Shop 5, Sector 15 Food Lane, Near LP Junction, Nerul',
+    distanceMeters: 3100,
+    walkingMinutes: 32,
+    vibeTags: ['🌶️ Spicy Kolhapuri Kat', '🥣 Crispy Farsan Crunch', '👑 Morning Breakfast Destination'],
+    mapsUrl: 'https://maps.google.com/?q=Shri+Krishna+Misal+Nerul',
+    counterPerk: {
+      title: 'Show at Counter: Free Extra Farsan & Tarri Bowl',
+      description: 'Unlimited piping hot spicy tarri gravy and a complimentary crunchy farsan refill.',
+      code: 'PALATE-MISAL-TARRI'
+    },
+    topDishIds: ['dish-krishna-misal'],
+    skipDishes: [
+      {
+        id: 'skip-krishna-1',
+        name: 'Kanda Poha',
+        price: 40,
+        reason: 'Pre-made batch kept in tray; dries out into bland flakes after 10 AM.',
+        alternativeRecommendation: 'Fiery Kolhapuri Kat Misal with double butter pav & chilled dahi.'
+      }
+    ]
+  },
+
+  // 17. LP Junction Charcoal Tandoor (Nerul)
+  'lp-junction-grill': {
+    id: 'lp-junction-grill',
+    name: 'LP Junction Charcoal Tandoor & Rolls',
+    area: 'Nerul Food Corridor',
+    fullAddress: 'Opposite LP Complex, Sion-Panvel Highway, Nerul, Navi Mumbai',
+    distanceMeters: 3400,
+    walkingMinutes: 35,
+    vibeTags: ['🔥 Open Pit Live Charcoal', '🍗 Overnight Malai Marinade', '🌙 Highway Late Night'],
+    mapsUrl: 'https://maps.google.com/?q=LP+Junction+Nerul',
+    counterPerk: {
+      title: 'Show at Counter: Free Mint Chutney & Butter Rumali Refill',
+      description: 'Complimentary hot butter rumali roti and signature mint-coriander dip refill.',
+      code: 'PALATE-LP-CHUTNEY'
+    },
+    topDishIds: ['dish-lp-malai-tikka'],
+    skipDishes: [
+      {
+        id: 'skip-lp-1',
+        name: 'Boneless Chilli Chicken Gravy',
+        price: 190,
+        reason: 'Cornstarch heavy soy sauce glaze over rubbery chicken nuggets.',
+        alternativeRecommendation: 'Juicy Charcoal Grilled Tandoori Malai Chicken Tikka.'
+      }
+    ]
+  },
+
+  // 18. Durga Coastal Delights (CBD Belapur Sector 15)
+  'durga-coastal-cbd': {
+    id: 'durga-coastal-cbd',
+    name: 'Durga Coastal Delights',
+    area: 'CBD Belapur Strip',
+    fullAddress: 'Plot 44, Sector 15 Cafe Strip, CBD Belapur, Navi Mumbai',
+    distanceMeters: 5500,
+    walkingMinutes: 55,
+    vibeTags: ['🦀 Authentic Mangalorean Curry', '🥥 Hand-Pressed Coconut Milk', '🌶️ Byadagi Red Chilli'],
+    mapsUrl: 'https://maps.google.com/?q=CBD+Belapur+Sector+15+Food+Strip',
+    counterPerk: {
+      title: 'Show at Counter: Free Chilled Kokum Sol Kadhi Shot',
+      description: 'Complimentary freshly prepared coconut kokum digestive shot with your meal.',
+      code: 'PALATE-CBD-SOLKADHI'
+    },
+    topDishIds: ['dish-cbd-kori-rotti', 'dish-cbd-surmai-tawa'],
+    skipDishes: [
+      {
+        id: 'skip-cbd-durga-1',
+        name: 'Veg Fried Rice with Manchurian',
+        price: 180,
+        reason: 'Soggy cafeteria-style fried rice that misses the glory of fresh coastal cooking.',
+        alternativeRecommendation: 'Crisp hand-crumbled Kori Rotti with Kundapur Chicken Curry.'
+      }
+    ]
+  },
+
+  // 19. Vada Pav Samrat (CBD Belapur Station)
+  'vada-pav-samrat-belapur': {
+    id: 'vada-pav-samrat-belapur',
+    name: 'Vada Pav Samrat',
+    area: 'CBD Belapur Strip',
+    fullAddress: 'Stall 4, Station Khau Galli, CBD Belapur, Navi Mumbai',
+    distanceMeters: 5200,
+    walkingMinutes: 50,
+    vibeTags: ['🥔 Ulta Vada Pav Special', '🧄 Roasted Garlic Thecha', '⚡ 30-Second Rush Grab'],
+    mapsUrl: 'https://maps.google.com/?q=Belapur+Station+Khau+Galli',
+    counterPerk: {
+      title: 'Show at Counter: Extra Garlic Thecha & Fried Chillies',
+      description: 'Double scoop of crunchy fiery dry peanut-garlic thecha and salted fried chillies.',
+      code: 'PALATE-SAMRAT-THECHA'
+    },
+    topDishIds: ['dish-samrat-ulta-vadapav'],
+    skipDishes: [
+      {
+        id: 'skip-samrat-1',
+        name: 'Bread Pakora',
+        price: 30,
+        reason: 'Spongy sandwich bread heavily soaked in residual kadai oil.',
+        alternativeRecommendation: 'Hot Ulta Vada Pav with dry garlic thecha right out of bubbling oil.'
+      }
+    ]
   }
 };
 
@@ -1055,12 +1298,299 @@ export const DISHES: Dish[] = [
     isVeg: true,
     imageUrl: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=900&q=80',
     insiderTip: 'Order this alongside your bhaji instead of plain pavs for double the flavor punch.'
+  },
+
+  // 11. Shiv Krupa Farsan (Sector 9 Vashi)
+  {
+    id: 'dish-shiv-jalebi-fafda',
+    name: 'Hot Kesar Jalebi & Papdi Fafda',
+    venueId: 'shiv-krupa-farsan',
+    venueName: 'Shiv Krupa Farsan & Sweets',
+    venueArea: 'Sector 9 Food Street',
+    distanceMeters: 620,
+    walkingMinutes: 8,
+    price: 90,
+    verdict: 'GOD_TIER',
+    scorePercent: 98,
+    microVerdict: 'Piping hot spiraled saffron jalebis dunked live with wafer-thin crunchy fafda & raw papaya sambharo.',
+    detailedReview: 'The absolute morning breakfast holy grail of Vashi Sector 9. The jalebis are thin-crusted, exploding with warm saffron cardamom syrup, while the gram-flour fafda is feather-light and crackles on the tongue.',
+    category: 'Must-Try Icons',
+    flavorTags: ['🍯 Saffron Jalebi', '⚡ Thin Crunchy Fafda', '🥣 Papaya Sambharo'],
+    isVeg: true,
+    imageUrl: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=900&q=80',
+    insiderTip: 'Arrive between 7:30 AM and 9:30 AM to catch the jalebis straight out of the boiling sugar kadai.'
+  },
+  {
+    id: 'dish-shiv-khaman',
+    name: 'Nylon Khaman Dhokla with Mustard Tempering',
+    venueId: 'shiv-krupa-farsan',
+    venueName: 'Shiv Krupa Farsan & Sweets',
+    venueArea: 'Sector 9 Food Street',
+    distanceMeters: 620,
+    walkingMinutes: 8,
+    price: 60,
+    verdict: 'GOD_TIER',
+    scorePercent: 95,
+    microVerdict: 'Airy melt-in-mouth sponge drenched in green chilli-mustard seed tadka and fresh grated coconut.',
+    detailedReview: 'Steamed to airy cloud perfection. So juicy with tempered sugar-lemon water that it dissolves on your palate without needing water.',
+    category: 'Quick Bites',
+    flavorTags: ['☁️ Pillow Soft', '🥥 Coconut Garnish', '🌱 Mustard Tadka'],
+    isVeg: true,
+    imageUrl: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=900&q=80',
+    insiderTip: 'Ask for the green coriander-papaya chutney on the side.'
+  },
+
+  // 12. Sector 9 Khau Galli Frankies
+  {
+    id: 'dish-sec9-mutton-frankie',
+    name: 'Mutton Bhuna Masala Frankie',
+    venueId: 'sec9-frankie-corner',
+    venueName: 'Sector 9 Khau Galli Frankies',
+    venueArea: 'Sector 9 Food Street',
+    distanceMeters: 680,
+    walkingMinutes: 9,
+    price: 160,
+    verdict: 'GOD_TIER',
+    scorePercent: 97,
+    microVerdict: 'Egg-layered paratha rolled around tender braised mutton chunks and secret tangy frankie masala.',
+    detailedReview: 'The defining street wrap of Navi Mumbai. The paratha is griddled with an egg layer, rolled around slow-cooked spiced mutton mince and pieces, crunchy raw red onions, and vinegar-chilli spritz.',
+    category: 'Late Night',
+    flavorTags: ['🌯 Flaky Paratha Wrap', '🍖 Tender Braised Mutton', '🌶️ Tangy Masala Dust'],
+    isVeg: false,
+    imageUrl: 'https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=900&q=80',
+    insiderTip: 'Ask for "Extra Masala and Double Onion" for maximum street tang.'
+  },
+  {
+    id: 'dish-sec9-paneer-frankie',
+    name: 'Tawa Paneer Tikka Frankie',
+    venueId: 'sec9-frankie-corner',
+    venueName: 'Sector 9 Khau Galli Frankies',
+    venueArea: 'Sector 9 Food Street',
+    distanceMeters: 680,
+    walkingMinutes: 9,
+    price: 120,
+    verdict: 'WORTH_IT',
+    scorePercent: 93,
+    microVerdict: 'Fresh malai paneer batons seared on butter tawa with green peppers and roasted cumin masala.',
+    detailedReview: 'Far superior to typical fast-food paneer rolls. Soft, milky paneer tossed live on the flat-top with crisp peppers and rolled tight.',
+    category: 'Quick Bites',
+    flavorTags: ['🧀 Soft Malai Paneer', '🧈 Butter Tawa Seared', '🧅 Crisp Onions'],
+    isVeg: true,
+    imageUrl: 'https://images.unsplash.com/photo-1599488615731-7e5c2823ff28?auto=format&fit=crop&w=900&q=80',
+    insiderTip: 'Pair with their chilled mint-masala soda at the corner stall.'
+  },
+
+  // 13. Arenja Midnight Egg & Bhurji King
+  {
+    id: 'dish-arenja-bhurji',
+    name: '4-Egg Butter Boil Bhurji Pav',
+    venueId: 'arenja-midnight-bhurji',
+    venueName: 'Arenja Midnight Egg & Bhurji King',
+    venueArea: 'Arenja Corner Evening',
+    distanceMeters: 380,
+    walkingMinutes: 4,
+    price: 160,
+    verdict: 'GOD_TIER',
+    scorePercent: 98,
+    microVerdict: 'Grated boiled eggs blended into creamy scrambled eggs with garlic-chilli thecha and half a slab of Amul.',
+    detailedReview: 'The reigning crown jewel of Navi Mumbai midnight food runs. The combination of grated boiled egg yolks and tender scrambled whites creates an intensely rich sauce that pairs phenomenally with extra toasted kadak pav.',
+    category: 'Late Night',
+    flavorTags: ['🍳 4-Egg Protein Feast', '🧈 Golden Amul Butter', '🌶️ Green Chilli Thecha'],
+    isVeg: false,
+    imageUrl: 'https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=900&q=80',
+    insiderTip: 'Insist on "Boil Bhurji Kadak Pav" — do not settle for regular raw egg bhurji.'
+  },
+  {
+    id: 'dish-arenja-egg-ghotala',
+    name: 'Surti Style Special Egg Ghotala',
+    venueId: 'arenja-midnight-bhurji',
+    venueName: 'Arenja Midnight Egg & Bhurji King',
+    venueArea: 'Arenja Corner Evening',
+    distanceMeters: 380,
+    walkingMinutes: 4,
+    price: 180,
+    verdict: 'GOD_TIER',
+    scorePercent: 96,
+    microVerdict: 'A spiced egg gravy lake crowned with a molten sunny-side-up fried egg and grated cheese.',
+    detailedReview: 'Surat-style decadence at Arenja Corner. Liquid gold yolk that punctures into fiery spiced minced egg gravy. Outstanding post-midnight comfort.',
+    category: 'Late Night',
+    flavorTags: ['🍳 Molten Yolk', '🧀 Cheese Blanket', '🔥 Tawa Char'],
+    isVeg: false,
+    imageUrl: 'https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=900&q=80',
+    insiderTip: 'Dip the crusty pav directly into the center yolk before mixing the gravy.'
+  },
+
+  // 14. The Royal Shawarma Cart (Arenja Evening)
+  {
+    id: 'dish-royal-open-shawarma',
+    name: 'Smoked Charcoal Chicken Open Shawarma Plate',
+    venueId: 'royal-shawarma-cart',
+    venueName: 'The Royal Charcoal Shawarma',
+    venueArea: 'Arenja Corner Evening',
+    distanceMeters: 340,
+    walkingMinutes: 4,
+    price: 170,
+    verdict: 'GOD_TIER',
+    scorePercent: 97,
+    microVerdict: 'Carved spit-fire chicken served openly over pillowy pita, mountains of toum garlic dip & pickled turnip.',
+    detailedReview: 'Unlike street rolls stuffed with cabbage fillers, this open plate gives you pure roasted shredded chicken marinated in sumac and Lebanese spices with thick, punchy homemade garlic toum.',
+    category: 'Late Night',
+    flavorTags: ['🍗 Rotisserie Charcoal Chicken', '🧄 Heavy Garlic Toum', '🥙 Authentic Pita Bread'],
+    isVeg: false,
+    imageUrl: 'https://images.unsplash.com/photo-1561651823-34feb02250e4?auto=format&fit=crop&w=900&q=80',
+    insiderTip: 'Ask for the open plate instead of the wrapped roll so you get double the chicken portion and fresh garlic dip.'
+  },
+
+  // 15. Sai Krupa Udupi Restaurant (Sector 19 Nerul)
+  {
+    id: 'dish-sai-thatte-idli',
+    name: 'Thatte Idli with Ghee Podi & Sambar',
+    venueId: 'sai-krupa-nerul',
+    venueName: 'Sai Krupa Udupi Restaurant',
+    venueArea: 'Nerul Food Corridor',
+    distanceMeters: 2800,
+    walkingMinutes: 28,
+    price: 85,
+    verdict: 'GOD_TIER',
+    scorePercent: 98,
+    microVerdict: 'Platter-sized Karnataka Thatte Idli, streaming with sizzling spicy podi gun powder and pure desi ghee.',
+    detailedReview: 'Steamed on wide flat plates, this idli is unbelievably light and airy. The server dumps a generous mountain of coarse red podi and douses it with a ladle of boiling aromatic ghee right at your table.',
+    category: 'Must-Try Icons',
+    flavorTags: ['🥞 Giant Karnataka Thatte Idli', '🧈 Sizzling Podi Ghee', '🥥 Silky Coconut Chutney'],
+    isVeg: true,
+    imageUrl: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=900&q=80',
+    insiderTip: 'Cut each bite into quarters and let the melted podi ghee saturate into the sponge before dipping into sambar.'
+  },
+  {
+    id: 'dish-sai-benne-dosa',
+    name: 'Davangere Benne Dosa',
+    venueId: 'sai-krupa-nerul',
+    venueName: 'Sai Krupa Udupi Restaurant',
+    venueArea: 'Nerul Food Corridor',
+    distanceMeters: 2800,
+    walkingMinutes: 28,
+    price: 110,
+    verdict: 'GOD_TIER',
+    scorePercent: 96,
+    microVerdict: 'Thick fermented rice crepe with crisp lace exterior, fluffy butter sponge interior & spiced potato palya.',
+    detailedReview: 'Prepared using traditional Davangere white butter on an iron tawa. The crust has deep caramelized pores, while the center remains cloud-soft.',
+    category: 'Must-Try Icons',
+    flavorTags: ['🧈 White Butter (Benne)', '🥞 Golden Crispy Crust', '🥔 Spiced Potato Palya'],
+    isVeg: true,
+    imageUrl: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=900&q=80',
+    insiderTip: 'Best paired with their freshly ground decoction filter coffee.'
+  },
+
+  // 16. Shri Krishna Kolhapuri Misal (Nerul)
+  {
+    id: 'dish-krishna-misal',
+    name: 'Fiery Kolhapuri Kat Misal with Dahi',
+    venueId: 'shri-krishna-misal-nerul',
+    venueName: 'Shri Krishna Kolhapuri Misal',
+    venueArea: 'Nerul Food Corridor',
+    distanceMeters: 3100,
+    walkingMinutes: 32,
+    price: 95,
+    verdict: 'GOD_TIER',
+    scorePercent: 97,
+    microVerdict: 'Sprouted moth beans, crunchy farsan, crowned with deep crimson Kolhapuri tarri and cooling sweet curd.',
+    detailedReview: 'Real Kolhapuri heat that tingles without burning your stomach. The tarri is rendered with roasted coconut, Byadagi chillies, and stone-ground garam masala, poured over crunchy farsan.',
+    category: 'Spicy',
+    flavorTags: ['🌶️ Fiery Kolhapuri Kat', '🥣 Crunchy Farsan', '🥛 Sweet Dahi Balance'],
+    isVeg: true,
+    imageUrl: 'https://images.unsplash.com/photo-1606491956689-2ea866880c84?auto=format&fit=crop&w=900&q=80',
+    insiderTip: 'Order an extra vati of "Kat" and sweet dahi together to customize your heat level.'
+  },
+
+  // 17. LP Junction Charcoal Tandoor (Nerul)
+  {
+    id: 'dish-lp-malai-tikka',
+    name: 'Charcoal Grilled Tandoori Malai Chicken Tikka',
+    venueId: 'lp-junction-grill',
+    venueName: 'LP Junction Charcoal Tandoor & Rolls',
+    venueArea: 'Nerul Food Corridor',
+    distanceMeters: 3400,
+    walkingMinutes: 35,
+    price: 240,
+    verdict: 'GOD_TIER',
+    scorePercent: 96,
+    microVerdict: 'Smoky, melt-in-mouth chicken chunks marinated in cream, cashews and green cardamom over open charcoal.',
+    detailedReview: 'Highway food royalty at LP Junction. Giant chicken thigh pieces charred over live coal embers. The tandoor smoke penetrates deep, while the cream-cheese marinade keeps the meat luscious.',
+    category: 'Late Night',
+    flavorTags: ['🔥 Open Pit Charcoal', '🍗 Cream & Cashew Marinade', '🌿 Fresh Mint Dip'],
+    isVeg: false,
+    imageUrl: 'https://images.unsplash.com/photo-1599488615731-7e5c2823ff28?auto=format&fit=crop&w=900&q=80',
+    insiderTip: 'Wrap a tikka piece inside hot butter rumali roti with raw onions and mint chutney.'
+  },
+
+  // 18. Durga Coastal Delights (CBD Belapur Sector 15)
+  {
+    id: 'dish-cbd-kori-rotti',
+    name: 'Mangalorean Kori Rotti with Kundapur Chicken Curry',
+    venueId: 'durga-coastal-cbd',
+    venueName: 'Durga Coastal Delights',
+    venueArea: 'CBD Belapur Strip',
+    distanceMeters: 5500,
+    walkingMinutes: 55,
+    price: 260,
+    verdict: 'GOD_TIER',
+    scorePercent: 98,
+    microVerdict: 'Hand-crumbled crispy rice rottis drowned in bubbling Kundapur coconut chicken curry.',
+    detailedReview: 'The pinnacle of coastal Karnataka cooking. Sun-crisped paper-thin rice wafers are broken onto your plate, and a steaming bowl of red roasted coconut chicken curry is poured over it, transforming from crunchy to velvet tender in seconds.',
+    category: 'Must-Try Icons',
+    flavorTags: ['🥥 Kundapur Coconut Curry', '🥣 Crispy Rice Rotti', '🌶️ Byadagi Red Chilli'],
+    isVeg: false,
+    imageUrl: 'https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=900&q=80',
+    insiderTip: 'Eat immediately after pouring the gravy so you experience both the crunchy and softened textures in one bite.'
+  },
+  {
+    id: 'dish-cbd-surmai-tawa',
+    name: 'Fresh Surmai Tawa Fry Masala',
+    venueId: 'durga-coastal-cbd',
+    venueName: 'Durga Coastal Delights',
+    venueArea: 'CBD Belapur Strip',
+    distanceMeters: 5500,
+    walkingMinutes: 55,
+    price: 320,
+    verdict: 'GOD_TIER',
+    scorePercent: 97,
+    microVerdict: 'Thick Kingfish steak marinated in red coastal masala and coated with crispy semolina on iron tawa.',
+    detailedReview: 'Fresh catch delivered daily. Coated in a fiery, sour tamarind Byadagi chilli paste, dredged in coarse rava, and shallow fried until golden brown. Unbeatable coastal crunch.',
+    category: 'Spicy',
+    flavorTags: ['🐟 Fresh Surmai Kingfish', '🌾 Crispy Rava Crust', '🍋 Tangy Tamarind Masala'],
+    isVeg: false,
+    imageUrl: 'https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=900&q=80',
+    insiderTip: 'Squeeze fresh lime and pair with their complimentary Sol Kadhi shot.'
+  },
+
+  // 19. Vada Pav Samrat (CBD Belapur Station)
+  {
+    id: 'dish-samrat-ulta-vadapav',
+    name: 'Special Ulta Vada Pav with Lasun Thecha',
+    venueId: 'vada-pav-samrat-belapur',
+    venueName: 'Vada Pav Samrat',
+    venueArea: 'CBD Belapur Strip',
+    distanceMeters: 5200,
+    walkingMinutes: 50,
+    price: 35,
+    verdict: 'GOD_TIER',
+    scorePercent: 97,
+    microVerdict: 'Fresh bakery pav stuffed with spicy potato masala, dipped in spiced besan batter, fried & smeared with garlic thecha.',
+    detailedReview: 'Belapur Station Khau Galli legend. Unlike ordinary vada pav where the batata vada is tucked inside bread, here the entire pav is stuffed, sealed in gram flour batter, and deep fried into a giant golden pillow.',
+    category: 'Quick Bites',
+    flavorTags: ['🥔 Ulta Stuffed Pav', '🧄 Fiery Dry Garlic Thecha', '⚡ Piping Hot Kadai Fry'],
+    isVeg: true,
+    imageUrl: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=900&q=80',
+    insiderTip: 'Ask for "Thecha dabake" (extra dry roasted garlic thecha pressed into the pav).'
   }
 ];
 
 export const NEIGHBORHOODS = [
+  'All Navi Mumbai',
   'Sector 17, Vashi',
-  'Arenja Corner, Sec 17',
-  'Sector 17 Market',
-  'All Sector 17 & Arenja'
+  'Sector 9 Food Street',
+  'Arenja Corner Evening',
+  'Nerul Food Corridor',
+  'CBD Belapur Strip'
 ];
+

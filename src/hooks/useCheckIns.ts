@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import type { Dish, CheckIn, CheckInReaction } from '../types';
+import { liveDataService } from '../services/supabase';
 
 const CHECKINS_STORAGE_KEY = 'vault_checkins';
 
@@ -61,6 +62,11 @@ export function useCheckIns() {
         console.error('Error saving check-in', e);
       }
       return updated;
+    });
+
+    // Also publish to multi-user live feed (Supabase + BroadcastChannel)
+    liveDataService.publishCheckIn(newCheckIn).catch((err) => {
+      console.warn('Network sync notice:', err);
     });
 
     return newCheckIn;
