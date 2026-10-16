@@ -59,7 +59,7 @@ export const VerdictSplitCard: React.FC<VerdictSplitCardProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 bg-black/85 backdrop-blur-md animate-fade-in overflow-hidden">
+    <div className="fixed inset-0 z-[60] flex items-end sm:items-center justify-center p-0 sm:p-4 bg-black/85 backdrop-blur-md animate-fade-in overflow-hidden">
       <div 
         className="w-full max-w-[430px] max-h-[90dvh] sm:max-h-[88dvh] bg-[#0E1116] border-t sm:border border-[#262C36] rounded-t-3xl sm:rounded-3xl shadow-2xl flex flex-col overflow-hidden animate-slide-up"
         onClick={(e) => e.stopPropagation()}

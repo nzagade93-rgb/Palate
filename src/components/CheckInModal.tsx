@@ -61,7 +61,7 @@ export const CheckInModal: React.FC<CheckInModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 bg-black/85 backdrop-blur-md animate-fade-in overflow-hidden">
+    <div className="fixed inset-0 z-[60] flex items-end sm:items-center justify-center p-0 sm:p-4 bg-black/85 backdrop-blur-md animate-fade-in overflow-hidden">
       <div 
         className="w-full max-w-[430px] bg-[#0E1116] border-t sm:border border-[#262C36] rounded-t-3xl sm:rounded-3xl shadow-2xl p-5 sm:p-6 space-y-4 animate-slide-up relative"
         onClick={(e) => e.stopPropagation()}

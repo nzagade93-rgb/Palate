@@ -1,9 +1,7 @@
 import { useState, useMemo } from 'react';
 import { 
   Sparkles, 
-  Flame, 
-  Utensils,
-  Dices
+  Utensils
 } from 'lucide-react';
 import { HeaderNav } from './components/HeaderNav';
 import { BottomNav } from './components/BottomNav';
@@ -146,16 +144,18 @@ export function App() {
         {/* Network & Offline Status Banner */}
         <OfflineBanner />
 
-        {/* Sticky Top Navigation (Zero Clipping) */}
-        <HeaderNav
-          selectedCategory={selectedCategory}
-          setSelectedCategory={setSelectedCategory}
-          searchQuery={searchQuery}
-          setSearchQuery={setSearchQuery}
-          selectedArea={selectedArea}
-          setSelectedArea={setSelectedArea}
-          onBrandClick={() => setCurrentTab('radar')}
-        />
+        {/* Sticky Top Navigation (Only mounted on Radar discovery tab) */}
+        {currentTab === 'radar' && (
+          <HeaderNav
+            selectedCategory={selectedCategory}
+            setSelectedCategory={setSelectedCategory}
+            searchQuery={searchQuery}
+            setSearchQuery={setSearchQuery}
+            selectedArea={selectedArea}
+            setSelectedArea={setSelectedArea}
+            onBrandClick={() => setCurrentTab('radar')}
+          />
+        )}
 
         {/* Main View Area with Generous Whitespace */}
         <main className="flex-1 w-full pb-28">
@@ -163,34 +163,6 @@ export function App() {
             <VaultView onBackToRadar={() => setCurrentTab('radar')} />
           ) : (
             <div className="px-4 sm:px-5 py-4 space-y-4">
-            
-            {/* Anti-Regret Value Proposition Bar (High-Luxury Minimal) */}
-            <div className="p-4 rounded-2xl bg-[#0E1116] border border-[#262C36] flex items-center justify-between gap-3 shadow-md">
-              <div className="flex items-center gap-3 min-w-0">
-                <div className="w-8 h-8 rounded-xl bg-brand-orange/15 border border-brand-orange/30 flex items-center justify-center shrink-0">
-                  <Flame className="w-4 h-4 text-brand-orange" />
-                </div>
-                <div className="min-w-0">
-                  <div className="text-xs font-black text-white flex items-center gap-1.5 tracking-wide">
-                    <span>The Anti-Regret Radar</span>
-                    <span className="text-[9px] font-bold tracking-widest text-emerald-400 bg-emerald-950/80 px-1.5 py-0.5 rounded border border-emerald-800/50">
-                      LIVE
-                    </span>
-                  </div>
-                  <p className="text-[11px] text-slate-400 truncate mt-0.5">
-                    No 10-page menus • Only God-Tier dishes & verified items to skip
-                  </p>
-                </div>
-              </div>
-
-              <button
-                onClick={() => setIsWheelOpen(true)}
-                className="shrink-0 min-h-[40px] text-xs font-bold text-amber-300 bg-amber-950/40 hover:bg-amber-900/50 border border-amber-800/50 px-3.5 py-2 rounded-xl flex items-center gap-1.5 transition-all active:scale-95"
-              >
-                <Dices className="w-4 h-4 text-amber-400" />
-                <span>Spin</span>
-              </button>
-            </div>
 
             {/* Live Community Food Pulse Stream */}
             <LiveCommunityTicker />
@@ -236,7 +208,7 @@ export function App() {
               </span>
             </div>
 
-            {/* Dish Cards Vertical Feed (mb-10 applied on each card for massive whitespace) */}
+            {/* Dish Cards Vertical Feed */}
             {filteredDishes.length === 0 ? (
               <div className="p-10 rounded-3xl bg-[#0E1116] border border-[#262C36] text-center space-y-3 my-8 shadow-xl">
                 <Utensils className="w-8 h-8 text-slate-500 mx-auto" />
@@ -258,14 +230,17 @@ export function App() {
               </div>
             ) : (
               <div className="pt-2">
-                {filteredDishes.map((dish) => (
-                  <DishCard
-                    key={dish.id}
-                    dish={dish}
-                    onSelectDish={handleSelectDish}
-                    onCheckIn={handleOpenCheckIn}
-                    onShare={handleOpenShare}
-                  />
+                {filteredDishes.map((dish, index) => (
+                  <div key={dish.id}>
+                    <DishCard
+                      dish={dish}
+                      onSelectDish={handleSelectDish}
+                      onCheckIn={handleOpenCheckIn}
+                      onShare={handleOpenShare}
+                    />
+                    {/* Subtle inline install card after 3rd dish */}
+                    {index === 2 && <InstallPrompt />}
+                  </div>
                 ))}
               </div>
             )}

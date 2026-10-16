@@ -5,9 +5,8 @@ import {
   Bookmark, 
   Trash2, 
   Edit3, 
-  PlusCircle, 
+  Plus,
   Share2, 
-  WifiOff, 
   Sparkles,
   MapPin,
   ArrowRight
@@ -98,30 +97,35 @@ export const VaultView: React.FC<VaultViewProps> = ({ onBackToRadar }) => {
 
   return (
     <div className="w-full px-4 sm:px-5 py-4 space-y-4 animate-fade-in pb-28">
-      {/* Vault Header Bar (Clean Row Alignment) */}
+      {/* Vault Contextual Focused Header Bar */}
       <div className="flex items-center justify-between gap-3 border-b border-[#262C36] pb-3.5">
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2.5">
           <h1 className="text-xl font-extrabold text-white tracking-tight">My Food Vault</h1>
-          <span className="inline-flex items-center gap-1 text-[10px] font-bold text-emerald-400 bg-emerald-500/15 border border-emerald-500/30 px-2.5 py-0.5 rounded-full">
-            <WifiOff className="w-2.5 h-2.5" />
-            <span>Offline</span>
-          </span>
+          <div className="flex items-center gap-1.5 text-xs text-neutral-400">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+            </span>
+            <span>Offline Ready</span>
+          </div>
         </div>
 
         <div className="flex items-center gap-2">
           <button
             onClick={handleShareVault}
             title="Export Vault Summary"
-            className="w-9 h-9 flex items-center justify-center rounded-xl bg-[#161B22] hover:bg-[#1E242E] text-slate-300 hover:text-white border border-[#262C36] transition-all active:scale-95"
+            className="w-9 h-9 flex items-center justify-center rounded-full bg-[#161B22] hover:bg-[#1E242E] text-slate-300 hover:text-white border border-[#262C36] transition-all active:scale-95"
+            aria-label="Share Vault"
           >
             <Share2 className="w-4 h-4" />
           </button>
           <button
             onClick={() => setShowAddModal(true)}
-            className="h-9 flex items-center gap-1.5 text-xs font-bold bg-brand-orange hover:bg-orange-600 text-white px-3 rounded-xl shadow-glow-orange transition-all active:scale-95"
+            title="Add Note"
+            className="w-9 h-9 flex items-center justify-center rounded-full bg-brand-orange hover:bg-orange-600 text-white shadow-glow-orange transition-all active:scale-95"
+            aria-label="Add Note"
           >
-            <PlusCircle className="w-4 h-4" />
-            <span>Log Dish</span>
+            <Plus className="w-4 h-4" />
           </button>
         </div>
       </div>
@@ -346,7 +350,7 @@ export const VaultView: React.FC<VaultViewProps> = ({ onBackToRadar }) => {
 
       {/* Modal: Manually Log Secret Off-Menu Dish */}
       {showAddModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-fade-in">
+        <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-fade-in">
           <div className="w-full max-w-sm rounded-3xl bg-[#0E1116] border border-[#262C36] p-5 space-y-4 shadow-2xl">
             <div className="flex items-center justify-between">
               <h3 className="text-base font-extrabold text-white flex items-center gap-1.5">

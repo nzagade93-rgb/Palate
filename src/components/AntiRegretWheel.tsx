@@ -49,7 +49,7 @@ export const AntiRegretWheel: React.FC<AntiRegretWheelProps> = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-fade-in">
+    <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-fade-in">
       <div 
         className="w-full max-w-sm mx-auto rounded-3xl bg-[#0E1116] border border-[#262C36] shadow-glow-orange overflow-hidden text-center relative p-5 space-y-4 animate-slide-up"
         onClick={(e) => e.stopPropagation()}

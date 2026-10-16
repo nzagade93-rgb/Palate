@@ -147,7 +147,7 @@ export const DishCard: React.FC<DishCardProps> = ({
           {/* Dish Title and Price Tag Aligned Horizontally */}
           <div className="flex items-start justify-between gap-2">
             <div className="min-w-0 flex-1">
-              <h3 className="text-base sm:text-lg font-bold text-white tracking-wide leading-snug group-hover:text-brand-orange transition-colors truncate">
+              <h3 className="text-base sm:text-lg font-bold text-white tracking-wide leading-snug group-hover:text-brand-orange transition-colors line-clamp-2">
                 {dish.name}
               </h3>
               {/* Venue & Micro-Distance */}

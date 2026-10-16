@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { X, Smartphone, Sparkles } from 'lucide-react';
+import { X, Smartphone, Sparkles, Download } from 'lucide-react';
 
 interface BeforeInstallPromptEvent extends Event {
   prompt: () => Promise<void>;
@@ -8,7 +8,16 @@ interface BeforeInstallPromptEvent extends Event {
 
 export const InstallPrompt: React.FC = () => {
   const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null);
-  const [showPrompt, setShowPrompt] = useState(false);
+  const [isDismissed, setIsDismissed] = useState<boolean>(() => {
+    try {
+      return (
+        localStorage.getItem('pwa_dismissed') === 'true' ||
+        localStorage.getItem('palate_install_dismissed') === 'true'
+      );
+    } catch {
+      return false;
+    }
+  });
   const [isInstalled, setIsInstalled] = useState(false);
 
   useEffect(() => {
@@ -21,20 +30,9 @@ export const InstallPrompt: React.FC = () => {
     const handler = (e: Event) => {
       e.preventDefault();
       setDeferredPrompt(e as BeforeInstallPromptEvent);
-      setShowPrompt(true);
     };
 
     window.addEventListener('beforeinstallprompt', handler);
-
-    // Also show educational prompt on mobile if not standalone and first time
-    const dismissed = localStorage.getItem('palate_install_dismissed');
-    if (!dismissed) {
-      const timer = setTimeout(() => {
-        setShowPrompt(true);
-      }, 3500);
-      return () => clearTimeout(timer);
-    }
-
     return () => window.removeEventListener('beforeinstallprompt', handler);
   }, []);
 
@@ -43,56 +41,69 @@ export const InstallPrompt: React.FC = () => {
       await deferredPrompt.prompt();
       const choice = await deferredPrompt.userChoice;
       if (choice.outcome === 'accepted') {
-        setShowPrompt(false);
+        setIsDismissed(true);
+        try {
+          localStorage.setItem('pwa_dismissed', 'true');
+          localStorage.setItem('palate_install_dismissed', 'true');
+        } catch {}
       }
       setDeferredPrompt(null);
     } else {
       // Guide for iOS Safari / standard browsers
-      alert("To install Palate on your iPhone/Android:\n\n1. Tap the Share button (Safari) or 3 dots (Chrome)\n2. Select 'Add to Home Screen'\n\nEnjoy instant offline dish radar access!");
-      setShowPrompt(false);
+      alert(
+        "To install Palate on your iPhone/Android:\n\n1. Tap the Share icon (Safari) or 3 dots (Chrome)\n2. Select 'Add to Home Screen'\n\nEnjoy instant offline dish radar access!"
+      );
+      setIsDismissed(true);
+      try {
+        localStorage.setItem('pwa_dismissed', 'true');
+        localStorage.setItem('palate_install_dismissed', 'true');
+      } catch {}
     }
   };
 
-  const handleDismiss = () => {
-    setShowPrompt(false);
-    localStorage.setItem('palate_install_dismissed', 'true');
+  const handleDismiss = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setIsDismissed(true);
+    try {
+      localStorage.setItem('pwa_dismissed', 'true');
+      localStorage.setItem('palate_install_dismissed', 'true');
+    } catch {}
   };
 
-  if (!showPrompt || isInstalled) return null;
+  if (isDismissed || isInstalled) return null;
 
   return (
-    <div className="fixed bottom-20 left-1/2 -translate-x-1/2 w-[calc(100%-24px)] max-w-sm z-40 animate-slide-up">
-      <div className="p-3 rounded-2xl bg-[#0E1116]/95 backdrop-blur-xl border border-[#262C36] shadow-glow-orange flex items-center justify-between gap-2.5 text-white">
-        <div className="flex items-center gap-3 min-w-0">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-orange to-amber-500 p-0.5 shrink-0 flex items-center justify-center shadow-md">
-            <Smartphone className="w-5 h-5 text-white" />
-          </div>
-          <div className="min-w-0">
-            <h4 className="text-xs font-bold leading-tight flex items-center gap-1">
-              <span>Install Palate PWA</span>
-              <Sparkles className="w-3 h-3 text-amber-400" />
-            </h4>
-            <p className="text-[11px] text-slate-400 truncate">
-              Instant offline radar & cached food notes
-            </p>
-          </div>
+    <div className="w-full my-4 p-3.5 rounded-2xl bg-gradient-to-r from-[#161B22] via-[#12161E] to-[#0E1116] border border-[#262C36] hover:border-brand-orange/40 shadow-md flex items-center justify-between gap-3 text-white transition-all animate-fade-in">
+      <div className="flex items-center gap-3 min-w-0">
+        <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-brand-orange to-amber-500 p-0.5 shrink-0 flex items-center justify-center shadow-md">
+          <Smartphone className="w-4 h-4 text-white" />
         </div>
+        <div className="min-w-0">
+          <h4 className="text-xs font-bold leading-tight flex items-center gap-1.5 text-white">
+            <span>Install Palate PWA</span>
+            <Sparkles className="w-3 h-3 text-amber-400 shrink-0" />
+          </h4>
+          <p className="text-[11px] text-slate-400 truncate mt-0.5">
+            Instant offline radar & 1-tap food vault
+          </p>
+        </div>
+      </div>
 
-        <div className="flex items-center gap-1.5 shrink-0">
-          <button
-            onClick={handleInstallClick}
-            className="min-h-[36px] px-3.5 py-1.5 rounded-xl bg-brand-orange hover:bg-orange-600 text-white font-extrabold text-xs shadow-glow-orange active:scale-95 transition-all"
-          >
-            Install
-          </button>
-          <button
-            onClick={handleDismiss}
-            className="min-h-[36px] min-w-[36px] flex items-center justify-center p-1 rounded-lg text-slate-400 hover:text-white transition-colors"
-            aria-label="Dismiss banner"
-          >
-            <X className="w-4 h-4" />
-          </button>
-        </div>
+      <div className="flex items-center gap-1.5 shrink-0">
+        <button
+          onClick={handleInstallClick}
+          className="min-h-[32px] px-3 py-1 rounded-xl bg-brand-orange hover:bg-orange-600 text-white font-extrabold text-xs shadow-glow-orange active:scale-95 transition-all flex items-center gap-1"
+        >
+          <Download className="w-3 h-3" />
+          <span>Install</span>
+        </button>
+        <button
+          onClick={handleDismiss}
+          className="w-7 h-7 flex items-center justify-center rounded-lg text-slate-400 hover:text-white hover:bg-neutral-800 transition-colors"
+          aria-label="Dismiss banner"
+        >
+          <X className="w-3.5 h-3.5" />
+        </button>
       </div>
     </div>
   );

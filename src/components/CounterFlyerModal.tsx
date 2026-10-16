@@ -72,7 +72,7 @@ export const CounterFlyerModal: React.FC<CounterFlyerModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/80 backdrop-blur-sm print:p-0 print:bg-white print:static">
+    <div className="fixed inset-0 z-[60] flex items-center justify-center p-3 sm:p-4 bg-black/85 backdrop-blur-md print:p-0 print:bg-white print:static">
       
       {/* Print View Specific Style Injection */}
       <style>{`
@@ -108,8 +108,8 @@ export const CounterFlyerModal: React.FC<CounterFlyerModalProps> = ({
         }
       `}</style>
 
-      {/* Modal Body: Standardized max-w-md max-h-[90dvh] */}
-      <div className="w-full max-w-md max-h-[90dvh] flex flex-col bg-[#0E1116] rounded-2xl border border-neutral-800 overflow-hidden shadow-2xl print:max-h-none print:border-none print:shadow-none print:bg-white">
+      {/* Modal Body: Standardized max-w-md h-full max-h-[85dvh] */}
+      <div className="w-full max-w-md h-full max-h-[85dvh] flex flex-col bg-[#0E1116] rounded-2xl border border-neutral-800 overflow-hidden shadow-2xl print:max-h-none print:border-none print:shadow-none print:bg-white">
         
         {/* Top Modal Header: Fixed h-14 px-4 flex items-center justify-between border-b border-neutral-800/60 */}
         <div className="no-print h-14 px-4 flex items-center justify-between border-b border-neutral-800/60 bg-[#161B22] shrink-0">
@@ -181,8 +181,8 @@ export const CounterFlyerModal: React.FC<CounterFlyerModalProps> = ({
           </div>
         </div>
 
-        {/* Scrollable Canvas: Inner standee sheet enclosed in flex-1 overflow-y-auto p-4 */}
-        <div className="flex-1 overflow-y-auto p-4 flex justify-center bg-[#07090C] print:p-0 print:bg-white print:overflow-visible">
+        {/* Scrollable Canvas: Inner standee sheet enclosed in flex-1 overflow-y-auto px-4 pb-28 scrollbar-none */}
+        <div className="flex-1 overflow-y-auto px-4 pb-28 pt-4 scrollbar-none flex justify-center bg-[#07090C] print:p-0 print:bg-white print:overflow-visible">
           
           {/* THE PRINTABLE FLYER CARD (Exact A5 with Stark Soft Cream-White Background) */}
           <div 

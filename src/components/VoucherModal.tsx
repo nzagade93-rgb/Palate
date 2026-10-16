@@ -100,7 +100,7 @@ export const VoucherModal: React.FC<VoucherModalProps> = ({
   const isRedeemed = validationResult?.valid || validationResult?.alreadyRedeemed;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-fade-in overflow-y-auto">
+    <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-fade-in overflow-y-auto">
       <div 
         className="w-full max-w-sm rounded-3xl bg-[#0E1116] border border-[#262C36] shadow-glow-orange overflow-hidden text-center relative animate-slide-up my-auto"
         onClick={(e) => e.stopPropagation()}

@@ -245,7 +245,7 @@ export const SocialShareModal: React.FC<SocialShareModalProps> = ({
   const isSpotlight = activeFilter === 'spotlight';
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/90 backdrop-blur-xl animate-fade-in">
+    <div className="fixed inset-0 z-[60] flex items-center justify-center p-3 sm:p-4 bg-black/85 backdrop-blur-md animate-fade-in">
       <div 
         className="w-full max-w-md max-h-[92dvh] bg-[#0E1116] border border-[#262C36] rounded-3xl shadow-2xl overflow-hidden flex flex-col relative animate-slide-up"
         onClick={(e) => e.stopPropagation()}
