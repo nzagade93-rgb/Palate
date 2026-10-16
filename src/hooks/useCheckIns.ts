@@ -17,8 +17,34 @@ export function useCheckIns() {
     return [];
   });
 
-  // Sync state when other components or tabs trigger check-ins
+  // 1. Initial hydration from live Supabase + multi-tab / storage listeners
   useEffect(() => {
+    // Sync with live Supabase check-ins
+    liveDataService.getLiveCheckIns().then((live) => {
+      if (live && live.length > 0) {
+        setCheckIns((prev) => {
+          const map = new Map<string, CheckIn>();
+          [...live, ...prev].forEach((item) => {
+            if (!map.has(item.id)) {
+              map.set(item.id, item);
+            }
+          });
+          const merged = Array.from(map.values()).sort((a, b) => b.timestamp - a.timestamp);
+          try {
+            localStorage.setItem(CHECKINS_STORAGE_KEY, JSON.stringify(merged));
+          } catch (e) {
+            console.error(e);
+          }
+          return merged;
+        });
+      }
+    });
+
+    // Real-time subscription across Supabase and cross-tab BroadcastChannel
+    const unsubscribe = liveDataService.subscribeToLiveCheckIns((newCheckIn) => {
+      setCheckIns((prev) => [newCheckIn, ...prev.filter((c) => c.id !== newCheckIn.id)]);
+    });
+
     const handleStorageUpdate = () => {
       try {
         const stored = localStorage.getItem(CHECKINS_STORAGE_KEY);
@@ -32,7 +58,9 @@ export function useCheckIns() {
 
     window.addEventListener('palate_checkin_updated', handleStorageUpdate);
     window.addEventListener('storage', handleStorageUpdate);
+
     return () => {
+      unsubscribe();
       window.removeEventListener('palate_checkin_updated', handleStorageUpdate);
       window.removeEventListener('storage', handleStorageUpdate);
     };
@@ -53,8 +81,9 @@ export function useCheckIns() {
       note: note?.trim() || undefined
     };
 
+    // Optimistic local state update
     setCheckIns((prev) => {
-      const updated = [newCheckIn, ...prev];
+      const updated = [newCheckIn, ...prev.filter((c) => c.id !== newCheckIn.id)];
       try {
         localStorage.setItem(CHECKINS_STORAGE_KEY, JSON.stringify(updated));
         window.dispatchEvent(new Event('palate_checkin_updated'));
@@ -64,7 +93,7 @@ export function useCheckIns() {
       return updated;
     });
 
-    // Also publish to multi-user live feed (Supabase + BroadcastChannel)
+    // Publish to Supabase database and multi-tab BroadcastChannel
     liveDataService.publishCheckIn(newCheckIn).catch((err) => {
       console.warn('Network sync notice:', err);
     });
