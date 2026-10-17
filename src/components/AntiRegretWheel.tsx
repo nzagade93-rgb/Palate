@@ -19,12 +19,6 @@ export const AntiRegretWheel: React.FC<AntiRegretWheelProps> = ({
   const [selectedDish, setSelectedDish] = useState<Dish | null>(null);
   const [isSpinning, setIsSpinning] = useState(false);
 
-  useEffect(() => {
-    if (isOpen) {
-      handleSpin();
-    }
-  }, [isOpen]);
-
   const handleSpin = () => {
     setIsSpinning(true);
     let count = 0;
@@ -45,6 +39,12 @@ export const AntiRegretWheel: React.FC<AntiRegretWheelProps> = ({
       }
     }, 90);
   };
+
+  useEffect(() => {
+    if (isOpen) {
+      handleSpin();
+    }
+  }, [isOpen]);
 
   if (!isOpen) return null;
 

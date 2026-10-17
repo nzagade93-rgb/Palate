@@ -84,3 +84,5 @@ export interface CheckIn {
   note?: string;
 }
 
+export type NavigationTab = 'radar' | 'search' | 'dna' | 'vault';
+

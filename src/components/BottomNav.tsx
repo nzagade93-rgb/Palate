@@ -1,36 +1,33 @@
 import React from 'react';
 import { 
   Compass, 
-  Dices, 
-  Bookmark, 
-  Printer 
+  Search, 
+  Dna, 
+  Bookmark 
 } from 'lucide-react';
+import type { NavigationTab } from '../types';
 
 interface BottomNavProps {
-  currentTab: 'radar' | 'vault';
-  setCurrentTab: (tab: 'radar' | 'vault') => void;
-  onOpenWheel: () => void;
-  onOpenFlyer: () => void;
+  currentTab: NavigationTab;
+  setCurrentTab: (tab: NavigationTab) => void;
   vaultCount: number;
 }
 
 export const BottomNav: React.FC<BottomNavProps> = ({
   currentTab,
   setCurrentTab,
-  onOpenWheel,
-  onOpenFlyer,
   vaultCount,
 }) => {
   return (
     <nav 
       aria-label="Bottom Navigation"
-      className="fixed bottom-0 inset-x-0 mx-auto w-full max-w-[430px] z-40 h-16 bg-[#0E1116]/95 backdrop-blur-xl border-t border-[#262C36] px-3 flex items-center pb-[env(safe-area-inset-bottom,0px)] shadow-2xl select-none"
+      className="fixed bottom-0 inset-x-0 mx-auto w-full max-w-[430px] z-40 h-16 bg-[#0E1116]/95 backdrop-blur-xl border-t border-[#262C36] px-2 flex items-center pb-[env(safe-area-inset-bottom,0px)] shadow-2xl select-none"
     >
       <div className="grid grid-cols-4 items-center text-center w-full">
-        {/* Tab 1: Radar (Discovery) */}
+        {/* Tab 1: Discover / Radar */}
         <button
           onClick={() => setCurrentTab('radar')}
-          className={`flex flex-col items-center justify-center py-1 px-2 w-full rounded-xl transition-all active:scale-95 ${
+          className={`flex flex-col items-center justify-center py-1 px-1.5 w-full rounded-xl transition-all active:scale-95 ${
             currentTab === 'radar'
               ? 'text-white'
               : 'text-neutral-500 hover:text-neutral-300'
@@ -45,27 +42,58 @@ export const BottomNav: React.FC<BottomNavProps> = ({
           <span className={`text-[10px] tracking-widest uppercase mt-1 font-semibold ${
             currentTab === 'radar' ? 'text-white font-bold' : 'text-neutral-400'
           }`}>
-            Radar
+            Discover
           </span>
         </button>
 
-        {/* Tab 2: Spin (Anti-Regret Wheel) */}
+        {/* Tab 2: Dish Search */}
         <button
-          onClick={onOpenWheel}
-          className="flex flex-col items-center justify-center py-1 px-2 w-full rounded-xl transition-all active:scale-95 text-neutral-500 hover:text-amber-400 group"
+          onClick={() => setCurrentTab('search')}
+          className={`flex flex-col items-center justify-center py-1 px-1.5 w-full rounded-xl transition-all active:scale-95 ${
+            currentTab === 'search'
+              ? 'text-white'
+              : 'text-neutral-500 hover:text-neutral-300'
+          }`}
         >
           <div className="relative flex items-center justify-center">
-            <Dices className="w-5 h-5 text-amber-400/90 group-hover:rotate-45 transition-transform" />
+            <Search className={`w-5 h-5 transition-transform ${currentTab === 'search' ? 'text-brand-orange scale-110' : ''}`} />
+            {currentTab === 'search' && (
+              <span className="absolute -bottom-1 w-1 h-1 rounded-full bg-brand-orange shadow-glow-orange" />
+            )}
           </div>
-          <span className="text-[10px] tracking-widest uppercase mt-1 font-semibold text-neutral-400 group-hover:text-amber-300">
-            Spin
+          <span className={`text-[10px] tracking-widest uppercase mt-1 font-semibold ${
+            currentTab === 'search' ? 'text-white font-bold' : 'text-neutral-400'
+          }`}>
+            Search
           </span>
         </button>
 
-        {/* Tab 3: Vault (Food Diary) */}
+        {/* Tab 3: Palate DNA */}
+        <button
+          onClick={() => setCurrentTab('dna')}
+          className={`flex flex-col items-center justify-center py-1 px-1.5 w-full rounded-xl transition-all active:scale-95 ${
+            currentTab === 'dna'
+              ? 'text-white'
+              : 'text-neutral-500 hover:text-neutral-300'
+          }`}
+        >
+          <div className="relative flex items-center justify-center">
+            <Dna className={`w-5 h-5 transition-transform ${currentTab === 'dna' ? 'text-brand-orange scale-110' : ''}`} />
+            {currentTab === 'dna' && (
+              <span className="absolute -bottom-1 w-1 h-1 rounded-full bg-brand-orange shadow-glow-orange" />
+            )}
+          </div>
+          <span className={`text-[10px] tracking-widest uppercase mt-1 font-semibold ${
+            currentTab === 'dna' ? 'text-white font-bold' : 'text-neutral-400'
+          }`}>
+            DNA
+          </span>
+        </button>
+
+        {/* Tab 4: Vault (Food Notebook) */}
         <button
           onClick={() => setCurrentTab('vault')}
-          className={`flex flex-col items-center justify-center py-1 px-2 w-full rounded-xl transition-all active:scale-95 ${
+          className={`flex flex-col items-center justify-center py-1 px-1.5 w-full rounded-xl transition-all active:scale-95 ${
             currentTab === 'vault'
               ? 'text-white'
               : 'text-neutral-500 hover:text-neutral-300'
@@ -86,19 +114,6 @@ export const BottomNav: React.FC<BottomNavProps> = ({
             currentTab === 'vault' ? 'text-white font-bold' : 'text-neutral-400'
           }`}>
             Vault
-          </span>
-        </button>
-
-        {/* Tab 4: Fliers (B2B Perks) */}
-        <button
-          onClick={onOpenFlyer}
-          className="flex flex-col items-center justify-center py-1 px-2 w-full rounded-xl transition-all active:scale-95 text-neutral-500 hover:text-neutral-300 group"
-        >
-          <div className="relative flex items-center justify-center">
-            <Printer className="w-5 h-5 text-neutral-400 group-hover:text-brand-orange transition-colors" />
-          </div>
-          <span className="text-[10px] tracking-widest uppercase mt-1 font-semibold text-neutral-400 group-hover:text-neutral-200">
-            Fliers
           </span>
         </button>
       </div>

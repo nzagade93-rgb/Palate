@@ -17,6 +17,7 @@ import { useCheckIns } from '../hooks/useCheckIns';
 interface DishCardProps {
   dish: Dish;
   onSelectDish: (dish: Dish) => void;
+  onOpenSplit?: (dish: Dish) => void;
   onCheckIn?: (dish: Dish) => void;
   onShare?: (dish: Dish, checkIn?: CheckIn) => void;
 }
@@ -24,6 +25,7 @@ interface DishCardProps {
 export const DishCard: React.FC<DishCardProps> = ({ 
   dish, 
   onSelectDish,
+  onOpenSplit,
   onCheckIn,
   onShare
 }) => {
@@ -147,7 +149,7 @@ export const DishCard: React.FC<DishCardProps> = ({
           {/* Dish Title and Price Tag Aligned Horizontally */}
           <div className="flex items-start justify-between gap-2">
             <div className="min-w-0 flex-1">
-              <h3 className="text-base sm:text-lg font-bold text-white tracking-wide leading-snug group-hover:text-brand-orange transition-colors line-clamp-2">
+              <h3 className="text-base sm:text-lg font-serif font-black text-white tracking-wide leading-snug group-hover:text-brand-orange transition-colors line-clamp-2">
                 {dish.name}
               </h3>
               {/* Venue & Micro-Distance */}
@@ -207,9 +209,13 @@ export const DishCard: React.FC<DishCardProps> = ({
             <button
               onClick={(e) => {
                 e.stopPropagation();
-                onSelectDish(dish);
+                if (onOpenSplit) {
+                  onOpenSplit(dish);
+                } else {
+                  onSelectDish(dish);
+                }
               }}
-              className="min-h-[40px] px-2.5 rounded-xl flex items-center gap-1 text-xs font-bold text-brand-orange hover:text-orange-400 transition-transform active:scale-95"
+              className="min-h-[40px] px-2.5 rounded-xl flex items-center gap-1 text-xs font-bold text-brand-orange hover:text-orange-400 transition-transform active:scale-95 cursor-pointer"
             >
               <span>Split</span>
               <ChevronRight className="w-4 h-4" />
