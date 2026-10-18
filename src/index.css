@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,600;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -8,11 +8,53 @@
   color-scheme: dark;
   --safe-top: env(safe-area-inset-top, 0px);
   --safe-bottom: env(safe-area-inset-bottom, 0px);
-  --canvas: #07090C;
-  --surface-1: #0E1116;
-  --surface-2: #161B22;
-  --border-hairline: #262C36;
+
+  /* DARK ELITE (Obsidian Noir & Royal Champagne Gold) */
+  --canvas: #08090C;
+  --surface-1: #101319;
+  --surface-2: #181D26;
+  --surface-3: #222836;
+  --border-hairline: rgba(255, 255, 255, 0.08);
+  --border-subtle: #252B37;
+  --border-gold: rgba(212, 175, 55, 0.28);
+  --text-primary: #F8FAFC;
+  --text-secondary: #CBD5E1;
+  --text-muted: #94A3B8;
+  --gold-primary: #D4AF37;
+  --gold-accent: #E5C378;
+  --gold-glow: rgba(212, 175, 55, 0.25);
   --brand-orange: #FF5C1F;
+  --card-shadow: 0 14px 34px -8px rgba(0, 0, 0, 0.75), 0 0 1px 1px rgba(212, 175, 55, 0.12);
+  --glass-nav-bg: rgba(16, 19, 25, 0.90);
+  --glass-card-bg: rgba(16, 19, 25, 0.96);
+  --modal-backdrop: rgba(0, 0, 0, 0.85);
+  --scrollbar-thumb: #252B37;
+  --scrollbar-hover: #3E4658;
+}
+
+/* WHITE ELITE (Alabaster Ivory & Burnished Gold / Michelin Editorial) */
+html.light, [data-theme="white-elite"] {
+  color-scheme: light;
+  --canvas: #F5F3ED;
+  --surface-1: #FFFFFF;
+  --surface-2: #EFEBE1;
+  --surface-3: #E5DFD1;
+  --border-hairline: rgba(197, 160, 89, 0.22);
+  --border-subtle: #DDD6C7;
+  --border-gold: rgba(184, 134, 11, 0.40);
+  --text-primary: #181512;
+  --text-secondary: #423A31;
+  --text-muted: #786F63;
+  --gold-primary: #B8860B;
+  --gold-accent: #C5A059;
+  --gold-glow: rgba(184, 134, 11, 0.20);
+  --brand-orange: #FF5C1F;
+  --card-shadow: 0 12px 30px -6px rgba(45, 35, 25, 0.08), 0 2px 6px -1px rgba(45, 35, 25, 0.04), 0 0 1px 1px rgba(197, 160, 89, 0.22);
+  --glass-nav-bg: rgba(245, 243, 237, 0.92);
+  --glass-card-bg: rgba(255, 255, 255, 0.97);
+  --modal-backdrop: rgba(24, 21, 18, 0.65);
+  --scrollbar-thumb: #D5CEBF;
+  --scrollbar-hover: #B8AF9D;
 }
 
 * {
@@ -23,13 +65,13 @@
 html, body {
   margin: 0;
   padding: 0;
-  background-color: #07090C;
-  color: #F3F4F6;
+  background-color: var(--canvas);
+  color: var(--text-primary);
   font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   overflow-x: hidden;
-  min-height: 100dvh;
   user-select: none;
   -webkit-user-select: none;
+  transition: background-color 0.25s cubic-bezier(0.16, 1, 0.3, 1), color 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 input, textarea {
@@ -46,11 +88,11 @@ input, textarea {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #272A36;
+  background: var(--scrollbar-thumb);
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #3F4457;
+  background: var(--scrollbar-hover);
 }
 
 .no-scrollbar::-webkit-scrollbar {
@@ -63,28 +105,54 @@ input, textarea {
 
 /* Glassmorphism helpers */
 .glass-panel {
-  background: rgba(14, 17, 22, 0.85);
+  background: var(--glass-card-bg);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid #262C36;
+  border: 1px solid var(--border-subtle);
 }
 
 .glass-nav {
-  background: rgba(14, 17, 22, 0.92);
+  background: var(--glass-nav-bg);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  border-bottom: 1px solid #262C36;
+  border-bottom: 1px solid var(--border-subtle);
 }
 
 .glass-card {
-  background: #0E1116;
-  border: 1px solid #262C36;
+  background: var(--surface-1);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--card-shadow);
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .glass-card:hover {
-  border-color: #384252;
+  border-color: var(--gold-primary);
   transform: translateY(-2px);
+}
+
+/* Elite Luxury Aesthetics */
+.elite-gold-border {
+  border-color: var(--border-gold);
+}
+
+.elite-gold-glow {
+  box-shadow: 0 0 20px -2px var(--gold-glow);
+}
+
+.elite-gold-shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(212, 175, 55, 0) 0%,
+    rgba(212, 175, 55, 0.25) 50%,
+    rgba(212, 175, 55, 0) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
 }
 
 /* Film & Story Overlays */

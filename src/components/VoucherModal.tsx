@@ -100,9 +100,9 @@ export const VoucherModal: React.FC<VoucherModalProps> = ({
   const isRedeemed = validationResult?.valid || validationResult?.alreadyRedeemed;
 
   return (
-    <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-fade-in overflow-y-auto">
+    <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-[var(--modal-backdrop)] backdrop-blur-md animate-fade-in overflow-y-auto font-sans">
       <div 
-        className="w-full max-w-sm rounded-3xl bg-[#0E1116] border border-[#262C36] shadow-glow-orange overflow-hidden text-center relative animate-slide-up my-auto"
+        className="w-full max-w-sm rounded-3xl bg-[var(--surface-1)] border border-[var(--border-subtle)] shadow-[var(--card-shadow)] overflow-hidden text-center relative animate-slide-up my-auto text-[var(--text-primary)]"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Top Header */}
@@ -127,7 +127,7 @@ export const VoucherModal: React.FC<VoucherModalProps> = ({
             </div>
             <button 
               onClick={onClose}
-              className="p-1 rounded-full bg-black/30 hover:bg-black/50 text-white transition-colors"
+              className="p-1 rounded-full bg-black/30 hover:bg-black/50 text-white transition-colors cursor-pointer"
               aria-label="Close voucher"
             >
               <X className="w-5 h-5" />
@@ -143,51 +143,51 @@ export const VoucherModal: React.FC<VoucherModalProps> = ({
         {/* Card Content */}
         <div className="p-5 sm:p-6 space-y-4 text-left">
           <div className="text-center">
-            <span className="text-[10px] font-semibold uppercase tracking-wider text-slate-400">Venue</span>
-            <h3 className="text-lg font-bold text-white mt-0.5">{venueName}</h3>
+            <span className="text-[10px] font-semibold uppercase tracking-wider text-[var(--text-muted)]">Venue</span>
+            <h3 className="text-lg font-serif font-black text-[var(--text-primary)] mt-0.5">{venueName}</h3>
           </div>
 
           {/* Perk Highlight Box */}
-          <div className="bg-[#161B22] border border-[#262C36] rounded-2xl p-3.5 text-left space-y-1.5">
-            <div className="flex items-center gap-2 text-emerald-400 font-bold text-xs sm:text-sm">
+          <div className="bg-[var(--surface-2)] border border-[var(--border-subtle)] rounded-2xl p-3.5 text-left space-y-1.5">
+            <div className="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 font-bold text-xs sm:text-sm">
               <CheckCircle2 className="w-4 h-4 shrink-0" />
               <span>{perkTitle}</span>
             </div>
-            <p className="text-xs text-neutral-300 leading-relaxed">
+            <p className="text-xs text-[var(--text-secondary)] leading-relaxed">
               {perkDescription}
             </p>
           </div>
 
           {/* Verification Code or Stamp */}
           {isRedeemed ? (
-            <div className="p-4 rounded-2xl bg-emerald-950/40 border border-emerald-500/40 text-center space-y-2 animate-fade-in">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-black tracking-wide border border-emerald-500/30">
+            <div className="p-4 rounded-2xl bg-emerald-500/15 border border-emerald-500/40 text-center space-y-2 animate-fade-in">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-600 dark:text-emerald-300 text-xs font-black tracking-wide border border-emerald-500/30">
                 <Check className="w-3.5 h-3.5" />
                 <span>PERK REDEEMED & VALIDATED</span>
               </div>
-              <p className="text-xs text-emerald-200/80">
+              <p className="text-xs text-emerald-700 dark:text-emerald-200">
                 {validationResult?.message || 'Discount/token item applied to table bill.'}
               </p>
               {validationResult?.redemption && (
-                <div className="text-[10px] text-slate-400 font-mono pt-1">
+                <div className="text-[10px] text-[var(--text-muted)] font-mono pt-1">
                   Receipt ID: {validationResult.redemption.id.substring(0, 16)} • {new Date(validationResult.redemption.redeemed_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                 </div>
               )}
             </div>
           ) : (
-            <div className="bg-[#07090C] border-2 border-dashed border-brand-orange/60 rounded-2xl p-4 text-center space-y-2.5">
+            <div className="bg-[var(--surface-2)] border-2 border-dashed border-brand-orange/60 rounded-2xl p-4 text-center space-y-2.5">
               <div className="text-[10px] font-bold text-brand-orange uppercase tracking-widest flex items-center justify-center gap-1.5">
                 <ShieldCheck className="w-3.5 h-3.5" />
                 <span>Cashier Code</span>
               </div>
               
-              <div className="font-mono text-xl sm:text-2xl font-black tracking-widest text-white bg-[#161B22] py-2 px-3 rounded-xl border border-[#262C36] select-all">
+              <div className="font-mono text-xl sm:text-2xl font-black tracking-widest text-[var(--text-primary)] bg-[var(--surface-1)] py-2 px-3 rounded-xl border border-[var(--border-subtle)] select-all shadow-inner">
                 {voucherCode}
               </div>
 
               <div className="flex items-center justify-center gap-1.5 opacity-80">
-                <QrCode className="w-3.5 h-3.5 text-slate-400" />
-                <span className="text-[9px] text-slate-400 font-mono tracking-widest uppercase">
+                <QrCode className="w-3.5 h-3.5 text-[var(--text-muted)]" />
+                <span className="text-[9px] text-[var(--text-muted)] font-mono tracking-widest uppercase">
                   Palate Ground Radar • Live Verification
                 </span>
               </div>
@@ -196,35 +196,35 @@ export const VoucherModal: React.FC<VoucherModalProps> = ({
 
           {/* Timer Countdown */}
           {!isRedeemed && (
-            <div className="flex items-center justify-center gap-2 text-xs font-medium text-amber-400/90 bg-amber-950/30 border border-amber-800/40 py-2 px-3 rounded-full">
+            <div className="flex items-center justify-center gap-2 text-xs font-medium text-amber-700 dark:text-amber-300 bg-amber-500/15 border border-amber-500/30 py-2 px-3 rounded-full">
               <Clock className="w-3.5 h-3.5 animate-pulse" />
-              <span>Pass expires in: <strong className="font-mono font-bold text-amber-300">{formattedTime}</strong></span>
+              <span>Pass expires in: <strong className="font-mono font-bold">{formattedTime}</strong></span>
             </div>
           )}
 
           {/* Cashier PIN Validation Accordion */}
           {!isRedeemed && (
-            <div className="border-t border-[#262C36] pt-3">
+            <div className="border-t border-[var(--border-subtle)] pt-3">
               {!isCashierMode ? (
                 <button
                   type="button"
                   onClick={() => setIsCashierMode(true)}
-                  className="w-full text-center text-xs text-slate-400 hover:text-slate-200 flex items-center justify-center gap-1.5 py-1.5 transition-colors"
+                  className="w-full text-center text-xs text-[var(--text-muted)] hover:text-[var(--text-primary)] flex items-center justify-center gap-1.5 py-1.5 transition-colors cursor-pointer"
                 >
                   <Lock className="w-3 h-3 text-brand-orange" />
                   <span>Cashier / Waiter? Tap to Validate PIN</span>
                 </button>
               ) : (
-                <form onSubmit={handleCashierRedeem} className="space-y-2.5 bg-[#161B22] p-3 rounded-2xl border border-[#262C36]">
+                <form onSubmit={handleCashierRedeem} className="space-y-2.5 bg-[var(--surface-2)] p-3 rounded-2xl border border-[var(--border-subtle)]">
                   <div className="flex items-center justify-between">
-                    <span className="text-[11px] font-bold text-white flex items-center gap-1">
+                    <span className="text-[11px] font-bold text-[var(--text-primary)] flex items-center gap-1">
                       <Lock className="w-3 h-3 text-brand-orange" />
                       Cashier Verification
                     </span>
                     <button
                       type="button"
                       onClick={() => setIsCashierMode(false)}
-                      className="text-[10px] text-slate-400 hover:text-white"
+                      className="text-[10px] text-[var(--text-muted)] hover:text-[var(--text-primary)] cursor-pointer"
                     >
                       Cancel
                     </button>
@@ -232,7 +232,7 @@ export const VoucherModal: React.FC<VoucherModalProps> = ({
 
                   <div className="grid grid-cols-2 gap-2">
                     <div>
-                      <label className="text-[9px] font-bold text-slate-400 block mb-1">
+                      <label className="text-[9px] font-bold text-[var(--text-muted)] block mb-1">
                         4-Digit PIN (Demo: 1717)
                       </label>
                       <input
@@ -241,11 +241,11 @@ export const VoucherModal: React.FC<VoucherModalProps> = ({
                         value={cashierPin}
                         onChange={(e) => setCashierPin(e.target.value)}
                         placeholder="1717"
-                        className="w-full text-xs font-mono px-2.5 py-1.5 rounded-lg bg-[#0E1116] border border-[#262C36] text-white focus:outline-none focus:border-brand-orange"
+                        className="w-full text-xs font-mono px-2.5 py-1.5 rounded-lg bg-[var(--surface-1)] border border-[var(--border-subtle)] text-[var(--text-primary)] focus:outline-none focus:border-brand-orange"
                       />
                     </div>
                     <div>
-                      <label className="text-[9px] font-bold text-slate-400 block mb-1">
+                      <label className="text-[9px] font-bold text-[var(--text-muted)] block mb-1">
                         Bill Amount (₹ opt)
                       </label>
                       <input
@@ -253,13 +253,13 @@ export const VoucherModal: React.FC<VoucherModalProps> = ({
                         value={billAmount}
                         onChange={(e) => setBillAmount(e.target.value)}
                         placeholder="₹250"
-                        className="w-full text-xs px-2.5 py-1.5 rounded-lg bg-[#0E1116] border border-[#262C36] text-white focus:outline-none focus:border-brand-orange"
+                        className="w-full text-xs px-2.5 py-1.5 rounded-lg bg-[var(--surface-1)] border border-[var(--border-subtle)] text-[var(--text-primary)] focus:outline-none focus:border-brand-orange"
                       />
                     </div>
                   </div>
 
                   {validationResult && !validationResult.valid && (
-                    <div className="flex items-center gap-1.5 text-[11px] text-red-400">
+                    <div className="flex items-center gap-1.5 text-[11px] text-red-500">
                       <AlertCircle className="w-3.5 h-3.5 shrink-0" />
                       <span>{validationResult.message}</span>
                     </div>
@@ -269,14 +269,14 @@ export const VoucherModal: React.FC<VoucherModalProps> = ({
                     <button
                       type="button"
                       onClick={() => setCashierPin('1717')}
-                      className="text-[10px] px-2 py-1.5 rounded-lg bg-[#262C36] text-slate-300 hover:text-white"
+                      className="text-[10px] px-2 py-1.5 rounded-lg bg-[var(--surface-1)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] border border-[var(--border-subtle)] cursor-pointer"
                     >
                       Quick Fill 1717
                     </button>
                     <button
                       type="submit"
                       disabled={isSubmitting || cashierPin.length !== 4}
-                      className="flex-1 py-1.5 px-3 rounded-lg bg-emerald-600 hover:bg-emerald-500 disabled:opacity-50 text-white font-bold text-xs transition-colors"
+                      className="flex-1 py-1.5 px-3 rounded-lg bg-emerald-600 hover:bg-emerald-500 disabled:opacity-50 text-white font-bold text-xs transition-colors cursor-pointer"
                     >
                       {isSubmitting ? 'Checking...' : 'Stamp Perk'}
                     </button>
@@ -289,7 +289,7 @@ export const VoucherModal: React.FC<VoucherModalProps> = ({
           {/* Close Action */}
           <button
             onClick={onClose}
-            className="w-full min-h-[42px] py-2.5 rounded-2xl bg-gradient-to-r from-brand-orange to-orange-600 hover:from-orange-500 hover:to-orange-600 text-white font-bold text-xs shadow-glow-orange active:scale-95 transition-transform"
+            className="w-full min-h-[42px] py-2.5 rounded-2xl bg-gradient-to-r from-brand-orange to-orange-600 hover:from-orange-500 hover:to-orange-600 text-white font-bold text-xs shadow-glow-orange active:scale-95 transition-transform cursor-pointer"
           >
             {isRedeemed ? 'Done' : "I've Shown This at the Counter"}
           </button>

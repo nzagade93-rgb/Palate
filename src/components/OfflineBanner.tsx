@@ -36,7 +36,7 @@ export const OfflineBanner: React.FC = () => {
   return (
     <div className="fixed top-2 left-1/2 -translate-x-1/2 w-[calc(100%-24px)] max-w-sm z-50 animate-slide-down pointer-events-none">
       {!isOnline ? (
-        <div className="p-2.5 rounded-2xl bg-[#0E1116]/95 backdrop-blur-md border border-amber-500/40 shadow-xl flex items-center justify-between gap-2.5 text-white pointer-events-auto">
+        <div className="p-2.5 rounded-2xl bg-[var(--surface-1)]/95 backdrop-blur-md border border-amber-500/40 shadow-xl flex items-center justify-between gap-2.5 text-[var(--text-primary)] pointer-events-auto">
           <div className="flex items-center gap-2 min-w-0">
             <div className="w-7 h-7 rounded-lg bg-amber-500/20 border border-amber-500/40 flex items-center justify-center shrink-0">
               <WifiOff className="w-4 h-4 text-amber-400" />

@@ -245,22 +245,22 @@ export const SocialShareModal: React.FC<SocialShareModalProps> = ({
   const isSpotlight = activeFilter === 'spotlight';
 
   return (
-    <div className="fixed inset-0 z-[60] flex items-center justify-center p-3 sm:p-4 bg-black/85 backdrop-blur-md animate-fade-in">
+    <div className="fixed inset-0 z-[60] flex items-center justify-center p-3 sm:p-4 bg-[var(--modal-backdrop)] backdrop-blur-md animate-fade-in font-sans">
       <div 
-        className="w-full max-w-md max-h-[92dvh] bg-[#0E1116] border border-[#262C36] rounded-3xl shadow-2xl overflow-hidden flex flex-col relative animate-slide-up"
+        className="w-full max-w-md max-h-[92dvh] bg-[var(--surface-1)] border border-[var(--border-subtle)] rounded-3xl shadow-2xl overflow-hidden flex flex-col relative animate-slide-up text-[var(--text-primary)]"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Minimal Header: Fixed h-12 */}
-        <div className="h-12 px-4 border-b border-[#262C36] bg-[#0E1116] flex items-center justify-between shrink-0">
+        <div className="h-12 px-4 border-b border-[var(--border-subtle)] bg-[var(--surface-1)] flex items-center justify-between shrink-0">
           <div className="flex items-center gap-2">
-            <span className="text-[11px] font-bold text-slate-400 tracking-widest uppercase">
+            <span className="text-[11px] font-bold text-[var(--text-muted)] tracking-widest uppercase">
               Social Flex • Story Export
             </span>
           </div>
 
           <button
             onClick={onClose}
-            className="p-1.5 rounded-full bg-[#161B22] hover:bg-neutral-800 text-slate-400 hover:text-white transition-colors"
+            className="p-1.5 rounded-full bg-[var(--surface-2)] hover:bg-[var(--surface-3)] text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors cursor-pointer"
             aria-label="Close story editor"
           >
             <X className="w-4 h-4" />
@@ -462,7 +462,7 @@ export const SocialShareModal: React.FC<SocialShareModalProps> = ({
 
           {/* User Caption Editing Input: "What was the highlight?" */}
           <div className="w-full space-y-1.5">
-            <label className="text-[11px] font-bold uppercase tracking-widest text-slate-400 block text-left">
+            <label className="text-[11px] font-bold uppercase tracking-widest text-[var(--text-muted)] block text-left">
               What was the highlight?
             </label>
             <input
@@ -470,14 +470,14 @@ export const SocialShareModal: React.FC<SocialShareModalProps> = ({
               value={customQuote}
               onChange={(e) => setCustomQuote(e.target.value)}
               placeholder="What was the highlight? (e.g. Extra kadak butter, crispy crust...)"
-              className="w-full text-xs font-medium px-3.5 py-2.5 rounded-xl bg-[#161B22] border border-[#262C36] text-white placeholder-slate-500 focus:outline-none focus:border-brand-orange focus:ring-1 focus:ring-brand-orange/40"
+              className="w-full text-xs font-medium px-3.5 py-2.5 rounded-xl bg-[var(--surface-2)] border border-[var(--border-subtle)] text-[var(--text-primary)] placeholder-[var(--text-muted)] focus:outline-none focus:border-brand-orange focus:ring-1 focus:ring-brand-orange/40"
             />
           </div>
 
         </div>
 
         {/* Spacious Bottom Sheet Action Buttons (High contrast min 44px) */}
-        <div className="p-4 bg-[#0E1116] border-t border-[#262C36] space-y-2.5 shrink-0">
+        <div className="p-4 bg-[var(--surface-1)] border-t border-[var(--border-subtle)] space-y-2.5 shrink-0">
           <div className="grid grid-cols-2 gap-2.5">
             <button
               onClick={handleNativeShare}
@@ -491,7 +491,7 @@ export const SocialShareModal: React.FC<SocialShareModalProps> = ({
             <button
               onClick={handleDownload}
               disabled={isExporting}
-              className="min-h-[44px] px-3 rounded-xl bg-[#161B22] hover:bg-[#1E2430] text-white border border-[#262C36] hover:border-slate-500 font-bold text-xs flex items-center justify-center gap-1.5 transition-transform active:scale-95 disabled:opacity-50 cursor-pointer tracking-wide"
+              className="min-h-[44px] px-3 rounded-xl bg-[var(--surface-2)] hover:bg-[var(--surface-3)] text-[var(--text-primary)] border border-[var(--border-subtle)] hover:border-gold-500/50 font-bold text-xs flex items-center justify-center gap-1.5 transition-transform active:scale-95 disabled:opacity-50 cursor-pointer tracking-wide"
             >
               <Download className="w-4 h-4 text-brand-orange" />
               <span>Save Image (PNG)</span>
@@ -500,16 +500,16 @@ export const SocialShareModal: React.FC<SocialShareModalProps> = ({
 
           <button
             onClick={handleCopyLink}
-            className="w-full min-h-[44px] rounded-xl bg-[#161B22]/40 hover:bg-[#161B22] border border-[#262C36] text-xs font-semibold text-slate-300 hover:text-white flex items-center justify-center gap-1.5 transition-all active:scale-95"
+            className="w-full min-h-[44px] rounded-xl bg-[var(--surface-2)] hover:bg-[var(--surface-3)] border border-[var(--border-subtle)] text-xs font-semibold text-[var(--text-secondary)] hover:text-[var(--text-primary)] flex items-center justify-center gap-1.5 transition-all active:scale-95 cursor-pointer"
           >
             {copiedLink ? (
               <>
-                <Check className="w-4 h-4 text-emerald-400" />
-                <span className="text-emerald-400 font-bold">Verdict & Link Copied to Clipboard!</span>
+                <Check className="w-4 h-4 text-emerald-500" />
+                <span className="text-emerald-500 font-bold">Verdict & Link Copied to Clipboard!</span>
               </>
             ) : (
               <>
-                <Copy className="w-4 h-4 text-slate-400" />
+                <Copy className="w-4 h-4 text-[var(--text-muted)]" />
                 <span>Copy Link with Verdict</span>
               </>
             )}

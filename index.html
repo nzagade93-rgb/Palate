@@ -6,9 +6,27 @@
     <title>Palate • Dish-First Anti-Regret Food Guide</title>
     <meta name="description" content="Hyper-local, dish-first food radar. Discover God-Tier must-orders and skip the menu regrets in Navi Mumbai." />
     
+    <!-- Instant Pre-paint Theme Resolver (Zero Flash) -->
+    <script>
+      (function() {
+        try {
+          var t = localStorage.getItem('palate_elite_theme');
+          if (t === 'light') {
+            document.documentElement.classList.remove('dark');
+            document.documentElement.classList.add('light');
+            document.documentElement.setAttribute('data-theme', 'white-elite');
+          } else {
+            document.documentElement.classList.add('dark');
+            document.documentElement.classList.remove('light');
+            document.documentElement.setAttribute('data-theme', 'dark-elite');
+          }
+        } catch(e) {}
+      })();
+    </script>
+
     <!-- PWA meta tags -->
     <link rel="manifest" href="/manifest.json" />
-    <meta name="theme-color" content="#0B0C0E" />
+    <meta name="theme-color" content="#08090C" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="apple-mobile-web-app-title" content="Palate" />
@@ -19,9 +37,9 @@
     <meta property="og:title" content="Palate • Anti-Regret Food Radar" />
     <meta property="og:description" content="Never order the wrong dish again. Definitive God-Tier & Skip lists for Sector 17, Vashi & Navi Mumbai." />
     <meta property="og:type" content="website" />
-    <meta property="og:theme-color" content="#0B0C0E" />
+    <meta property="og:theme-color" content="#08090C" />
   </head>
-  <body class="bg-[#07090C] text-gray-100 min-h-[100dvh] overflow-x-hidden antialiased selection:bg-brand-orange selection:text-white">
+  <body class="bg-[var(--canvas)] text-[var(--text-primary)] min-h-[100dvh] overflow-x-hidden antialiased selection:bg-brand-orange selection:text-white transition-colors duration-300">
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

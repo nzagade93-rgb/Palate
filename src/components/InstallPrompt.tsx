@@ -73,17 +73,17 @@ export const InstallPrompt: React.FC = () => {
   if (isDismissed || isInstalled) return null;
 
   return (
-    <div className="w-full my-4 p-3.5 rounded-2xl bg-gradient-to-r from-[#161B22] via-[#12161E] to-[#0E1116] border border-[#262C36] hover:border-brand-orange/40 shadow-md flex items-center justify-between gap-3 text-white transition-all animate-fade-in">
+    <div className="w-full my-4 p-3.5 rounded-2xl bg-gradient-to-r from-[var(--surface-2)] via-[var(--surface-1)] to-[var(--surface-2)] border border-[var(--border-subtle)] hover:border-brand-orange/40 shadow-md flex items-center justify-between gap-3 text-[var(--text-primary)] transition-all animate-fade-in font-sans">
       <div className="flex items-center gap-3 min-w-0">
         <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-brand-orange to-amber-500 p-0.5 shrink-0 flex items-center justify-center shadow-md">
           <Smartphone className="w-4 h-4 text-white" />
         </div>
         <div className="min-w-0">
-          <h4 className="text-xs font-bold leading-tight flex items-center gap-1.5 text-white">
+          <h4 className="text-xs font-bold leading-tight flex items-center gap-1.5 text-[var(--text-primary)]">
             <span>Install Palate PWA</span>
-            <Sparkles className="w-3 h-3 text-amber-400 shrink-0" />
+            <Sparkles className="w-3 h-3 text-amber-500 shrink-0" />
           </h4>
-          <p className="text-[11px] text-slate-400 truncate mt-0.5">
+          <p className="text-[11px] text-[var(--text-muted)] truncate mt-0.5">
             Instant offline radar & 1-tap food vault
           </p>
         </div>
@@ -92,14 +92,14 @@ export const InstallPrompt: React.FC = () => {
       <div className="flex items-center gap-1.5 shrink-0">
         <button
           onClick={handleInstallClick}
-          className="min-h-[32px] px-3 py-1 rounded-xl bg-brand-orange hover:bg-orange-600 text-white font-extrabold text-xs shadow-glow-orange active:scale-95 transition-all flex items-center gap-1"
+          className="min-h-[32px] px-3 py-1 rounded-xl bg-brand-orange hover:bg-orange-600 text-white font-extrabold text-xs shadow-glow-orange active:scale-95 transition-all flex items-center gap-1 cursor-pointer"
         >
           <Download className="w-3 h-3" />
           <span>Install</span>
         </button>
         <button
           onClick={handleDismiss}
-          className="w-7 h-7 flex items-center justify-center rounded-lg text-slate-400 hover:text-white hover:bg-neutral-800 transition-colors"
+          className="w-7 h-7 flex items-center justify-center rounded-lg text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:bg-[var(--surface-3)] transition-colors cursor-pointer"
           aria-label="Dismiss banner"
         >
           <X className="w-3.5 h-3.5" />

@@ -5,7 +5,7 @@ import {
   Bookmark, 
   Trash2, 
   Edit3, 
-  Plus,
+  Plus, 
   Share2, 
   Sparkles,
   MapPin,
@@ -96,12 +96,12 @@ export const VaultView: React.FC<VaultViewProps> = ({ onBackToRadar }) => {
   };
 
   return (
-    <div className="w-full px-4 sm:px-5 py-4 space-y-4 animate-fade-in pb-28">
+    <div className="w-full px-4 sm:px-5 py-4 space-y-4 animate-fade-in pb-28 font-sans">
       {/* Vault Contextual Focused Header Bar */}
-      <div className="flex items-center justify-between gap-3 border-b border-[#262C36] pb-3.5">
+      <div className="flex items-center justify-between gap-3 border-b border-[var(--border-subtle)] pb-3.5">
         <div className="flex items-center gap-2.5">
-          <h1 className="text-xl font-extrabold text-white tracking-tight">My Food Vault</h1>
-          <div className="flex items-center gap-1.5 text-xs text-neutral-400">
+          <h1 className="text-xl font-serif font-black text-[var(--text-primary)] tracking-tight">My Food Vault</h1>
+          <div className="flex items-center gap-1.5 text-xs text-[var(--text-muted)]">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
@@ -114,7 +114,7 @@ export const VaultView: React.FC<VaultViewProps> = ({ onBackToRadar }) => {
           <button
             onClick={handleShareVault}
             title="Export Vault Summary"
-            className="w-9 h-9 flex items-center justify-center rounded-full bg-[#161B22] hover:bg-[#1E242E] text-slate-300 hover:text-white border border-[#262C36] transition-all active:scale-95"
+            className="w-9 h-9 flex items-center justify-center rounded-full bg-[var(--surface-2)] hover:bg-[var(--surface-3)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] border border-[var(--border-subtle)] transition-all active:scale-95 cursor-pointer"
             aria-label="Share Vault"
           >
             <Share2 className="w-4 h-4" />
@@ -122,7 +122,7 @@ export const VaultView: React.FC<VaultViewProps> = ({ onBackToRadar }) => {
           <button
             onClick={() => setShowAddModal(true)}
             title="Add Note"
-            className="w-9 h-9 flex items-center justify-center rounded-full bg-brand-orange hover:bg-orange-600 text-white shadow-glow-orange transition-all active:scale-95"
+            className="w-9 h-9 flex items-center justify-center rounded-full bg-brand-orange hover:bg-orange-600 text-white shadow-glow-orange transition-all active:scale-95 cursor-pointer"
             aria-label="Add Note"
           >
             <Plus className="w-4 h-4" />
@@ -131,48 +131,48 @@ export const VaultView: React.FC<VaultViewProps> = ({ onBackToRadar }) => {
       </div>
 
       {copiedToast && (
-        <div className="p-3 rounded-xl bg-emerald-950/80 border border-emerald-500/50 text-emerald-300 text-xs font-bold text-center animate-fade-in">
+        <div className="p-3 rounded-xl bg-emerald-500/15 border border-emerald-500/40 text-emerald-600 dark:text-emerald-300 text-xs font-bold text-center animate-fade-in">
           ✓ Vault summary copied to clipboard! Ready to send on WhatsApp.
         </div>
       )}
 
       {/* Segment Switcher: 3-column segmented control */}
-      <div className="grid grid-cols-3 p-1 bg-[#161B22] rounded-xl text-xs text-center border border-[#262C36]">
+      <div className="grid grid-cols-3 p-1 bg-[var(--surface-2)] rounded-xl text-xs text-center border border-[var(--border-subtle)]">
         <button
           onClick={() => setActiveTab('LOVED')}
-          className={`py-2 px-2 text-xs transition-all active:scale-95 flex items-center justify-center gap-1.5 ${
+          className={`py-2 px-2 text-xs transition-all active:scale-95 flex items-center justify-center gap-1.5 cursor-pointer ${
             activeTab === 'LOVED'
-              ? 'bg-[#0E1116] text-white shadow-sm font-medium rounded-lg'
-              : 'text-neutral-400 hover:text-white transition-colors'
+              ? 'bg-[var(--surface-1)] text-[var(--text-primary)] shadow-sm font-semibold rounded-lg'
+              : 'text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors'
           }`}
         >
-          <Heart className={`w-3.5 h-3.5 ${activeTab === 'LOVED' ? 'text-emerald-400' : ''}`} />
+          <Heart className={`w-3.5 h-3.5 ${activeTab === 'LOVED' ? 'text-emerald-500 fill-emerald-500/40' : ''}`} />
           <span className="truncate">Tried & Loved</span>
           <span className="text-[10px] font-bold opacity-80">({countLoved})</span>
         </button>
 
         <button
           onClick={() => setActiveTab('AVOID')}
-          className={`py-2 px-2 text-xs transition-all active:scale-95 flex items-center justify-center gap-1.5 ${
+          className={`py-2 px-2 text-xs transition-all active:scale-95 flex items-center justify-center gap-1.5 cursor-pointer ${
             activeTab === 'AVOID'
-              ? 'bg-[#0E1116] text-white shadow-sm font-medium rounded-lg'
-              : 'text-neutral-400 hover:text-white transition-colors'
+              ? 'bg-[var(--surface-1)] text-[var(--text-primary)] shadow-sm font-semibold rounded-lg'
+              : 'text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors'
           }`}
         >
-          <Ban className={`w-3.5 h-3.5 ${activeTab === 'AVOID' ? 'text-red-400' : ''}`} />
+          <Ban className={`w-3.5 h-3.5 ${activeTab === 'AVOID' ? 'text-red-500' : ''}`} />
           <span className="truncate">Never Again</span>
           <span className="text-[10px] font-bold opacity-80">({countAvoid})</span>
         </button>
 
         <button
           onClick={() => setActiveTab('SAVED')}
-          className={`py-2 px-2 text-xs transition-all active:scale-95 flex items-center justify-center gap-1.5 ${
+          className={`py-2 px-2 text-xs transition-all active:scale-95 flex items-center justify-center gap-1.5 cursor-pointer ${
             activeTab === 'SAVED'
-              ? 'bg-[#0E1116] text-white shadow-sm font-medium rounded-lg'
-              : 'text-neutral-400 hover:text-white transition-colors'
+              ? 'bg-[var(--surface-1)] text-[var(--text-primary)] shadow-sm font-semibold rounded-lg'
+              : 'text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors'
           }`}
         >
-          <Bookmark className={`w-3.5 h-3.5 ${activeTab === 'SAVED' ? 'text-brand-orange' : ''}`} />
+          <Bookmark className={`w-3.5 h-3.5 ${activeTab === 'SAVED' ? 'text-brand-orange fill-brand-orange/40' : ''}`} />
           <span className="truncate">Saved</span>
           <span className="text-[10px] font-bold opacity-80">({countSaved})</span>
         </button>
@@ -181,18 +181,18 @@ export const VaultView: React.FC<VaultViewProps> = ({ onBackToRadar }) => {
       {/* Vault Items List: Clean breathable card spacing */}
       <div className="space-y-4">
         {filteredItems.length === 0 ? (
-          <div className="p-8 rounded-3xl bg-[#0E1116] border border-[#262C36] text-center space-y-3">
-            <div className="w-12 h-12 rounded-full bg-[#161B22] border border-[#262C36] text-slate-400 flex items-center justify-center mx-auto">
+          <div className="p-8 rounded-3xl bg-[var(--surface-1)] border border-[var(--border-subtle)] text-center space-y-3 shadow-[var(--card-shadow)]">
+            <div className="w-12 h-12 rounded-full bg-[var(--surface-2)] border border-[var(--border-subtle)] text-[var(--text-muted)] flex items-center justify-center mx-auto">
               {activeTab === 'LOVED' ? (
-                <Heart className="w-6 h-6 text-emerald-400" />
+                <Heart className="w-6 h-6 text-emerald-500" />
               ) : activeTab === 'AVOID' ? (
-                <Ban className="w-6 h-6 text-red-400" />
+                <Ban className="w-6 h-6 text-red-500" />
               ) : (
-                <Bookmark className="w-6 h-6 text-amber-400" />
+                <Bookmark className="w-6 h-6 text-amber-500" />
               )}
             </div>
-            <h3 className="text-sm font-bold text-white">No dishes logged here yet</h3>
-            <p className="text-xs text-slate-400 max-w-xs mx-auto">
+            <h3 className="text-sm font-bold text-[var(--text-primary)]">No dishes logged here yet</h3>
+            <p className="text-xs text-[var(--text-muted)] max-w-xs mx-auto">
               {activeTab === 'LOVED'
                 ? 'Save your favorite God-Tier dishes to create your personal hall of fame.'
                 : activeTab === 'AVOID'
@@ -201,7 +201,7 @@ export const VaultView: React.FC<VaultViewProps> = ({ onBackToRadar }) => {
             </p>
             <button
               onClick={onBackToRadar}
-              className="min-h-[40px] inline-flex items-center gap-1.5 text-xs font-bold text-brand-orange bg-brand-orange/10 hover:bg-brand-orange/20 border border-brand-orange/30 px-4 py-2 rounded-xl transition-all active:scale-95"
+              className="min-h-[40px] inline-flex items-center gap-1.5 text-xs font-bold text-brand-orange bg-brand-orange/10 hover:bg-brand-orange/20 border border-brand-orange/30 px-4 py-2 rounded-xl transition-all active:scale-95 cursor-pointer"
             >
               <span>Explore The Food Radar</span>
               <ArrowRight className="w-3.5 h-3.5" />
@@ -214,34 +214,34 @@ export const VaultView: React.FC<VaultViewProps> = ({ onBackToRadar }) => {
             return (
               <div
                 key={item.id}
-                className="p-3.5 rounded-2xl bg-[#0E1116] border border-[#262C36] hover:border-neutral-700 transition-all space-y-3 relative group shadow-md"
+                className="p-3.5 rounded-2xl bg-[var(--surface-1)] border border-[var(--border-subtle)] hover:border-gold-500/40 transition-all space-y-3 relative group shadow-[var(--card-shadow)]"
               >
-                {/* Header Row: 64x64px thumbnail & metadata column */}
+                {/* Header Row: thumbnail & metadata column */}
                 <div className="flex items-start gap-3.5">
                   <img
                     src={item.imageUrl}
                     alt={item.dishName}
-                    className="w-16 h-16 rounded-xl object-cover flex-shrink-0 border border-[#262C36]"
+                    className="w-16 h-16 rounded-xl object-cover flex-shrink-0 border border-[var(--border-subtle)]"
                     loading="lazy"
                   />
                   <div className="flex-1 min-w-0 flex flex-col justify-between self-stretch">
                     <div className="flex items-start justify-between gap-2">
-                      <h3 className="text-sm font-bold text-white leading-tight truncate">
+                      <h3 className="text-sm font-bold text-[var(--text-primary)] leading-tight truncate">
                         {item.dishName}
                       </h3>
                       <button
                         onClick={() => removeVaultItem(item.id)}
-                        className="text-slate-500 hover:text-red-400 p-0.5 rounded transition-colors"
+                        className="text-[var(--text-muted)] hover:text-red-500 p-0.5 rounded transition-colors cursor-pointer"
                         title="Remove from vault"
                       >
                         <Trash2 className="w-3.5 h-3.5" />
                       </button>
                     </div>
 
-                    <div className="flex items-center gap-1.5 text-xs text-slate-400 my-0.5">
-                      <span className="font-medium text-slate-300 truncate">{item.venueName}</span>
+                    <div className="flex items-center gap-1.5 text-xs text-[var(--text-muted)] my-0.5">
+                      <span className="font-medium text-[var(--text-secondary)] truncate">{item.venueName}</span>
                       <span>•</span>
-                      <span className="flex items-center gap-0.5 text-slate-400 shrink-0">
+                      <span className="flex items-center gap-0.5 text-[var(--text-muted)] shrink-0">
                         <MapPin className="w-3 h-3 text-brand-orange" />
                         {item.venueArea}
                       </span>
@@ -252,22 +252,22 @@ export const VaultView: React.FC<VaultViewProps> = ({ onBackToRadar }) => {
                       <span
                         className={`text-[10px] font-extrabold px-2 py-0.5 rounded-full border ${
                           item.verdict === 'GOD_TIER'
-                            ? 'bg-emerald-500/15 text-emerald-400 border-emerald-500/30'
+                            ? 'bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border-emerald-500/30'
                             : item.verdict === 'WORTH_IT'
-                            ? 'bg-blue-500/15 text-blue-400 border-blue-500/30'
-                            : 'bg-red-500/15 text-red-400 border-red-500/30'
+                            ? 'bg-blue-500/15 text-blue-600 dark:text-blue-400 border-blue-500/30'
+                            : 'bg-red-500/15 text-red-600 dark:text-red-400 border-red-500/30'
                         }`}
                       >
                         {item.scorePercent}% {item.verdict.replace('_', ' ')}
                       </span>
-                      <span className="text-xs font-bold text-white">₹{item.price}</span>
+                      <span className="text-xs font-bold text-[var(--text-primary)]">₹{item.price}</span>
                     </div>
                   </div>
                 </div>
 
                 {/* Personal Scratchpad Note Box */}
-                <div className="bg-[#161B22] rounded-xl p-3 border border-[#262C36] space-y-1.5">
-                  <div className="flex items-center justify-between text-[11px] font-bold text-slate-400">
+                <div className="bg-[var(--surface-2)] rounded-xl p-3 border border-[var(--border-subtle)] space-y-1.5">
+                  <div className="flex items-center justify-between text-[11px] font-bold text-[var(--text-muted)]">
                     <span className="flex items-center gap-1 text-brand-orange">
                       <Edit3 className="w-3 h-3" />
                       Personal Insider Note
@@ -275,7 +275,7 @@ export const VaultView: React.FC<VaultViewProps> = ({ onBackToRadar }) => {
                     {!isEditing && (
                       <button
                         onClick={() => handleStartEdit(item)}
-                        className="text-slate-400 hover:text-white underline"
+                        className="text-[var(--text-muted)] hover:text-[var(--text-primary)] underline cursor-pointer"
                       >
                         Edit
                       </button>
@@ -287,39 +287,39 @@ export const VaultView: React.FC<VaultViewProps> = ({ onBackToRadar }) => {
                       <textarea
                         value={editNotesText}
                         onChange={(e) => setEditNotesText(e.target.value)}
-                        className="w-full text-xs p-2.5 rounded-xl bg-[#07090C] border border-[#262C36] text-white focus:outline-none focus:border-brand-orange"
+                        className="w-full text-xs p-2.5 rounded-xl bg-[var(--surface-1)] border border-[var(--border-subtle)] text-[var(--text-primary)] focus:outline-none focus:border-brand-orange"
                         rows={2}
                       />
                       <div className="flex justify-end gap-2">
                         <button
                           onClick={() => setEditingId(null)}
-                          className="min-h-[36px] text-xs text-slate-400 px-3 py-1"
+                          className="min-h-[36px] text-xs text-[var(--text-muted)] px-3 py-1 cursor-pointer"
                         >
                           Cancel
                         </button>
                         <button
                           onClick={() => handleSaveEdit(item.id)}
-                          className="min-h-[36px] text-xs font-bold bg-brand-orange text-white px-3.5 py-1 rounded-lg active:scale-95 transition-transform"
+                          className="min-h-[36px] text-xs font-bold bg-brand-orange text-white px-3.5 py-1 rounded-lg active:scale-95 transition-transform cursor-pointer"
                         >
                           Save Note
                         </button>
                       </div>
                     </div>
                   ) : (
-                    <p className="text-xs text-neutral-300 leading-relaxed italic">
+                    <p className="text-xs text-[var(--text-secondary)] leading-relaxed italic">
                       “{item.userNotes || 'No custom notes added yet. Tap edit to jot down preferences!'}”
                     </p>
                   )}
                 </div>
 
                 {/* Quick Status Mover Buttons */}
-                <div className="flex items-center justify-between pt-1 text-[11px] text-slate-400">
+                <div className="flex items-center justify-between pt-1 text-[11px] text-[var(--text-muted)]">
                   <span>Move status:</span>
                   <div className="flex items-center gap-1.5">
                     {item.status !== 'LOVED' && (
                       <button
                         onClick={() => updateVaultStatus(item.id, 'LOVED')}
-                        className="px-2.5 py-1 rounded-lg bg-[#161B22] border border-[#262C36] hover:bg-emerald-950/60 hover:text-emerald-300 text-slate-300 transition-all active:scale-95"
+                        className="px-2.5 py-1 rounded-lg bg-[var(--surface-2)] border border-[var(--border-subtle)] hover:bg-emerald-500/20 hover:text-emerald-600 dark:hover:text-emerald-300 text-[var(--text-secondary)] transition-all active:scale-95 cursor-pointer"
                       >
                         Loved
                       </button>
@@ -327,7 +327,7 @@ export const VaultView: React.FC<VaultViewProps> = ({ onBackToRadar }) => {
                     {item.status !== 'AVOID' && (
                       <button
                         onClick={() => updateVaultStatus(item.id, 'AVOID')}
-                        className="px-2.5 py-1 rounded-lg bg-[#161B22] border border-[#262C36] hover:bg-red-950/60 hover:text-red-300 text-slate-300 transition-all active:scale-95"
+                        className="px-2.5 py-1 rounded-lg bg-[var(--surface-2)] border border-[var(--border-subtle)] hover:bg-red-500/20 hover:text-red-600 dark:hover:text-red-300 text-[var(--text-secondary)] transition-all active:scale-95 cursor-pointer"
                       >
                         Never Again
                       </button>
@@ -335,7 +335,7 @@ export const VaultView: React.FC<VaultViewProps> = ({ onBackToRadar }) => {
                     {item.status !== 'SAVED' && (
                       <button
                         onClick={() => updateVaultStatus(item.id, 'SAVED')}
-                        className="px-2.5 py-1 rounded-lg bg-[#161B22] border border-[#262C36] hover:bg-amber-950/60 hover:text-amber-300 text-slate-300 transition-all active:scale-95"
+                        className="px-2.5 py-1 rounded-lg bg-[var(--surface-2)] border border-[var(--border-subtle)] hover:bg-amber-500/20 hover:text-amber-600 dark:hover:text-amber-300 text-[var(--text-secondary)] transition-all active:scale-95 cursor-pointer"
                       >
                         Save for Later
                       </button>
@@ -350,16 +350,16 @@ export const VaultView: React.FC<VaultViewProps> = ({ onBackToRadar }) => {
 
       {/* Modal: Manually Log Secret Off-Menu Dish */}
       {showAddModal && (
-        <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-fade-in">
-          <div className="w-full max-w-sm rounded-3xl bg-[#0E1116] border border-[#262C36] p-5 space-y-4 shadow-2xl">
+        <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-[var(--modal-backdrop)] backdrop-blur-md animate-fade-in">
+          <div className="w-full max-w-sm rounded-3xl bg-[var(--surface-1)] border border-[var(--border-subtle)] p-5 space-y-4 shadow-2xl text-[var(--text-primary)]">
             <div className="flex items-center justify-between">
-              <h3 className="text-base font-extrabold text-white flex items-center gap-1.5">
+              <h3 className="text-base font-extrabold text-[var(--text-primary)] flex items-center gap-1.5">
                 <Sparkles className="w-4 h-4 text-brand-orange" />
                 <span>Log a Secret Discovery</span>
               </h3>
               <button
                 onClick={() => setShowAddModal(false)}
-                className="text-slate-400 hover:text-white p-1"
+                className="text-[var(--text-muted)] hover:text-[var(--text-primary)] p-1 cursor-pointer"
               >
                 ✕
               </button>
@@ -367,45 +367,45 @@ export const VaultView: React.FC<VaultViewProps> = ({ onBackToRadar }) => {
 
             <form onSubmit={handleAddCustom} className="space-y-3 text-xs">
               <div>
-                <label className="font-semibold text-slate-300 block mb-1">Dish Name *</label>
+                <label className="font-semibold text-[var(--text-secondary)] block mb-1">Dish Name *</label>
                 <input
                   type="text"
                   required
                   placeholder="e.g., Tawa Pulao extra pav masala"
                   value={customDishName}
                   onChange={(e) => setCustomDishName(e.target.value)}
-                  className="w-full p-2.5 rounded-xl bg-[#161B22] border border-[#262C36] text-white focus:outline-none focus:border-brand-orange"
+                  className="w-full p-2.5 rounded-xl bg-[var(--surface-2)] border border-[var(--border-subtle)] text-[var(--text-primary)] focus:outline-none focus:border-brand-orange"
                 />
               </div>
 
               <div>
-                <label className="font-semibold text-slate-300 block mb-1">Venue / Stall Name *</label>
+                <label className="font-semibold text-[var(--text-secondary)] block mb-1">Venue / Stall Name *</label>
                 <input
                   type="text"
                   required
                   placeholder="e.g., Corner cart near Apna Bazar"
                   value={customVenue}
                   onChange={(e) => setCustomVenue(e.target.value)}
-                  className="w-full p-2.5 rounded-xl bg-[#161B22] border border-[#262C36] text-white focus:outline-none focus:border-brand-orange"
+                  className="w-full p-2.5 rounded-xl bg-[var(--surface-2)] border border-[var(--border-subtle)] text-[var(--text-primary)] focus:outline-none focus:border-brand-orange"
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-2">
                 <div>
-                  <label className="font-semibold text-slate-300 block mb-1">Approx Price (₹)</label>
+                  <label className="font-semibold text-[var(--text-secondary)] block mb-1">Approx Price (₹)</label>
                   <input
                     type="number"
                     value={customPrice}
                     onChange={(e) => setCustomPrice(e.target.value)}
-                    className="w-full p-2.5 rounded-xl bg-[#161B22] border border-[#262C36] text-white focus:outline-none focus:border-brand-orange"
+                    className="w-full p-2.5 rounded-xl bg-[var(--surface-2)] border border-[var(--border-subtle)] text-[var(--text-primary)] focus:outline-none focus:border-brand-orange"
                   />
                 </div>
                 <div>
-                  <label className="font-semibold text-slate-300 block mb-1">Verdict</label>
+                  <label className="font-semibold text-[var(--text-secondary)] block mb-1">Verdict</label>
                   <select
                     value={customVerdict}
                     onChange={(e) => setCustomVerdict(e.target.value as VerdictType)}
-                    className="w-full p-2.5 rounded-xl bg-[#161B22] border border-[#262C36] text-white focus:outline-none focus:border-brand-orange"
+                    className="w-full p-2.5 rounded-xl bg-[var(--surface-2)] border border-[var(--border-subtle)] text-[var(--text-primary)] focus:outline-none focus:border-brand-orange cursor-pointer"
                   >
                     <option value="GOD_TIER">God-Tier</option>
                     <option value="WORTH_IT">Worth It</option>
@@ -415,13 +415,13 @@ export const VaultView: React.FC<VaultViewProps> = ({ onBackToRadar }) => {
               </div>
 
               <div>
-                <label className="font-semibold text-slate-300 block mb-1">Vault Category</label>
-                <div className="grid grid-cols-3 gap-1 bg-[#07090C] p-1 rounded-xl border border-[#262C36]">
+                <label className="font-semibold text-[var(--text-secondary)] block mb-1">Vault Category</label>
+                <div className="grid grid-cols-3 gap-1 bg-[var(--surface-2)] p-1 rounded-xl border border-[var(--border-subtle)]">
                   <button
                     type="button"
                     onClick={() => setCustomStatus('LOVED')}
-                    className={`py-1.5 rounded-lg font-bold text-center ${
-                      customStatus === 'LOVED' ? 'bg-emerald-500 text-white' : 'text-slate-400'
+                    className={`py-1.5 rounded-lg font-bold text-center cursor-pointer ${
+                      customStatus === 'LOVED' ? 'bg-emerald-500 text-white' : 'text-[var(--text-muted)]'
                     }`}
                   >
                     Loved
@@ -429,8 +429,8 @@ export const VaultView: React.FC<VaultViewProps> = ({ onBackToRadar }) => {
                   <button
                     type="button"
                     onClick={() => setCustomStatus('AVOID')}
-                    className={`py-1.5 rounded-lg font-bold text-center ${
-                      customStatus === 'AVOID' ? 'bg-red-500 text-white' : 'text-slate-400'
+                    className={`py-1.5 rounded-lg font-bold text-center cursor-pointer ${
+                      customStatus === 'AVOID' ? 'bg-red-500 text-white' : 'text-[var(--text-muted)]'
                     }`}
                   >
                     Avoid
@@ -438,8 +438,8 @@ export const VaultView: React.FC<VaultViewProps> = ({ onBackToRadar }) => {
                   <button
                     type="button"
                     onClick={() => setCustomStatus('SAVED')}
-                    className={`py-1.5 rounded-lg font-bold text-center ${
-                      customStatus === 'SAVED' ? 'bg-brand-orange text-white' : 'text-slate-400'
+                    className={`py-1.5 rounded-lg font-bold text-center cursor-pointer ${
+                      customStatus === 'SAVED' ? 'bg-brand-orange text-white' : 'text-[var(--text-muted)]'
                     }`}
                   >
                     Saved
@@ -448,12 +448,12 @@ export const VaultView: React.FC<VaultViewProps> = ({ onBackToRadar }) => {
               </div>
 
               <div>
-                <label className="font-semibold text-slate-300 block mb-1">Personal Notes & Custom Orders</label>
+                <label className="font-semibold text-[var(--text-secondary)] block mb-1">Personal Notes & Custom Orders</label>
                 <textarea
                   placeholder="e.g., Ask specifically for crispy edges, cash only..."
                   value={customNotes}
                   onChange={(e) => setCustomNotes(e.target.value)}
-                  className="w-full p-2.5 rounded-xl bg-[#161B22] border border-[#262C36] text-white focus:outline-none focus:border-brand-orange"
+                  className="w-full p-2.5 rounded-xl bg-[var(--surface-2)] border border-[var(--border-subtle)] text-[var(--text-primary)] focus:outline-none focus:border-brand-orange"
                   rows={2}
                 />
               </div>
@@ -462,13 +462,13 @@ export const VaultView: React.FC<VaultViewProps> = ({ onBackToRadar }) => {
                 <button
                   type="button"
                   onClick={() => setShowAddModal(false)}
-                  className="flex-1 min-h-[44px] py-2.5 rounded-xl bg-[#161B22] border border-[#262C36] text-slate-300 font-bold hover:bg-[#1E242E] active:scale-95 transition-transform"
+                  className="flex-1 min-h-[44px] py-2.5 rounded-xl bg-[var(--surface-2)] border border-[var(--border-subtle)] text-[var(--text-secondary)] font-bold hover:bg-[var(--surface-3)] active:scale-95 transition-transform cursor-pointer"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="flex-1 min-h-[44px] py-2.5 rounded-xl bg-brand-orange text-white font-bold hover:bg-orange-600 shadow-glow-orange active:scale-95 transition-transform"
+                  className="flex-1 min-h-[44px] py-2.5 rounded-xl bg-brand-orange text-white font-bold hover:bg-orange-600 shadow-glow-orange active:scale-95 transition-transform cursor-pointer"
                 >
                   Save to Vault
                 </button>

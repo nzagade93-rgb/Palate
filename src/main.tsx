@@ -1,5 +1,6 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
+import { ThemeProvider } from './context/ThemeContext'
 import './index.css'
 import App from './App.tsx'
 
@@ -23,9 +24,10 @@ if ('serviceWorker' in navigator && import.meta.env.PROD) {
       .catch((err) => console.log('SW registration note:', err));
   });
 }
-
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <App />
+    <ThemeProvider>
+      <App />
+    </ThemeProvider>
   </StrictMode>,
 )
