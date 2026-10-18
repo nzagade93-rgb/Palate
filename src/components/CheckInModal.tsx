@@ -1,213 +1,152 @@
+'use client';
+
 import React, { useState } from 'react';
-import { 
-  X, 
-  MapPin, 
-  ThumbsDown, 
-  ThumbsUp, 
-  Share2, 
-  CheckCircle2,
-  Flame
-} from 'lucide-react';
-import confetti from 'canvas-confetti';
-import type { Dish, CheckIn, CheckInReaction } from '../types';
-import { useCheckIns } from '../hooks/useCheckIns';
+import { motion, AnimatePresence } from 'framer-motion';
+import { X, Check, AlertTriangle, Sparkles } from 'lucide-react';
+import { ArchImage } from './ArchImage';
+import type { Dish, Vouch } from '../types/palate';
 
 interface CheckInModalProps {
+  dish: Dish | null;
   isOpen: boolean;
   onClose: () => void;
-  dish: Dish | null;
-  onOpenShare?: (dish: Dish, checkIn?: CheckIn) => void;
+  onSubmitVouch: (vouch: Vouch) => void;
 }
 
 export const CheckInModal: React.FC<CheckInModalProps> = ({
+  dish,
   isOpen,
   onClose,
-  dish,
-  onOpenShare
+  onSubmitVouch,
 }) => {
-  const { addCheckIn, getLatestCheckIn } = useCheckIns();
-  const [selectedReaction, setSelectedReaction] = useState<CheckInReaction | null>(null);
   const [note, setNote] = useState('');
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [latestSavedCheckIn, setLatestSavedCheckIn] = useState<CheckIn | null>(null);
+  const [submitted, setSubmitted] = useState(false);
 
-  if (!isOpen || !dish) return null;
+  if (!dish) return null;
 
-  const previousCheckIn = getLatestCheckIn(dish.id);
+  const handleVerdict = (verdict: 'vouch' | 'skip') => {
+    const newVouch: Vouch = {
+      id: `vouch-${Date.now()}`,
+      userId: 'user-default-1',
+      userName: 'You',
+      dishId: dish.id,
+      dishName: dish.name,
+      restaurantName: dish.restaurantName,
+      createdAt: Date.now(),
+      verdict,
+      note: note.trim() || undefined,
+    };
 
-  const handleSubmit = (reaction: CheckInReaction) => {
-    setSelectedReaction(reaction);
-
-    if (reaction === 'GOD_TIER') {
-      confetti({
-        particleCount: 60,
-        spread: 60,
-        origin: { y: 0.7 },
-        colors: ['#FF5722', '#10B981', '#F59E0B']
-      });
-    }
-
-    const saved = addCheckIn(dish, reaction, note);
-    setLatestSavedCheckIn(saved);
-    setIsSubmitted(true);
-  };
-
-  const handleResetAndClose = () => {
-    setIsSubmitted(false);
-    setSelectedReaction(null);
-    setNote('');
-    setLatestSavedCheckIn(null);
-    onClose();
+    onSubmitVouch(newVouch);
+    setSubmitted(true);
+    setTimeout(() => {
+      setSubmitted(false);
+      setNote('');
+      onClose();
+    }, 900);
   };
 
   return (
-    <div className="fixed inset-0 z-[60] flex items-end sm:items-center justify-center p-0 sm:p-4 bg-black/85 backdrop-blur-md animate-fade-in overflow-hidden">
-      <div 
-        className="w-full max-w-[430px] bg-[#0E1116] border-t sm:border border-[#262C36] rounded-t-3xl sm:rounded-3xl shadow-2xl p-5 sm:p-6 space-y-4 animate-slide-up relative"
-        onClick={(e) => e.stopPropagation()}
-      >
-        {/* Close Button */}
-        <button
-          onClick={handleResetAndClose}
-          className="absolute top-4 right-4 p-2 rounded-full bg-[#161B22] text-slate-400 hover:text-white border border-[#262C36] transition-colors"
-          aria-label="Close"
-        >
-          <X className="w-4 h-4" />
-        </button>
+    <AnimatePresence>
+      {isOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+          {/* Backdrop */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={onClose}
+            className="fixed inset-0 bg-espresso/50 backdrop-blur-sm"
+          />
 
-        {!isSubmitted ? (
-          <>
-            {/* Header: Location & Dish Info */}
-            <div className="space-y-1 pr-8">
-              <div className="inline-flex items-center gap-1.5 text-[10px] font-bold text-brand-orange uppercase tracking-luxury bg-brand-orange/10 border border-brand-orange/30 px-2.5 py-0.5 rounded-full">
-                <Flame className="w-3.5 h-3.5 fill-brand-orange" />
-                <span>1-Tap Live Check-In</span>
+          {/* Modal Card */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95, y: 10 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.95, y: 10 }}
+            className="w-full max-w-sm bg-card rounded-3xl border border-gold-light/60 p-5 shadow-sheet z-10 space-y-4 relative"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Header */}
+            <div className="flex items-start justify-between">
+              <div>
+                <span className="text-[10px] uppercase tracking-overline text-gold font-bold block">
+                  10-Second Meal Log
+                </span>
+                <h3 className="font-serif text-xl font-bold text-espresso">
+                  Did you order this?
+                </h3>
               </div>
-              <h2 className="text-xl font-black text-white tracking-tight leading-snug">
-                I'm Eating Here Now
-              </h2>
-              <div className="flex items-center gap-1.5 text-xs text-slate-400 font-medium pt-0.5">
-                <MapPin className="w-3.5 h-3.5 text-brand-orange shrink-0" />
-                <span className="text-slate-200 font-semibold">{dish.venueName}</span>
-                <span>•</span>
-                <span>{dish.venueArea}</span>
-              </div>
+              <button
+                type="button"
+                onClick={onClose}
+                className="w-7 h-7 rounded-full bg-ivory border border-hairline flex items-center justify-center text-espresso"
+              >
+                <X className="w-3.5 h-3.5" />
+              </button>
             </div>
 
-            {/* Dish Card Snippet */}
-            <div className="p-3 rounded-2xl bg-[#161B22] border border-[#262C36] flex items-center gap-3">
-              <img
-                src={dish.imageUrl}
+            {/* Dish Thumbnail & Name */}
+            <div className="flex items-center gap-3 p-2.5 rounded-2xl bg-ivory/80 border border-hairline">
+              <ArchImage
+                src={dish.photoUrl}
                 alt={dish.name}
-                className="w-14 h-14 rounded-xl object-cover shrink-0 border border-[#262C36]"
+                size="thumb"
+                isVeg={dish.isVeg}
               />
               <div className="min-w-0 flex-1">
-                <h4 className="text-sm font-extrabold text-white truncate">{dish.name}</h4>
-                <div className="flex items-center gap-2 mt-0.5 text-xs">
-                  <span className="font-bold text-white">₹{dish.price}</span>
-                  <span className="text-[10px] text-emerald-400 font-semibold bg-emerald-500/15 border border-emerald-500/30 px-2 py-0.5 rounded-full">
-                    {dish.scorePercent}% God-Tier
-                  </span>
-                </div>
+                <span className="text-[10px] uppercase tracking-overline text-gold font-bold block">
+                  ₹{dish.price}
+                </span>
+                <h4 className="font-serif font-bold text-espresso text-sm leading-snug truncate">
+                  {dish.name}
+                </h4>
+                <p className="text-xs text-muted truncate">{dish.restaurantName}</p>
               </div>
             </div>
 
-            {/* Prompt Question */}
-            <div className="text-center pt-1">
-              <h3 className="text-sm font-extrabold text-white">
-                Did you order this today? What's your verdict?
-              </h3>
-              <p className="text-xs text-slate-400 mt-0.5">
-                Tap once to log your taste memory & unlock your social flex card
-              </p>
-            </div>
-
-            {/* Micro-Reaction Decision Buttons */}
-            <div className="grid grid-cols-2 gap-3 pt-1">
-              {/* 🟢 Loved it */}
-              <button
-                type="button"
-                onClick={() => handleSubmit('GOD_TIER')}
-                className="group p-4 min-h-[96px] rounded-2xl bg-gradient-to-b from-emerald-950/70 to-emerald-900/40 hover:from-emerald-900/90 hover:to-emerald-800/60 border-2 border-emerald-500/50 hover:border-emerald-400 shadow-glow-green text-center space-y-1.5 transition-all active:scale-95 flex flex-col items-center justify-center cursor-pointer"
-              >
-                <div className="w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-400 group-hover:scale-110 transition-transform">
-                  <ThumbsUp className="w-5 h-5 text-emerald-300 fill-emerald-300/40" />
-                </div>
-                <div className="font-black text-sm text-white">God-Tier</div>
-                <div className="text-[10px] text-emerald-300/90 font-medium">Loved it • Pure Truth</div>
-              </button>
-
-              {/* 🔴 Skip it */}
-              <button
-                type="button"
-                onClick={() => handleSubmit('SKIP')}
-                className="group p-4 min-h-[96px] rounded-2xl bg-gradient-to-b from-red-950/70 to-red-900/40 hover:from-red-900/90 hover:to-red-800/60 border-2 border-red-500/50 hover:border-red-400 shadow-glow-red text-center space-y-1.5 transition-all active:scale-95 flex flex-col items-center justify-center cursor-pointer"
-              >
-                <div className="w-10 h-10 rounded-full bg-red-500/20 flex items-center justify-center text-red-400 group-hover:scale-110 transition-transform">
-                  <ThumbsDown className="w-5 h-5 text-red-300 fill-red-300/40" />
-                </div>
-                <div className="font-black text-sm text-white">Overhyped</div>
-                <div className="text-[10px] text-red-300/90 font-medium">Skip it • Would not reorder</div>
-              </button>
-            </div>
-
-            {/* Optional Personal Note */}
-            <div className="pt-1">
-              <input
-                type="text"
-                value={note}
-                onChange={(e) => setNote(e.target.value)}
-                placeholder="Add optional flex note (e.g. Extra kadak pav is insane)..."
-                className="w-full text-xs font-medium px-3.5 py-3 rounded-xl bg-[#161B22] border border-[#262C36] text-white placeholder-slate-500 focus:outline-none focus:border-brand-orange transition-all"
-              />
-            </div>
-          </>
-        ) : (
-          /* Confirmation & Social Flex Trigger Screen */
-          <div className="text-center space-y-4 py-2">
-            <div className="w-14 h-14 mx-auto rounded-full bg-emerald-500/20 border-2 border-emerald-500 flex items-center justify-center shadow-glow-green animate-bounce">
-              <CheckCircle2 className="w-8 h-8 text-emerald-400" />
-            </div>
-
-            <div className="space-y-1">
-              <div className="text-xs font-bold uppercase tracking-wider text-emerald-400">
-                Check-In Recorded
+            {submitted ? (
+              <div className="p-6 rounded-2xl bg-god-tier/10 border border-god-tier/40 text-center space-y-1.5 animate-pulse">
+                <Sparkles className="w-6 h-6 text-god-tier mx-auto" />
+                <div className="font-serif font-bold text-espresso text-base">Vouch Recorded!</div>
+                <p className="text-xs text-muted">Your taste DNA has been updated.</p>
               </div>
-              <h3 className="text-xl font-black text-white">
-                Checked in at {dish.venueName}!
-              </h3>
-              <p className="text-xs text-slate-300 max-w-xs mx-auto">
-                {selectedReaction === 'GOD_TIER' 
-                  ? 'Your God-Tier verdict is now saved to your personal taste vault.' 
-                  : 'Logged to your avoid list so you never make this mistake again.'}
-              </p>
-            </div>
+            ) : (
+              <>
+                {/* Note input */}
+                <input
+                  type="text"
+                  value={note}
+                  onChange={(e) => setNote(e.target.value)}
+                  placeholder="Optional: flavor note or temperature..."
+                  className="w-full px-3 py-2 text-xs bg-ivory text-espresso placeholder-muted/60 rounded-xl border border-hairline focus:outline-none focus:border-gold"
+                />
 
-            {/* CTA Buttons: Flex to Story / Done */}
-            <div className="space-y-2 pt-2">
-              <button
-                onClick={() => {
-                  handleResetAndClose();
-                  if (onOpenShare) {
-                    onOpenShare(dish, latestSavedCheckIn || previousCheckIn);
-                  }
-                }}
-                className="w-full min-h-[44px] py-3 px-4 rounded-xl bg-gradient-to-r from-brand-orange via-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-extrabold text-sm shadow-glow-orange flex items-center justify-center gap-2 active:scale-95 transition-transform cursor-pointer"
-              >
-                <Share2 className="w-4 h-4 text-white" />
-                <span>Flex to Instagram / WhatsApp Story</span>
-              </button>
+                {/* 2 Fast Buttons */}
+                <div className="grid grid-cols-2 gap-3 pt-1">
+                  <button
+                    type="button"
+                    onClick={() => handleVerdict('vouch')}
+                    className="py-3 px-3 rounded-xl bg-god-tier hover:bg-[#185541] text-white font-bold text-xs uppercase tracking-luxury flex items-center justify-center gap-1.5 active:scale-95 transition-all cursor-pointer shadow-subtle"
+                  >
+                    <Check className="w-3.5 h-3.5" />
+                    <span>God-Tier (Vouch)</span>
+                  </button>
 
-              <button
-                onClick={handleResetAndClose}
-                className="w-full min-h-[44px] flex items-center justify-center py-2.5 text-xs font-semibold text-slate-400 hover:text-white transition-colors cursor-pointer active:scale-95"
-              >
-                Done for now
-              </button>
-            </div>
-          </div>
-        )}
-      </div>
-    </div>
+                  <button
+                    type="button"
+                    onClick={() => handleVerdict('skip')}
+                    className="py-3 px-3 rounded-xl bg-oxblood hover:bg-[#722622] text-white font-bold text-xs uppercase tracking-luxury flex items-center justify-center gap-1.5 active:scale-95 transition-all cursor-pointer shadow-subtle"
+                  >
+                    <AlertTriangle className="w-3.5 h-3.5" />
+                    <span>Skip This</span>
+                  </button>
+                </div>
+              </>
+            )}
+          </motion.div>
+        </div>
+      )}
+    </AnimatePresence>
   );
 };

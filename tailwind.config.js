@@ -1,85 +1,50 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
+    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/**/*.{js,ts,jsx,tsx,mdx}",
   ],
-  darkMode: 'class',
   theme: {
     extend: {
       colors: {
-        canvas: '#07090C',
-        background: '#07090C',
-        onyx: '#07090C',
-        surface: {
-          1: '#0E1116',
-          2: '#161B22',
-          DEFAULT: '#0E1116',
-          card: '#0E1116',
-          cardBorder: '#262C36',
-          muted: '#8E95A5',
-        },
-        hairline: '#262C36',
-        border: {
-          hairline: '#262C36',
-          DEFAULT: '#262C36',
-        },
-        paper: {
-          DEFAULT: '#0E1116',
-          elevated: '#161B22',
-          border: '#262C36',
-        },
-        brand: {
-          DEFAULT: '#FF5C1F',
-          orange: '#FF5C1F',
-          amber: '#F59E0B',
-          flame: '#FF5C1F',
-        },
-        verdict: {
-          approved: '#10B981',
-          approvedGlow: 'rgba(16, 185, 129, 0.12)',
-          godtier: '#10B981',
-          worthit: '#3B82F6',
-          skip: '#EF4444',
-          skipTint: 'rgba(239, 68, 68, 0.12)',
-          skipBg: '#2D1418',
-          godtierBg: '#0D281E',
-          worthitBg: '#0F253E',
-        }
+        ivory: '#F8F4EC',
+        card: '#FFFDF8',
+        espresso: '#1E1712',
+        muted: '#7A6F62',
+        gold: '#A98443',
+        'gold-light': '#D8BC7E',
+        'god-tier': '#1F6B52',
+        oxblood: '#8C2F2B',
+        hairline: 'rgba(30, 23, 18, 0.12)',
+        'hairline-light': 'rgba(30, 23, 18, 0.06)',
       },
       fontFamily: {
-        sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
-        display: ['Space Grotesk', 'Plus Jakarta Sans', 'sans-serif'],
-        serif: ['Playfair Display', 'Georgia', 'serif'],
+        serif: ['var(--font-cormorant)', 'Cormorant Garamond', 'Georgia', 'serif'],
+        sans: ['var(--font-manrope)', 'Manrope', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
       },
       letterSpacing: {
-        'ultra-wide': '0.25em',
-        'luxury': '0.18em',
-        'widest': '0.1em',
-        'wide': '0.025em',
+        overline: '0.18em',
+        luxury: '0.15em',
+        tight: '-0.02em',
+      },
+      borderRadius: {
+        arch: '999px 999px 22px 22px',
+        'arch-inner': '999px 999px 16px 16px',
+        'arch-thumb': '999px 999px 12px 12px',
+        'arch-thumb-inner': '999px 999px 8px 8px',
       },
       boxShadow: {
-        'glow-green': '0 0 20px -3px rgba(16, 185, 129, 0.35)',
-        'glow-red': '0 0 20px -3px rgba(239, 68, 68, 0.35)',
-        'glow-orange': '0 0 25px -4px rgba(255, 87, 34, 0.4)',
-        'card-elevated': '0 12px 32px -8px rgba(0, 0, 0, 0.65)',
+        arch: '0 12px 30px -10px rgba(30, 23, 18, 0.08)',
+        card: '0 8px 24px -6px rgba(30, 23, 18, 0.06)',
+        sheet: '0 -16px 40px -12px rgba(30, 23, 18, 0.18)',
+        subtle: '0 2px 8px rgba(30, 23, 18, 0.04)',
       },
       animation: {
         'pulse-subtle': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-        'fade-in': 'fadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
-        'slide-up': 'slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
       },
-      keyframes: {
-        fadeIn: {
-          '0%': { opacity: '0', transform: 'scale(0.98)' },
-          '100%': { opacity: '1', transform: 'scale(1)' },
-        },
-        slideUp: {
-          '0%': { opacity: '0', transform: 'translateY(16px)' },
-          '100%': { opacity: '1', transform: 'translateY(0)' },
-        }
-      }
     },
   },
   plugins: [],
-}
+};
