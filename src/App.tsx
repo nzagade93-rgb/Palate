@@ -203,25 +203,52 @@ export function App() {
           {/* TAB 1: RADAR / DISCOVER */}
           {currentTab === 'radar' && (
             <div className="px-4 sm:px-5 py-4 space-y-4">
-              {/* Editorial Welcome Micro-Banner */}
-              <div className="flex items-center justify-between gap-3 pt-1">
-                <div>
-                  <h2 className="text-lg sm:text-xl font-serif font-black text-[var(--text-primary)] tracking-tight leading-snug">
-                    What would you love to eat?
-                  </h2>
-                  <p className="text-xs text-[var(--text-muted)]">
-                    Curated God-Tier dishes & exact menu traps to avoid.
+              {/* ZERO-CHAOS HERO: 3-Second Clarity Value Card */}
+              <div className="relative rounded-3xl bg-gradient-to-br from-[var(--surface-2)] via-[var(--surface-1)] to-[var(--surface-2)] border border-[var(--border-subtle)] p-4 sm:p-5 shadow-xl space-y-4 overflow-hidden">
+                {/* Decorative Subtle Ambient Glow */}
+                <div className="absolute -top-12 -right-12 w-36 h-36 bg-brand-orange/15 rounded-full blur-3xl pointer-events-none" />
+                <div className="absolute -bottom-12 -left-12 w-36 h-36 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
+
+                {/* 1. What is Palate & What's in it for me? */}
+                <div className="space-y-1.5 relative z-10">
+                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 text-[10px] font-black tracking-wider uppercase">
+                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
+                    <span>Navi Mumbai Spine • Anti-Regret Radar</span>
+                  </div>
+
+                  <h1 className="text-xl sm:text-2xl font-serif font-black text-[var(--text-primary)] tracking-tight leading-tight">
+                    Bhook Lagi Hai? Kya Khaoge Aaj? 🤤
+                  </h1>
+
+                  <p className="text-xs text-[var(--text-secondary)] leading-relaxed">
+                    Zero dining regret. Palate par sirf verified <strong>100% God-Tier</strong> dishes milti hain — menu traps se bacho aur free secret perks paao.
                   </p>
                 </div>
 
-                <button
-                  onClick={() => setIsWheelOpen(true)}
-                  title="Random Anti-Regret Spin"
-                  className="px-3 py-1.5 rounded-xl bg-gradient-to-r from-amber-500/20 to-brand-orange/20 border border-brand-orange/40 hover:border-brand-orange text-amber-500 dark:text-amber-400 hover:text-brand-orange text-xs font-bold flex items-center gap-1.5 shadow-sm active:scale-95 transition-all shrink-0 cursor-pointer"
-                >
-                  <Dices className="w-4 h-4 text-amber-500 animate-pulse-subtle" />
-                  <span className="hidden xs:inline">Spin</span>
-                </button>
+                {/* 2. What should I tap right now? (48px+ Action Cards) */}
+                <div className="grid grid-cols-2 gap-2.5 pt-1 relative z-10">
+                  {/* Primary CTA: God-Tier Eats */}
+                  <button
+                    onClick={() => setVerdictFilter(verdictFilter === 'GOD_TIER' ? 'ALL' : 'GOD_TIER')}
+                    className={`min-h-[48px] px-3.5 py-2 rounded-2xl font-black text-xs flex items-center justify-center gap-2 transition-all active:scale-95 cursor-pointer shadow-sm ${
+                      verdictFilter === 'GOD_TIER'
+                        ? 'bg-emerald-500 text-white shadow-glow-green border border-emerald-400'
+                        : 'bg-emerald-500/15 text-emerald-600 dark:text-emerald-300 border border-emerald-500/35 hover:bg-emerald-500/25'
+                    }`}
+                  >
+                    <Sparkles className="w-4 h-4 text-amber-400 shrink-0" />
+                    <span className="truncate">🔥 Top God-Tier (95%+)</span>
+                  </button>
+
+                  {/* Secondary CTA: Anti-Regret Spin */}
+                  <button
+                    onClick={() => setIsWheelOpen(true)}
+                    className="min-h-[48px] px-3.5 py-2 rounded-2xl font-black text-xs bg-gradient-to-r from-amber-500/20 to-brand-orange/20 hover:from-amber-500/30 hover:to-brand-orange/30 border border-brand-orange/40 text-amber-600 dark:text-amber-300 flex items-center justify-center gap-2 transition-all active:scale-95 cursor-pointer shadow-sm"
+                  >
+                    <Dices className="w-4 h-4 text-brand-orange animate-pulse-subtle shrink-0" />
+                    <span className="truncate">🎲 Confused? Spin Karo!</span>
+                  </button>
+                </div>
               </div>
 
               {/* Live Community Food Pulse Stream */}
@@ -229,52 +256,54 @@ export function App() {
 
               {/* Quick Verdict Sub-Filter Pills */}
               <div className="flex items-center justify-between gap-2 text-xs pt-1">
-                <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar">
+                <div className="flex items-center gap-2 overflow-x-auto no-scrollbar">
                   <button
                     onClick={() => setVerdictFilter('ALL')}
-                    className={`min-h-[36px] px-3.5 py-1.5 rounded-xl font-bold transition-all text-xs active:scale-95 cursor-pointer ${
+                    className={`min-h-[44px] px-4 py-2 rounded-xl font-extrabold transition-all text-xs active:scale-95 cursor-pointer shadow-xs ${
                       verdictFilter === 'ALL'
                         ? 'bg-[var(--text-primary)] text-[var(--canvas)] shadow-sm'
                         : 'bg-[var(--surface-2)] text-[var(--text-muted)] hover:text-[var(--text-primary)] border border-[var(--border-subtle)]'
                     }`}
                   >
-                    All ({DISHES.length})
+                    Sabhi ({DISHES.length})
                   </button>
                   <button
                     onClick={() => setVerdictFilter('GOD_TIER')}
-                    className={`min-h-[36px] px-3.5 py-1.5 rounded-xl font-bold flex items-center gap-1.5 transition-all text-xs active:scale-95 cursor-pointer ${
+                    className={`min-h-[44px] px-4 py-2 rounded-xl font-extrabold flex items-center gap-1.5 transition-all text-xs active:scale-95 cursor-pointer shadow-xs ${
                       verdictFilter === 'GOD_TIER'
                         ? 'bg-emerald-500 text-white shadow-glow-green'
                         : 'bg-[var(--surface-2)] text-emerald-600 dark:text-emerald-400 hover:bg-[var(--surface-3)] border border-[var(--border-subtle)]'
                     }`}
                   >
-                    <Sparkles className="w-3 h-3 text-amber-400" />
+                    <Sparkles className="w-3.5 h-3.5 text-amber-400" />
                     <span>God-Tier (95%+)</span>
                   </button>
                   <button
                     onClick={() => setVerdictFilter('UNDER_150')}
-                    className={`min-h-[36px] px-3.5 py-1.5 rounded-xl font-bold transition-all text-xs active:scale-95 cursor-pointer ${
+                    className={`min-h-[44px] px-4 py-2 rounded-xl font-extrabold transition-all text-xs active:scale-95 cursor-pointer shadow-xs ${
                       verdictFilter === 'UNDER_150'
-                        ? 'bg-brand-orange text-white'
+                        ? 'bg-brand-orange text-white shadow-glow-orange'
                         : 'bg-[var(--surface-2)] text-[var(--text-muted)] hover:text-[var(--text-primary)] border border-[var(--border-subtle)]'
                     }`}
                   >
-                    Under ₹150
+                    ⚡ Under ₹150
                   </button>
                 </div>
 
-                <span className="text-[11px] text-[var(--text-muted)] shrink-0 font-medium">
+                <span className="text-[11px] text-[var(--text-muted)] shrink-0 font-bold">
                   {filteredDishes.length} spots
                 </span>
               </div>
 
               {/* Dish Cards Vertical Feed */}
               {filteredDishes.length === 0 ? (
-                <div className="p-10 rounded-3xl bg-[var(--surface-2)] border border-[var(--border-subtle)] text-center space-y-3 my-8 shadow-xl">
-                  <Utensils className="w-8 h-8 text-[var(--text-muted)] mx-auto" />
-                  <h3 className="text-base font-bold text-[var(--text-primary)]">No dishes found</h3>
-                  <p className="text-xs text-[var(--text-muted)] max-w-xs mx-auto">
-                    Try clearing your search query or switching neighborhood hubs.
+                <div className="p-8 sm:p-10 rounded-3xl bg-[var(--surface-2)] border border-[var(--border-subtle)] text-center space-y-3.5 my-6 shadow-xl">
+                  <div className="w-14 h-14 rounded-2xl bg-brand-orange/15 border border-brand-orange/30 flex items-center justify-center mx-auto text-brand-orange">
+                    <Utensils className="w-7 h-7" />
+                  </div>
+                  <h3 className="text-base sm:text-lg font-black text-[var(--text-primary)]">Arre! Kuch Nahi Mila 🧐</h3>
+                  <p className="text-xs text-[var(--text-muted)] max-w-xs mx-auto leading-relaxed">
+                    Search query ya neighborhood thoda change karke dekho. Navi Mumbai me har corridor me kuch na kuch mast zaroor milega!
                   </p>
                   <button
                     onClick={() => {
@@ -283,9 +312,9 @@ export function App() {
                       setSelectedArea('All Navi Mumbai');
                       setVerdictFilter('ALL');
                     }}
-                    className="min-h-[44px] px-4 py-2.5 rounded-xl bg-brand-orange text-white text-xs font-bold shadow-glow-orange hover:bg-orange-600 transition-all active:scale-95 cursor-pointer"
+                    className="min-h-[48px] px-5 py-2.5 rounded-xl bg-brand-orange text-white text-xs font-black shadow-glow-orange hover:bg-orange-600 transition-all active:scale-95 cursor-pointer"
                   >
-                    Reset All Filters
+                    Sabhi Dishes Wapas Lao (Reset All)
                   </button>
                 </div>
               ) : (

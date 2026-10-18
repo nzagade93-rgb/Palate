@@ -61,25 +61,28 @@ export const VerdictSplitCard: React.FC<VerdictSplitCardProps> = ({
   return (
     <div className="fixed inset-0 z-[60] flex items-end sm:items-center justify-center p-0 sm:p-4 bg-[var(--modal-backdrop)] backdrop-blur-md animate-fade-in overflow-hidden">
       <div 
-        className="w-full max-w-[430px] max-h-[90dvh] sm:max-h-[88dvh] bg-[var(--surface-1)] border-t sm:border border-[var(--border-subtle)] rounded-t-3xl sm:rounded-3xl shadow-2xl flex flex-col overflow-hidden animate-slide-up text-[var(--text-primary)]"
+        className="w-full max-w-[430px] max-h-[92dvh] sm:max-h-[88dvh] bg-[var(--surface-1)] border-t sm:border border-[var(--border-subtle)] rounded-t-3xl sm:rounded-3xl shadow-2xl flex flex-col overflow-hidden animate-slide-up text-[var(--text-primary)]"
         onClick={(e) => e.stopPropagation()}
       >
+        {/* Bottom Sheet Visual Pull-Handle */}
+        <div className="w-12 h-1.5 rounded-full bg-[var(--text-muted)]/40 mx-auto mt-2.5 shrink-0 sm:hidden" />
+
         {/* Top Header Bar */}
         <div className="p-4 sm:p-5 bg-[var(--surface-1)] border-b border-[var(--border-subtle)] shrink-0">
           <div className="flex items-start justify-between gap-3">
             <div>
-              <div className="flex items-center gap-1.5 text-[10px] font-bold text-brand-orange uppercase tracking-luxury mb-1">
-                <Flame className="w-3.5 h-3.5" />
-                <span>The Verdict Split-Card</span>
+              <div className="flex items-center gap-1.5 text-[10px] font-black text-brand-orange uppercase tracking-wider mb-1">
+                <Flame className="w-3.5 h-3.5 fill-brand-orange text-brand-orange" />
+                <span>Asli Menu Verdict ⚡ (Order This / Skip That)</span>
               </div>
               <h2 className="text-xl sm:text-2xl font-serif font-black text-[var(--text-primary)] tracking-wide leading-snug">{venue.name}</h2>
               <div className="flex items-center gap-2 mt-1.5 text-xs text-[var(--text-muted)]">
-                <span className="flex items-center gap-1 text-[var(--text-secondary)]">
+                <span className="flex items-center gap-1 text-[var(--text-secondary)] font-semibold">
                   <MapPin className="w-3.5 h-3.5 text-brand-orange" />
                   {venue.area}
                 </span>
                 <span>•</span>
-                <span className="flex items-center gap-1 text-emerald-500 font-medium">
+                <span className="flex items-center gap-1 text-emerald-500 font-semibold">
                   <Navigation className="w-3 h-3" />
                   {venue.distanceMeters}m ({venue.walkingMinutes} min walk)
                 </span>
@@ -88,10 +91,10 @@ export const VerdictSplitCard: React.FC<VerdictSplitCardProps> = ({
 
             <button
               onClick={onClose}
-              className="p-2 rounded-full bg-[var(--surface-2)] text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:bg-[var(--surface-3)] border border-[var(--border-subtle)] transition-colors cursor-pointer"
+              className="w-11 h-11 rounded-full bg-[var(--surface-2)] text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:bg-[var(--surface-3)] border border-[var(--border-subtle)] transition-all flex items-center justify-center cursor-pointer active:scale-90 shrink-0"
               aria-label="Close card"
             >
-              <X className="w-4 h-4" />
+              <X className="w-5 h-5" />
             </button>
           </div>
 
@@ -100,7 +103,7 @@ export const VerdictSplitCard: React.FC<VerdictSplitCardProps> = ({
             {venue.vibeTags.map((tag, idx) => (
               <span
                 key={idx}
-                className="text-[10px] font-medium bg-[var(--surface-2)] text-[var(--text-secondary)] border border-[var(--border-subtle)] px-2.5 py-0.5 rounded-full"
+                className="text-[10px] font-semibold bg-[var(--surface-2)] text-[var(--text-secondary)] border border-[var(--border-subtle)] px-2.5 py-1 rounded-full"
               >
                 {tag}
               </span>
@@ -109,11 +112,11 @@ export const VerdictSplitCard: React.FC<VerdictSplitCardProps> = ({
               href={venue.mapsUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 text-[10px] font-semibold text-emerald-600 dark:text-emerald-400 bg-emerald-500/15 border border-emerald-500/30 px-2.5 py-0.5 rounded-full hover:bg-emerald-500/25 transition-colors ml-auto cursor-pointer"
+              className="inline-flex items-center gap-1.5 text-[11px] font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-500/15 border border-emerald-500/30 px-3 py-1 rounded-full hover:bg-emerald-500/25 transition-all ml-auto cursor-pointer"
             >
-              <Navigation className="w-3 h-3" />
-              <span>Directions</span>
-              <ExternalLink className="w-2.5 h-2.5" />
+              <Navigation className="w-3.5 h-3.5" />
+              <span>Map Lagao</span>
+              <ExternalLink className="w-3 h-3" />
             </a>
           </div>
         </div>
@@ -122,33 +125,33 @@ export const VerdictSplitCard: React.FC<VerdictSplitCardProps> = ({
         <div className="p-4 sm:p-5 overflow-y-auto space-y-6 flex-1 overscroll-contain">
           
           {/* Action Banner: Secret Counter Perk */}
-          <div className="relative rounded-2xl overflow-hidden border border-[var(--border-subtle)] bg-[var(--surface-2)] p-4 shadow-lg">
+          <div className="relative rounded-2xl overflow-hidden border border-[var(--border-subtle)] bg-gradient-to-r from-[var(--surface-2)] to-[var(--surface-3)] p-4 shadow-lg space-y-2">
             <div className="flex items-start justify-between gap-3">
               <div className="space-y-1">
-                <div className="inline-flex items-center gap-1.5 text-[10px] font-bold text-amber-500 uppercase tracking-luxury">
+                <div className="inline-flex items-center gap-1.5 text-[10px] font-black text-amber-500 uppercase tracking-wider">
                   <Ticket className="w-3.5 h-3.5 text-amber-500" />
-                  <span>Exclusive Counter Perk</span>
+                  <span>Secret Counter Deal 🎁 (Free Perk)</span>
                 </div>
-                <h4 className="text-sm font-bold text-[var(--text-primary)]">{venue.counterPerk.title}</h4>
+                <h4 className="text-sm font-black text-[var(--text-primary)]">{venue.counterPerk.title}</h4>
                 <p className="text-xs text-[var(--text-secondary)] leading-relaxed">
                   {venue.counterPerk.description}
                 </p>
               </div>
             </div>
             
-            <div className="mt-3.5 flex items-center gap-2">
+            <div className="mt-2 flex items-center gap-2">
               <button
                 onClick={() => onOpenVoucher(venue)}
-                className="flex-1 min-h-[44px] py-2.5 px-4 rounded-xl bg-gradient-to-r from-brand-orange to-amber-500 text-white font-bold text-xs tracking-wide shadow-glow-orange flex items-center justify-center gap-1.5 active:scale-95 transition-transform cursor-pointer"
+                className="flex-1 min-h-[48px] py-2.5 px-4 rounded-xl bg-gradient-to-r from-brand-orange to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-extrabold text-xs tracking-wide shadow-glow-orange flex items-center justify-center gap-2 active:scale-95 transition-all cursor-pointer"
               >
                 <Sparkles className="w-4 h-4 text-white" />
-                <span>Show Voucher to Cashier</span>
+                <span>Cashier Ko Dikhake Deal Lo 🎟️</span>
               </button>
 
               {onOpenFlyer && (
                 <button
                   onClick={() => onOpenFlyer(venue)}
-                  className="min-h-[44px] min-w-[44px] px-3.5 rounded-xl bg-[var(--surface-1)] hover:bg-[var(--surface-2)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] border border-[var(--border-subtle)] text-xs font-semibold flex items-center justify-center gap-1.5 transition-all active:scale-95 cursor-pointer"
+                  className="min-h-[48px] min-w-[48px] px-3.5 rounded-xl bg-[var(--surface-1)] hover:bg-[var(--surface-2)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] border border-[var(--border-subtle)] text-xs font-bold flex items-center justify-center gap-1.5 transition-all active:scale-95 cursor-pointer shadow-xs"
                   title="Print Merchant Counter Flyer"
                 >
                   <Printer className="w-4 h-4 text-brand-orange" />
@@ -161,10 +164,10 @@ export const VerdictSplitCard: React.FC<VerdictSplitCardProps> = ({
           {/* Section 1: The Must-Orders */}
           <div className="space-y-3.5">
             <div className="flex items-center gap-2 pb-2 border-b border-[var(--border-subtle)]">
-              <div className="w-2 h-2 rounded-full bg-emerald-500" />
-              <h3 className="text-xs font-black text-emerald-600 dark:text-emerald-400 uppercase tracking-luxury flex items-center gap-1.5">
-                <CheckCircle className="w-3.5 h-3.5" />
-                <span>Section 1: The Must-Orders (Non-Negotiable)</span>
+              <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 shadow-glow-green" />
+              <h3 className="text-xs font-black text-emerald-600 dark:text-emerald-400 uppercase tracking-wider flex items-center gap-1.5">
+                <CheckCircle className="w-4 h-4" />
+                <span>👑 Yeh Toh Mangwana Hi Hai (Must-Orders)</span>
               </h3>
             </div>
 
@@ -201,9 +204,9 @@ export const VerdictSplitCard: React.FC<VerdictSplitCardProps> = ({
                         <div className="flex items-center gap-2 mt-1">
                           <span className="inline-flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border border-emerald-500/25">
                             <Sparkles className="w-2.5 h-2.5" />
-                            {dish.scorePercent}% {dish.verdict === 'GOD_TIER' ? 'God-Tier' : 'Worth It'}
+                            {dish.scorePercent}% {dish.verdict === 'GOD_TIER' ? 'Asli God-Tier 👑' : 'Paisa Vasool 👍'}
                           </span>
-                          <span className="text-[11px] text-[var(--text-muted)]">{dish.category}</span>
+                          <span className="text-[11px] text-[var(--text-muted)] font-medium">{dish.category}</span>
                         </div>
                       </div>
                     </div>
@@ -216,7 +219,7 @@ export const VerdictSplitCard: React.FC<VerdictSplitCardProps> = ({
                     {/* Flavor Tags & Insider Tip */}
                     <div className="flex flex-wrap gap-1.5 pt-0.5">
                       {dish.flavorTags.map((tag, i) => (
-                        <span key={i} className="text-[10px] bg-[var(--surface-2)] text-[var(--text-secondary)] border border-[var(--border-subtle)] px-2 py-0.5 rounded-md">
+                        <span key={i} className="text-[10px] font-medium bg-[var(--surface-2)] text-[var(--text-secondary)] border border-[var(--border-subtle)] px-2 py-0.5 rounded-md">
                           {tag}
                         </span>
                       ))}
@@ -224,35 +227,35 @@ export const VerdictSplitCard: React.FC<VerdictSplitCardProps> = ({
 
                     <div className="text-[11px] text-amber-900 dark:text-amber-200 bg-amber-500/10 border border-amber-500/30 p-2.5 rounded-xl flex items-start gap-2">
                       <Sparkles className="w-3.5 h-3.5 text-amber-500 shrink-0 mt-0.5" />
-                      <span><strong>Insider Tip:</strong> {dish.insiderTip}</span>
+                      <span><strong>Foodie Tip:</strong> {dish.insiderTip}</span>
                     </div>
 
-                    {/* Action Row: Check-in, Share & Vault */}
-                    <div className="flex items-center justify-between pt-2 border-t border-[var(--border-subtle)] gap-2">
+                    {/* Action Row: Check-in, Share & Vault (Min-h-[48px] ergonomic touch targets) */}
+                    <div className="flex items-center justify-between pt-2.5 border-t border-[var(--border-subtle)] gap-2">
                       <div className="flex items-center gap-2">
                         {checkedInToday ? (
                           <button
                             onClick={() => onCheckIn?.(dish)}
-                            className="min-h-[44px] px-3 rounded-xl bg-emerald-500/15 border border-emerald-500/40 text-emerald-600 dark:text-emerald-300 text-xs font-bold flex items-center gap-1.5 active:scale-95 transition-transform cursor-pointer"
+                            className="min-h-[48px] px-3.5 rounded-xl bg-emerald-500/15 border border-emerald-500/40 text-emerald-600 dark:text-emerald-300 text-xs font-bold flex items-center gap-1.5 active:scale-95 transition-transform cursor-pointer shadow-xs"
                           >
-                            <Flame className="w-3.5 h-3.5 text-amber-500 fill-amber-500" />
-                            <span>Checked In</span>
+                            <Flame className="w-4 h-4 text-amber-500 fill-amber-500" />
+                            <span>Kha Liya Aaj! 😋</span>
                           </button>
                         ) : (
                           <button
                             onClick={() => onCheckIn?.(dish)}
-                            className="min-h-[44px] px-3.5 rounded-xl bg-brand-orange/10 hover:bg-brand-orange/20 border border-brand-orange/30 text-brand-orange text-xs font-bold flex items-center gap-1.5 active:scale-95 transition-transform cursor-pointer"
+                            className="min-h-[48px] px-3.5 rounded-xl bg-brand-orange/15 hover:bg-brand-orange/25 border border-brand-orange/30 text-brand-orange text-xs font-bold flex items-center gap-1.5 active:scale-95 transition-transform cursor-pointer shadow-xs"
                           >
-                            <MapPin className="w-3.5 h-3.5" />
-                            <span>Check-In</span>
+                            <MapPin className="w-4 h-4" />
+                            <span>Yahan Khaya? 📍</span>
                           </button>
                         )}
 
                         {onShare && (
                           <button
                             onClick={() => onShare(dish, latestCheckIn)}
-                            className="min-h-[44px] min-w-[44px] p-2.5 rounded-xl bg-[var(--surface-2)] hover:bg-[var(--surface-3)] border border-[var(--border-subtle)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] flex items-center justify-center transition-all active:scale-95 cursor-pointer"
-                            title="Share to Story"
+                            className="min-h-[48px] min-w-[48px] p-2.5 rounded-xl bg-[var(--surface-2)] hover:bg-[var(--surface-3)] border border-[var(--border-subtle)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] flex items-center justify-center transition-all active:scale-95 cursor-pointer shadow-xs"
+                            title="Flex on Story"
                           >
                             <Share2 className="w-4 h-4" />
                           </button>
@@ -268,14 +271,14 @@ export const VerdictSplitCard: React.FC<VerdictSplitCardProps> = ({
                               saveDishToVault(dish, 'SAVED');
                             }
                           }}
-                          className={`min-h-[44px] inline-flex items-center gap-1.5 text-xs font-semibold px-3.5 rounded-xl active:scale-95 transition-transform cursor-pointer ${
+                          className={`min-h-[48px] inline-flex items-center gap-1.5 text-xs font-bold px-4 rounded-xl active:scale-95 transition-all cursor-pointer shadow-xs ${
                             saved
-                              ? 'bg-brand-orange text-white'
+                              ? 'bg-brand-orange text-white shadow-glow-orange'
                               : 'bg-[var(--surface-2)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] border border-[var(--border-subtle)]'
                           }`}
                         >
-                          {saved ? <BookmarkCheck className="w-3.5 h-3.5" /> : <Bookmark className="w-3.5 h-3.5" />}
-                          <span>{saved ? 'Saved' : 'Save'}</span>
+                          {saved ? <BookmarkCheck className="w-4 h-4" /> : <Bookmark className="w-4 h-4" />}
+                          <span>{saved ? 'Saved ✓' : 'Save'}</span>
                         </button>
 
                         <button
@@ -283,9 +286,9 @@ export const VerdictSplitCard: React.FC<VerdictSplitCardProps> = ({
                             setActiveNoteDishId(isWritingNote ? null : dish.id);
                             setNoteText(item?.userNotes || '');
                           }}
-                          className="min-h-[44px] px-2.5 flex items-center justify-center text-xs text-[var(--text-muted)] hover:text-[var(--text-primary)] underline underline-offset-4 cursor-pointer"
+                          className="min-h-[48px] px-2.5 flex items-center justify-center text-xs text-[var(--text-muted)] hover:text-brand-orange underline underline-offset-4 cursor-pointer font-medium"
                         >
-                          {item?.userNotes ? 'Note' : '+ Note'}
+                          {item?.userNotes ? 'Note ✏️' : '+ Note'}
                         </button>
                       </div>
                     </div>
@@ -296,20 +299,20 @@ export const VerdictSplitCard: React.FC<VerdictSplitCardProps> = ({
                         <textarea
                           value={noteText}
                           onChange={(e) => setNoteText(e.target.value)}
-                          placeholder="E.g., Ask for less salt, or extra kadak pav..."
-                          className="w-full text-xs p-3 rounded-xl bg-[var(--surface-2)] border border-[var(--border-subtle)] text-[var(--text-primary)] placeholder-[var(--text-muted)] focus:outline-none focus:border-brand-orange"
+                          placeholder="E.g., Ask for less salt, extra spicy chutney, or kadak pav..."
+                          className="w-full text-xs p-3 rounded-xl bg-[var(--surface-2)] border border-[var(--border-subtle)] text-[var(--text-primary)] placeholder-[var(--text-muted)] focus:outline-none focus:border-brand-orange font-medium"
                           rows={2}
                         />
                         <div className="flex justify-end gap-2">
                           <button
                             onClick={() => setActiveNoteDishId(null)}
-                            className="min-h-[40px] text-xs text-[var(--text-muted)] hover:text-[var(--text-primary)] px-3 py-1.5 cursor-pointer"
+                            className="min-h-[44px] text-xs text-[var(--text-muted)] hover:text-[var(--text-primary)] px-3.5 py-1.5 cursor-pointer font-medium"
                           >
                             Cancel
                           </button>
                           <button
                             onClick={() => handleSaveWithNote(dish)}
-                            className="min-h-[40px] text-xs bg-brand-orange hover:bg-orange-600 text-white font-bold px-3.5 py-1.5 rounded-xl active:scale-95 transition-transform cursor-pointer"
+                            className="min-h-[44px] text-xs bg-brand-orange hover:bg-orange-600 text-white font-bold px-4 py-1.5 rounded-xl active:scale-95 transition-transform cursor-pointer shadow-sm"
                           >
                             Save Note to Vault
                           </button>
@@ -325,10 +328,10 @@ export const VerdictSplitCard: React.FC<VerdictSplitCardProps> = ({
           {/* Section 2: The Skip List */}
           <div className="space-y-3.5 pt-2">
             <div className="flex items-center gap-2 pb-2 border-b border-[var(--border-subtle)]">
-              <div className="w-2 h-2 rounded-full bg-red-500" />
-              <h3 className="text-xs font-black text-red-600 dark:text-red-400 uppercase tracking-luxury flex items-center gap-1.5">
-                <AlertTriangle className="w-3.5 h-3.5" />
-                <span>Section 2: The Skip List (Do Not Order)</span>
+              <div className="w-2.5 h-2.5 rounded-full bg-rose-500 shadow-glow-red" />
+              <h3 className="text-xs font-black text-rose-600 dark:text-rose-400 uppercase tracking-wider flex items-center gap-1.5">
+                <AlertTriangle className="w-4 h-4" />
+                <span>❌ Galti Se Bhi Mat Mangwana (Menu Traps)</span>
               </h3>
             </div>
 
@@ -336,27 +339,27 @@ export const VerdictSplitCard: React.FC<VerdictSplitCardProps> = ({
               {venue.skipDishes.map((skip) => (
                 <div
                   key={skip.id}
-                  className="p-4 rounded-2xl bg-[var(--surface-1)] border border-rose-500/25 hover:border-rose-500/40 transition-all space-y-2.5 shadow-md"
+                  className="p-4 rounded-2xl bg-[var(--surface-1)] border border-rose-500/30 hover:border-rose-500/50 transition-all space-y-2.5 shadow-md"
                 >
                   <div className="flex items-start justify-between">
                     <div>
                       <div className="flex items-center gap-2">
-                        <span className="text-[9px] font-black uppercase tracking-wider bg-red-500/15 text-red-600 dark:text-red-300 border border-red-500/30 px-2 py-0.5 rounded-full">
-                          AVOID • SKIP
+                        <span className="text-[9px] font-black uppercase tracking-wider bg-rose-500/15 text-rose-600 dark:text-rose-300 border border-rose-500/30 px-2 py-0.5 rounded-full">
+                          SKIP KARO • TRAP DISH
                         </span>
-                        <h4 className="text-sm font-bold text-red-600 dark:text-red-300">{skip.name}</h4>
+                        <h4 className="text-sm font-extrabold text-rose-600 dark:text-rose-300">{skip.name}</h4>
                       </div>
-                      <span className="text-xs text-[var(--text-muted)] mt-1 block">Price: ₹{skip.price}</span>
+                      <span className="text-xs text-[var(--text-muted)] mt-1 block font-medium">Price: ₹{skip.price}</span>
                     </div>
                   </div>
 
                   <p className="text-xs text-[var(--text-secondary)] leading-relaxed bg-[var(--surface-2)] p-3 rounded-xl border border-[var(--border-subtle)]">
-                    <strong className="text-red-600 dark:text-red-400 font-semibold">Why to Avoid:</strong> {skip.reason}
+                    <strong className="text-rose-600 dark:text-rose-400 font-bold">Kyu Avoid Karein:</strong> {skip.reason}
                   </p>
 
-                  <div className="flex items-center gap-1.5 text-xs text-emerald-600 dark:text-emerald-400 font-medium pt-0.5">
-                    <HeartHandshake className="w-3.5 h-3.5 shrink-0" />
-                    <span><strong>Order Instead:</strong> {skip.alternativeRecommendation}</span>
+                  <div className="flex items-center gap-1.5 text-xs text-emerald-600 dark:text-emerald-400 font-bold pt-0.5">
+                    <HeartHandshake className="w-4 h-4 shrink-0 text-emerald-500" />
+                    <span><strong>Iske Badle Yeh Lo:</strong> {skip.alternativeRecommendation}</span>
                   </div>
                 </div>
               ))}
@@ -364,17 +367,17 @@ export const VerdictSplitCard: React.FC<VerdictSplitCardProps> = ({
           </div>
         </div>
 
-        {/* Footer sticky bar */}
+        {/* Footer sticky bar with 48px touch target */}
         <div className="p-3.5 sm:p-4 bg-[var(--surface-1)] border-t border-[var(--border-subtle)] flex items-center justify-between text-xs text-[var(--text-muted)] shrink-0">
-          <span className="flex items-center gap-1.5 text-[11px]">
+          <span className="flex items-center gap-1.5 text-[11px] font-medium">
             <Clock className="w-3.5 h-3.5 text-[var(--text-muted)]" />
-            Verified by Palate Field Scouts • 2026
+            Palate Ground Scouts Dwara Verified • 2026
           </span>
           <button
             onClick={onClose}
-            className="min-h-[44px] px-5 rounded-xl bg-[var(--surface-2)] hover:bg-[var(--surface-3)] border border-[var(--border-subtle)] text-[var(--text-primary)] font-bold transition-all text-xs active:scale-95 cursor-pointer"
+            className="min-h-[48px] px-6 rounded-xl bg-[var(--surface-2)] hover:bg-[var(--surface-3)] border border-[var(--border-subtle)] text-[var(--text-primary)] font-extrabold transition-all text-xs active:scale-95 cursor-pointer shadow-xs"
           >
-            Done
+            Samajh Gaya (Done)
           </button>
         </div>
       </div>
