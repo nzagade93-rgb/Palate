@@ -112,22 +112,22 @@ export const VoucherModal: React.FC<VoucherModalProps> = ({
             : 'bg-gradient-to-r from-orange-600 via-brand-orange to-amber-500'
         }`}>
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-1.5 font-bold tracking-wider text-xs uppercase bg-black/30 backdrop-blur-md px-2.5 py-1 rounded-full border border-white/20">
+            <div className="flex items-center gap-1.5 font-bold tracking-wider text-xs uppercase bg-black/30 backdrop-blur-md px-3 py-1 rounded-full border border-white/20">
               {isRedeemed ? (
                 <>
                   <Check className="w-3.5 h-3.5 text-emerald-300" />
-                  <span>Cashier Verified</span>
+                  <span>Bill Par Applied! 🎉</span>
                 </>
               ) : (
                 <>
                   <Sparkles className="w-3.5 h-3.5 text-yellow-300 animate-spin" />
-                  <span>Counter Voucher</span>
+                  <span>Khane Pe Chhoot 🎟️</span>
                 </>
               )}
             </div>
             <button 
               onClick={onClose}
-              className="p-1 rounded-full bg-black/30 hover:bg-black/50 text-white transition-colors cursor-pointer"
+              className="w-10 h-10 rounded-full bg-black/30 hover:bg-black/50 text-white transition-colors cursor-pointer flex items-center justify-center active:scale-95"
               aria-label="Close voucher"
             >
               <X className="w-5 h-5" />
@@ -135,8 +135,8 @@ export const VoucherModal: React.FC<VoucherModalProps> = ({
           </div>
           <p className="text-xs text-orange-100 font-medium mt-1">
             {isRedeemed 
-              ? '✓ Perk unlocked on customer bill'
-              : 'Show this screen to the counter captain / cashier'}
+              ? '✓ Done! Bill me discount add ho gaya hai'
+              : 'Billing counter pe cashier bhai ko yeh screen dikha do!'}
           </p>
         </div>
 
