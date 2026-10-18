@@ -69,25 +69,28 @@ export const CheckInModal: React.FC<CheckInModalProps> = ({
         className="w-full max-w-[430px] bg-[var(--surface-1)] border-t sm:border border-[var(--border-subtle)] rounded-t-3xl sm:rounded-3xl shadow-2xl p-5 sm:p-6 space-y-4 animate-slide-up relative text-[var(--text-primary)]"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Close Button */}
+        {/* Mobile bottom-sheet handle */}
+        <div className="w-12 h-1.5 bg-white/20 rounded-full mx-auto mb-1 sm:hidden" />
+
+        {/* Close Button: 40px+ hitbox */}
         <button
           onClick={handleResetAndClose}
-          className="absolute top-4 right-4 p-2 rounded-full bg-[var(--surface-2)] text-[var(--text-muted)] hover:text-[var(--text-primary)] border border-[var(--border-subtle)] transition-colors cursor-pointer"
+          className="absolute top-4 right-4 w-10 h-10 rounded-full bg-[var(--surface-2)] text-[var(--text-muted)] hover:text-[var(--text-primary)] border border-[var(--border-subtle)] transition-colors cursor-pointer flex items-center justify-center active:scale-95"
           aria-label="Close"
         >
-          <X className="w-4 h-4" />
+          <X className="w-5 h-5" />
         </button>
 
         {!isSubmitted ? (
           <>
             {/* Header: Location & Dish Info */}
-            <div className="space-y-1 pr-8">
-              <div className="inline-flex items-center gap-1.5 text-[10px] font-bold text-brand-orange uppercase tracking-luxury bg-brand-orange/10 border border-brand-orange/30 px-2.5 py-0.5 rounded-full">
+            <div className="space-y-1 pr-10">
+              <div className="inline-flex items-center gap-1.5 text-[11px] font-bold text-brand-orange uppercase tracking-wider bg-brand-orange/10 border border-brand-orange/30 px-3 py-1 rounded-full">
                 <Flame className="w-3.5 h-3.5 fill-brand-orange" />
-                <span>1-Tap Live Check-In</span>
+                <span>Yahan Baithe Ho? 📍</span>
               </div>
               <h2 className="text-xl font-serif font-black text-[var(--text-primary)] tracking-tight leading-snug">
-                I'm Eating Here Now
+                Kaisa Laga Khana? 👅
               </h2>
               <div className="flex items-center gap-1.5 text-xs text-[var(--text-muted)] font-medium pt-0.5">
                 <MapPin className="w-3.5 h-3.5 text-brand-orange shrink-0" />
@@ -108,8 +111,8 @@ export const CheckInModal: React.FC<CheckInModalProps> = ({
                 <h4 className="text-sm font-extrabold text-[var(--text-primary)] truncate">{dish.name}</h4>
                 <div className="flex items-center gap-2 mt-0.5 text-xs">
                   <span className="font-bold text-[var(--text-primary)]">₹{dish.price}</span>
-                  <span className="text-[10px] text-emerald-600 dark:text-emerald-400 font-semibold bg-emerald-500/15 border border-emerald-500/30 px-2 py-0.5 rounded-full">
-                    {dish.scorePercent}% God-Tier
+                  <span className="text-[10px] text-emerald-600 dark:text-emerald-400 font-bold bg-emerald-500/15 border border-emerald-500/30 px-2 py-0.5 rounded-full">
+                    {dish.scorePercent}% Asli God-Tier
                   </span>
                 </div>
               </div>
@@ -118,10 +121,10 @@ export const CheckInModal: React.FC<CheckInModalProps> = ({
             {/* Prompt Question */}
             <div className="text-center pt-1">
               <h3 className="text-sm font-extrabold text-[var(--text-primary)]">
-                Did you order this today? What's your verdict?
+                Aaj yeh khaya? Asli saccha verdict do!
               </h3>
               <p className="text-xs text-[var(--text-muted)] mt-0.5">
-                Tap once to log your taste memory & unlock your social flex card
+                1 tap se taste vault me save hoga aur story card unlock hoga
               </p>
             </div>
 
@@ -131,26 +134,26 @@ export const CheckInModal: React.FC<CheckInModalProps> = ({
               <button
                 type="button"
                 onClick={() => handleSubmit('GOD_TIER')}
-                className="group p-4 min-h-[96px] rounded-2xl bg-gradient-to-b from-emerald-500/20 to-emerald-500/10 hover:from-emerald-500/30 hover:to-emerald-500/15 border-2 border-emerald-500/50 hover:border-emerald-500 shadow-glow-green text-center space-y-1.5 transition-all active:scale-95 flex flex-col items-center justify-center cursor-pointer"
+                className="group p-4 min-h-[104px] rounded-2xl bg-gradient-to-b from-emerald-500/20 to-emerald-500/10 hover:from-emerald-500/30 hover:to-emerald-500/15 border-2 border-emerald-500/50 hover:border-emerald-500 shadow-glow-green text-center space-y-1.5 transition-all active:scale-95 flex flex-col items-center justify-center cursor-pointer"
               >
-                <div className="w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-600 dark:text-emerald-400 group-hover:scale-110 transition-transform">
+                <div className="w-11 h-11 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-600 dark:text-emerald-400 group-hover:scale-110 transition-transform">
                   <ThumbsUp className="w-5 h-5 fill-emerald-500/40" />
                 </div>
-                <div className="font-black text-sm text-[var(--text-primary)]">God-Tier</div>
-                <div className="text-[10px] text-emerald-600 dark:text-emerald-300 font-medium">Loved it • Pure Truth</div>
+                <div className="font-black text-sm text-[var(--text-primary)]">Mast Tha! 👑</div>
+                <div className="text-[11px] text-emerald-600 dark:text-emerald-300 font-semibold">Paisa Vasool • God-Tier</div>
               </button>
 
               {/* 🔴 Skip it */}
               <button
                 type="button"
                 onClick={() => handleSubmit('SKIP')}
-                className="group p-4 min-h-[96px] rounded-2xl bg-gradient-to-b from-red-500/20 to-red-500/10 hover:from-red-500/30 hover:to-red-500/15 border-2 border-red-500/50 hover:border-red-500 shadow-glow-red text-center space-y-1.5 transition-all active:scale-95 flex flex-col items-center justify-center cursor-pointer"
+                className="group p-4 min-h-[104px] rounded-2xl bg-gradient-to-b from-red-500/20 to-red-500/10 hover:from-red-500/30 hover:to-red-500/15 border-2 border-red-500/50 hover:border-red-500 shadow-glow-red text-center space-y-1.5 transition-all active:scale-95 flex flex-col items-center justify-center cursor-pointer"
               >
-                <div className="w-10 h-10 rounded-full bg-red-500/20 flex items-center justify-center text-red-600 dark:text-red-400 group-hover:scale-110 transition-transform">
+                <div className="w-11 h-11 rounded-full bg-red-500/20 flex items-center justify-center text-red-600 dark:text-red-400 group-hover:scale-110 transition-transform">
                   <ThumbsDown className="w-5 h-5 fill-red-500/40" />
                 </div>
-                <div className="font-black text-sm text-[var(--text-primary)]">Overhyped</div>
-                <div className="text-[10px] text-red-600 dark:text-red-300 font-medium">Skip it • Would not reorder</div>
+                <div className="font-black text-sm text-[var(--text-primary)]">Bakwaas ❌</div>
+                <div className="text-[11px] text-red-600 dark:text-red-300 font-semibold">Overhyped • Mat Lo</div>
               </button>
             </div>
 
@@ -160,8 +163,8 @@ export const CheckInModal: React.FC<CheckInModalProps> = ({
                 type="text"
                 value={note}
                 onChange={(e) => setNote(e.target.value)}
-                placeholder="Add optional flex note (e.g. Extra kadak pav is insane)..."
-                className="w-full text-xs font-medium px-3.5 py-3 rounded-xl bg-[var(--surface-2)] border border-[var(--border-subtle)] text-[var(--text-primary)] placeholder-[var(--text-muted)] focus:outline-none focus:border-brand-orange transition-all"
+                placeholder="Koi secret tip ya flex note? (e.g. Extra spicy mangwana)..."
+                className="w-full text-xs font-medium px-4 py-3 min-h-[46px] rounded-xl bg-[var(--surface-2)] border border-[var(--border-subtle)] text-[var(--text-primary)] placeholder-[var(--text-muted)] focus:outline-none focus:border-brand-orange transition-all"
               />
             </div>
           </>
@@ -174,15 +177,15 @@ export const CheckInModal: React.FC<CheckInModalProps> = ({
 
             <div className="space-y-1">
               <div className="text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">
-                Check-In Recorded
+                Taste Logged Successfully! 🎉
               </div>
               <h3 className="text-xl font-serif font-black text-[var(--text-primary)]">
-                Checked in at {dish.venueName}!
+                {dish.venueName} Pe Khaya!
               </h3>
               <p className="text-xs text-[var(--text-secondary)] max-w-xs mx-auto">
                 {selectedReaction === 'GOD_TIER' 
-                  ? 'Your God-Tier verdict is now saved to your personal taste vault.' 
-                  : 'Logged to your avoid list so you never make this mistake again.'}
+                  ? 'Aapka God-Tier verdict personal Taste Vault me save ho gaya.' 
+                  : 'Avoid list me save kar diya hai, agli baar dhokha nahi hoga.'}
               </p>
             </div>
 
@@ -195,17 +198,17 @@ export const CheckInModal: React.FC<CheckInModalProps> = ({
                     onOpenShare(dish, previousCheckIn);
                   }
                 }}
-                className="w-full min-h-[44px] py-3 px-4 rounded-xl bg-gradient-to-r from-brand-orange via-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-extrabold text-sm shadow-glow-orange flex items-center justify-center gap-2 active:scale-95 transition-transform cursor-pointer"
+                className="w-full min-h-[48px] py-3 px-4 rounded-2xl bg-gradient-to-r from-brand-orange via-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-extrabold text-sm shadow-glow-orange flex items-center justify-center gap-2 active:scale-95 transition-transform cursor-pointer"
               >
                 <Share2 className="w-4 h-4 text-white" />
-                <span>Flex to Instagram / WhatsApp Story</span>
+                <span>Doston Ko Flex Karo 📲 (Story/WhatsApp)</span>
               </button>
 
               <button
                 onClick={handleResetAndClose}
-                className="w-full min-h-[44px] flex items-center justify-center py-2.5 text-xs font-semibold text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors cursor-pointer active:scale-95"
+                className="w-full min-h-[48px] flex items-center justify-center py-2.5 text-xs font-bold text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors cursor-pointer active:scale-95"
               >
-                Done for now
+                Pet Bhar Gaya, Mast! 😋
               </button>
             </div>
           </div>

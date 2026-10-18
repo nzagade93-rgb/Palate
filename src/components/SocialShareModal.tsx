@@ -250,20 +250,20 @@ export const SocialShareModal: React.FC<SocialShareModalProps> = ({
         className="w-full max-w-md max-h-[92dvh] bg-[var(--surface-1)] border border-[var(--border-subtle)] rounded-3xl shadow-2xl overflow-hidden flex flex-col relative animate-slide-up text-[var(--text-primary)]"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Minimal Header: Fixed h-12 */}
-        <div className="h-12 px-4 border-b border-[var(--border-subtle)] bg-[var(--surface-1)] flex items-center justify-between shrink-0">
+        {/* Minimal Header: Fixed h-14 */}
+        <div className="h-14 px-4 border-b border-[var(--border-subtle)] bg-[var(--surface-1)] flex items-center justify-between shrink-0">
           <div className="flex items-center gap-2">
-            <span className="text-[11px] font-bold text-[var(--text-muted)] tracking-widest uppercase">
-              Social Flex • Story Export
+            <span className="text-xs font-bold text-[var(--text-muted)] tracking-wider uppercase">
+              Social Flex • Story Ready ✨
             </span>
           </div>
 
           <button
             onClick={onClose}
-            className="p-1.5 rounded-full bg-[var(--surface-2)] hover:bg-[var(--surface-3)] text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors cursor-pointer"
+            className="w-10 h-10 rounded-full bg-[var(--surface-2)] hover:bg-[var(--surface-3)] text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors cursor-pointer flex items-center justify-center active:scale-95"
             aria-label="Close story editor"
           >
-            <X className="w-4 h-4" />
+            <X className="w-5 h-5" />
           </button>
         </div>
 
@@ -460,57 +460,57 @@ export const SocialShareModal: React.FC<SocialShareModalProps> = ({
             </div>
           </div>
 
-          {/* User Caption Editing Input: "What was the highlight?" */}
+          {/* User Caption Editing Input: "Sabse mast kya laga?" */}
           <div className="w-full space-y-1.5">
-            <label className="text-[11px] font-bold uppercase tracking-widest text-[var(--text-muted)] block text-left">
-              What was the highlight?
+            <label className="text-[11px] font-bold uppercase tracking-wider text-[var(--text-muted)] block text-left">
+              Sabse mast kya laga? (Highlight 👅)
             </label>
             <input
               type="text"
               value={customQuote}
               onChange={(e) => setCustomQuote(e.target.value)}
-              placeholder="What was the highlight? (e.g. Extra kadak butter, crispy crust...)"
-              className="w-full text-xs font-medium px-3.5 py-2.5 rounded-xl bg-[var(--surface-2)] border border-[var(--border-subtle)] text-[var(--text-primary)] placeholder-[var(--text-muted)] focus:outline-none focus:border-brand-orange focus:ring-1 focus:ring-brand-orange/40"
+              placeholder="Sabse mast kya laga? (e.g. Extra kadak pav, crispy crust...)"
+              className="w-full text-xs font-medium px-4 py-3 min-h-[44px] rounded-xl bg-[var(--surface-2)] border border-[var(--border-subtle)] text-[var(--text-primary)] placeholder-[var(--text-muted)] focus:outline-none focus:border-brand-orange focus:ring-1 focus:ring-brand-orange/40"
             />
           </div>
 
         </div>
 
-        {/* Spacious Bottom Sheet Action Buttons (High contrast min 44px) */}
+        {/* Spacious Bottom Sheet Action Buttons (High contrast min 48px) */}
         <div className="p-4 bg-[var(--surface-1)] border-t border-[var(--border-subtle)] space-y-2.5 shrink-0">
           <div className="grid grid-cols-2 gap-2.5">
             <button
               onClick={handleNativeShare}
               disabled={isExporting}
-              className="min-h-[44px] px-3 rounded-xl bg-gradient-to-r from-brand-orange to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-black text-xs shadow-glow-orange flex items-center justify-center gap-1.5 transition-transform active:scale-95 disabled:opacity-50 cursor-pointer tracking-wide"
+              className="min-h-[48px] px-3 rounded-2xl bg-gradient-to-r from-brand-orange to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-extrabold text-xs shadow-glow-orange flex items-center justify-center gap-1.5 transition-transform active:scale-95 disabled:opacity-50 cursor-pointer tracking-wide"
             >
               <Smartphone className="w-4 h-4 text-white" />
-              <span>{isExporting ? 'Generating...' : 'Share Story'}</span>
+              <span>{isExporting ? 'Generating...' : 'Story Pe Lagao 📲'}</span>
             </button>
 
             <button
               onClick={handleDownload}
               disabled={isExporting}
-              className="min-h-[44px] px-3 rounded-xl bg-[var(--surface-2)] hover:bg-[var(--surface-3)] text-[var(--text-primary)] border border-[var(--border-subtle)] hover:border-gold-500/50 font-bold text-xs flex items-center justify-center gap-1.5 transition-transform active:scale-95 disabled:opacity-50 cursor-pointer tracking-wide"
+              className="min-h-[48px] px-3 rounded-2xl bg-[var(--surface-2)] hover:bg-[var(--surface-3)] text-[var(--text-primary)] border border-[var(--border-subtle)] hover:border-gold-500/50 font-bold text-xs flex items-center justify-center gap-1.5 transition-transform active:scale-95 disabled:opacity-50 cursor-pointer tracking-wide"
             >
               <Download className="w-4 h-4 text-brand-orange" />
-              <span>Save Image (PNG)</span>
+              <span>Image Save Karo 📥</span>
             </button>
           </div>
 
           <button
             onClick={handleCopyLink}
-            className="w-full min-h-[44px] rounded-xl bg-[var(--surface-2)] hover:bg-[var(--surface-3)] border border-[var(--border-subtle)] text-xs font-semibold text-[var(--text-secondary)] hover:text-[var(--text-primary)] flex items-center justify-center gap-1.5 transition-all active:scale-95 cursor-pointer"
+            className="w-full min-h-[48px] rounded-2xl bg-[var(--surface-2)] hover:bg-[var(--surface-3)] border border-[var(--border-subtle)] text-xs font-semibold text-[var(--text-secondary)] hover:text-[var(--text-primary)] flex items-center justify-center gap-1.5 transition-all active:scale-95 cursor-pointer"
           >
             {copiedLink ? (
               <>
                 <Check className="w-4 h-4 text-emerald-500" />
-                <span className="text-emerald-500 font-bold">Verdict & Link Copied to Clipboard!</span>
+                <span className="text-emerald-500 font-bold">Verdict & Link Copy Ho Gaya! ✨</span>
               </>
             ) : (
               <>
                 <Copy className="w-4 h-4 text-[var(--text-muted)]" />
-                <span>Copy Link with Verdict</span>
+                <span>Link & Verdict Copy Karo 📋</span>
               </>
             )}
           </button>
