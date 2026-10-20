@@ -1,103 +1,208 @@
 @import "tailwindcss";
 
 :root {
-  --canvas: #FAF8F5;
-  --card: #FFFFFF;
-  --ink: #1C1917;
-  --ink-secondary: #44403C;
-  --ink-muted: #78716C;
-  --ink-subtle: #A8A29E;
-  --hairline: #E7E5E4;
-  --hairline-subtle: #F5F5F4;
-  --amber-cognac: #A16207;
-  --amber-warm: #B45309;
-  --amber-light: #FEF3C7;
-  --amber-subtle: #FFFBEB;
-  --must-order: #15803D;
-  --must-order-bg: #F0FDF4;
-  --must-order-border: #BBF7D0;
-  --skip: #B91C1C;
-  --skip-bg: #FEF2F2;
-  --skip-border: #FECACA;
+  --palate-yellow: #FFD11A;
+  --palate-blue: #2748FF;
+  --palate-pink: #FF5C9A;
+  --palate-mint: #00B26B;
+  --palate-paper: #F6EFE2;
+  --palate-white: #FFFFFF;
+  --palate-concrete: #DDD4C2;
+  --palate-tar: #121212;
 }
 
 @theme {
-  --color-canvas: var(--canvas);
-  --color-card: var(--card);
-  --color-ink: var(--ink);
-  --color-ink-secondary: var(--ink-secondary);
-  --color-ink-muted: var(--ink-muted);
-  --color-ink-subtle: var(--ink-subtle);
-  --color-hairline: var(--hairline);
-  --color-hairline-subtle: var(--hairline-subtle);
-  --color-amber-cognac: var(--amber-cognac);
-  --color-amber-warm: var(--amber-warm);
-  --color-amber-light: var(--amber-light);
-  --color-amber-subtle: var(--amber-subtle);
-  --color-must-order: var(--must-order);
-  --color-must-order-bg: var(--must-order-bg);
-  --color-must-order-border: var(--must-order-border);
-  --color-skip: var(--skip);
-  --color-skip-bg: var(--skip-bg);
-  --color-skip-border: var(--skip-border);
-  --font-sans: var(--font-sans), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --font-serif: var(--font-serif), Georgia, Cambria, "Times New Roman", Times, serif;
+  --color-yellow: var(--palate-yellow);
+  --color-blue: var(--palate-blue);
+  --color-pink: var(--palate-pink);
+  --color-mint: var(--palate-mint);
+  --color-paper: var(--palate-paper);
+  --color-concrete: var(--palate-concrete);
+  --color-tar: var(--palate-tar);
+  --font-sans: var(--font-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
-/* Light mode exclusivity */
+/* PALATE Light-Mode Paper Canvas */
 html {
   color-scheme: light;
-  background-color: #FAF8F5;
+  background-color: #F6EFE2;
+  -webkit-tap-highlight-color: transparent;
+  scroll-behavior: smooth;
 }
 
 body {
-  background-color: #FAF8F5;
-  color: #1C1917;
+  background-color: #F6EFE2;
+  color: #121212;
   font-family: var(--font-sans), ui-sans-serif, system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
-.font-editorial {
-  font-family: var(--font-serif), Georgia, serif;
+/* Indian Street Poster & Brutal Editorial Styling */
+.poster-card {
+  background-color: #FFFFFF;
+  border: 2.5px solid #121212;
+  border-radius: 16px;
+  box-shadow: 4px 4px 0px #121212;
+  transition: all 0.15s ease-out;
 }
 
-/* Custom editorial aesthetics */
-.editorial-border {
-  border: 1px solid #E7E5E4;
+.poster-card-interactive:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px #121212;
 }
 
-.editorial-shadow-subtle {
-  box-shadow: 0 1px 3px 0 rgba(28, 25, 23, 0.04), 0 1px 2px -1px rgba(28, 25, 23, 0.04);
+.poster-card-interactive:active {
+  transform: translate(1px, 1px);
+  box-shadow: 2px 2px 0px #121212;
 }
 
-.editorial-shadow-hover {
-  box-shadow: 0 10px 25px -5px rgba(28, 25, 23, 0.08), 0 8px 10px -6px rgba(28, 25, 23, 0.04);
+/* Buttons */
+.btn-yellow {
+  background-color: #FFD11A;
+  color: #121212;
+  font-weight: 800;
+  border: 2px solid #121212;
+  border-radius: 12px;
+  box-shadow: 3px 3px 0px #121212;
+  transition: all 0.12s ease;
 }
 
-.editorial-shadow-card {
-  box-shadow: 0 4px 16px -2px rgba(28, 25, 23, 0.05), 0 2px 6px -1px rgba(28, 25, 23, 0.03);
+.btn-yellow:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0px #121212;
+  background-color: #ffd83b;
 }
 
-/* Subtle paper texture overlay */
-.paper-grain {
-  background-image: radial-gradient(#1C1917 0.75px, transparent 0.75px);
-  background-size: 24px 24px;
-  opacity: 0.025;
+.btn-yellow:active {
+  transform: translate(2px, 2px);
+  box-shadow: 0px 0px 0px #121212;
 }
 
-/* Smooth custom scrollbars */
+.btn-blue {
+  background-color: #2748FF;
+  color: #FFFFFF;
+  font-weight: 800;
+  border: 2px solid #121212;
+  border-radius: 12px;
+  box-shadow: 3px 3px 0px #121212;
+  transition: all 0.12s ease;
+}
+
+.btn-blue:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0px #121212;
+}
+
+.btn-blue:active {
+  transform: translate(2px, 2px);
+  box-shadow: 0px 0px 0px #121212;
+}
+
+.btn-pink {
+  background-color: #FF5C9A;
+  color: #FFFFFF;
+  font-weight: 800;
+  border: 2px solid #121212;
+  border-radius: 12px;
+  box-shadow: 3px 3px 0px #121212;
+  transition: all 0.12s ease;
+}
+
+.btn-pink:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0px #121212;
+}
+
+.btn-pink:active {
+  transform: translate(2px, 2px);
+  box-shadow: 0px 0px 0px #121212;
+}
+
+.btn-white {
+  background-color: #FFFFFF;
+  color: #121212;
+  font-weight: 700;
+  border: 2px solid #121212;
+  border-radius: 12px;
+  box-shadow: 3px 3px 0px #121212;
+  transition: all 0.12s ease;
+}
+
+.btn-white:hover {
+  background-color: #F6EFE2;
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0px #121212;
+}
+
+.btn-white:active {
+  transform: translate(2px, 2px);
+  box-shadow: 0px 0px 0px #121212;
+}
+
+/* Badges & Chips */
+.stamp-tag {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border: 1.5px solid #121212;
+  border-radius: 9999px;
+  background-color: #FFD11A;
+  color: #121212;
+}
+
+.stamp-blue {
+  background-color: #2748FF;
+  color: #FFFFFF;
+  border: 1.5px solid #121212;
+}
+
+.stamp-pink {
+  background-color: #FF5C9A;
+  color: #FFFFFF;
+  border: 1.5px solid #121212;
+}
+
+.stamp-mint {
+  background-color: #00B26B;
+  color: #FFFFFF;
+  border: 1.5px solid #121212;
+}
+
+/* Street texture dots */
+.paper-pattern {
+  background-image: radial-gradient(#121212 0.75px, transparent 0.75px);
+  background-size: 20px 20px;
+  opacity: 0.04;
+}
+
+/* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
+
 ::-webkit-scrollbar-track {
-  background: #FAF8F5;
+  background: #F6EFE2;
 }
+
 ::-webkit-scrollbar-thumb {
-  background: #E7E5E4;
+  background: #121212;
   border-radius: 9999px;
 }
-::-webkit-scrollbar-thumb:hover {
-  background: #D6D3D1;
+
+/* Safe areas */
+.safe-top {
+  padding-top: max(env(safe-area-inset-top), 12px);
+}
+
+.safe-bottom {
+  padding-bottom: max(env(safe-area-inset-bottom), 16px);
 }
