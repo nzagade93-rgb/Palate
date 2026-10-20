@@ -275,6 +275,12 @@ export default function FoodBattleCard({
             </Link>
           </div>
         </div>
+
+        {/* Legal Intermediary Disclaimer (Section 79 IT Act) */}
+        <div className="mt-2.5 pt-2 border-t border-[#121212]/10 flex flex-col xs:flex-row items-start xs:items-center justify-between text-[9px] font-mono text-[#121212]/50 gap-1 leading-tight">
+          <span>⚡ Community Intermediary (Sec 79 IT Act)</span>
+          <span>Voluntary polls • Not a health or commercial audit</span>
+        </div>
       </motion.article>
 
       {/* Share Modal */}

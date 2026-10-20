@@ -595,6 +595,35 @@ export async function castVote(
     };
   }
 
+  // Supabase Cloud Sync & Duplicate Check
+  if (supabase && isSupabaseConfigured) {
+    try {
+      const { error: insertErr } = await supabase
+        .from('palate_votes')
+        .insert([{
+          id: `vote_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`,
+          battle_id: battleId,
+          voter_fingerprint: voterFingerprint,
+          chosen_contestant_id: chosenContestantId,
+        }]);
+
+      if (insertErr && (insertErr.code === '23505' || insertErr.message?.toLowerCase().includes('unique'))) {
+        coreStore.voteLogs.set(voteKey, chosenContestantId);
+        return {
+          success: false,
+          alreadyVoted: true,
+          message: 'You have already voted in this battle! One vote per device enforced.',
+          battle: {
+            ...battle,
+            userVotedChoice: chosenContestantId
+          }
+        };
+      }
+    } catch {
+      // Fallback seamlessly to memory
+    }
+  }
+
   // Increment contestant votes
   if (chosenContestantId === battle.contestantA.id) {
     battle.votesA += 1;

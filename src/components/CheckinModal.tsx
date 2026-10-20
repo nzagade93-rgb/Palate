@@ -53,13 +53,54 @@ export default function CheckinModal({
 
   if (!isOpen) return null;
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  // Client-side image compression to prevent Vercel 4.5MB payload limits
+  const compressImageFile = async (file: File, maxDim = 1200, quality = 0.75): Promise<File> => {
+    return new Promise((resolve) => {
+      if (!file.type.startsWith('image/') || file.type.includes('svg')) return resolve(file);
+      const img = new Image();
+      const reader = new FileReader();
+      reader.onload = (e) => { img.src = e.target?.result as string; };
+      img.onload = () => {
+        const canvas = document.createElement('canvas');
+        let { width, height } = img;
+        if (width > height) {
+          if (width > maxDim) {
+            height = Math.round((height * maxDim) / width);
+            width = maxDim;
+          }
+        } else {
+          if (height > maxDim) {
+            width = Math.round((width * maxDim) / height);
+            height = maxDim;
+          }
+        }
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext('2d');
+        if (!ctx) return resolve(file);
+        ctx.drawImage(img, 0, 0, width, height);
+        canvas.toBlob(
+          (blob) => {
+            if (!blob) return resolve(file);
+            resolve(new File([blob], file.name.replace(/\.[^.]+$/, '.jpg'), { type: 'image/jpeg' }));
+          },
+          'image/jpeg',
+          quality
+        );
+      };
+      img.onerror = () => resolve(file);
+      reader.readAsDataURL(file);
+    });
+  };
+
+  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      setReceiptFile(file);
+      const compressed = await compressImageFile(file);
+      setReceiptFile(compressed);
       const reader = new FileReader();
       reader.onload = () => setReceiptPreview(reader.result as string);
-      reader.readAsDataURL(file);
+      reader.readAsDataURL(compressed);
     }
   };
 
@@ -294,6 +335,11 @@ export default function CheckinModal({
                 />
               </div>
             )}
+
+            {/* DPDP Act 2023 Privacy Notice */}
+            <div className="mt-2 rounded-lg bg-[#FFEBEB]/80 border border-[#D92D20]/40 p-2 text-[10px] text-[#D92D20] font-medium leading-tight">
+              <strong>🔒 Privacy Notice (DPDP Act 2023):</strong> Please fold or obscure personal confidential details (credit card digits, personal phone numbers, or residential addresses) before uploading receipt photos.
+            </div>
           </div>
 
           {/* Quick Note Input */}

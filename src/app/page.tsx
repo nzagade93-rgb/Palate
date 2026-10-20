@@ -767,6 +767,81 @@ export default function HomePage() {
             }}
           />
         )}
+
+        {/* COMPREHENSIVE LEGAL & STATUTORY INTERMEDIARY FOOTER */}
+        <footer className="mt-14 pt-8 pb-16 border-t-2 border-[#121212]/20 text-[#121212] space-y-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* Column 1: Brand & Safe Harbor Intermediary Declaration */}
+            <div className="space-y-2">
+              <div className="flex items-center space-x-2">
+                <span className="font-black text-lg tracking-tight uppercase">PALATE</span>
+                <span className="text-[10px] font-mono font-bold bg-[#FFD11A] text-[#121212] px-2 py-0.5 rounded border border-[#121212]">
+                  NAVI MUMBAI
+                </span>
+              </div>
+              <p className="text-xs text-[#121212]/80 leading-relaxed font-medium">
+                Hyper-local, dish-first food battles and community consensus platform covering Vashi, Nerul, Belapur, Kharghar, Seawoods, and Sanpada.
+              </p>
+              <div className="rounded-lg bg-white border border-[#121212]/20 p-2.5 text-[11px] text-[#121212]/80 leading-normal">
+                <strong>⚡ Section 79 IT Act 2000 Safe Harbor:</strong> Palate acts strictly as an intermediary platform hosting crowdsourced user sentiment, poll votes, and unverified dining reviews. Palate does not endorse, verify, or vouch for food safety, hygiene, licensing, or commercial standards of listed establishments.
+              </div>
+            </div>
+
+            {/* Column 2: Legal Disclaimers & ASCI Compliance */}
+            <div className="space-y-2">
+              <h5 className="text-xs font-black uppercase tracking-wider text-[#121212]">
+                Statutory Compliance & Ethics
+              </h5>
+              <ul className="text-xs space-y-1.5 text-[#121212]/75 font-medium">
+                <li className="flex items-start space-x-1.5">
+                  <span className="font-bold text-[#121212]">•</span>
+                  <span><strong>Independent & Non-Sponsored:</strong> Battle positions and rankings are 100% determined by community votes. Restaurants cannot pay for rank promotion or badge suppression.</span>
+                </li>
+                <li className="flex items-start space-x-1.5">
+                  <span className="font-bold text-[#121212]">•</span>
+                  <span><strong>ASCI 2023 Guidelines:</strong> If any sponsored trial or partner campaign runs in the future, it will be prominently branded with an unmistakable #Ad or #Sponsored banner.</span>
+                </li>
+                <li className="flex items-start space-x-1.5">
+                  <span className="font-bold text-[#121212]">•</span>
+                  <span><strong>DPDP Act 2023:</strong> Receipts uploaded by diners are processed solely for verification badges. Sensitive payment credentials must be masked.</span>
+                </li>
+              </ul>
+            </div>
+
+            {/* Column 3: Grievance Officer & Takedown Protocol */}
+            <div className="space-y-2">
+              <h5 className="text-xs font-black uppercase tracking-wider text-[#121212]">
+                Grievance Officer & Takedowns
+              </h5>
+              <div className="rounded-xl border-2 border-[#121212] bg-[#FFFFFF] p-3 text-xs space-y-1.5 shadow-[2px_2px_0px_#121212]">
+                <p className="font-bold text-[#121212]">
+                  Rule 3(2) IT (Intermediary Guidelines) Rules, 2021:
+                </p>
+                <p className="text-[11px] text-[#121212]/70 leading-relaxed">
+                  Are you a restaurant owner or vendor with a copyright, defamatory content, or listing discrepancy notice?
+                </p>
+                <div className="font-mono text-[11px] space-y-0.5 pt-1 border-t border-[#121212]/10 text-[#121212]">
+                  <div><strong>Officer:</strong> Grievance Redressal Cell</div>
+                  <div><strong>Email:</strong> <a href="mailto:grievance@palate.in" className="text-[#2748FF] underline font-bold">grievance@palate.in</a></div>
+                  <div><strong>Response Turnaround:</strong> &lt; 36 Hours</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="pt-4 border-t border-[#121212]/15 flex flex-col sm:flex-row items-center justify-between text-[11px] font-mono text-[#121212]/60 gap-2">
+            <div>
+              © 2026 Palate Technologies. Built with pride for Navi Mumbai foodies.
+            </div>
+            <div className="flex items-center space-x-4">
+              <span>Community Driven</span>
+              <span>•</span>
+              <span>Anti-Sybil Voting</span>
+              <span>•</span>
+              <span>Zero Dark Patterns</span>
+            </div>
+          </div>
+        </footer>
       </main>
 
       {/* CREATE BATTLE MODAL */}
