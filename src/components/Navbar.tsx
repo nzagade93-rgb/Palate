@@ -8,7 +8,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { Swords, Compass, Trophy, User, PlusCircle, Flame, Menu, X } from 'lucide-react';
+import { Swords, Compass, Trophy, User, PlusCircle, Flame, Menu, X, Receipt, Cloud } from 'lucide-react';
 import { FoodPassport } from '@/lib/types';
 
 interface NavbarProps {
@@ -18,6 +18,9 @@ interface NavbarProps {
   onOpenExplore?: () => void;
   activeSection?: string;
   onNavigateSection?: (section: string) => void;
+  currentUser?: any;
+  onOpenAuth?: () => void;
+  onOpenCheckin?: () => void;
 }
 
 export default function Navbar({
@@ -27,6 +30,9 @@ export default function Navbar({
   onOpenExplore,
   activeSection = 'battles',
   onNavigateSection,
+  currentUser,
+  onOpenAuth,
+  onOpenCheckin,
 }: NavbarProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -115,8 +121,21 @@ export default function Navbar({
           </Link>
         </nav>
 
-        {/* Actions (Create + Profile) */}
+        {/* Actions (Check In + Create + Auth + Profile) */}
         <div className="flex items-center space-x-2">
+          {/* Live Check-In Button */}
+          {onOpenCheckin && (
+            <button
+              onClick={onOpenCheckin}
+              id="nav-checkin-btn"
+              className="flex items-center space-x-1.5 rounded-xl border-2 border-[#121212] bg-[#FFFFFF] px-2.5 py-1.5 text-xs font-black uppercase text-[#121212] shadow-[2px_2px_0px_#121212] hover:bg-[#FFD11A] transition-all"
+              title="Check In & Upload Receipt"
+            >
+              <Receipt className="h-3.5 w-3.5" />
+              <span className="hidden sm:inline">Check In</span>
+            </button>
+          )}
+
           {/* Create Battle Button */}
           {onOpenCreateBattle && (
             <button
@@ -130,7 +149,35 @@ export default function Navbar({
             </button>
           )}
 
-          {/* Profile Trigger */}
+          {/* Cloud Auth / Sync Trigger */}
+          {onOpenAuth && (
+            <button
+              onClick={onOpenAuth}
+              id="nav-auth-btn"
+              className={`flex items-center space-x-1.5 rounded-xl border-2 border-[#121212] px-2.5 py-1.5 text-xs font-black shadow-[2px_2px_0px_#121212] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[1px_1px_0px_#121212] transition-all ${
+                currentUser
+                  ? 'bg-[#E3F9ED] text-[#008A52]'
+                  : 'bg-white text-[#121212]'
+              }`}
+              title={currentUser ? `Signed in as ${currentUser.email}` : 'Sign In for Cloud Sync'}
+            >
+              {currentUser ? (
+                <>
+                  <span className="flex h-5 w-5 items-center justify-center rounded-md bg-[#00B26B] text-white text-[10px] font-black">
+                    {(currentUser.user_metadata?.display_name || currentUser.email || 'U')[0].toUpperCase()}
+                  </span>
+                  <span className="hidden md:inline font-mono text-[10px]">SYNCED</span>
+                </>
+              ) : (
+                <>
+                  <Cloud className="h-3.5 w-3.5 text-[#2748FF]" />
+                  <span className="hidden md:inline">Sync</span>
+                </>
+              )}
+            </button>
+          )}
+
+          {/* Profile / Passport Trigger */}
           <button
             onClick={onOpenPassport}
             id="nav-profile-btn"
@@ -164,6 +211,40 @@ export default function Navbar({
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
         <div className="md:hidden border-t-2 border-[#121212] bg-[#F6EFE2] px-4 py-3 space-y-2 font-bold text-sm">
+          {onOpenCheckin && (
+            <button
+              onClick={() => {
+                setMobileMenuOpen(false);
+                onOpenCheckin();
+              }}
+              className="w-full flex items-center justify-between rounded-lg border-2 border-[#121212] bg-[#FFD11A] p-2.5 text-left text-xs font-black uppercase shadow-[2px_2px_0px_#121212]"
+            >
+              <span className="flex items-center space-x-2">
+                <Receipt className="h-4 w-4" />
+                <span>🧾 Check In & Upload Receipt</span>
+              </span>
+              <span className="text-[10px] font-mono text-[#121212]">NEW</span>
+            </button>
+          )}
+
+          {onOpenAuth && (
+            <button
+              onClick={() => {
+                setMobileMenuOpen(false);
+                onOpenAuth();
+              }}
+              className="w-full flex items-center justify-between rounded-lg border-2 border-[#121212] bg-[#FFFFFF] p-2.5 text-left text-xs font-black uppercase shadow-[2px_2px_0px_#121212]"
+            >
+              <span className="flex items-center space-x-2">
+                <Cloud className="h-4 w-4 text-[#2748FF]" />
+                <span>{currentUser ? '👤 Cloud Profile' : '☁️ Sign In / Cloud Sync'}</span>
+              </span>
+              <span className="text-[10px] font-mono text-[#00B26B]">
+                {currentUser ? 'SYNCED' : 'OFFLINE'}
+              </span>
+            </button>
+          )}
+
           <button
             onClick={() => handleNav('battles')}
             className="w-full flex items-center justify-between rounded-lg border-2 border-[#121212] bg-[#FFFFFF] p-2.5 text-left text-xs font-black uppercase shadow-[2px_2px_0px_#121212]"

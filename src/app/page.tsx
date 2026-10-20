@@ -16,10 +16,20 @@ import ChallengeWinnerModal from '@/components/ChallengeWinnerModal';
 import ChallengesView from '@/components/ChallengesView';
 import LeaderboardView from '@/components/LeaderboardView';
 import InstallPWA from '@/components/InstallPWA';
+import AuthModal from '@/components/AuthModal';
+import CheckinModal from '@/components/CheckinModal';
 
 import { Battle, FoodPassport as FoodPassportType, BattleChallenge } from '@/lib/types';
 import { getDeviceFingerprint } from '@/lib/fingerprint';
 import { trackEvent, recordSharedLinkAttribution } from '@/lib/analytics';
+import {
+  supabase,
+  getCurrentUser,
+  fetchCloudCheckins,
+  subscribeToCloudCheckins,
+  CloudCheckin,
+} from '@/lib/supabase';
+import { User } from '@supabase/supabase-js';
 import {
   Flame,
   Swords,
@@ -33,6 +43,8 @@ import {
   AlertCircle,
   PlusCircle,
   Sparkles,
+  Receipt,
+  CheckCircle2,
 } from 'lucide-react';
 
 const NAVI_MUMBAI_NODES = [
@@ -58,10 +70,16 @@ export default function HomePage() {
   const [isLoading, setIsLoading] = useState(true);
   const [isVoting, setIsVoting] = useState(false);
 
-  // Modals
+  // Modals & Cloud State
   const [isPassportOpen, setIsPassportOpen] = useState(false);
   const [isCreateBattleOpen, setIsCreateBattleOpen] = useState(false);
   const [challengeTargetBattle, setChallengeTargetBattle] = useState<Battle | null>(null);
+
+  // Supabase Auth & Cloud Sync
+  const [currentUser, setCurrentUser] = useState<User | null>(null);
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+  const [isCheckinModalOpen, setIsCheckinModalOpen] = useState(false);
+  const [cloudCheckins, setCloudCheckins] = useState<CloudCheckin[]>([]);
 
   const battlesSectionRef = useRef<HTMLDivElement>(null);
 
@@ -69,6 +87,24 @@ export default function HomePage() {
   useEffect(() => {
     const fp = getDeviceFingerprint();
     setFingerprint(fp);
+
+    // 1. Supabase Auth listener
+    getCurrentUser().then((u) => setCurrentUser(u));
+    let authUnsub: (() => void) | undefined;
+    if (supabase) {
+      const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+        setCurrentUser(session?.user || null);
+      });
+      authUnsub = () => subscription.unsubscribe();
+    }
+
+    // 2. Fetch live Cloud Check-ins & subscribe to Realtime
+    fetchCloudCheckins(15).then((list) => {
+      if (list && list.length > 0) setCloudCheckins(list);
+    });
+    const checkinUnsub = subscribeToCloudCheckins((newCheckin) => {
+      setCloudCheckins((prev) => [newCheckin, ...prev]);
+    });
 
     async function loadInitialData() {
       try {
@@ -109,6 +145,11 @@ export default function HomePage() {
 
     recordSharedLinkAttribution();
     loadInitialData();
+
+    return () => {
+      if (authUnsub) authUnsub();
+      if (checkinUnsub) checkinUnsub();
+    };
   }, []);
 
   // Vote Handler
@@ -267,6 +308,21 @@ export default function HomePage() {
     });
   }, [battles, selectedNeighborhood, searchQuery]);
 
+  const handleCheckinSuccess = (newCheckin: CloudCheckin, hasReceipt: boolean) => {
+    setCloudCheckins((prev) => [newCheckin, ...prev]);
+    if (passport) {
+      setPassport((prev) =>
+        prev
+          ? {
+              ...prev,
+              dishesTriedCount: prev.dishesTriedCount + 1,
+              levelProgress: Math.min(100, prev.levelProgress + (hasReceipt ? 20 : 10)),
+            }
+          : null
+      );
+    }
+  };
+
   return (
     <div className="min-h-screen bg-[#F6EFE2] text-[#121212] pb-24">
       {/* Top Navbar */}
@@ -276,6 +332,9 @@ export default function HomePage() {
         onOpenCreateBattle={() => setIsCreateBattleOpen(true)}
         activeSection={activeNavSection}
         onNavigateSection={(sec: any) => setActiveNavSection(sec)}
+        currentUser={currentUser}
+        onOpenAuth={() => setIsAuthModalOpen(true)}
+        onOpenCheckin={() => setIsCheckinModalOpen(true)}
       />
 
       {/* HERO SECTION */}
@@ -599,6 +658,94 @@ export default function HomePage() {
                 </div>
               </div>
             </div>
+
+            {/* Live Community Food Radar (Supabase Real-Time Check-Ins) */}
+            <div className="poster-card p-5 bg-[#FFFFFF] space-y-4">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 pb-3 border-b-2 border-[#121212]/10">
+                <div>
+                  <div className="inline-flex items-center space-x-1.5 rounded-full border border-[#121212] bg-[#E3F9ED] px-2.5 py-0.5 text-[10px] font-mono font-black uppercase text-[#008A52] mb-1">
+                    <span className="h-1.5 w-1.5 rounded-full bg-[#00B26B] animate-pulse" />
+                    <span>Supabase Cloud Radar</span>
+                  </div>
+                  <h4 className="text-xl font-black text-[#121212] uppercase tracking-tight">
+                    Live Community Check-Ins & Anti-Regret Radar
+                  </h4>
+                  <p className="text-xs text-[#121212]/70 font-medium">
+                    Verified bites logged by diners across Vashi, Nerul, Belapur, Kharghar, and Seawoods.
+                  </p>
+                </div>
+
+                <button
+                  onClick={() => setIsCheckinModalOpen(true)}
+                  className="btn-yellow px-4 py-2 text-xs font-black uppercase tracking-wider flex items-center justify-center space-x-1.5 shrink-0"
+                >
+                  <Receipt className="h-3.5 w-3.5" />
+                  <span>+ Check In Dish</span>
+                </button>
+              </div>
+
+              {/* Check-ins Feed */}
+              <div className="space-y-2.5 max-h-[380px] overflow-y-auto pr-1">
+                {cloudCheckins.length > 0 ? (
+                  cloudCheckins.map((chk) => (
+                    <div
+                      key={chk.id}
+                      className="p-3.5 rounded-xl border-2 border-[#121212] bg-[#F6EFE2] shadow-[2px_2px_0px_#121212] flex items-start justify-between gap-3"
+                    >
+                      <div className="space-y-1">
+                        <div className="flex items-center space-x-2">
+                          <span className="font-black text-sm text-[#121212]">
+                            {chk.dish_name}
+                          </span>
+                          <span className="text-xs text-[#121212]/60 font-bold">
+                            @ {chk.venue_name}
+                          </span>
+                        </div>
+
+                        {chk.note && (
+                          <p className="text-xs text-[#121212]/80 font-medium italic">
+                            "{chk.note}"
+                          </p>
+                        )}
+
+                        <div className="flex items-center space-x-2 text-[10px] font-mono text-[#121212]/60 pt-0.5">
+                          <span>{chk.user_name || 'Anonymous Diner'}</span>
+                          <span>•</span>
+                          <span>
+                            {new Date(chk.created_at).toLocaleTimeString([], {
+                              hour: '2-digit',
+                              minute: '2-digit',
+                            })}
+                          </span>
+                        </div>
+                      </div>
+
+                      <div className="shrink-0">
+                        <span
+                          className={`px-2.5 py-1 rounded-lg border-2 text-[10px] font-black uppercase tracking-wider ${
+                            chk.reaction === 'GOD_TIER'
+                              ? 'border-[#008A52] bg-[#E3F9ED] text-[#008A52]'
+                              : 'border-[#D92D20] bg-[#FFEBEB] text-[#D92D20]'
+                          }`}
+                        >
+                          {chk.reaction === 'GOD_TIER' ? 'GOD TIER 🔥' : 'SKIP ❌'}
+                        </span>
+                      </div>
+                    </div>
+                  ))
+                ) : (
+                  <div className="p-8 text-center rounded-xl border-2 border-dashed border-[#121212]/30 text-xs font-bold text-[#121212]/60 space-y-2">
+                    <p>No check-ins logged yet today. Be the first to check in!</p>
+                    <button
+                      onClick={() => setIsCheckinModalOpen(true)}
+                      className="px-3 py-1.5 rounded-lg border-2 border-[#121212] bg-[#FFD11A] text-xs font-black uppercase shadow-[2px_2px_0px_#121212]"
+                    >
+                      Post First Check-In
+                    </button>
+                  </div>
+                )}
+              </div>
+            </div>
           </div>
         )}
 
@@ -644,6 +791,22 @@ export default function HomePage() {
         isOpen={isPassportOpen}
         onClose={() => setIsPassportOpen(false)}
         passport={passport}
+      />
+
+      {/* SUPABASE AUTH MODAL */}
+      <AuthModal
+        isOpen={isAuthModalOpen}
+        onClose={() => setIsAuthModalOpen(false)}
+        currentUser={currentUser}
+        onAuthSuccess={setCurrentUser}
+      />
+
+      {/* CHECK-IN & RECEIPT MODAL */}
+      <CheckinModal
+        isOpen={isCheckinModalOpen}
+        onClose={() => setIsCheckinModalOpen(false)}
+        currentUser={currentUser}
+        onCheckinSuccess={handleCheckinSuccess}
       />
 
       {/* INSTALL PWA BANNER */}
