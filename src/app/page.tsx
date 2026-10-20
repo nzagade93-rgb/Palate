@@ -8,6 +8,7 @@
 // ==============================================================================
 
 import React, { useState, useEffect, useMemo, useRef } from 'react';
+import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import FoodBattleCard from '@/components/FoodBattleCard';
 import FoodPassport from '@/components/FoodPassport';
@@ -829,16 +830,18 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="pt-4 border-t border-[#121212]/15 flex flex-col sm:flex-row items-center justify-between text-[11px] font-mono text-[#121212]/60 gap-2">
+          <div className="pt-4 border-t border-[#121212]/15 flex flex-col sm:flex-row items-center justify-between text-[11px] font-mono text-[#121212]/70 gap-2">
             <div>
               © 2026 Palate Technologies. Built with pride for Navi Mumbai foodies.
             </div>
-            <div className="flex items-center space-x-4">
-              <span>Community Driven</span>
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-1 font-bold text-[#121212]">
+              <Link href="/terms" className="hover:underline hover:text-[#2748FF]">Terms & Safe Harbor</Link>
               <span>•</span>
-              <span>Anti-Sybil Voting</span>
+              <Link href="/privacy" className="hover:underline hover:text-[#2748FF]">Privacy (DPDP)</Link>
               <span>•</span>
-              <span>Zero Dark Patterns</span>
+              <Link href="/refund" className="hover:underline hover:text-[#2748FF]">Refund Policy</Link>
+              <span>•</span>
+              <Link href="/grievance" className="hover:underline hover:text-[#2748FF]">Grievance Desk</Link>
             </div>
           </div>
         </footer>
