@@ -5,10 +5,11 @@
   --palate-blue: #2748FF;
   --palate-pink: #FF5C9A;
   --palate-mint: #00B26B;
-  --palate-paper: #F6EFE2;
+  --palate-paper: #FAF8F5;
   --palate-white: #FFFFFF;
-  --palate-concrete: #DDD4C2;
-  --palate-tar: #121212;
+  --palate-concrete: #EFECE6;
+  --palate-tar: #1C1917;
+  --palate-border: #1C1917;
 }
 
 @theme {
@@ -26,115 +27,115 @@
 /* PALATE Light-Mode Paper Canvas */
 html {
   color-scheme: light;
-  background-color: #F6EFE2;
+  background-color: #FAF8F5;
   -webkit-tap-highlight-color: transparent;
   scroll-behavior: smooth;
 }
 
 body {
-  background-color: #F6EFE2;
-  color: #121212;
+  background-color: #FAF8F5;
+  color: #1C1917;
   font-family: var(--font-sans), ui-sans-serif, system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
 }
 
-/* Indian Street Poster & Brutal Editorial Styling */
+/* Indian Street Poster & Warm Editorial Styling */
 .poster-card {
   background-color: #FFFFFF;
-  border: 2.5px solid #121212;
+  border: 1.5px solid #1C1917;
   border-radius: 16px;
-  box-shadow: 4px 4px 0px #121212;
+  box-shadow: 3px 3px 0px #1C1917;
   transition: all 0.15s ease-out;
 }
 
 .poster-card-interactive:hover {
-  transform: translate(-2px, -2px);
-  box-shadow: 6px 6px 0px #121212;
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0px #1C1917;
 }
 
 .poster-card-interactive:active {
   transform: translate(1px, 1px);
-  box-shadow: 2px 2px 0px #121212;
+  box-shadow: 1px 1px 0px #1C1917;
 }
 
 /* Buttons */
 .btn-yellow {
   background-color: #FFD11A;
-  color: #121212;
+  color: #1C1917;
   font-weight: 800;
-  border: 2px solid #121212;
+  border: 1.5px solid #1C1917;
   border-radius: 12px;
-  box-shadow: 3px 3px 0px #121212;
+  box-shadow: 2px 2px 0px #1C1917;
   transition: all 0.12s ease;
 }
 
 .btn-yellow:hover {
   transform: translate(-1px, -1px);
-  box-shadow: 4px 4px 0px #121212;
+  box-shadow: 3px 3px 0px #1C1917;
   background-color: #ffd83b;
 }
 
 .btn-yellow:active {
-  transform: translate(2px, 2px);
-  box-shadow: 0px 0px 0px #121212;
+  transform: translate(1px, 1px);
+  box-shadow: 0px 0px 0px #1C1917;
 }
 
 .btn-blue {
   background-color: #2748FF;
   color: #FFFFFF;
   font-weight: 800;
-  border: 2px solid #121212;
+  border: 1.5px solid #1C1917;
   border-radius: 12px;
-  box-shadow: 3px 3px 0px #121212;
+  box-shadow: 2px 2px 0px #1C1917;
   transition: all 0.12s ease;
 }
 
 .btn-blue:hover {
   transform: translate(-1px, -1px);
-  box-shadow: 4px 4px 0px #121212;
+  box-shadow: 3px 3px 0px #1C1917;
 }
 
 .btn-blue:active {
-  transform: translate(2px, 2px);
-  box-shadow: 0px 0px 0px #121212;
+  transform: translate(1px, 1px);
+  box-shadow: 0px 0px 0px #1C1917;
 }
 
 .btn-pink {
   background-color: #FF5C9A;
   color: #FFFFFF;
   font-weight: 800;
-  border: 2px solid #121212;
+  border: 1.5px solid #1C1917;
   border-radius: 12px;
-  box-shadow: 3px 3px 0px #121212;
+  box-shadow: 2px 2px 0px #1C1917;
   transition: all 0.12s ease;
 }
 
 .btn-pink:hover {
   transform: translate(-1px, -1px);
-  box-shadow: 4px 4px 0px #121212;
+  box-shadow: 3px 3px 0px #1C1917;
 }
 
 .btn-pink:active {
-  transform: translate(2px, 2px);
-  box-shadow: 0px 0px 0px #121212;
+  transform: translate(1px, 1px);
+  box-shadow: 0px 0px 0px #1C1917;
 }
 
 .btn-white {
   background-color: #FFFFFF;
-  color: #121212;
+  color: #1C1917;
   font-weight: 700;
-  border: 2px solid #121212;
+  border: 1.5px solid #1C1917;
   border-radius: 12px;
-  box-shadow: 3px 3px 0px #121212;
+  box-shadow: 2px 2px 0px #1C1917;
   transition: all 0.12s ease;
 }
 
 .btn-white:hover {
-  background-color: #F6EFE2;
+  background-color: #FAF8F5;
   transform: translate(-1px, -1px);
-  box-shadow: 4px 4px 0px #121212;
+  box-shadow: 3px 3px 0px #1C1917;
 }
 
 .btn-white:active {

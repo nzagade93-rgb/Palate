@@ -44,24 +44,24 @@ export default function Navbar({
   };
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b-[2.5px] border-[#121212] bg-[#F6EFE2]/95 backdrop-blur-md transition-colors">
+    <header className="sticky top-0 z-40 w-full border-b border-[#1C1917]/10 bg-[#FAF8F5]/90 backdrop-blur-md transition-colors">
       <div className="mx-auto flex h-16 max-w-5xl items-center justify-between px-4 sm:px-6">
         {/* Brand / Logo */}
         <Link href="/" className="flex items-center space-x-2.5 group">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl border-2 border-[#121212] bg-[#FFD11A] shadow-[2px_2px_0px_#121212] group-hover:translate-x-0.5 group-hover:translate-y-0.5 group-hover:shadow-[1px_1px_0px_#121212] transition-all">
-            <Swords className="h-5 w-5 text-[#121212]" />
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-[#1C1917]/20 bg-[#FFD11A] shadow-[2px_2px_0px_#1C1917] group-hover:translate-x-0.5 group-hover:translate-y-0.5 group-hover:shadow-[1px_1px_0px_#1C1917] transition-all">
+            <Swords className="h-5 w-5 text-[#1C1917]" />
           </div>
 
           <div className="flex flex-col">
             <div className="flex items-center space-x-1.5">
-              <span className="text-xl font-black tracking-tight text-[#121212]">
+              <span className="text-xl font-black tracking-tight text-[#1C1917]">
                 PALATE
               </span>
-              <span className="rounded-md border border-[#121212] bg-[#121212] px-1.5 py-0.2 text-[10px] font-mono font-bold tracking-widest text-[#FFD11A]">
+              <span className="rounded-md bg-[#1C1917] px-1.5 py-0.5 text-[9px] font-mono font-bold tracking-widest text-[#FFD11A]">
                 IN
               </span>
             </div>
-            <span className="text-[10px] font-black uppercase tracking-wider text-[#121212]/70 leading-none">
+            <span className="text-[10px] font-extrabold uppercase tracking-wider text-[#1C1917]/60 leading-none">
               Food Fights
             </span>
           </div>
@@ -71,10 +71,10 @@ export default function Navbar({
         <nav className="hidden md:flex items-center space-x-1 font-bold text-xs">
           <button
             onClick={() => handleNav('battles')}
-            className={`px-3 py-2 rounded-lg border-2 transition-all ${
+            className={`px-3 py-2 rounded-lg border transition-all ${
               activeSection === 'battles'
-                ? 'border-[#121212] bg-[#FFD11A] text-[#121212] shadow-[2px_2px_0px_#121212]'
-                : 'border-transparent text-[#121212] hover:bg-[#DDD4C2]/50'
+                ? 'border-[#1C1917] bg-[#FFD11A] text-[#1C1917] shadow-[2px_2px_0px_#1C1917]'
+                : 'border-transparent text-[#1C1917]/80 hover:text-[#1C1917] hover:bg-[#EFECE6]'
             }`}
           >
             Battles
@@ -82,21 +82,21 @@ export default function Navbar({
 
           <button
             onClick={() => handleNav('explore')}
-            className={`px-3 py-2 rounded-lg border-2 transition-all ${
+            className={`px-3 py-2 rounded-lg border transition-all ${
               activeSection === 'explore'
-                ? 'border-[#121212] bg-[#FFD11A] text-[#121212] shadow-[2px_2px_0px_#121212]'
-                : 'border-transparent text-[#121212] hover:bg-[#DDD4C2]/50'
+                ? 'border-[#1C1917] bg-[#FFD11A] text-[#1C1917] shadow-[2px_2px_0px_#1C1917]'
+                : 'border-transparent text-[#1C1917]/80 hover:text-[#1C1917] hover:bg-[#EFECE6]'
             }`}
           >
-            Explore Navi Mumbai
+            Explore Nodes
           </button>
 
           <button
             onClick={() => handleNav('leaderboard')}
-            className={`px-3 py-2 rounded-lg border-2 transition-all ${
+            className={`px-3 py-2 rounded-lg border transition-all ${
               activeSection === 'leaderboard'
-                ? 'border-[#121212] bg-[#FFD11A] text-[#121212] shadow-[2px_2px_0px_#121212]'
-                : 'border-transparent text-[#121212] hover:bg-[#DDD4C2]/50'
+                ? 'border-[#1C1917] bg-[#FFD11A] text-[#1C1917] shadow-[2px_2px_0px_#1C1917]'
+                : 'border-transparent text-[#1C1917]/80 hover:text-[#1C1917] hover:bg-[#EFECE6]'
             }`}
           >
             Leaderboards
@@ -104,10 +104,10 @@ export default function Navbar({
 
           <button
             onClick={() => handleNav('challenges')}
-            className={`px-3 py-2 rounded-lg border-2 transition-all ${
+            className={`px-3 py-2 rounded-lg border transition-all ${
               activeSection === 'challenges'
-                ? 'border-[#121212] bg-[#FFD11A] text-[#121212] shadow-[2px_2px_0px_#121212]'
-                : 'border-transparent text-[#121212] hover:bg-[#DDD4C2]/50'
+                ? 'border-[#1C1917] bg-[#FFD11A] text-[#1C1917] shadow-[2px_2px_0px_#1C1917]'
+                : 'border-transparent text-[#1C1917]/80 hover:text-[#1C1917] hover:bg-[#EFECE6]'
             }`}
           >
             Challenges
@@ -115,33 +115,33 @@ export default function Navbar({
 
           <Link
             href="/restaurant"
-            className="px-3 py-2 rounded-lg border-2 border-transparent text-[#121212] hover:bg-[#DDD4C2]/50 transition-all font-bold text-xs"
+            className="px-3 py-2 rounded-lg border border-transparent text-[#1C1917]/80 hover:text-[#1C1917] hover:bg-[#EFECE6] transition-all font-bold text-xs"
           >
             Partner Portal
           </Link>
         </nav>
 
-        {/* Actions (Check In + Create + Auth + Profile) */}
+        {/* Actions (Desktop: Check-In, Sync, Profile | Mobile: Level Badge & Menu) */}
         <div className="flex items-center space-x-2">
-          {/* Live Check-In Button */}
+          {/* Live Check-In Button (Desktop & Tablet) */}
           {onOpenCheckin && (
             <button
               onClick={onOpenCheckin}
               id="nav-checkin-btn"
-              className="flex items-center space-x-1.5 rounded-xl border-2 border-[#121212] bg-[#FFFFFF] px-2.5 py-1.5 text-xs font-black uppercase text-[#121212] shadow-[2px_2px_0px_#121212] hover:bg-[#FFD11A] transition-all"
+              className="hidden sm:flex items-center space-x-1.5 rounded-xl border border-[#1C1917]/20 bg-[#FFFFFF] px-3 py-1.5 text-xs font-black uppercase text-[#1C1917] shadow-[2px_2px_0px_#1C1917] hover:bg-[#FFD11A] transition-all"
               title="Check In & Upload Receipt"
             >
               <Receipt className="h-3.5 w-3.5" />
-              <span className="hidden sm:inline">Check In</span>
+              <span>Check In</span>
             </button>
           )}
 
-          {/* Create Battle Button */}
+          {/* Create Battle Button (Desktop) */}
           {onOpenCreateBattle && (
             <button
               onClick={onOpenCreateBattle}
               id="nav-create-battle-btn"
-              className="hidden sm:flex items-center space-x-1.5 btn-yellow px-3 py-1.5 text-xs font-black uppercase tracking-wider"
+              className="hidden lg:flex items-center space-x-1.5 btn-yellow px-3 py-1.5 text-xs font-black uppercase tracking-wider"
               title="Create a food fight"
             >
               <PlusCircle className="h-4 w-4" />
@@ -149,15 +149,15 @@ export default function Navbar({
             </button>
           )}
 
-          {/* Cloud Auth / Sync Trigger */}
+          {/* Cloud Auth / Sync Trigger (Desktop & Tablet) */}
           {onOpenAuth && (
             <button
               onClick={onOpenAuth}
               id="nav-auth-btn"
-              className={`flex items-center space-x-1.5 rounded-xl border-2 border-[#121212] px-2.5 py-1.5 text-xs font-black shadow-[2px_2px_0px_#121212] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[1px_1px_0px_#121212] transition-all ${
+              className={`hidden sm:flex items-center space-x-1.5 rounded-xl border border-[#1C1917]/20 px-2.5 py-1.5 text-xs font-bold shadow-[2px_2px_0px_#1C1917] hover:translate-x-0.5 hover:translate-y-0.5 transition-all ${
                 currentUser
                   ? 'bg-[#E3F9ED] text-[#008A52]'
-                  : 'bg-white text-[#121212]'
+                  : 'bg-white text-[#1C1917]'
               }`}
               title={currentUser ? `Signed in as ${currentUser.email}` : 'Sign In for Cloud Sync'}
             >
@@ -171,7 +171,7 @@ export default function Navbar({
               ) : (
                 <>
                   <Cloud className="h-3.5 w-3.5 text-[#2748FF]" />
-                  <span className="hidden md:inline">Sync</span>
+                  <span className="hidden md:inline font-bold">Sync</span>
                 </>
               )}
             </button>
@@ -181,17 +181,17 @@ export default function Navbar({
           <button
             onClick={onOpenPassport}
             id="nav-profile-btn"
-            className="flex items-center space-x-2 rounded-xl border-2 border-[#121212] bg-[#FFFFFF] px-2.5 py-1.5 text-xs font-bold text-[#121212] shadow-[2px_2px_0px_#121212] hover:bg-[#F6EFE2] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all"
+            className="flex items-center space-x-1.5 sm:space-x-2 rounded-xl border border-[#1C1917]/20 bg-[#FFFFFF] px-2.5 py-1.5 text-xs font-bold text-[#1C1917] shadow-[2px_2px_0px_#1C1917] hover:bg-[#FAF8F5] active:translate-x-0.5 active:translate-y-0.5 transition-all"
             title="Open Profile"
           >
-            <div className="flex h-6 w-6 items-center justify-center rounded-lg bg-[#FFD11A] border border-[#121212]">
-              <User className="h-3.5 w-3.5 text-[#121212]" />
+            <div className="flex h-6 w-6 items-center justify-center rounded-lg bg-[#FFD11A] border border-[#1C1917]/20">
+              <User className="h-3.5 w-3.5 text-[#1C1917]" />
             </div>
-            <div className="hidden xs:flex flex-col text-left leading-none">
-              <span className="text-[10px] font-mono text-[#121212]/70 font-black">
-                VOTER
+            <div className="flex flex-col text-left leading-none">
+              <span className="text-[9px] font-mono text-[#1C1917]/60 font-black">
+                FOODIE
               </span>
-              <span className="text-xs font-black text-[#121212]">
+              <span className="text-[11px] font-black text-[#1C1917]">
                 {passport ? `LVL ${passport.levelNumber}` : 'LVL 1'}
               </span>
             </div>
@@ -200,7 +200,7 @@ export default function Navbar({
           {/* Mobile Menu Toggle */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden flex h-9 w-9 items-center justify-center rounded-lg border-2 border-[#121212] bg-[#FFFFFF] shadow-[2px_2px_0px_#121212]"
+            className="md:hidden flex h-9 w-9 items-center justify-center rounded-xl border border-[#1C1917]/20 bg-[#FFFFFF] shadow-[2px_2px_0px_#1C1917] hover:bg-[#FAF8F5] transition-all"
             aria-label="Toggle menu"
           >
             {mobileMenuOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
@@ -210,20 +210,20 @@ export default function Navbar({
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-t-2 border-[#121212] bg-[#F6EFE2] px-4 py-3 space-y-2 font-bold text-sm">
+        <div className="md:hidden border-t border-[#1C1917]/10 bg-[#FAF8F5] px-4 py-4 space-y-2.5 font-bold text-sm shadow-lg">
           {onOpenCheckin && (
             <button
               onClick={() => {
                 setMobileMenuOpen(false);
                 onOpenCheckin();
               }}
-              className="w-full flex items-center justify-between rounded-lg border-2 border-[#121212] bg-[#FFD11A] p-2.5 text-left text-xs font-black uppercase shadow-[2px_2px_0px_#121212]"
+              className="w-full flex items-center justify-between rounded-xl border border-[#1C1917] bg-[#FFD11A] p-3 text-left text-xs font-black uppercase shadow-[2px_2px_0px_#1C1917] active:translate-x-0.5 active:translate-y-0.5 transition-all"
             >
               <span className="flex items-center space-x-2">
                 <Receipt className="h-4 w-4" />
                 <span>🧾 Check In & Upload Receipt</span>
               </span>
-              <span className="text-[10px] font-mono text-[#121212]">NEW</span>
+              <span className="text-[10px] font-mono font-bold bg-[#1C1917] text-[#FFD11A] px-2 py-0.5 rounded">NEW</span>
             </button>
           )}
 
@@ -233,7 +233,7 @@ export default function Navbar({
                 setMobileMenuOpen(false);
                 onOpenAuth();
               }}
-              className="w-full flex items-center justify-between rounded-lg border-2 border-[#121212] bg-[#FFFFFF] p-2.5 text-left text-xs font-black uppercase shadow-[2px_2px_0px_#121212]"
+              className="w-full flex items-center justify-between rounded-xl border border-[#1C1917]/15 bg-[#FFFFFF] p-3 text-left text-xs font-bold text-[#1C1917] shadow-[2px_2px_0px_#1C1917] active:translate-x-0.5 active:translate-y-0.5 transition-all"
             >
               <span className="flex items-center space-x-2">
                 <Cloud className="h-4 w-4 text-[#2748FF]" />
@@ -245,55 +245,59 @@ export default function Navbar({
             </button>
           )}
 
-          <button
-            onClick={() => handleNav('battles')}
-            className="w-full flex items-center justify-between rounded-lg border-2 border-[#121212] bg-[#FFFFFF] p-2.5 text-left text-xs font-black uppercase shadow-[2px_2px_0px_#121212]"
-          >
-            <span>🔥 Food Battles</span>
-            <span className="text-[10px] font-mono text-[#121212]/60">LIVE NOW</span>
-          </button>
+          <div className="grid grid-cols-2 gap-2 pt-1">
+            <button
+              onClick={() => handleNav('battles')}
+              className="flex items-center justify-between rounded-xl border border-[#1C1917]/15 bg-[#FFFFFF] p-2.5 text-left text-xs font-bold shadow-[2px_2px_0px_#1C1917]"
+            >
+              <span>🔥 Battles</span>
+              <span className="text-[9px] font-mono text-[#1C1917]/50">LIVE</span>
+            </button>
 
-          <button
-            onClick={() => handleNav('explore')}
-            className="w-full flex items-center justify-between rounded-lg border-2 border-[#121212] bg-[#FFFFFF] p-2.5 text-left text-xs font-black uppercase shadow-[2px_2px_0px_#121212]"
-          >
-            <span>📍 Explore Navi Mumbai</span>
-            <span className="text-[10px] font-mono text-[#121212]/60">NODES</span>
-          </button>
+            <button
+              onClick={() => handleNav('explore')}
+              className="flex items-center justify-between rounded-xl border border-[#1C1917]/15 bg-[#FFFFFF] p-2.5 text-left text-xs font-bold shadow-[2px_2px_0px_#1C1917]"
+            >
+              <span>📍 Explore</span>
+              <span className="text-[9px] font-mono text-[#1C1917]/50">NODES</span>
+            </button>
 
-          <button
-            onClick={() => handleNav('leaderboard')}
-            className="w-full flex items-center justify-between rounded-lg border-2 border-[#121212] bg-[#FFFFFF] p-2.5 text-left text-xs font-black uppercase shadow-[2px_2px_0px_#121212]"
-          >
-            <span>🏆 Leaderboards</span>
-            <span className="text-[10px] font-mono text-[#121212]/60">RANKINGS</span>
-          </button>
+            <button
+              onClick={() => handleNav('leaderboard')}
+              className="flex items-center justify-between rounded-xl border border-[#1C1917]/15 bg-[#FFFFFF] p-2.5 text-left text-xs font-bold shadow-[2px_2px_0px_#1C1917]"
+            >
+              <span>🏆 Leaderboard</span>
+              <span className="text-[9px] font-mono text-[#1C1917]/50">TOP</span>
+            </button>
 
-          <button
-            onClick={() => handleNav('challenges')}
-            className="w-full flex items-center justify-between rounded-lg border-2 border-[#121212] bg-[#FFFFFF] p-2.5 text-left text-xs font-black uppercase shadow-[2px_2px_0px_#121212]"
-          >
-            <span>⚔️ Challenge A Winner</span>
-            <span className="text-[10px] font-mono text-[#121212]/60">DEBATES</span>
-          </button>
+            <button
+              onClick={() => handleNav('challenges')}
+              className="flex items-center justify-between rounded-xl border border-[#1C1917]/15 bg-[#FFFFFF] p-2.5 text-left text-xs font-bold shadow-[2px_2px_0px_#1C1917]"
+            >
+              <span>⚔️ Challenges</span>
+              <span className="text-[9px] font-mono text-[#1C1917]/50">ARENA</span>
+            </button>
+          </div>
 
-          <Link
-            href="/restaurant"
-            onClick={() => setMobileMenuOpen(false)}
-            className="w-full flex items-center justify-between rounded-lg border-2 border-[#121212] bg-[#FFFFFF] p-2.5 text-left text-xs font-black uppercase shadow-[2px_2px_0px_#121212]"
-          >
-            <span>🏪 Restaurant Partner Portal</span>
-            <span className="text-[10px] font-mono text-[#00B26B]">PARTNERS</span>
-          </Link>
+          <div className="pt-1 space-y-2">
+            <Link
+              href="/restaurant"
+              onClick={() => setMobileMenuOpen(false)}
+              className="w-full flex items-center justify-between rounded-xl border border-[#1C1917]/15 bg-[#FFFFFF] p-2.5 text-left text-xs font-bold text-[#1C1917] shadow-[2px_2px_0px_#1C1917]"
+            >
+              <span>🏪 Restaurant Partner Portal</span>
+              <span className="text-[9px] font-mono text-[#00B26B] font-bold">PARTNERS</span>
+            </Link>
 
-          <Link
-            href="/admin"
-            onClick={() => setMobileMenuOpen(false)}
-            className="w-full flex items-center justify-between rounded-lg border-2 border-[#121212] bg-[#FFFFFF] p-2.5 text-left text-xs font-black uppercase shadow-[2px_2px_0px_#121212]"
-          >
-            <span>🛡️ Admin & Monetization</span>
-            <span className="text-[10px] font-mono text-[#2748FF]">ADMIN</span>
-          </Link>
+            <Link
+              href="/admin"
+              onClick={() => setMobileMenuOpen(false)}
+              className="w-full flex items-center justify-between rounded-xl border border-[#1C1917]/15 bg-[#FFFFFF] p-2.5 text-left text-xs font-bold text-[#1C1917] shadow-[2px_2px_0px_#1C1917]"
+            >
+              <span>🛡️ Admin & Monetization</span>
+              <span className="text-[9px] font-mono text-[#2748FF] font-bold">CONTROL</span>
+            </Link>
+          </div>
 
           {onOpenCreateBattle && (
             <button
@@ -301,7 +305,7 @@ export default function Navbar({
                 setMobileMenuOpen(false);
                 onOpenCreateBattle();
               }}
-              className="w-full btn-yellow py-3 text-xs font-black uppercase tracking-wider text-center"
+              className="w-full btn-yellow py-2.5 text-xs font-black uppercase tracking-wider text-center mt-2"
             >
               + Create a Food Battle
             </button>

@@ -339,28 +339,28 @@ export default function HomePage() {
       />
 
       {/* HERO SECTION */}
-      <section className="relative overflow-hidden border-b-[2.5px] border-[#121212] bg-[#F6EFE2] px-4 pt-8 pb-10 sm:px-6">
+      <section className="relative overflow-hidden border-b border-[#1C1917]/10 bg-[#FAF8F5] px-4 pt-8 pb-10 sm:px-6">
         <div className="pointer-events-none absolute inset-0 paper-pattern" />
 
         <div className="relative mx-auto max-w-4xl">
           {/* Eyebrow Tag */}
           <div className="mb-3.5 inline-flex items-center space-x-2">
-            <span className="stamp-tag bg-[#FFD11A] text-[#121212] shadow-[2px_2px_0px_#121212]">
+            <span className="stamp-tag bg-[#FFD11A] text-[#1C1917] shadow-[2px_2px_0px_#1C1917]">
               <Flame className="h-3.5 w-3.5 mr-1" />
               NAVI MUMBAI PILOT ARENA
             </span>
-            <span className="font-mono text-xs font-bold text-[#121212]/70">
+            <span className="font-mono text-xs font-bold text-[#1C1917]/70">
               Vashi • Nerul • Belapur • Kharghar
             </span>
           </div>
 
           {/* Core Product Headline */}
-          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-[#121212] uppercase tracking-tight leading-[1.05]">
-            INDIA'S FOOD FIGHTS <span className="bg-[#FFD11A] px-2 border-2 border-[#121212] shadow-[3px_3px_0px_#121212] inline-block mt-1">BEGIN HERE.</span>
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-[#1C1917] uppercase tracking-tight leading-[1.05]">
+            INDIA'S FOOD FIGHTS <span className="bg-[#FFD11A] px-2 py-0.5 border border-[#1C1917] shadow-[2px_2px_0px_#1C1917] inline-block mt-1">BEGIN HERE.</span>
           </h1>
 
           {/* Supporting Text */}
-          <p className="mt-4 text-base sm:text-lg font-bold text-[#121212]/80 max-w-2xl leading-relaxed">
+          <p className="mt-4 text-base sm:text-lg font-bold text-[#1C1917]/80 max-w-2xl leading-relaxed">
             Your favourite dish is someone's biggest debate. Vote, settle the score, and defend your taste across Navi Mumbai's heated street rivalries.
           </p>
 
@@ -369,7 +369,7 @@ export default function HomePage() {
             <button
               onClick={scrollToBattles}
               id="hero-primary-cta"
-              className="btn-yellow px-6 py-3.5 text-sm sm:text-base font-black uppercase tracking-wider flex items-center space-x-2"
+              className="btn-yellow px-6 py-3 text-sm sm:text-base font-black uppercase tracking-wider flex items-center space-x-2"
             >
               <span>Enter the Battle</span>
               <ArrowRight className="h-4 w-4" />
@@ -378,15 +378,15 @@ export default function HomePage() {
             <button
               onClick={() => setActiveNavSection('explore')}
               id="hero-secondary-cta"
-              className="btn-white px-5 py-3.5 text-sm sm:text-base font-black uppercase tracking-wider flex items-center space-x-2"
+              className="btn-white px-5 py-3 text-sm sm:text-base font-black uppercase tracking-wider flex items-center space-x-2"
             >
               <Compass className="h-4 w-4" />
               <span>Explore Food</span>
             </button>
           </div>
 
-          {/* Transparent Demonstration Disclaimer */}
-          <div className="mt-6 inline-flex items-center space-x-2 rounded-lg border border-[#121212]/30 bg-[#DDD4C2]/30 px-3 py-1.5 text-[11px] font-mono text-[#121212]/80">
+          {/* Elegant Demonstration Disclaimer */}
+          <div className="mt-6 inline-flex items-center space-x-2 rounded-full border border-[#1C1917]/15 bg-white px-3.5 py-1.5 text-[11px] font-mono text-[#1C1917]/80 shadow-[1px_1px_0px_#1C1917]">
             <ShieldCheck className="h-4 w-4 text-emerald-700 shrink-0" />
             <span>Community popularity poll pilot. Vote counts reflect peer consensus, not verified Michelin inspection.</span>
           </div>
@@ -395,79 +395,85 @@ export default function HomePage() {
 
       {/* MAIN CONTAINER */}
       <main className="mx-auto max-w-4xl px-4 py-6 sm:px-6">
-        {/* Navigation Tabs (Battles / Explore / Leaderboard / Challenges) */}
-        <div className="mb-6 flex rounded-xl border-[2.5px] border-[#121212] bg-[#FFFFFF] p-1.5 shadow-[4px_4px_0px_#121212]">
-          <button
-            onClick={() => setActiveNavSection('battles')}
-            className={`flex-1 py-2.5 rounded-lg text-xs font-black uppercase transition-all ${
-              activeNavSection === 'battles'
-                ? 'bg-[#FFD11A] border-2 border-[#121212] shadow-[2px_2px_0px_#121212]'
-                : 'text-[#121212]/70 hover:text-[#121212]'
-            }`}
-          >
-            🔥 Live Battles ({liveBattles.length})
-          </button>
+        {/* Navigation Tabs Bar (Scrollable on mobile, equal height, zero jumping) */}
+        <div className="mb-6 -mx-4 px-4 sm:mx-0 sm:px-0">
+          <div className="flex items-center space-x-2 overflow-x-auto scrollbar-none py-1">
+            <button
+              onClick={() => setActiveNavSection('battles')}
+              className={`shrink-0 flex items-center space-x-1.5 px-4 py-2.5 rounded-xl text-xs font-black uppercase transition-all ${
+                activeNavSection === 'battles'
+                  ? 'bg-[#FFD11A] text-[#1C1917] border border-[#1C1917] shadow-[2px_2px_0px_#1C1917]'
+                  : 'bg-white text-[#1C1917]/70 border border-[#1C1917]/15 hover:bg-[#FAF8F5]'
+              }`}
+            >
+              <span>🔥</span>
+              <span>Live Battles ({liveBattles.length})</span>
+            </button>
 
-          <button
-            onClick={() => setActiveNavSection('explore')}
-            className={`flex-1 py-2.5 rounded-lg text-xs font-black uppercase transition-all ${
-              activeNavSection === 'explore'
-                ? 'bg-[#FFD11A] border-2 border-[#121212] shadow-[2px_2px_0px_#121212]'
-                : 'text-[#121212]/70 hover:text-[#121212]'
-            }`}
-          >
-            📍 Explore Nodes
-          </button>
+            <button
+              onClick={() => setActiveNavSection('explore')}
+              className={`shrink-0 flex items-center space-x-1.5 px-4 py-2.5 rounded-xl text-xs font-black uppercase transition-all ${
+                activeNavSection === 'explore'
+                  ? 'bg-[#FFD11A] text-[#1C1917] border border-[#1C1917] shadow-[2px_2px_0px_#1C1917]'
+                  : 'bg-white text-[#1C1917]/70 border border-[#1C1917]/15 hover:bg-[#FAF8F5]'
+              }`}
+            >
+              <span>📍</span>
+              <span>Explore Nodes</span>
+            </button>
 
-          <button
-            onClick={() => setActiveNavSection('leaderboard')}
-            className={`flex-1 py-2.5 rounded-lg text-xs font-black uppercase transition-all ${
-              activeNavSection === 'leaderboard'
-                ? 'bg-[#FFD11A] border-2 border-[#121212] shadow-[2px_2px_0px_#121212]'
-                : 'text-[#121212]/70 hover:text-[#121212]'
-            }`}
-          >
-            🏆 Leaderboards
-          </button>
+            <button
+              onClick={() => setActiveNavSection('leaderboard')}
+              className={`shrink-0 flex items-center space-x-1.5 px-4 py-2.5 rounded-xl text-xs font-black uppercase transition-all ${
+                activeNavSection === 'leaderboard'
+                  ? 'bg-[#FFD11A] text-[#1C1917] border border-[#1C1917] shadow-[2px_2px_0px_#1C1917]'
+                  : 'bg-white text-[#1C1917]/70 border border-[#1C1917]/15 hover:bg-[#FAF8F5]'
+              }`}
+            >
+              <span>🏆</span>
+              <span>Leaderboards</span>
+            </button>
 
-          <button
-            onClick={() => setActiveNavSection('challenges')}
-            className={`flex-1 py-2.5 rounded-lg text-xs font-black uppercase transition-all ${
-              activeNavSection === 'challenges'
-                ? 'bg-[#FFD11A] border-2 border-[#121212] shadow-[2px_2px_0px_#121212]'
-                : 'text-[#121212]/70 hover:text-[#121212]'
-            }`}
-          >
-            ⚔️ Challenges ({challenges.length})
-          </button>
+            <button
+              onClick={() => setActiveNavSection('challenges')}
+              className={`shrink-0 flex items-center space-x-1.5 px-4 py-2.5 rounded-xl text-xs font-black uppercase transition-all ${
+                activeNavSection === 'challenges'
+                  ? 'bg-[#FFD11A] text-[#1C1917] border border-[#1C1917] shadow-[2px_2px_0px_#1C1917]'
+                  : 'bg-white text-[#1C1917]/70 border border-[#1C1917]/15 hover:bg-[#FAF8F5]'
+              }`}
+            >
+              <span>⚔️</span>
+              <span>Challenges ({challenges.length})</span>
+            </button>
+          </div>
         </div>
 
         {/* VIEW 1: BATTLES STREAM */}
         {activeNavSection === 'battles' && (
           <div ref={battlesSectionRef} className="space-y-8">
             {/* Filter & Search Bar */}
-            <div className="flex flex-col sm:flex-row gap-2.5">
+            <div className="flex flex-col sm:flex-row gap-3">
               <div className="relative flex-1">
-                <Search className="absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-[#121212]/60" />
+                <Search className="absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-[#1C1917]/50" />
                 <input
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="Search battles (e.g. Vada Pav, Dal Khichdi, Misal, Biryani)..."
-                  className="w-full rounded-xl border-2 border-[#121212] bg-[#FFFFFF] py-2.5 pl-10 pr-3 text-xs font-bold text-[#121212] placeholder-[#888888] focus:outline-none focus:ring-2 focus:ring-[#FFD11A] shadow-[2px_2px_0px_#121212]"
+                  className="w-full rounded-xl border border-[#1C1917]/20 bg-[#FFFFFF] py-2.5 pl-10 pr-4 text-xs font-bold text-[#1C1917] placeholder-[#1C1917]/40 focus:outline-none focus:ring-2 focus:ring-[#FFD11A] shadow-[2px_2px_0px_#1C1917]"
                 />
               </div>
 
-              {/* Node Chips */}
-              <div className="flex items-center space-x-1.5 overflow-x-auto pb-1 sm:pb-0 scrollbar-none">
+              {/* Node Chips (Smooth edge-to-edge swipe on mobile) */}
+              <div className="-mx-4 px-4 sm:mx-0 sm:px-0 flex items-center space-x-1.5 overflow-x-auto pb-1 sm:pb-0 scrollbar-none">
                 {NAVI_MUMBAI_NODES.map((node) => (
                   <button
                     key={node}
                     onClick={() => setSelectedNeighborhood(node)}
-                    className={`whitespace-nowrap rounded-lg px-3 py-2 text-xs font-mono font-bold uppercase transition-all border-2 border-[#121212] ${
+                    className={`whitespace-nowrap shrink-0 rounded-xl px-3 py-2 text-xs font-mono font-bold uppercase transition-all border ${
                       selectedNeighborhood === node
-                        ? 'bg-[#FFD11A] shadow-[2px_2px_0px_#121212]'
-                        : 'bg-[#FFFFFF] text-[#121212]/70 hover:bg-[#F6EFE2]'
+                        ? 'border-[#1C1917] bg-[#FFD11A] text-[#1C1917] shadow-[2px_2px_0px_#1C1917]'
+                        : 'border-[#1C1917]/15 bg-[#FFFFFF] text-[#1C1917]/70 hover:bg-[#FAF8F5]'
                     }`}
                   >
                     {node === 'All' ? 'ALL NODES' : node}
