@@ -185,16 +185,16 @@ export default function RankedFoodSearchResults({
 
   if (rankedList.length === 0) {
     return (
-      <div className="poster-card p-6 bg-[#FFFFFF] border-2 border-[#1C1917] mb-6">
-        <div className="flex items-center space-x-2 text-xs font-black uppercase text-[#1C1917]/70 mb-1">
-          <AlertCircle className="h-4 w-4 text-[#A16207]" />
+      <div className="rounded-2xl p-6 bg-white border border-gray-200 mb-6 shadow-xs">
+        <div className="flex items-center space-x-2 text-xs font-bold uppercase text-[#686B78] mb-1">
+          <AlertCircle className="h-4 w-4 text-[#F6B21A]" />
           <span>No direct ranked dishes found</span>
         </div>
-        <p className="text-xs text-[#1C1917]/80 font-medium">
+        <p className="text-xs text-[#02060C] font-medium">
           We couldn&apos;t find an existing ranked winner for &ldquo;<strong>{searchQuery}</strong>&rdquo;{' '}
           {selectedNeighborhood !== 'All' ? `in ${selectedNeighborhood}` : 'in Navi Mumbai'}.
         </p>
-        <p className="text-[11px] text-[#1C1917]/60 mt-2 font-mono">
+        <p className="text-[11px] text-[#686B78] mt-2 font-medium">
           Tip: Try searching &ldquo;Pav Bhaji&rdquo;, &ldquo;Vada Pav&rdquo;, &ldquo;Dal Khichdi&rdquo;, &ldquo;Misal&rdquo;, or &ldquo;Seafood&rdquo;.
         </p>
       </div>
@@ -204,26 +204,26 @@ export default function RankedFoodSearchResults({
   return (
     <div className="space-y-4 mb-8">
       {/* Search Header Banner with Trust Guarantee */}
-      <div className="poster-card p-4 sm:p-5 bg-[#FFFFFF] border-2 border-[#3A2E28] shadow-[4px_4px_0px_#3A2E28]">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b-2 border-[#3A2E28]/10 pb-3">
+      <div className="rounded-2xl p-4 sm:p-5 bg-white border border-black/[0.06] shadow-[0_2px_12px_rgba(2,6,12,0.04)]">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-gray-100 pb-3">
           <div>
-            <div className="inline-flex items-center space-x-1.5 rounded-full border border-[#3A2E28] bg-[#F6B21A] px-2.5 py-0.5 text-[10px] font-mono font-black uppercase text-[#3A2E28] mb-1.5">
-              <Trophy className="h-3 w-3" />
-              <span>Ranked Community Consensus</span>
+            <div className="inline-flex items-center space-x-1.5 rounded-full bg-amber-50 text-[#02060C] px-2.5 py-0.5 text-[11px] font-bold border border-amber-200/50 mb-1.5">
+              <Trophy className="h-3 w-3 text-[#F6B21A]" />
+              <span>Community Consensus Rankings</span>
             </div>
-            <h3 className="text-xl sm:text-2xl font-black text-[#3A2E28] uppercase tracking-tight">
+            <h3 className="text-lg sm:text-xl font-extrabold text-[#02060C] tracking-tight">
               Best &ldquo;{searchQuery}&rdquo; in {selectedNeighborhood === 'All' ? 'Navi Mumbai' : selectedNeighborhood}
             </h3>
           </div>
 
-          <div className="inline-flex items-center space-x-1.5 rounded-lg border border-[#0F5132]/30 bg-[#DCE7D9] px-3 py-1.5 text-[11px] font-bold text-[#0F5132] shrink-0">
+          <div className="inline-flex items-center space-x-1.5 rounded-full border border-emerald-200/60 bg-emerald-50 px-3 py-1.5 text-xs font-semibold text-[#0F5132] shrink-0">
             <Shield className="h-3.5 w-3.5" />
-            <span>100% Community Ranked • Non-Sponsored</span>
+            <span>100% Organic • Non-Paid Consensus</span>
           </div>
         </div>
 
-        <p className="text-xs text-[#3A2E28]/70 font-medium pt-2.5 leading-relaxed">
-          Rankings are calculated dynamically from verified diner votes, check-ins, and battle results. Restaurants cannot pay for position promotion.
+        <p className="text-xs text-[#686B78] font-normal pt-2.5 leading-relaxed">
+          Rankings are calculated dynamically from verified diner votes, check-ins, and battle results.
         </p>
       </div>
 
@@ -238,10 +238,10 @@ export default function RankedFoodSearchResults({
               key={item.id}
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
-              className={`poster-card p-4 bg-[#FFFFFF] border-2 transition-all ${
+              className={`rounded-2xl p-4 bg-white border transition-all ${
                 item.rank === 1
-                  ? 'border-[#3A2E28] shadow-[4px_4px_0px_#F6B21A]'
-                  : 'border-[#3A2E28]/30 hover:border-[#3A2E28]'
+                  ? 'border-amber-300 shadow-[0_4px_16px_rgba(246,178,26,0.12)] ring-1 ring-amber-300/50'
+                  : 'border-black/[0.06] shadow-xs hover:shadow-md'
               }`}
             >
               <div className="flex items-start justify-between gap-3">
@@ -249,23 +249,23 @@ export default function RankedFoodSearchResults({
                 <div className="flex items-start space-x-3.5 flex-1 min-w-0">
                   {/* Rank Badge / Crest */}
                   <div
-                    className={`flex h-12 w-12 shrink-0 flex-col items-center justify-center rounded-xl border-2 font-mono font-black shadow-[2px_2px_0px_#3A2E28] ${
+                    className={`flex h-11 w-11 shrink-0 flex-col items-center justify-center rounded-xl font-extrabold ${
                       item.rank === 1
-                        ? 'border-[#3A2E28] bg-[#F6B21A] text-[#3A2E28]'
+                        ? 'bg-[#F6B21A] text-[#02060C] shadow-xs'
                         : item.rank === 2
-                        ? 'border-[#3A2E28] bg-[#DCE7D9] text-[#0F5132]'
+                        ? 'bg-gray-100 text-[#02060C]'
                         : item.rank === 3
-                        ? 'border-[#3A2E28] bg-[#EF4E3A]/15 text-[#EF4E3A]'
-                        : 'border-[#3A2E28]/20 bg-[#FFF8EE] text-[#3A2E28]/70'
+                        ? 'bg-amber-100 text-amber-900'
+                        : 'bg-gray-50 text-[#686B78]'
                     }`}
                   >
-                    <span className="text-[10px] leading-none uppercase">RANK</span>
-                    <span className="text-lg leading-tight">#{item.rank}</span>
+                    <span className="text-[9px] leading-none uppercase font-bold text-black/60">RANK</span>
+                    <span className="text-base leading-tight font-black">#{item.rank}</span>
                   </div>
 
                   {/* Thumbnail if available */}
                   {item.imageUrl && (
-                    <div className="hidden sm:block h-14 w-14 shrink-0 rounded-xl overflow-hidden border-2 border-[#3A2E28]">
+                    <div className="hidden sm:block h-14 w-14 shrink-0 rounded-xl overflow-hidden border border-gray-100">
                       <img
                         src={item.imageUrl}
                         alt={item.dishName}
@@ -279,34 +279,34 @@ export default function RankedFoodSearchResults({
                     {/* Header line with Champion tag */}
                     <div className="flex flex-wrap items-center gap-1.5 mb-0.5">
                       {item.rank === 1 && (
-                        <span className="inline-flex items-center space-x-1 rounded-md border border-[#3A2E28] bg-[#F6B21A] px-2 py-0.5 text-[9px] font-mono font-black uppercase text-[#3A2E28]">
-                          <Trophy className="h-2.5 w-2.5" />
-                          <span>CHAMPION CREST</span>
+                        <span className="inline-flex items-center space-x-1 rounded-md bg-amber-50 text-amber-900 border border-amber-200 px-2 py-0.5 text-[10px] font-bold">
+                          <Trophy className="h-2.5 w-2.5 text-[#F6B21A]" />
+                          <span>CHAMPION</span>
                         </span>
                       )}
-                      <span className="rounded-md border border-[#3A2E28]/20 bg-[#FFF8EE] px-1.5 py-0.5 text-[10px] font-mono font-bold uppercase text-[#3A2E28]/80">
+                      <span className="rounded-md bg-gray-50 border border-gray-100 px-2 py-0.5 text-[10px] font-bold uppercase text-[#686B78]">
                         {item.node}
                       </span>
                       {item.sector && (
-                        <span className="text-[10px] text-[#3A2E28]/60 font-medium">
+                        <span className="text-[11px] text-[#686B78]">
                           {item.sector}
                         </span>
                       )}
                     </div>
 
                     {/* Restaurant Name */}
-                    <h4 className="text-base font-black text-[#3A2E28] leading-snug truncate">
+                    <h4 className="text-base font-extrabold text-[#02060C] leading-snug truncate">
                       {item.restaurantName}
                     </h4>
 
                     {/* Dish & Price */}
-                    <p className="text-xs font-bold text-[#0F5132] line-clamp-1">
+                    <p className="text-xs font-semibold text-[#0F5132] line-clamp-1">
                       {item.dishName} {item.priceInr ? `• ₹${item.priceInr}` : ''}
                     </p>
 
                     {/* Quote / Highlight */}
                     {item.highlightQuote && (
-                      <p className="text-[11px] text-[#3A2E28]/70 mt-1 line-clamp-2 leading-relaxed">
+                      <p className="text-xs text-[#686B78] mt-1 line-clamp-2 leading-relaxed">
                         &ldquo;{item.highlightQuote}&rdquo;
                       </p>
                     )}
@@ -316,10 +316,10 @@ export default function RankedFoodSearchResults({
                 {/* Right: Votes & Interactive Upvote Button */}
                 <div className="flex flex-col items-end shrink-0 space-y-2">
                   <div className="text-right">
-                    <span className="block font-mono text-sm font-black text-[#3A2E28]">
+                    <span className="block text-sm font-extrabold text-[#02060C]">
                       {item.totalVotes.toLocaleString()} Votes
                     </span>
-                    <span className="inline-block rounded bg-[#00B26B]/15 px-1.5 py-0.5 font-mono text-[10px] font-black text-[#008A52]">
+                    <span className="inline-block rounded-full bg-emerald-50 px-2 py-0.5 text-[10px] font-bold text-[#0F5132]">
                       {item.consensusPercentage}% Consensus
                     </span>
                   </div>
@@ -329,14 +329,14 @@ export default function RankedFoodSearchResults({
                     <button
                       onClick={() => handleUpvote(item)}
                       disabled={isUpvoted}
-                      className={`flex items-center space-x-1 rounded-lg border border-[#1C1917] px-2.5 py-1 text-xs font-bold transition-all shadow-[1.5px_1.5px_0px_#1C1917] ${
+                      className={`flex items-center space-x-1 rounded-full px-3 py-1.5 text-xs font-bold transition-all ${
                         isUpvoted
-                          ? 'bg-[#E3F9ED] text-[#008A52] cursor-default'
-                          : 'bg-[#FFD11A] text-[#1C1917] hover:bg-[#FFE066] active:scale-95'
+                          ? 'bg-emerald-50 text-[#0F5132] cursor-default'
+                          : 'bg-[#0F5132] text-white hover:bg-[#0B3D26] active:scale-95 shadow-xs'
                       }`}
                       title={isUpvoted ? 'Upvoted!' : 'Upvote this stall (+5 Crests)'}
                     >
-                      <ThumbsUp className={`h-3 w-3 ${isUpvoted ? 'fill-[#008A52]' : ''}`} />
+                      <ThumbsUp className={`h-3 w-3 ${isUpvoted ? 'fill-[#0F5132]' : ''}`} />
                       <span>{isUpvoted ? 'Upvoted' : '+1 Upvote'}</span>
                     </button>
 
@@ -346,7 +346,7 @@ export default function RankedFoodSearchResults({
                         href={item.googleMapsUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="rounded-lg border border-[#1C1917]/20 bg-[#FAF8F5] p-1 text-[#1C1917] hover:bg-[#EFECE6] transition-colors"
+                        className="rounded-full border border-gray-200 bg-white p-1.5 text-[#686B78] hover:text-[#02060C] hover:bg-gray-50 transition-colors shadow-2xs"
                         title="Directions on Google Maps"
                       >
                         <ExternalLink className="h-3.5 w-3.5" />

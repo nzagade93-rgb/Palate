@@ -10,13 +10,13 @@ export const Footer: React.FC = () => {
       className="palate-footer mt-16 pt-10 pb-16 border-t border-[var(--footer-border)] bg-[var(--footer-bg)] text-[var(--footer-ink)]"
       style={
         {
-          '--footer-bg': '#FFF8EE',
-          '--footer-ink': '#3A2E28',
-          '--footer-muted': '#5C4E46',
-          '--footer-border': 'rgba(58, 46, 40, 0.15)',
-          '--footer-border-bold': '#3A2E28',
+          '--footer-bg': '#FFFFFF',
+          '--footer-ink': '#02060C',
+          '--footer-muted': '#686B78',
+          '--footer-border': 'rgba(2, 6, 12, 0.08)',
+          '--footer-border-bold': 'rgba(2, 6, 12, 0.16)',
           '--footer-yellow': '#F6B21A',
-          '--footer-card-bg': '#FFFFFF',
+          '--footer-card-bg': '#F8F9FA',
           '--footer-line-height-body': '1.6',
         } as React.CSSProperties
       }

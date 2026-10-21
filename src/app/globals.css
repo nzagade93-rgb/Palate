@@ -1,33 +1,34 @@
 @import "tailwindcss";
 
 :root {
-  /* Palate Brand Core Colors (From Brand Sheet) */
-  --palate-forest: #0F5132;        /* Primary */
-  --palate-tomato: #EF4E3A;        /* Accent */
-  --palate-mango: #F6B21A;         /* Highlight */
-  --palate-cream: #FFF8EE;         /* Background */
-  --palate-cocoa: #3A2E28;         /* Text */
-  --palate-sage: #DCE7D9;          /* Secondary */
+  /* Palate Brand Core Colors */
+  --palate-forest: #0F5132;        /* Primary Deep Forest Green */
+  --palate-tomato: #EF4E3A;        /* Accent Tomato Red */
+  --palate-mango: #F6B21A;         /* Warm Mango Yellow */
+  --palate-cream: #F4F5F8;         /* Swiggy-grade Clean App Background */
+  --palate-cocoa: #02060C;         /* Swiggy-grade High-Contrast Deep Slate */
+  --palate-muted: #686B78;         /* Swiggy Secondary Muted Text */
+  --palate-sage: #E8EBE9;          /* Subtle Slate Surface */
 
   /* Semantic Design System Mappings */
   --palate-yellow: var(--palate-mango);
   --palate-blue: var(--palate-forest);
   --palate-pink: var(--palate-tomato);
   --palate-mint: var(--palate-forest);
-  --palate-paper: var(--palate-cream);
+  --palate-paper: #FFFFFF;
   --palate-white: #FFFFFF;
   --palate-concrete: var(--palate-sage);
   --palate-tar: var(--palate-cocoa);
-  --palate-border: var(--palate-cocoa);
+  --palate-border: rgba(2, 6, 12, 0.08);
 
   /* Footer Tokens */
-  --footer-bg: var(--palate-cream);
-  --footer-ink: var(--palate-cocoa);
-  --footer-muted: rgba(58, 46, 40, 0.72);
-  --footer-border: rgba(58, 46, 40, 0.15);
-  --footer-border-bold: var(--palate-cocoa);
+  --footer-bg: #FFFFFF;
+  --footer-ink: #02060C;
+  --footer-muted: #686B78;
+  --footer-border: rgba(2, 6, 12, 0.08);
+  --footer-border-bold: rgba(2, 6, 12, 0.16);
   --footer-yellow: var(--palate-mango);
-  --footer-card-bg: #FFFFFF;
+  --footer-card-bg: #F8F9FA;
   --footer-line-height-body: 1.6;
 }
 
@@ -43,201 +44,204 @@
   --color-blue: var(--palate-forest);
   --color-pink: var(--palate-tomato);
   --color-mint: var(--palate-forest);
-  --color-paper: var(--palate-cream);
+  --color-paper: var(--palate-paper);
   --color-concrete: var(--palate-sage);
   --color-tar: var(--palate-cocoa);
 
-  --font-sans: var(--font-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-sans: var(--font-sans), "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
-/* PALATE Cream Background & Cocoa Typography */
+/* Swiggy-Style Clean Modern Canvas */
 html {
   color-scheme: light;
-  background-color: #FFF8EE;
+  background-color: #F4F5F8;
   -webkit-tap-highlight-color: transparent;
   scroll-behavior: smooth;
 }
 
 body {
-  background-color: #FFF8EE;
-  color: #3A2E28;
+  background-color: #F4F5F8;
+  color: #02060C;
   font-family: var(--font-sans), ui-sans-serif, system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  letter-spacing: -0.01em;
 }
 
-/* Brand Card Styling */
+/* Swiggy Modern Card Surfaces */
 .poster-card {
   background-color: #FFFFFF;
-  border: 1.5px solid #3A2E28;
-  border-radius: 16px;
-  box-shadow: 3px 3px 0px #3A2E28;
-  transition: all 0.15s ease-out;
+  border: 1px solid rgba(2, 6, 12, 0.08);
+  border-radius: 18px;
+  box-shadow: 0 2px 10px rgba(2, 6, 12, 0.04), 0 1px 2px rgba(2, 6, 12, 0.02);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .poster-card-interactive:hover {
-  transform: translate(-1px, -1px);
-  box-shadow: 4px 4px 0px #3A2E28;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(2, 6, 12, 0.08);
+  border-color: rgba(2, 6, 12, 0.12);
 }
 
 .poster-card-interactive:active {
-  transform: translate(1px, 1px);
-  box-shadow: 1px 1px 0px #3A2E28;
+  transform: translateY(0px);
+  box-shadow: 0 2px 8px rgba(2, 6, 12, 0.04);
 }
 
-/* Brand Buttons */
+/* Swiggy Clean Buttons */
 .btn-forest {
   background-color: #0F5132;
   color: #FFFFFF;
-  font-weight: 800;
-  border: 1.5px solid #3A2E28;
+  font-weight: 700;
+  border: 1px solid transparent;
   border-radius: 12px;
-  box-shadow: 2px 2px 0px #3A2E28;
-  transition: all 0.12s ease;
+  box-shadow: 0 2px 6px rgba(15, 81, 50, 0.25);
+  transition: all 0.18s ease;
 }
 
 .btn-forest:hover {
   background-color: #0B3D26;
-  transform: translate(-1px, -1px);
-  box-shadow: 3px 3px 0px #3A2E28;
+  box-shadow: 0 4px 12px rgba(15, 81, 50, 0.35);
 }
 
 .btn-forest:active {
-  transform: translate(1px, 1px);
-  box-shadow: 0px 0px 0px #3A2E28;
+  transform: scale(0.98);
 }
 
 .btn-tomato {
   background-color: #EF4E3A;
   color: #FFFFFF;
-  font-weight: 800;
-  border: 1.5px solid #3A2E28;
+  font-weight: 700;
+  border: 1px solid transparent;
   border-radius: 12px;
-  box-shadow: 2px 2px 0px #3A2E28;
-  transition: all 0.12s ease;
+  box-shadow: 0 2px 6px rgba(239, 78, 58, 0.25);
+  transition: all 0.18s ease;
 }
 
 .btn-tomato:hover {
   background-color: #D93E2B;
-  transform: translate(-1px, -1px);
-  box-shadow: 3px 3px 0px #3A2E28;
+  box-shadow: 0 4px 12px rgba(239, 78, 58, 0.35);
 }
 
 .btn-tomato:active {
-  transform: translate(1px, 1px);
-  box-shadow: 0px 0px 0px #3A2E28;
+  transform: scale(0.98);
 }
 
 .btn-yellow, .btn-mango {
   background-color: #F6B21A;
-  color: #3A2E28;
-  font-weight: 800;
-  border: 1.5px solid #3A2E28;
+  color: #02060C;
+  font-weight: 700;
+  border: 1px solid rgba(0, 0, 0, 0.06);
   border-radius: 12px;
-  box-shadow: 2px 2px 0px #3A2E28;
-  transition: all 0.12s ease;
+  box-shadow: 0 2px 6px rgba(246, 178, 26, 0.2);
+  transition: all 0.18s ease;
 }
 
 .btn-yellow:hover, .btn-mango:hover {
-  transform: translate(-1px, -1px);
-  box-shadow: 3px 3px 0px #3A2E28;
   background-color: #e5a315;
 }
 
 .btn-yellow:active, .btn-mango:active {
-  transform: translate(1px, 1px);
-  box-shadow: 0px 0px 0px #3A2E28;
+  transform: scale(0.98);
 }
 
 .btn-blue {
   background-color: #0F5132;
   color: #FFFFFF;
-  font-weight: 800;
-  border: 1.5px solid #3A2E28;
+  font-weight: 700;
   border-radius: 12px;
-  box-shadow: 2px 2px 0px #3A2E28;
-  transition: all 0.12s ease;
+  box-shadow: 0 2px 6px rgba(15, 81, 50, 0.2);
+  transition: all 0.18s ease;
 }
 
 .btn-pink {
   background-color: #EF4E3A;
   color: #FFFFFF;
-  font-weight: 800;
-  border: 1.5px solid #3A2E28;
+  font-weight: 700;
   border-radius: 12px;
-  box-shadow: 2px 2px 0px #3A2E28;
-  transition: all 0.12s ease;
+  box-shadow: 0 2px 6px rgba(239, 78, 58, 0.2);
+  transition: all 0.18s ease;
 }
 
 .btn-white {
   background-color: #FFFFFF;
-  color: #3A2E28;
-  font-weight: 700;
-  border: 1.5px solid #3A2E28;
+  color: #02060C;
+  font-weight: 600;
+  border: 1px solid rgba(2, 6, 12, 0.12);
   border-radius: 12px;
-  box-shadow: 2px 2px 0px #3A2E28;
-  transition: all 0.12s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  transition: all 0.18s ease;
 }
 
 .btn-white:hover {
-  background-color: #FFF8EE;
-  transform: translate(-1px, -1px);
-  box-shadow: 3px 3px 0px #3A2E28;
+  background-color: #F8F9FA;
+  border-color: rgba(2, 6, 12, 0.2);
 }
 
 .btn-white:active {
-  transform: translate(2px, 2px);
-  box-shadow: 0px 0px 0px #3A2E28;
+  transform: scale(0.98);
 }
 
 /* Badges & Chips */
 .stamp-tag {
   display: inline-flex;
   align-items: center;
-  font-family: var(--font-mono);
   font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  padding: 4px 10px;
-  border: 1.5px solid #3A2E28;
-  border-radius: 9999px;
-  background-color: #F6B21A;
-  color: #3A2E28;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  padding: 3px 8px;
+  border-radius: 6px;
+  background-color: #F8F9FA;
+  color: #3E4152;
+  border: 1px solid rgba(2, 6, 12, 0.08);
 }
 
 .stamp-blue {
   background-color: #0F5132;
   color: #FFFFFF;
-  border: 1.5px solid #3A2E28;
+  border: 1px solid transparent;
 }
 
 .stamp-pink {
   background-color: #EF4E3A;
   color: #FFFFFF;
-  border: 1.5px solid #3A2E28;
+  border: 1px solid transparent;
 }
 
 .stamp-mint {
+  background-color: #E8F4EE;
+  color: #0F5132;
+  border: 1px solid rgba(15, 81, 50, 0.2);
+}
+
+/* Swiggy Rating Badge */
+.swiggy-rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
   background-color: #0F5132;
   color: #FFFFFF;
-  border: 1.5px solid #3A2E28;
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 1;
+  padding: 3px 6px;
+  border-radius: 6px;
 }
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #FFF8EE;
+  background: #F4F5F8;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #3A2E28;
+  background: #C4C7D0;
   border-radius: 9999px;
 }
 
@@ -250,14 +254,14 @@ body {
   padding-bottom: max(env(safe-area-inset-bottom), 16px);
 }
 
-/* Palate Footer Legal Link Dividers (Desktop/Tablet) */
+/* Footer Dividers */
 .palate-footer-legal-links > a:not(:last-child)::after {
   content: "";
   display: inline-block;
   width: 1px;
   height: 12px;
   background-color: var(--footer-ink);
-  opacity: 0.25;
+  opacity: 0.15;
   margin-left: 0.875rem;
   margin-right: 0.875rem;
   vertical-align: middle;

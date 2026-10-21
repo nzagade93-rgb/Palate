@@ -100,17 +100,17 @@ export default function InstallPWA() {
         transition={{ duration: 0.35, ease: 'easeOut' }}
         className="fixed bottom-4 left-4 right-4 z-40 mx-auto max-w-md sm:bottom-6"
       >
-        <div className="relative overflow-hidden rounded-2xl border-[2.5px] border-[#3A2E28] bg-[#FFFFFF] p-4 shadow-[5px_5px_0px_#3A2E28]">
+        <div className="relative overflow-hidden rounded-2xl border border-black/[0.08] bg-white p-4 shadow-[0_8px_30px_rgba(0,0,0,0.12)]">
           <div className="flex items-center justify-between gap-3">
             <div className="flex items-center space-x-3">
-              <PalateAppIcon size={44} />
+              <PalateAppIcon size={42} />
 
               <div>
-                <h4 className="text-xs sm:text-sm font-black text-[#3A2E28] uppercase leading-tight">
+                <h4 className="text-sm font-extrabold text-[#02060C] leading-tight">
                   Install Palate App
                 </h4>
-                <p className="text-[11px] text-[#3A2E28]/70 leading-snug font-medium">
-                  Add to home screen for instant 1-tap food voting.
+                <p className="text-xs text-[#686B78] leading-snug font-normal mt-0.5">
+                  1-tap access to live food battles across Navi Mumbai.
                 </p>
               </div>
             </div>
@@ -119,7 +119,7 @@ export default function InstallPWA() {
               <button
                 onClick={handleInstallClick}
                 id="install-pwa-btn"
-                className="btn-forest px-3.5 py-2 text-xs font-black uppercase tracking-wider flex items-center space-x-1.5"
+                className="btn-forest px-4 py-2 text-xs font-bold rounded-full flex items-center space-x-1.5 shadow-sm"
               >
                 <Download className="h-3.5 w-3.5 text-[#F6B21A]" />
                 <span>Install</span>
@@ -127,7 +127,7 @@ export default function InstallPWA() {
 
               <button
                 onClick={handleDismiss}
-                className="rounded-lg p-1.5 text-[#121212]/60 hover:bg-[#DDD4C2] hover:text-[#121212] transition-colors"
+                className="rounded-full p-1.5 text-gray-400 hover:bg-gray-100 hover:text-gray-600 transition-colors"
                 title="Dismiss"
               >
                 <X className="h-4 w-4" />

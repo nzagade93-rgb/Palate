@@ -65,7 +65,7 @@ export default function RootLayout({
         <link rel="icon" type="image/svg+xml" href="/icons/icon.svg" />
         <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
       </head>
-      <body className="min-h-full bg-[#FFF8EE] text-[#3A2E28] selection:bg-[#F6B21A] selection:text-[#3A2E28]">
+      <body className="min-h-full bg-[#F4F5F8] text-[#02060C] selection:bg-[#0F5132] selection:text-white">
         <PWARegistration />
         {children}
       </body>

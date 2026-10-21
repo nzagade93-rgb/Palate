@@ -1,16 +1,16 @@
 'use client';
 
 // ==============================================================================
-// PALATE: FoodBattleCard (The Primary Growth Engine)
-// Indian street poster aesthetic with thick black borders, Team Blue vs Pink,
-// real-time voting percentages, and WhatsApp viral share triggers.
+// PALATE: FoodBattleCard (Swiggy-Grade Dish Battle Card)
+// Clean white surface, soft elevation, high-contrast typography,
+// Swiggy-style VOTE buttons, and seamless mobile touch ergonomics.
 // ==============================================================================
 
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Battle } from '@/lib/types';
-import { Swords, Check, Share2, Flame, Trophy, ExternalLink, MessageCircle } from 'lucide-react';
+import { Swords, Check, Share2, Flame, Trophy, ExternalLink, Star } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import ShareableBattleCardModal from './ShareableBattleCardModal';
 import ChallengeWinnerModal from './ChallengeWinnerModal';
@@ -62,94 +62,100 @@ export default function FoodBattleCard({
   return (
     <>
       <motion.article
-        initial={{ opacity: 0, y: 14 }}
+        initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.25 }}
-        className="rounded-2xl border border-[#3A2E28]/15 overflow-hidden bg-[#FFFFFF] p-4 sm:p-6 transition-all hover:shadow-[4px_4px_0px_#3A2E28] shadow-[2px_2px_0px_#3A2E28]"
+        transition={{ duration: 0.2 }}
+        className="rounded-2xl border border-black/[0.06] bg-white p-4 sm:p-5 shadow-[0_2px_12px_rgba(2,6,12,0.05)] hover:shadow-[0_8px_24px_rgba(2,6,12,0.08)] transition-all"
       >
-        {/* Top Header Stamp */}
-        <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[#3A2E28]/10 pb-3 mb-3.5">
+        {/* Top Header Row: Live Status + Location Meta */}
+        <div className="flex items-center justify-between gap-2 border-b border-gray-100 pb-3 mb-3">
           <div className="flex items-center space-x-2">
-            <span className="stamp-tag bg-[#F6B21A] text-[#3A2E28] font-black text-[10px]">
-              {battle.battleType.toUpperCase()} BATTLE
+            <span className="inline-flex items-center space-x-1.5 px-2.5 py-0.5 rounded-full bg-emerald-50 text-[#0F5132] text-[11px] font-bold border border-emerald-200/50">
+              <span className="h-2 w-2 rounded-full bg-[#0F5132] animate-pulse" />
+              <span>{battle.isActive ? 'LIVE BATTLE' : 'COMPLETED'}</span>
             </span>
-            <span className="font-mono text-xs font-bold text-[#3A2E28]/70">
+
+            <span className="text-xs font-semibold text-[#686B78]">
               📍 {battle.neighborhood}
             </span>
           </div>
 
-          <div className="flex items-center space-x-1.5 font-mono text-xs font-bold">
-            <span className="inline-block h-2 w-2 rounded-full bg-[#0F5132] animate-pulse" />
-            <span className="text-[#3A2E28]">
-              {battle.isActive ? 'LIVE BATTLE' : 'COMPLETED'}
-            </span>
-          </div>
+          <span className="text-[11px] font-bold text-[#686B78] uppercase tracking-wider bg-gray-50 border border-gray-100 px-2 py-0.5 rounded-md">
+            {battle.battleType}
+          </span>
         </div>
 
-        {/* Title & Dish */}
-        <div className="mb-4">
+        {/* Title & Contested Dish */}
+        <div className="mb-3.5">
           <Link href={battleUrl} className="group">
-            <h3 className="text-xl sm:text-2xl font-black text-[#3A2E28] uppercase tracking-tight leading-tight group-hover:text-[#0F5132] transition-colors">
+            <h3 className="text-[17px] sm:text-[19px] font-extrabold text-[#02060C] tracking-tight leading-snug group-hover:text-[#0F5132] transition-colors">
               {battle.title}
             </h3>
           </Link>
-          <p className="mt-1 text-xs font-bold text-[#3A2E28]/70">
-            Contested Dish: <span className="font-black text-[#3A2E28]">{battle.dishName}</span>
+          <p className="mt-0.5 text-xs text-[#686B78]">
+            Contested Dish: <span className="font-bold text-[#02060C]">{battle.dishName}</span>
           </p>
         </div>
 
-        {/* Head-to-Head Cards */}
-        <div className="grid grid-cols-1 gap-3.5 sm:grid-cols-2 mb-4">
-          {/* Contestant A (Forest Green) */}
+        {/* Head-to-Head Contender Cards (Swiggy Food Presentation) */}
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 mb-4 relative">
+          {/* Contestant A */}
           <div
-            className={`relative flex flex-col justify-between rounded-xl border p-3.5 transition-all ${
+            className={`relative flex flex-col justify-between rounded-xl border p-3 transition-all ${
               userChoice === battle.contestantA.id
-                ? 'border-[#0F5132] bg-[#DCE7D9]/30 ring-1 ring-[#0F5132]'
-                : 'border-[#3A2E28]/15 bg-[#FFFFFF]'
+                ? 'border-[#0F5132] bg-emerald-50/30 ring-1 ring-[#0F5132]'
+                : 'border-gray-100 bg-white hover:border-gray-200'
             }`}
           >
             {userChoice === battle.contestantA.id && (
-              <div className="absolute right-2.5 top-2.5 z-10 flex items-center space-x-1 rounded-full bg-[#0F5132] px-2 py-0.5 text-[9px] font-black text-white">
+              <div className="absolute right-2.5 top-2.5 z-20 flex items-center space-x-1 rounded-full bg-[#0F5132] px-2.5 py-0.5 text-[10px] font-bold text-white shadow-xs">
                 <Check className="h-3 w-3 stroke-[3]" />
                 <span>YOUR PICK</span>
               </div>
             )}
 
             <div>
-              <span className="inline-block text-[9px] font-mono font-black uppercase text-[#0F5132] bg-[#DCE7D9]/60 border border-[#0F5132]/30 px-2 py-0.5 rounded-md mb-2">
-                CONTENDER A
-              </span>
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-[#0F5132] bg-emerald-50 px-2 py-0.5 rounded">
+                  Contender A
+                </span>
+                <span className="swiggy-rating">
+                  <Star className="h-2.5 w-2.5 fill-current" />
+                  <span>4.4</span>
+                </span>
+              </div>
 
-              <div className="relative mb-2.5 h-36 w-full overflow-hidden rounded-xl border border-[#3A2E28]/15 bg-[#DCE7D9]/40">
+              {/* Dish Photo */}
+              <div className="relative mb-2.5 h-36 w-full overflow-hidden rounded-xl bg-gray-100">
                 <img
                   src={battle.contestantA.imageUrl}
                   alt={battle.contestantA.name}
-                  className="h-full w-full object-cover"
+                  className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-300"
                   loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                 <div className="absolute bottom-2.5 left-2.5 right-2.5 text-white">
-                  <span className="font-mono text-[9px] font-black text-[#F6B21A] uppercase tracking-wider block">
-                    {battle.contestantA.neighborhood}
+                  <span className="text-[10px] font-bold text-[#F6B21A] block">
+                    {nodeA}
                   </span>
-                  <h4 className="text-sm font-black leading-tight line-clamp-1">
+                  <h4 className="text-sm font-bold leading-tight line-clamp-1">
                     {battle.contestantA.name}
                   </h4>
                 </div>
               </div>
             </div>
 
-            {/* Voting Action / Percent Bar */}
-            <div>
+            {/* Voting Action / Progress Bar */}
+            <div className="pt-1">
               {hasVoted || !battle.isActive ? (
-                <div className="space-y-1.5 pt-1">
-                  <div className="flex items-center justify-between text-xs font-mono font-black">
-                    <span className="text-[11px] text-[#3A2E28]/70">
+                <div className="space-y-1.5">
+                  <div className="flex items-center justify-between text-xs font-semibold">
+                    <span className="text-[#686B78]">
                       {battle.votesA.toLocaleString()} votes
                     </span>
-                    <span className="text-[#0F5132] font-black">{battle.percentA}%</span>
+                    <span className="text-[#0F5132] font-extrabold">{battle.percentA}%</span>
                   </div>
-                  <div className="h-2 w-full overflow-hidden rounded-full bg-[#DCE7D9]">
+                  <div className="h-2 w-full overflow-hidden rounded-full bg-gray-100">
                     <div
                       style={{ width: `${battle.percentA}%` }}
                       className="h-full bg-[#0F5132] transition-all duration-500 rounded-full"
@@ -161,64 +167,71 @@ export default function FoodBattleCard({
                   onClick={(e) => handleVoteClick(battle.contestantA.id, 'A', e)}
                   disabled={isVoting}
                   id={`btn-vote-a-${battle.id}`}
-                  className="w-full bg-[#0F5132] hover:bg-[#0B3D26] text-white py-2.5 rounded-xl text-xs font-black uppercase tracking-wider shadow-[2px_2px_0px_#3A2E28] transition-all active:translate-x-0.5 active:translate-y-0.5"
+                  className="w-full py-2.5 rounded-xl border-2 border-[#0F5132] bg-white text-[#0F5132] hover:bg-[#0F5132] hover:text-white font-extrabold text-xs uppercase tracking-wider transition-all shadow-xs active:scale-98 flex items-center justify-center space-x-1"
                 >
-                  {votingSide === 'A' ? 'Voting...' : `Vote ${battle.contestantA.name.split(' ')[0]}`}
+                  <span>{votingSide === 'A' ? 'Voting...' : `Vote ${battle.contestantA.name.split(' ')[0]}`}</span>
                 </button>
               )}
             </div>
           </div>
 
-          {/* Contestant B (Tomato Red) */}
+          {/* Contestant B */}
           <div
-            className={`relative flex flex-col justify-between rounded-xl border p-3.5 transition-all ${
+            className={`relative flex flex-col justify-between rounded-xl border p-3 transition-all ${
               userChoice === battle.contestantB.id
-                ? 'border-[#EF4E3A] bg-[#FFF1F0] ring-1 ring-[#EF4E3A]'
-                : 'border-[#3A2E28]/15 bg-[#FFFFFF]'
+                ? 'border-[#EF4E3A] bg-rose-50/30 ring-1 ring-[#EF4E3A]'
+                : 'border-gray-100 bg-white hover:border-gray-200'
             }`}
           >
             {userChoice === battle.contestantB.id && (
-              <div className="absolute right-2.5 top-2.5 z-10 flex items-center space-x-1 rounded-full bg-[#EF4E3A] px-2 py-0.5 text-[9px] font-black text-white">
+              <div className="absolute right-2.5 top-2.5 z-20 flex items-center space-x-1 rounded-full bg-[#EF4E3A] px-2.5 py-0.5 text-[10px] font-bold text-white shadow-xs">
                 <Check className="h-3 w-3 stroke-[3]" />
                 <span>YOUR PICK</span>
               </div>
             )}
 
             <div>
-              <span className="inline-block text-[9px] font-mono font-black uppercase text-[#EF4E3A] bg-[#FFF1F0] border border-[#EF4E3A]/30 px-2 py-0.5 rounded-md mb-2">
-                CONTENDER B
-              </span>
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-[#EF4E3A] bg-rose-50 px-2 py-0.5 rounded">
+                  Contender B
+                </span>
+                <span className="swiggy-rating bg-[#EF4E3A]">
+                  <Star className="h-2.5 w-2.5 fill-current" />
+                  <span>4.3</span>
+                </span>
+              </div>
 
-              <div className="relative mb-2.5 h-36 w-full overflow-hidden rounded-xl border border-[#3A2E28]/15 bg-[#DCE7D9]/40">
+              {/* Dish Photo */}
+              <div className="relative mb-2.5 h-36 w-full overflow-hidden rounded-xl bg-gray-100">
                 <img
                   src={battle.contestantB.imageUrl}
                   alt={battle.contestantB.name}
-                  className="h-full w-full object-cover"
+                  className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-300"
                   loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                 <div className="absolute bottom-2.5 left-2.5 right-2.5 text-white">
-                  <span className="font-mono text-[9px] font-black text-[#F6B21A] uppercase tracking-wider block">
-                    {battle.contestantB.neighborhood}
+                  <span className="text-[10px] font-bold text-[#F6B21A] block">
+                    {nodeB}
                   </span>
-                  <h4 className="text-sm font-black leading-tight line-clamp-1">
+                  <h4 className="text-sm font-bold leading-tight line-clamp-1">
                     {battle.contestantB.name}
                   </h4>
                 </div>
               </div>
             </div>
 
-            {/* Voting Action / Percent Bar */}
-            <div>
+            {/* Voting Action / Progress Bar */}
+            <div className="pt-1">
               {hasVoted || !battle.isActive ? (
-                <div className="space-y-1.5 pt-1">
-                  <div className="flex items-center justify-between text-xs font-mono font-black">
-                    <span className="text-[11px] text-[#3A2E28]/70">
+                <div className="space-y-1.5">
+                  <div className="flex items-center justify-between text-xs font-semibold">
+                    <span className="text-[#686B78]">
                       {battle.votesB.toLocaleString()} votes
                     </span>
-                    <span className="text-[#EF4E3A] font-black">{battle.percentB}%</span>
+                    <span className="text-[#EF4E3A] font-extrabold">{battle.percentB}%</span>
                   </div>
-                  <div className="h-2 w-full overflow-hidden rounded-full bg-[#DCE7D9]">
+                  <div className="h-2 w-full overflow-hidden rounded-full bg-gray-100">
                     <div
                       style={{ width: `${battle.percentB}%` }}
                       className="h-full bg-[#EF4E3A] transition-all duration-500 rounded-full"
@@ -230,30 +243,30 @@ export default function FoodBattleCard({
                   onClick={(e) => handleVoteClick(battle.contestantB.id, 'B', e)}
                   disabled={isVoting}
                   id={`btn-vote-b-${battle.id}`}
-                  className="w-full bg-[#EF4E3A] hover:bg-[#D93E2B] text-white py-2.5 rounded-xl text-xs font-black uppercase tracking-wider shadow-[2px_2px_0px_#3A2E28] transition-all active:translate-x-0.5 active:translate-y-0.5"
+                  className="w-full py-2.5 rounded-xl border-2 border-[#EF4E3A] bg-white text-[#EF4E3A] hover:bg-[#EF4E3A] hover:text-white font-extrabold text-xs uppercase tracking-wider transition-all shadow-xs active:scale-98 flex items-center justify-center space-x-1"
                 >
-                  {votingSide === 'B' ? 'Voting...' : `Vote ${battle.contestantB.name.split(' ')[0]}`}
+                  <span>{votingSide === 'B' ? 'Voting...' : `Vote ${battle.contestantB.name.split(' ')[0]}`}</span>
                 </button>
               )}
             </div>
           </div>
         </div>
 
-        {/* Card Footer: View Battle, Share, Challenge */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-t border-[#3A2E28]/10 pt-3 text-xs">
-          <div className="flex items-center space-x-1.5 font-mono text-[11px] font-bold text-[#3A2E28]/70">
+        {/* Card Footer: Live votes count, Share & Arena buttons */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-t border-gray-100 pt-3 text-xs">
+          <div className="flex items-center space-x-1.5 text-xs text-[#686B78] font-medium">
             <Flame className="h-3.5 w-3.5 text-[#EF4E3A]" />
-            <span>{battle.totalVotes.toLocaleString()} community votes</span>
+            <span>{battle.totalVotes.toLocaleString()} community votes cast</span>
           </div>
 
           <div className="flex items-center space-x-2">
             {/* Share Trigger */}
             <button
               onClick={() => setShareModalOpen(true)}
-              className="rounded-xl border border-[#3A2E28]/20 bg-[#FFFFFF] px-3 py-1.5 font-black text-xs text-[#3A2E28] shadow-[2px_2px_0px_#3A2E28] hover:bg-[#FFF8EE] transition-all flex items-center space-x-1.5"
+              className="rounded-full border border-gray-200 bg-white px-3 py-1.5 text-xs font-bold text-[#02060C] hover:bg-gray-50 transition-all flex items-center space-x-1.5 shadow-xs"
               title="Share Battle on WhatsApp/Socials"
             >
-              <Share2 className="h-3.5 w-3.5 text-[#3A2E28]" />
+              <Share2 className="h-3.5 w-3.5 text-[#686B78]" />
               <span>Share</span>
             </button>
 
@@ -261,7 +274,7 @@ export default function FoodBattleCard({
             {!battle.isActive && (
               <button
                 onClick={() => setChallengeModalOpen(true)}
-                className="rounded-xl border border-[#3A2E28] bg-[#F6B21A] px-3 py-1.5 font-black text-xs text-[#3A2E28] shadow-[2px_2px_0px_#3A2E28] hover:bg-[#e5a315] transition-all flex items-center space-x-1.5"
+                className="rounded-full bg-[#F6B21A] text-[#02060C] px-3 py-1.5 text-xs font-bold hover:bg-[#e5a315] transition-all flex items-center space-x-1.5 shadow-xs"
                 title="Challenge the Winner"
               >
                 <Trophy className="h-3.5 w-3.5" />
@@ -272,18 +285,18 @@ export default function FoodBattleCard({
             {/* Open Battle Page */}
             <Link
               href={battleUrl}
-              className="btn-yellow px-3 py-1.5 text-xs font-black uppercase tracking-wider flex items-center space-x-1.5"
+              className="rounded-full bg-[#0F5132] text-white px-3.5 py-1.5 text-xs font-bold hover:bg-[#0B3D26] transition-all flex items-center space-x-1 shadow-xs"
             >
-              <span>Arena</span>
-              <ExternalLink className="h-3.5 w-3.5" />
+              <span>View Arena</span>
+              <ExternalLink className="h-3 w-3" />
             </Link>
           </div>
         </div>
 
-        {/* Legal Intermediary Disclaimer (Section 79 IT Act) */}
-        <div className="mt-2.5 pt-2 border-t border-[#3A2E28]/10 flex flex-col xs:flex-row items-start xs:items-center justify-between text-[9px] font-mono text-[#3A2E28]/50 gap-1 leading-tight">
-          <span>⚡ Community Intermediary (Sec 79 IT Act)</span>
-          <span>Voluntary polls • Not a health or commercial audit</span>
+        {/* Legal Trust Tagline */}
+        <div className="mt-2.5 pt-2 border-t border-gray-100 flex items-center justify-between text-[10px] text-[#686B78] leading-tight">
+          <span>⚡ Community Consensus (Sec 79 IT Act)</span>
+          <span>100% Organic • Non-Sponsored Poll</span>
         </div>
       </motion.article>
 

@@ -1,7 +1,7 @@
 'use client';
 
 // ==============================================================================
-// PALATE: Leaderboard View
+// PALATE: Leaderboard View (Swiggy-Grade Clean Modern Aesthetic)
 // Transparent community popularity rankings across Navi Mumbai dishes & spots
 // ==============================================================================
 
@@ -27,10 +27,10 @@ interface LeaderboardViewProps {
 
 const NODES = ['All', 'Vashi', 'Nerul', 'Belapur', 'Kharghar', 'Seawoods'];
 const TYPES = [
-  { id: 'All', label: 'All Battle Types' },
-  { id: 'dish', label: 'Dish Battles' },
-  { id: 'restaurant', label: 'Restaurant Battles' },
-  { id: 'debate', label: 'Food Debates' },
+  { id: 'All', label: 'All Battles' },
+  { id: 'dish', label: 'Dishes' },
+  { id: 'restaurant', label: 'Restaurants' },
+  { id: 'debate', label: 'Debates' },
 ];
 
 export default function LeaderboardView({
@@ -53,36 +53,36 @@ export default function LeaderboardView({
   return (
     <div className="space-y-4">
       {/* Header Banner */}
-      <div className="poster-card bg-[#FFFFFF] p-5">
+      <div className="rounded-2xl border border-black/[0.06] bg-white p-5 shadow-xs">
         <div className="flex items-center space-x-3 mb-2">
-          <div className="flex h-11 w-11 items-center justify-center rounded-xl border-2 border-[#121212] bg-[#FFD11A] shadow-[2px_2px_0px_#121212]">
-            <Trophy className="h-5 w-5 text-[#121212]" />
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-amber-50 text-[#F6B21A] shrink-0">
+            <Trophy className="h-5 w-5" />
           </div>
           <div>
-            <span className="stamp-tag bg-[#121212] text-[#FFD11A] text-[9px] py-0.5 px-2">
-              COMMUNITY POPULARITY
-            </span>
-            <h3 className="text-xl font-black text-[#121212] uppercase tracking-tight">
+            <div className="inline-flex items-center space-x-1.5 text-[10px] font-bold uppercase tracking-wider text-[#0F5132] bg-emerald-50 px-2 py-0.5 rounded mb-0.5">
+              Community Consensus
+            </div>
+            <h3 className="text-lg sm:text-xl font-extrabold text-[#02060C] tracking-tight">
               Navi Mumbai Leaderboards
             </h3>
           </div>
         </div>
-        <p className="text-xs text-[#121212]/75 font-medium">
-          Rankings are calculated dynamically from verified battle votes. Results reflect crowd consensus, not paid culinary awards.
+        <p className="text-xs text-[#686B78] font-normal leading-relaxed">
+          Rankings are calculated dynamically from verified battle votes. Results reflect crowd consensus, not paid sponsorships.
         </p>
 
         {/* Filter Controls */}
-        <div className="mt-4 pt-3 border-t-2 border-[#121212] flex flex-wrap gap-2">
+        <div className="mt-4 pt-3 border-t border-gray-100 flex flex-wrap gap-2 items-center">
           {/* Battle Type Filters */}
-          <div className="flex items-center space-x-1 overflow-x-auto pb-1 sm:pb-0">
+          <div className="flex items-center space-x-1.5 overflow-x-auto pb-1 sm:pb-0">
             {TYPES.map((t) => (
               <button
                 key={t.id}
                 onClick={() => setSelectedType(t.id)}
-                className={`rounded-lg px-2.5 py-1 text-xs font-bold border-2 border-[#121212] transition-all ${
+                className={`rounded-full px-3 py-1 text-xs font-semibold transition-all ${
                   selectedType === t.id
-                    ? 'bg-[#FFD11A] shadow-[2px_2px_0px_#121212]'
-                    : 'bg-[#FFFFFF] text-[#121212]/70 hover:bg-[#F6EFE2]'
+                    ? 'bg-[#0F5132] text-white shadow-xs'
+                    : 'bg-white text-[#686B78] border border-gray-200 hover:text-[#02060C] hover:border-gray-300'
                 }`}
               >
                 {t.label}
@@ -92,60 +92,64 @@ export default function LeaderboardView({
         </div>
 
         {/* Node Chips */}
-        <div className="mt-2 flex items-center space-x-1.5 overflow-x-auto">
+        <div className="mt-2.5 flex items-center space-x-1.5 overflow-x-auto pb-1">
           {NODES.map((n) => (
             <button
               key={n}
               onClick={() => setSelectedNode(n)}
-              className={`rounded-full px-3 py-0.5 font-mono text-[11px] font-bold border border-[#121212] transition-all ${
+              className={`rounded-full px-3 py-1 text-xs font-semibold transition-all ${
                 selectedNode === n
-                  ? 'bg-[#121212] text-[#FFD11A]'
-                  : 'bg-[#F6EFE2] text-[#121212] hover:bg-[#DDD4C2]'
+                  ? 'bg-[#0F5132] text-white shadow-xs'
+                  : 'bg-white text-[#686B78] border border-gray-200 hover:text-[#02060C] hover:border-gray-300'
               }`}
             >
-              {n === 'All' ? 'ALL NODES' : n}
+              {n === 'All' ? 'All Nodes' : n}
             </button>
           ))}
         </div>
       </div>
 
-      {/* Rankings List */}
+      {/* Leaderboard Entries List */}
       <div className="space-y-2.5">
         {filtered.length === 0 ? (
-          <div className="poster-card p-8 text-center bg-[#FFFFFF]">
-            <p className="text-xs font-bold text-[#121212]/70">
-              No contenders match this filter selection.
+          <div className="rounded-2xl p-8 text-center bg-white border border-gray-100 shadow-xs">
+            <AlertCircle className="mx-auto h-8 w-8 text-gray-300 mb-2" />
+            <p className="text-sm font-semibold text-[#02060C]">
+              No contenders found for this filter
+            </p>
+            <p className="text-xs text-[#686B78] mt-1">
+              Try switching back to &apos;All Nodes&apos; or changing the battle type.
             </p>
           </div>
         ) : (
           filtered.map((item, index) => {
             const isTop3 = item.rank <= 3;
             const rankStyles = [
-              'bg-[#FFD11A] text-[#121212] border-2 border-[#121212]', // Gold #1
-              'bg-[#DDD4C2] text-[#121212] border-2 border-[#121212]', // Silver #2
-              'bg-[#FF5C9A]/20 text-[#121212] border-2 border-[#121212]', // Bronze #3
+              'bg-[#F6B21A] text-[#02060C]', // Gold #1
+              'bg-gray-100 text-[#02060C]',   // Silver #2
+              'bg-amber-100 text-amber-900',  // Bronze #3
             ];
 
             return (
               <motion.div
                 key={item.restaurant.id + index}
-                initial={{ opacity: 0, y: 10 }}
+                initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.04 }}
-                className="poster-card bg-[#FFFFFF] p-3.5 flex items-center justify-between"
+                transition={{ delay: index * 0.03 }}
+                className="rounded-xl bg-white border border-black/[0.06] p-3.5 flex items-center justify-between shadow-xs hover:shadow-md transition-all"
               >
                 <div className="flex items-center space-x-3.5">
                   {/* Rank Badge */}
                   <div
-                    className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl font-mono text-sm font-black shadow-[2px_2px_0px_#121212] ${
-                      isTop3 ? rankStyles[item.rank - 1] : 'border-2 border-[#121212] bg-[#FFFFFF] text-[#121212]'
+                    className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-sm font-extrabold ${
+                      isTop3 ? rankStyles[item.rank - 1] : 'bg-gray-50 text-[#686B78]'
                     }`}
                   >
                     #{item.rank}
                   </div>
 
                   {/* Thumbnail */}
-                  <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-lg border-2 border-[#121212] bg-[#DDD4C2]">
+                  <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-xl border border-gray-100 bg-gray-50">
                     <img
                       src={item.restaurant.imageUrl}
                       alt={item.restaurant.name}
@@ -156,14 +160,14 @@ export default function LeaderboardView({
 
                   {/* Info */}
                   <div>
-                    <h4 className="text-sm font-black text-[#121212] leading-tight">
+                    <h4 className="text-sm font-bold text-[#02060C] leading-tight">
                       {item.restaurant.name}
                     </h4>
-                    <div className="flex items-center space-x-1.5 text-[11px] text-[#121212]/70 font-medium">
-                      <MapPin className="h-3 w-3 text-[#121212]" />
+                    <div className="flex items-center space-x-1.5 text-xs text-[#686B78] font-normal mt-0.5">
+                      <MapPin className="h-3 w-3 text-[#EF4E3A]" />
                       <span>{item.restaurant.neighborhood}</span>
                     </div>
-                    <p className="text-[10px] font-bold text-[#2748FF] line-clamp-1">
+                    <p className="text-xs font-semibold text-[#0F5132] line-clamp-1 mt-0.5">
                       {item.dishName}
                     </p>
                   </div>
@@ -171,10 +175,10 @@ export default function LeaderboardView({
 
                 {/* Score */}
                 <div className="text-right shrink-0">
-                  <div className="font-mono text-base font-black text-[#121212]">
+                  <div className="text-sm font-extrabold text-[#02060C]">
                     {item.winRate}% WIN
                   </div>
-                  <span className="block font-mono text-[10px] font-bold text-[#121212]/60">
+                  <span className="block text-xs font-normal text-[#686B78]">
                     {item.totalVotes.toLocaleString()} votes
                   </span>
                 </div>

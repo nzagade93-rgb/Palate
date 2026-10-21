@@ -356,7 +356,7 @@ export default function HomePage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#FFF8EE] text-[#3A2E28] pb-28">
+    <div className="min-h-screen bg-[#F4F5F8] text-[#02060C] pb-28">
       {/* 9:16 Mobile Splash Video Intro (Runs once per session or on request) */}
       <SplashScreen forceShow={showSplashVideo} onFinish={() => setShowSplashVideo(false)} />
 
@@ -376,10 +376,10 @@ export default function HomePage() {
       <AnimatePresence>
         {crestToast && (
           <motion.div
-            initial={{ opacity: 0, y: -20, scale: 0.9 }}
+            initial={{ opacity: 0, y: -20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -20, scale: 0.9 }}
-            className="fixed top-18 left-1/2 -translate-x-1/2 z-50 flex items-center space-x-2 bg-[#3A2E28] text-[#F6B21A] border-2 border-[#F6B21A] px-4 py-2.5 rounded-2xl shadow-[4px_4px_0px_#3A2E28] font-mono text-xs font-black"
+            exit={{ opacity: 0, y: -20, scale: 0.95 }}
+            className="fixed top-20 left-1/2 -translate-x-1/2 z-50 flex items-center space-x-2 bg-[#02060C] text-[#F6B21A] border border-[#F6B21A]/30 px-4 py-2 rounded-full shadow-xl text-xs font-bold"
           >
             <Sparkles className="h-4 w-4 text-[#F6B21A]" />
             <span>{crestToast.msg}</span>
@@ -389,39 +389,39 @@ export default function HomePage() {
 
       {/* MAIN CONTAINER */}
       <main className="mx-auto max-w-4xl px-4 py-4 sm:px-6">
-        {/* COMPACT APP-FIRST HERO BAR */}
+        {/* SWIGGY-STYLE CLEAN HERO BAR */}
         <div className="pb-3 flex items-center justify-between gap-3">
           <div>
-            <div className="flex items-center space-x-1.5 mb-1">
+            <div className="flex items-center space-x-1.5 mb-0.5">
               <span className="flex h-2 w-2 rounded-full bg-[#0F5132] animate-pulse" />
-              <span className="font-mono text-[10px] font-black uppercase text-[#0F5132] tracking-wider">
-                FOOD WORTH TALKING ABOUT • NAVI MUMBAI
+              <span className="text-[11px] font-bold uppercase tracking-wider text-[#0F5132]">
+                Food Consensus • Navi Mumbai
               </span>
             </div>
-            <h1 className="text-xl sm:text-2xl font-black text-[#3A2E28] uppercase tracking-tight leading-none">
-              Trending Dishes &amp; Food Battles{' '}
-              <span className="bg-[#EF4E3A] text-white px-2 py-0.5 rounded-md border border-[#3A2E28]/20 text-xs sm:text-sm font-black">
+            <h1 className="text-xl sm:text-2xl font-extrabold text-[#02060C] tracking-tight leading-tight">
+              Trending Food Battles{' '}
+              <span className="bg-[#EF4E3A] text-white px-2 py-0.5 rounded-full text-xs font-bold">
                 LIVE
               </span>
             </h1>
           </div>
 
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center space-x-2 shrink-0">
             <button
               onClick={() => setShowSplashVideo(true)}
-              className="hidden sm:inline-flex items-center space-x-1.5 font-mono text-[11px] font-bold text-[#3A2E28]/70 bg-white px-2.5 py-1 rounded-xl border border-[#3A2E28]/15 shadow-xs hover:bg-[#FFF8EE] transition-all"
+              className="hidden sm:inline-flex items-center space-x-1.5 text-xs font-semibold text-[#686B78] bg-white px-3 py-1.5 rounded-full border border-gray-200 shadow-xs hover:text-[#02060C] hover:bg-gray-50 transition-all"
               title="Watch Intro Splash Video"
             >
               <Play className="h-3 w-3 text-[#0F5132]" />
               <span>Intro</span>
             </button>
-            <span className="hidden xs:inline-flex items-center space-x-1.5 font-mono text-[11px] font-bold text-[#3A2E28]/70 bg-white px-2.5 py-1 rounded-xl border border-[#3A2E28]/15 shadow-xs">
+            <span className="hidden xs:inline-flex items-center space-x-1.5 text-xs font-semibold text-[#686B78] bg-white px-3 py-1.5 rounded-full border border-gray-200 shadow-xs">
               <Flame className="h-3.5 w-3.5 text-[#EF4E3A]" />
               <span>{liveBattles.length} Clashes</span>
             </span>
             <button
               onClick={() => setIsCreateBattleOpen(true)}
-              className="btn-forest px-3 py-1.5 text-xs font-black uppercase flex items-center space-x-1"
+              className="btn-forest px-3.5 py-1.5 text-xs font-bold rounded-full flex items-center space-x-1 shadow-sm"
             >
               <PlusCircle className="h-3.5 w-3.5" />
               <span>+ Battle</span>
@@ -429,44 +429,52 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Search Bar & Categories (Directly matching official mobile mockup) */}
+        {/* Swiggy Full-Width Search Bar & Quick Categories */}
         <div className="space-y-3 mb-5">
           <div className="relative">
-            <Search className="absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-[#3A2E28]/50" />
+            <Search className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="What are you craving today? (e.g. Misal Pav, Vada Pav, Biryani)..."
-              className="w-full rounded-full border border-[#3A2E28]/20 bg-[#FFFFFF] py-3 pl-10 pr-4 text-xs font-bold text-[#3A2E28] placeholder-[#3A2E28]/45 focus:outline-none focus:ring-2 focus:ring-[#0F5132] shadow-[2px_2px_0px_#3A2E28]"
+              placeholder="Search for dishes, battles, or nodes (e.g. Vada Pav, Misal)..."
+              className="w-full rounded-2xl border border-gray-200 bg-white py-3 pl-11 pr-10 text-sm font-medium text-[#02060C] placeholder:text-gray-400 focus:outline-none focus:border-[#0F5132] focus:ring-1 focus:ring-[#0F5132] shadow-[0_2px_8px_rgba(0,0,0,0.03)] transition-all"
             />
+            {searchQuery && (
+              <button
+                onClick={() => setSearchQuery('')}
+                className="absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 text-xs font-bold p-1"
+              >
+                ✕
+              </button>
+            )}
           </div>
 
-          {/* Quick Category Action Cards (Top Rated, Near Me, Trending, Food Battles) */}
-          <div className="grid grid-cols-4 gap-2 pt-0.5">
+          {/* Quick Category Action Cards (Swiggy Modern Card Grid) */}
+          <div className="grid grid-cols-4 gap-2.5 pt-0.5">
             <button
               onClick={() => {
                 setActiveNavSection('explore');
                 setSearchQuery('Misal');
               }}
-              className="flex flex-col items-center justify-center py-2.5 px-1 rounded-2xl bg-white border border-[#3A2E28]/15 shadow-[2px_2px_0px_#3A2E28] hover:bg-[#FFF8EE] active:translate-y-0.5 transition-all text-center"
+              className="flex flex-col items-center justify-center py-2.5 px-1 rounded-2xl bg-white border border-black/[0.04] shadow-xs hover:shadow-md active:scale-98 transition-all text-center group"
             >
-              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#F6B21A]/20 text-[#F6B21A] mb-1">
+              <div className="flex h-9 w-9 items-center justify-center rounded-full bg-amber-50 text-[#F6B21A] mb-1.5 group-hover:scale-105 transition-transform">
                 <Sparkles className="h-4 w-4 text-[#F6B21A]" />
               </div>
-              <span className="text-[10px] font-black text-[#3A2E28]">Top Rated</span>
+              <span className="text-[11px] font-bold text-[#02060C]">Top Rated</span>
             </button>
 
             <button
               onClick={() => {
                 setSelectedNeighborhood(selectedNeighborhood === 'Vashi' ? 'All' : 'Vashi');
               }}
-              className="flex flex-col items-center justify-center py-2.5 px-1 rounded-2xl bg-white border border-[#3A2E28]/15 shadow-[2px_2px_0px_#3A2E28] hover:bg-[#FFF8EE] active:translate-y-0.5 transition-all text-center"
+              className="flex flex-col items-center justify-center py-2.5 px-1 rounded-2xl bg-white border border-black/[0.04] shadow-xs hover:shadow-md active:scale-98 transition-all text-center group"
             >
-              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#EF4E3A]/15 text-[#EF4E3A] mb-1">
+              <div className="flex h-9 w-9 items-center justify-center rounded-full bg-rose-50 text-[#EF4E3A] mb-1.5 group-hover:scale-105 transition-transform">
                 <MapPin className="h-4 w-4 text-[#EF4E3A]" />
               </div>
-              <span className="text-[10px] font-black text-[#3A2E28]">Near Me</span>
+              <span className="text-[11px] font-bold text-[#02060C]">Near Me</span>
             </button>
 
             <button
@@ -474,12 +482,12 @@ export default function HomePage() {
                 setActiveNavSection('battles');
                 setSearchQuery('');
               }}
-              className="flex flex-col items-center justify-center py-2.5 px-1 rounded-2xl bg-white border border-[#3A2E28]/15 shadow-[2px_2px_0px_#3A2E28] hover:bg-[#FFF8EE] active:translate-y-0.5 transition-all text-center"
+              className="flex flex-col items-center justify-center py-2.5 px-1 rounded-2xl bg-white border border-black/[0.04] shadow-xs hover:shadow-md active:scale-98 transition-all text-center group"
             >
-              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#EF4E3A]/15 text-[#EF4E3A] mb-1">
+              <div className="flex h-9 w-9 items-center justify-center rounded-full bg-orange-50 text-[#EF4E3A] mb-1.5 group-hover:scale-105 transition-transform">
                 <Flame className="h-4 w-4 text-[#EF4E3A]" />
               </div>
-              <span className="text-[10px] font-black text-[#3A2E28]">Trending</span>
+              <span className="text-[11px] font-bold text-[#02060C]">Trending</span>
             </button>
 
             <button
@@ -487,18 +495,18 @@ export default function HomePage() {
                 setActiveNavSection('battles');
                 scrollToBattles();
               }}
-              className="flex flex-col items-center justify-center py-2.5 px-1 rounded-2xl bg-white border border-[#3A2E28]/15 shadow-[2px_2px_0px_#3A2E28] hover:bg-[#FFF8EE] active:translate-y-0.5 transition-all text-center"
+              className="flex flex-col items-center justify-center py-2.5 px-1 rounded-2xl bg-white border border-black/[0.04] shadow-xs hover:shadow-md active:scale-98 transition-all text-center group"
             >
-              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#0F5132]/15 text-[#0F5132] mb-1">
+              <div className="flex h-9 w-9 items-center justify-center rounded-full bg-emerald-50 text-[#0F5132] mb-1.5 group-hover:scale-105 transition-transform">
                 <Swords className="h-4 w-4 text-[#0F5132]" />
               </div>
-              <span className="text-[10px] font-black text-[#3A2E28]">Food Battles</span>
+              <span className="text-[11px] font-bold text-[#02060C]">Food Battles</span>
             </button>
           </div>
 
-          {/* Quick Popular Dish Filters */}
-          <div className="-mx-4 px-4 sm:mx-0 sm:px-0 flex items-center space-x-1.5 overflow-x-auto pb-0.5 scrollbar-none text-[11px] font-bold">
-            <span className="text-[10px] font-mono uppercase tracking-wider text-[#3A2E28]/50 font-black shrink-0">
+          {/* Swiggy "What's on your mind?" Category Pills */}
+          <div className="-mx-4 px-4 sm:mx-0 sm:px-0 flex items-center space-x-2 overflow-x-auto pb-0.5 scrollbar-none text-xs">
+            <span className="text-[11px] font-bold uppercase tracking-wider text-[#686B78] shrink-0">
               Popular:
             </span>
             {[
@@ -513,10 +521,10 @@ export default function HomePage() {
               <button
                 key={chip.query}
                 onClick={() => setSearchQuery(searchQuery.toLowerCase() === chip.query.toLowerCase() ? '' : chip.query)}
-                className={`whitespace-nowrap shrink-0 rounded-lg px-2.5 py-1 transition-all border ${
+                className={`whitespace-nowrap shrink-0 rounded-full px-3.5 py-1.5 transition-all text-xs font-semibold border ${
                   searchQuery.toLowerCase() === chip.query.toLowerCase()
-                    ? 'border-[#3A2E28] bg-[#F6B21A] text-[#3A2E28] shadow-[1.5px_1.5px_0px_#3A2E28]'
-                    : 'border-[#3A2E28]/15 bg-[#FFFFFF] text-[#3A2E28]/75 hover:bg-[#FFF8EE]'
+                    ? 'border-[#0F5132] bg-[#0F5132] text-white shadow-xs'
+                    : 'border-gray-200 bg-white text-[#3E4152] hover:border-gray-300 shadow-2xs'
                 }`}
               >
                 {chip.label}
@@ -524,32 +532,32 @@ export default function HomePage() {
             ))}
           </div>
 
-          {/* Node Chips (Smooth edge-to-edge swipe on mobile) */}
+          {/* Node Filter Chips (Swiggy Horizontal Clean Chips) */}
           <div className="-mx-4 px-4 sm:mx-0 sm:px-0 flex items-center space-x-1.5 overflow-x-auto pb-1 scrollbar-none">
             {NAVI_MUMBAI_NODES.map((node) => (
               <button
                 key={node}
                 onClick={() => setSelectedNeighborhood(node)}
-                className={`whitespace-nowrap shrink-0 rounded-xl px-3 py-1.5 text-xs font-mono font-bold uppercase transition-all border ${
+                className={`whitespace-nowrap shrink-0 rounded-full px-3.5 py-1.5 text-xs font-semibold transition-all border ${
                   selectedNeighborhood === node
-                    ? 'border-[#3A2E28] bg-[#0F5132] text-white shadow-[2px_2px_0px_#3A2E28]'
-                    : 'border-[#3A2E28]/15 bg-[#FFFFFF] text-[#3A2E28]/70 hover:bg-[#FFF8EE]'
+                    ? 'border-[#0F5132] bg-[#0F5132] text-white shadow-xs'
+                    : 'border-gray-200 bg-white text-[#686B78] hover:border-gray-300 shadow-2xs'
                 }`}
               >
-                {node === 'All' ? 'ALL NODES' : node}
+                {node === 'All' ? 'All Nodes' : node}
               </button>
             ))}
           </div>
         </div>
 
-        {/* Desktop Navigation Tabs */}
+        {/* Desktop Navigation Tabs (Swiggy Clean Rounded Pills) */}
         <div className="hidden sm:flex items-center space-x-2 mb-6">
           <button
             onClick={() => setActiveNavSection('battles')}
-            className={`flex items-center space-x-1.5 px-4 py-2 rounded-xl text-xs font-black uppercase transition-all ${
+            className={`flex items-center space-x-1.5 px-4 py-2 rounded-full text-xs font-bold transition-all ${
               activeNavSection === 'battles'
-                ? 'bg-[#0F5132] text-white border border-[#3A2E28] shadow-[2px_2px_0px_#3A2E28]'
-                : 'bg-white text-[#3A2E28]/70 border border-[#3A2E28]/15 hover:bg-[#FFF8EE]'
+                ? 'bg-[#0F5132] text-white shadow-xs'
+                : 'bg-white text-[#686B78] border border-gray-200 hover:text-[#02060C] hover:border-gray-300'
             }`}
           >
             <span>🔥</span>
@@ -558,10 +566,10 @@ export default function HomePage() {
 
           <button
             onClick={() => setActiveNavSection('explore')}
-            className={`flex items-center space-x-1.5 px-4 py-2 rounded-xl text-xs font-black uppercase transition-all ${
+            className={`flex items-center space-x-1.5 px-4 py-2 rounded-full text-xs font-bold transition-all ${
               activeNavSection === 'explore'
-                ? 'bg-[#0F5132] text-white border border-[#3A2E28] shadow-[2px_2px_0px_#3A2E28]'
-                : 'bg-white text-[#3A2E28]/70 border border-[#3A2E28]/15 hover:bg-[#FFF8EE]'
+                ? 'bg-[#0F5132] text-white shadow-xs'
+                : 'bg-white text-[#686B78] border border-gray-200 hover:text-[#02060C] hover:border-gray-300'
             }`}
           >
             <span>📍</span>
@@ -570,10 +578,10 @@ export default function HomePage() {
 
           <button
             onClick={() => setActiveNavSection('leaderboard')}
-            className={`flex items-center space-x-1.5 px-4 py-2 rounded-xl text-xs font-black uppercase transition-all ${
+            className={`flex items-center space-x-1.5 px-4 py-2 rounded-full text-xs font-bold transition-all ${
               activeNavSection === 'leaderboard'
-                ? 'bg-[#0F5132] text-white border border-[#3A2E28] shadow-[2px_2px_0px_#3A2E28]'
-                : 'bg-white text-[#3A2E28]/70 border border-[#3A2E28]/15 hover:bg-[#FFF8EE]'
+                ? 'bg-[#0F5132] text-white shadow-xs'
+                : 'bg-white text-[#686B78] border border-gray-200 hover:text-[#02060C] hover:border-gray-300'
             }`}
           >
             <span>🏆</span>
@@ -582,14 +590,14 @@ export default function HomePage() {
 
           <button
             onClick={() => setActiveNavSection('challenges')}
-            className={`flex items-center space-x-1.5 px-4 py-2 rounded-xl text-xs font-black uppercase transition-all ${
+            className={`flex items-center space-x-1.5 px-4 py-2 rounded-full text-xs font-bold transition-all ${
               activeNavSection === 'challenges'
-                ? 'bg-[#0F5132] text-white border border-[#3A2E28] shadow-[2px_2px_0px_#3A2E28]'
-                : 'bg-white text-[#3A2E28]/70 border border-[#3A2E28]/15 hover:bg-[#FFF8EE]'
+                ? 'bg-[#0F5132] text-white shadow-xs'
+                : 'bg-white text-[#686B78] border border-gray-200 hover:text-[#02060C] hover:border-gray-300'
             }`}
           >
             <span>⚔️</span>
-            <span>Challenges ({challenges.length})</span>
+            <span>Arena ({challenges.length})</span>
           </button>
         </div>
 
@@ -609,20 +617,20 @@ export default function HomePage() {
               />
             )}
 
-            {/* SECTION A: LIVE BATTLES */}
+            {/* SECTION 1: LIVE FOOD BATTLES */}
             <div>
               <div className="flex items-center justify-between mb-3.5">
                 <div className="flex items-center space-x-2">
-                  <span className="flex h-3 w-3 rounded-full bg-[#00B26B] animate-pulse" />
-                  <h2 className="text-xl font-black text-[#121212] uppercase tracking-tight">
-                    {searchQuery ? `⚔️ Related Battles for "${searchQuery}"` : 'A. Live Food Battles'}
+                  <span className="flex h-2.5 w-2.5 rounded-full bg-[#0F5132] animate-pulse" />
+                  <h2 className="text-lg sm:text-xl font-extrabold text-[#02060C] tracking-tight">
+                    {searchQuery ? `Battles matching "${searchQuery}"` : 'Food Battles Happening Now'}
                   </h2>
                 </div>
 
                 {searchQuery && (
                   <button
                     onClick={() => setSearchQuery('')}
-                    className="font-mono text-xs font-bold text-[#D92D20] hover:underline"
+                    className="text-xs font-bold text-[#EF4E3A] hover:underline"
                   >
                     Clear Search ✕
                   </button>
@@ -642,31 +650,31 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* SECTION B: TRENDING IN NAVI MUMBAI */}
+            {/* SECTION 2: TRENDING IN NAVI MUMBAI */}
             {trendingBattles.length > 0 && selectedNeighborhood === 'All' && !searchQuery && (
-              <div className="pt-4 border-t-2 border-[#121212]/20">
+              <div className="pt-4 border-t border-gray-200/60">
                 <div className="flex items-center space-x-2 mb-3.5">
-                  <Flame className="h-5 w-5 text-[#FF5C9A]" />
-                  <h2 className="text-xl font-black text-[#121212] uppercase tracking-tight">
-                    B. Trending in Navi Mumbai
+                  <Flame className="h-5 w-5 text-[#EF4E3A]" />
+                  <h2 className="text-lg sm:text-xl font-extrabold text-[#02060C] tracking-tight">
+                    Trending in Navi Mumbai
                   </h2>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {trendingBattles.slice(0, 2).map((b) => (
-                    <div key={b.id} className="poster-card p-4 bg-[#FFFFFF]">
-                      <span className="stamp-tag bg-[#FF5C9A] text-white text-[9px] mb-2">
+                    <div key={b.id} className="rounded-2xl border border-black/[0.06] bg-white p-4 shadow-[0_2px_10px_rgba(2,6,12,0.04)] hover:shadow-md transition-all">
+                      <span className="inline-block text-[10px] font-bold uppercase text-[#EF4E3A] bg-rose-50 px-2 py-0.5 rounded mb-2">
                         TRENDING NOW
                       </span>
-                      <h4 className="text-base font-black text-[#121212] uppercase line-clamp-1">
+                      <h4 className="text-base font-extrabold text-[#02060C] line-clamp-1">
                         {b.title}
                       </h4>
-                      <p className="text-xs text-[#121212]/70 font-semibold mb-3">
+                      <p className="text-xs text-[#686B78] font-medium mb-3 mt-0.5">
                         {b.contestantA.name} ({b.percentA}%) vs {b.contestantB.name} ({b.percentB}%)
                       </p>
                       <button
                         onClick={() => handleVote(b.id, b.contestantA.id)}
-                        className="btn-yellow w-full py-2 text-xs font-black uppercase"
+                        className="btn-forest w-full py-2.5 text-xs font-bold"
                       >
                         Vote in Battle
                       </button>
@@ -700,20 +708,20 @@ export default function HomePage() {
               </div>
             )}
 
-            {/* SECTION D & E: RECENT WINNERS & CHALLENGE A WINNER */}
-            <div className="pt-4 border-t-2 border-[#121212]/20">
+            {/* SECTION 3: RECENT WINNERS & REIGNING CHAMPIONS */}
+            <div className="pt-4 border-t border-gray-200/60">
               <div className="flex items-center justify-between mb-3.5">
                 <div className="flex items-center space-x-2">
-                  <Trophy className="h-5 w-5 text-[#FFD11A]" />
-                  <h2 className="text-xl font-black text-[#121212] uppercase tracking-tight">
-                    D. Recent Winners & Reigning Champions
+                  <Trophy className="h-5 w-5 text-[#F6B21A]" />
+                  <h2 className="text-lg sm:text-xl font-extrabold text-[#02060C] tracking-tight">
+                    Recent Winners &amp; Reigning Champions
                   </h2>
                 </div>
                 <button
                   onClick={() => setActiveNavSection('challenges')}
-                  className="font-mono text-xs font-black uppercase text-[#2748FF] hover:underline"
+                  className="text-xs font-bold text-[#0F5132] hover:underline"
                 >
-                  View All Challenges →
+                  View Arena →
                 </button>
               </div>
 
@@ -735,12 +743,14 @@ export default function HomePage() {
         {/* VIEW 2: EXPLORE NAVI MUMBAI */}
         {activeNavSection === 'explore' && (
           <div className="space-y-6">
-            <div className="poster-card p-5 bg-[#FFFFFF]">
-              <span className="stamp-tag bg-[#FFD11A] mb-2">GEOGRAPHIC EXPLORATION</span>
-              <h3 className="text-2xl font-black text-[#121212] uppercase">
+            <div className="rounded-2xl border border-black/[0.06] bg-white p-5 shadow-xs">
+              <span className="inline-block text-[10px] font-bold uppercase tracking-wider text-[#0F5132] bg-emerald-50 px-2 py-0.5 rounded mb-1.5">
+                Geographic Discovery
+              </span>
+              <h3 className="text-lg sm:text-xl font-extrabold text-[#02060C] tracking-tight">
                 Explore Navi Mumbai Food Nodes
               </h3>
-              <p className="text-xs text-[#121212]/75 font-medium mt-1">
+              <p className="text-xs text-[#686B78] font-normal mt-0.5">
                 Navi Mumbai is built on culinary nodes. Each sector has its own street king.
               </p>
 
@@ -754,14 +764,14 @@ export default function HomePage() {
                         setSelectedNeighborhood(nodeName);
                         setActiveNavSection('battles');
                       }}
-                      className="rounded-xl border-2 border-[#121212] bg-[#F6EFE2] p-3 text-left hover:bg-[#FFD11A] transition-all shadow-[2px_2px_0px_#121212]"
+                      className="rounded-xl border border-gray-200 bg-white p-3 text-left hover:border-[#0F5132] hover:shadow-xs transition-all group"
                     >
-                      <MapPin className="h-4 w-4 text-[#121212] mb-1" />
-                      <span className="font-mono text-xs font-black text-[#121212] block">
+                      <MapPin className="h-4 w-4 text-[#EF4E3A] mb-1.5" />
+                      <span className="text-xs font-bold text-[#02060C] block group-hover:text-[#0F5132] transition-colors">
                         {loc}
                       </span>
-                      <span className="text-[10px] text-[#121212]/60 font-semibold block mt-0.5">
-                        Browse node battles →
+                      <span className="text-[11px] text-[#686B78] font-medium block mt-0.5">
+                        Browse battles →
                       </span>
                     </button>
                   );
@@ -770,34 +780,34 @@ export default function HomePage() {
             </div>
 
             {/* Battle Categories */}
-            <div className="poster-card p-5 bg-[#FFFFFF]">
-              <h4 className="text-lg font-black text-[#121212] uppercase mb-3">
+            <div className="rounded-2xl border border-black/[0.06] bg-white p-5 shadow-xs">
+              <h4 className="text-base font-extrabold text-[#02060C] mb-3">
                 Browse By Battle Category
               </h4>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                <div className="rounded-xl border-2 border-[#121212] p-3.5 bg-[#2748FF]/10">
-                  <span className="font-mono text-xs font-black text-[#2748FF] block mb-1">
-                    TYPE A: DISH BATTLES
+                <div className="rounded-xl border border-emerald-100 p-3.5 bg-emerald-50/50">
+                  <span className="text-xs font-bold text-[#0F5132] block mb-1">
+                    Dish Battles
                   </span>
-                  <p className="text-xs text-[#121212]/80 font-bold">
+                  <p className="text-xs text-[#686B78] font-medium">
                     Comparing specific dishes from different vendors (e.g. Vada Pav vs Vada Pav).
                   </p>
                 </div>
 
-                <div className="rounded-xl border-2 border-[#121212] p-3.5 bg-[#FF5C9A]/10">
-                  <span className="font-mono text-xs font-black text-[#FF5C9A] block mb-1">
-                    TYPE B: RESTAURANT BATTLES
+                <div className="rounded-xl border border-rose-100 p-3.5 bg-rose-50/50">
+                  <span className="text-xs font-bold text-[#EF4E3A] block mb-1">
+                    Restaurant Battles
                   </span>
-                  <p className="text-xs text-[#121212]/80 font-bold">
+                  <p className="text-xs text-[#686B78] font-medium">
                     Comparing full restaurant dining experiences serving comparable dishes.
                   </p>
                 </div>
 
-                <div className="rounded-xl border-2 border-[#121212] p-3.5 bg-[#FFD11A]/20">
-                  <span className="font-mono text-xs font-black text-[#121212] block mb-1">
-                    TYPE C: FOOD DEBATES
+                <div className="rounded-xl border border-amber-100 p-3.5 bg-amber-50/50">
+                  <span className="text-xs font-bold text-[#A16207] block mb-1">
+                    Food Debates
                   </span>
-                  <p className="text-xs text-[#121212]/80 font-bold">
+                  <p className="text-xs text-[#686B78] font-medium">
                     Fundamental cultural food debates (e.g. Vada Pav vs Pav Bhaji).
                   </p>
                 </div>
@@ -805,24 +815,24 @@ export default function HomePage() {
             </div>
 
             {/* Live Community Food Radar (Supabase Real-Time Check-Ins) */}
-            <div className="poster-card p-5 bg-[#FFFFFF] space-y-4">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 pb-3 border-b-2 border-[#121212]/10">
+            <div className="rounded-2xl border border-black/[0.06] bg-white p-5 shadow-xs space-y-4">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 pb-3 border-b border-gray-100">
                 <div>
-                  <div className="inline-flex items-center space-x-1.5 rounded-full border border-[#121212] bg-[#E3F9ED] px-2.5 py-0.5 text-[10px] font-mono font-black uppercase text-[#008A52] mb-1">
-                    <span className="h-1.5 w-1.5 rounded-full bg-[#00B26B] animate-pulse" />
-                    <span>Supabase Cloud Radar</span>
+                  <div className="inline-flex items-center space-x-1.5 rounded-full bg-emerald-50 px-2.5 py-0.5 text-[10px] font-bold text-[#0F5132] mb-1">
+                    <span className="h-1.5 w-1.5 rounded-full bg-[#0F5132] animate-pulse" />
+                    <span>Real-Time Check-Ins</span>
                   </div>
-                  <h4 className="text-xl font-black text-[#121212] uppercase tracking-tight">
-                    Live Community Check-Ins & Anti-Regret Radar
+                  <h4 className="text-lg font-extrabold text-[#02060C] tracking-tight">
+                    Live Community Food Radar
                   </h4>
-                  <p className="text-xs text-[#121212]/70 font-medium">
+                  <p className="text-xs text-[#686B78] font-normal">
                     Verified bites logged by diners across Vashi, Nerul, Belapur, Kharghar, and Seawoods.
                   </p>
                 </div>
 
                 <button
                   onClick={() => setIsCheckinModalOpen(true)}
-                  className="btn-yellow px-4 py-2 text-xs font-black uppercase tracking-wider flex items-center justify-center space-x-1.5 shrink-0"
+                  className="btn-forest px-4 py-2 text-xs font-bold rounded-full flex items-center justify-center space-x-1.5 shrink-0 shadow-xs"
                 >
                   <Receipt className="h-3.5 w-3.5" />
                   <span>+ Check In Dish</span>
@@ -830,30 +840,30 @@ export default function HomePage() {
               </div>
 
               {/* Check-ins Feed */}
-              <div className="space-y-2.5 max-h-[380px] overflow-y-auto pr-1">
+              <div className="space-y-2 max-h-[380px] overflow-y-auto pr-1">
                 {cloudCheckins.length > 0 ? (
                   cloudCheckins.map((chk) => (
                     <div
                       key={chk.id}
-                      className="p-3.5 rounded-xl border-2 border-[#121212] bg-[#F6EFE2] shadow-[2px_2px_0px_#121212] flex items-start justify-between gap-3"
+                      className="p-3.5 rounded-xl border border-gray-100 bg-[#F8F9FA] flex items-start justify-between gap-3 hover:border-gray-200 transition-colors"
                     >
-                      <div className="space-y-1">
+                      <div className="space-y-0.5">
                         <div className="flex items-center space-x-2">
-                          <span className="font-black text-sm text-[#121212]">
+                          <span className="font-extrabold text-sm text-[#02060C]">
                             {chk.dish_name}
                           </span>
-                          <span className="text-xs text-[#121212]/60 font-bold">
+                          <span className="text-xs text-[#686B78]">
                             @ {chk.venue_name}
                           </span>
                         </div>
 
                         {chk.note && (
-                          <p className="text-xs text-[#121212]/80 font-medium italic">
-                            "{chk.note}"
+                          <p className="text-xs text-[#686B78] font-normal italic">
+                            &ldquo;{chk.note}&rdquo;
                           </p>
                         )}
 
-                        <div className="flex items-center space-x-2 text-[10px] font-mono text-[#121212]/60 pt-0.5">
+                        <div className="flex items-center space-x-2 text-[11px] text-[#686B78] pt-0.5">
                           <span>{chk.user_name || 'Anonymous Diner'}</span>
                           <span>•</span>
                           <span>
@@ -867,10 +877,10 @@ export default function HomePage() {
 
                       <div className="shrink-0">
                         <span
-                          className={`px-2.5 py-1 rounded-lg border-2 text-[10px] font-black uppercase tracking-wider ${
+                          className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold ${
                             chk.reaction === 'GOD_TIER'
-                              ? 'border-[#008A52] bg-[#E3F9ED] text-[#008A52]'
-                              : 'border-[#D92D20] bg-[#FFEBEB] text-[#D92D20]'
+                              ? 'bg-emerald-50 text-[#0F5132] border border-emerald-200/50'
+                              : 'bg-rose-50 text-[#EF4E3A] border border-rose-200/50'
                           }`}
                         >
                           {chk.reaction === 'GOD_TIER' ? 'GOD TIER 🔥' : 'SKIP ❌'}
@@ -879,11 +889,11 @@ export default function HomePage() {
                     </div>
                   ))
                 ) : (
-                  <div className="p-8 text-center rounded-xl border-2 border-dashed border-[#121212]/30 text-xs font-bold text-[#121212]/60 space-y-2">
+                  <div className="p-8 text-center rounded-xl border border-dashed border-gray-200 text-xs font-medium text-[#686B78] space-y-2">
                     <p>No check-ins logged yet today. Be the first to check in!</p>
                     <button
                       onClick={() => setIsCheckinModalOpen(true)}
-                      className="px-3 py-1.5 rounded-lg border-2 border-[#121212] bg-[#FFD11A] text-xs font-black uppercase shadow-[2px_2px_0px_#121212]"
+                      className="btn-forest px-3.5 py-1.5 rounded-full text-xs font-bold"
                     >
                       Post First Check-In
                     </button>
@@ -960,65 +970,65 @@ export default function HomePage() {
       {/* INSTALL PWA BANNER */}
       <InstallPWA />
 
-      {/* NATIVE MOBILE STICKY BOTTOM APP BAR (THUMB ZONE) */}
-      <nav className="sm:hidden fixed bottom-0 left-0 right-0 z-40 border-t border-[#3A2E28]/15 bg-[#FFF8EE]/95 backdrop-blur-lg px-2 py-1.5 shadow-[0_-4px_16px_rgba(58,46,40,0.08)]">
-        <div className="flex items-center justify-around max-w-md mx-auto">
+      {/* SWIGGY-STYLE NATIVE MOBILE STICKY BOTTOM APP BAR */}
+      <nav className="sm:hidden fixed bottom-0 left-0 right-0 z-40 border-t border-gray-100 bg-white/98 backdrop-blur-lg px-3 py-2 shadow-[0_-4px_20px_rgba(0,0,0,0.06)]">
+        <div className="flex items-center justify-between max-w-md mx-auto">
           <button
             onClick={() => setActiveNavSection('battles')}
-            className={`flex flex-col items-center py-1 px-3 rounded-xl transition-all ${
+            className={`flex flex-col items-center py-0.5 px-3 rounded-lg transition-all ${
               activeNavSection === 'battles'
-                ? 'text-[#0F5132] font-black'
-                : 'text-[#3A2E28]/50 font-bold hover:text-[#3A2E28]'
+                ? 'text-[#EF4E3A] font-bold'
+                : 'text-[#686B78] font-medium hover:text-[#02060C]'
             }`}
           >
-            <Flame className={`h-5 w-5 ${activeNavSection === 'battles' ? 'text-[#EF4E3A] fill-[#EF4E3A]' : ''}`} />
+            <Flame className={`h-5 w-5 ${activeNavSection === 'battles' ? 'fill-[#EF4E3A]' : ''}`} />
             <span className="text-[10px] mt-0.5">Battles</span>
           </button>
 
           <button
             onClick={() => setActiveNavSection('explore')}
-            className={`flex flex-col items-center py-1 px-3 rounded-xl transition-all ${
+            className={`flex flex-col items-center py-0.5 px-3 rounded-lg transition-all ${
               activeNavSection === 'explore'
-                ? 'text-[#0F5132] font-black'
-                : 'text-[#3A2E28]/50 font-bold hover:text-[#3A2E28]'
+                ? 'text-[#0F5132] font-bold'
+                : 'text-[#686B78] font-medium hover:text-[#02060C]'
             }`}
           >
-            <Compass className={`h-5 w-5 ${activeNavSection === 'explore' ? 'text-[#0F5132]' : ''}`} />
+            <Compass className="h-5 w-5" />
             <span className="text-[10px] mt-0.5">Explore</span>
           </button>
 
-          {/* Quick Check-In Center Button */}
+          {/* Quick Check-In Center Button (Swiggy Floating Action Style) */}
           <button
             onClick={() => setIsCheckinModalOpen(true)}
-            className="flex flex-col items-center -mt-4 group"
+            className="flex flex-col items-center -mt-5 group"
           >
-            <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[#0F5132] border-2 border-[#3A2E28] shadow-[2px_2px_0px_#3A2E28] group-active:translate-y-0.5 transition-all">
+            <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[#0F5132] text-white shadow-lg ring-4 ring-white group-active:scale-95 transition-all">
               <Receipt className="h-5 w-5 text-white" />
             </div>
-            <span className="text-[10px] font-black text-[#3A2E28] mt-0.5">Check In</span>
+            <span className="text-[10px] font-bold text-[#02060C] mt-0.5">Check In</span>
           </button>
 
           <button
             onClick={() => setActiveNavSection('challenges')}
-            className={`flex flex-col items-center py-1 px-3 rounded-xl transition-all ${
+            className={`flex flex-col items-center py-0.5 px-3 rounded-lg transition-all ${
               activeNavSection === 'challenges'
-                ? 'text-[#0F5132] font-black'
-                : 'text-[#3A2E28]/50 font-bold hover:text-[#3A2E28]'
+                ? 'text-[#0F5132] font-bold'
+                : 'text-[#686B78] font-medium hover:text-[#02060C]'
             }`}
           >
-            <Swords className={`h-5 w-5 ${activeNavSection === 'challenges' ? 'text-[#EF4E3A]' : ''}`} />
+            <Swords className="h-5 w-5" />
             <span className="text-[10px] mt-0.5">Arena</span>
           </button>
 
           <button
             onClick={() => setActiveNavSection('leaderboard')}
-            className={`flex flex-col items-center py-1 px-3 rounded-xl transition-all ${
+            className={`flex flex-col items-center py-0.5 px-3 rounded-lg transition-all ${
               activeNavSection === 'leaderboard'
-                ? 'text-[#0F5132] font-black'
-                : 'text-[#3A2E28]/50 font-bold hover:text-[#3A2E28]'
+                ? 'text-[#0F5132] font-bold'
+                : 'text-[#686B78] font-medium hover:text-[#02060C]'
             }`}
           >
-            <Trophy className={`h-5 w-5 ${activeNavSection === 'leaderboard' ? 'text-[#F6B21A]' : ''}`} />
+            <Trophy className="h-5 w-5" />
             <span className="text-[10px] mt-0.5">Ranks</span>
           </button>
         </div>
