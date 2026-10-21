@@ -1,12 +1,12 @@
 {
-  "name": "PALATE — India's Food Fights Begin Here",
-  "short_name": "PALATE",
-  "description": "Mobile-first food discovery platform where people participate in food battles, vote, share, and challenge winning dishes in Navi Mumbai.",
+  "name": "Palate — Food Worth Talking About",
+  "short_name": "Palate",
+  "description": "Food worth talking about. Hyper-local, dish-first food discovery and food battles across Navi Mumbai.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
-  "background_color": "#F6EFE2",
-  "theme_color": "#FFD11A",
+  "background_color": "#FFF8EE",
+  "theme_color": "#0F5132",
   "orientation": "portrait",
   "categories": ["food", "lifestyle", "social"],
   "icons": [
@@ -26,6 +26,12 @@
       "src": "/icons/icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
       "purpose": "any"
     }
   ]

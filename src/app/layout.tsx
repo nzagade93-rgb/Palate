@@ -11,35 +11,38 @@ const sans = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "PALATE — India's Food Fights Begin Here | Navi Mumbai",
-  description: "Your favourite dish is someone's biggest debate. Vote, settle the score, and defend your taste across Navi Mumbai's most heated culinary rivalries.",
+  title: 'Palate — Food Worth Talking About | Navi Mumbai',
+  description:
+    'Food worth talking about. Hyper-local, dish-first food discovery and culinary consensus across Navi Mumbai (Vashi, Nerul, Belapur, Kharghar, Seawoods, and Sanpada).',
   manifest: '/manifest.json',
   metadataBase: new URL('https://palate.app'),
   appleWebApp: {
     capable: true,
     statusBarStyle: 'default',
-    title: 'PALATE',
+    title: 'Palate',
   },
   icons: {
-    icon: '/icons/icon-192.png',
+    icon: '/icons/icon.svg',
     apple: '/icons/apple-touch-icon.png',
   },
   openGraph: {
-    title: "PALATE — India's Food Fights Begin Here",
-    description: "Who makes the better Vada Pav, Misal, Biryani, and Seafood in Navi Mumbai? Settle the score now.",
+    title: 'Palate — Food Worth Talking About',
+    description:
+      'Hyper-local, dish-first food discovery and culinary consensus across Navi Mumbai. Settle the score and find dishes worth talking about.',
     type: 'website',
-    siteName: 'PALATE',
+    siteName: 'Palate',
     locale: 'en_IN',
   },
   twitter: {
     card: 'summary_large_image',
-    title: "PALATE — India's Food Fights Begin Here",
-    description: "Your favourite dish is someone's biggest debate. Vote and defend your taste.",
+    title: 'Palate — Food Worth Talking About',
+    description:
+      'Hyper-local, dish-first food discovery across Navi Mumbai. Food worth talking about.',
   },
 };
 
 export const viewport: Viewport = {
-  themeColor: '#FFD11A',
+  themeColor: '#0F5132',
   colorScheme: 'light',
   width: 'device-width',
   initialScale: 1,
@@ -59,9 +62,10 @@ export default function RootLayout({
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="format-detection" content="telephone=no" />
+        <link rel="icon" type="image/svg+xml" href="/icons/icon.svg" />
         <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
       </head>
-      <body className="min-h-full bg-[#F6EFE2] text-[#121212] selection:bg-[#FFD11A] selection:text-[#121212]">
+      <body className="min-h-full bg-[#FFF8EE] text-[#3A2E28] selection:bg-[#F6B21A] selection:text-[#3A2E28]">
         <PWARegistration />
         {children}
       </body>

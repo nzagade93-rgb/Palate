@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 120" width="360" height="120" fill="none">
+  <!-- Group: Icon Mark -->
+  <g transform="translate(10, 10) scale(0.85)">
+    <!-- Mango Yellow Sprouting Leaves -->
+    <path
+      d="M 66 22 C 60 14, 63 6, 70 3 C 77 0, 81 7, 78 15 C 75 22, 69 25, 66 22 Z"
+      fill="#F6B21A"
+    />
+    <path
+      d="M 76 31 C 73 24, 78 18, 86 17 C 93 17, 95 24, 91 30 C 86 36, 79 36, 76 31 Z"
+      fill="#F6B21A"
+    />
+    <!-- Forest Green 'P' Outer Contour -->
+    <path
+      d="M 28 32
+         C 28 17, 44 9, 62 16
+         C 78 23, 84 39, 81 54
+         C 77 70, 60 76, 46 74
+         C 41 73, 38 78, 38 88
+         C 38 98, 38 104, 28 104
+         C 20 104, 20 96, 20 86
+         C 20 62, 20 44, 28 32 Z"
+      fill="#0F5132"
+    />
+    <!-- Tomato Red Inner Droplet -->
+    <path
+      d="M 46 38
+         C 46 38, 63 39, 64 51
+         C 64 61, 52 64, 46 57
+         C 41 51, 46 38, 46 38 Z"
+      fill="#EF4E3A"
+    />
+  </g>
+
+  <!-- Wordmark: palate -->
+  <text x="105" y="70" font-family="'Plus Jakarta Sans', system-ui, -apple-system, sans-serif" font-size="52" font-weight="900" fill="#0F5132" letter-spacing="-1.5">
+    palate
+  </text>
+
+  <!-- Tagline: FOOD WORTH TALKING ABOUT -->
+  <text x="108" y="92" font-family="'Plus Jakarta Sans', system-ui, -apple-system, sans-serif" font-size="10.5" font-weight="800" fill="#3A2E28" letter-spacing="3.2" opacity="0.8">
+    FOOD WORTH TALKING ABOUT
+  </text>
+</svg>

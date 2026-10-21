@@ -7,7 +7,8 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Download, X, Share, PlusSquare, Swords } from 'lucide-react';
+import { Download, X, Share, PlusSquare } from 'lucide-react';
+import { PalateAppIcon } from '@/components/PalateLogo';
 
 interface BeforeInstallPromptEvent extends Event {
   prompt: () => Promise<void>;
@@ -99,18 +100,16 @@ export default function InstallPWA() {
         transition={{ duration: 0.35, ease: 'easeOut' }}
         className="fixed bottom-4 left-4 right-4 z-40 mx-auto max-w-md sm:bottom-6"
       >
-        <div className="relative overflow-hidden rounded-2xl border-[3px] border-[#121212] bg-[#FFFFFF] p-4 shadow-[6px_6px_0px_#121212]">
+        <div className="relative overflow-hidden rounded-2xl border-[2.5px] border-[#3A2E28] bg-[#FFFFFF] p-4 shadow-[5px_5px_0px_#3A2E28]">
           <div className="flex items-center justify-between gap-3">
             <div className="flex items-center space-x-3">
-              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border-2 border-[#121212] bg-[#FFD11A] shadow-[2px_2px_0px_#121212]">
-                <Swords className="h-6 w-6 text-[#121212]" />
-              </div>
+              <PalateAppIcon size={44} />
 
               <div>
-                <h4 className="text-xs sm:text-sm font-black text-[#121212] uppercase leading-tight">
-                  Install PALATE App
+                <h4 className="text-xs sm:text-sm font-black text-[#3A2E28] uppercase leading-tight">
+                  Install Palate App
                 </h4>
-                <p className="text-[11px] text-[#121212]/70 leading-snug font-medium">
+                <p className="text-[11px] text-[#3A2E28]/70 leading-snug font-medium">
                   Add to home screen for instant 1-tap food voting.
                 </p>
               </div>
@@ -120,9 +119,9 @@ export default function InstallPWA() {
               <button
                 onClick={handleInstallClick}
                 id="install-pwa-btn"
-                className="btn-yellow px-3.5 py-2 text-xs font-black uppercase tracking-wider flex items-center space-x-1.5"
+                className="btn-forest px-3.5 py-2 text-xs font-black uppercase tracking-wider flex items-center space-x-1.5"
               >
-                <Download className="h-3.5 w-3.5" />
+                <Download className="h-3.5 w-3.5 text-[#F6B21A]" />
                 <span>Install</span>
               </button>
 

@@ -1,146 +1,195 @@
 @import "tailwindcss";
 
 :root {
-  --palate-yellow: #FFD11A;
-  --palate-blue: #2748FF;
-  --palate-pink: #FF5C9A;
-  --palate-mint: #00B26B;
-  --palate-paper: #FAF8F5;
+  /* Palate Brand Core Colors (From Brand Sheet) */
+  --palate-forest: #0F5132;        /* Primary */
+  --palate-tomato: #EF4E3A;        /* Accent */
+  --palate-mango: #F6B21A;         /* Highlight */
+  --palate-cream: #FFF8EE;         /* Background */
+  --palate-cocoa: #3A2E28;         /* Text */
+  --palate-sage: #DCE7D9;          /* Secondary */
+
+  /* Semantic Design System Mappings */
+  --palate-yellow: var(--palate-mango);
+  --palate-blue: var(--palate-forest);
+  --palate-pink: var(--palate-tomato);
+  --palate-mint: var(--palate-forest);
+  --palate-paper: var(--palate-cream);
   --palate-white: #FFFFFF;
-  --palate-concrete: #EFECE6;
-  --palate-tar: #1C1917;
-  --palate-border: #1C1917;
+  --palate-concrete: var(--palate-sage);
+  --palate-tar: var(--palate-cocoa);
+  --palate-border: var(--palate-cocoa);
+
+  /* Footer Tokens */
+  --footer-bg: var(--palate-cream);
+  --footer-ink: var(--palate-cocoa);
+  --footer-muted: rgba(58, 46, 40, 0.72);
+  --footer-border: rgba(58, 46, 40, 0.15);
+  --footer-border-bold: var(--palate-cocoa);
+  --footer-yellow: var(--palate-mango);
+  --footer-card-bg: #FFFFFF;
+  --footer-line-height-body: 1.6;
 }
 
 @theme {
-  --color-yellow: var(--palate-yellow);
-  --color-blue: var(--palate-blue);
-  --color-pink: var(--palate-pink);
-  --color-mint: var(--palate-mint);
-  --color-paper: var(--palate-paper);
-  --color-concrete: var(--palate-concrete);
-  --color-tar: var(--palate-tar);
+  --color-forest: var(--palate-forest);
+  --color-tomato: var(--palate-tomato);
+  --color-mango: var(--palate-mango);
+  --color-cream: var(--palate-cream);
+  --color-cocoa: var(--palate-cocoa);
+  --color-sage: var(--palate-sage);
+
+  --color-yellow: var(--palate-mango);
+  --color-blue: var(--palate-forest);
+  --color-pink: var(--palate-tomato);
+  --color-mint: var(--palate-forest);
+  --color-paper: var(--palate-cream);
+  --color-concrete: var(--palate-sage);
+  --color-tar: var(--palate-cocoa);
+
   --font-sans: var(--font-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
-/* PALATE Light-Mode Paper Canvas */
+/* PALATE Cream Background & Cocoa Typography */
 html {
   color-scheme: light;
-  background-color: #FAF8F5;
+  background-color: #FFF8EE;
   -webkit-tap-highlight-color: transparent;
   scroll-behavior: smooth;
 }
 
 body {
-  background-color: #FAF8F5;
-  color: #1C1917;
+  background-color: #FFF8EE;
+  color: #3A2E28;
   font-family: var(--font-sans), ui-sans-serif, system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
 }
 
-/* Indian Street Poster & Warm Editorial Styling */
+/* Brand Card Styling */
 .poster-card {
   background-color: #FFFFFF;
-  border: 1.5px solid #1C1917;
+  border: 1.5px solid #3A2E28;
   border-radius: 16px;
-  box-shadow: 3px 3px 0px #1C1917;
+  box-shadow: 3px 3px 0px #3A2E28;
   transition: all 0.15s ease-out;
 }
 
 .poster-card-interactive:hover {
   transform: translate(-1px, -1px);
-  box-shadow: 4px 4px 0px #1C1917;
+  box-shadow: 4px 4px 0px #3A2E28;
 }
 
 .poster-card-interactive:active {
   transform: translate(1px, 1px);
-  box-shadow: 1px 1px 0px #1C1917;
+  box-shadow: 1px 1px 0px #3A2E28;
 }
 
-/* Buttons */
-.btn-yellow {
-  background-color: #FFD11A;
-  color: #1C1917;
+/* Brand Buttons */
+.btn-forest {
+  background-color: #0F5132;
+  color: #FFFFFF;
   font-weight: 800;
-  border: 1.5px solid #1C1917;
+  border: 1.5px solid #3A2E28;
   border-radius: 12px;
-  box-shadow: 2px 2px 0px #1C1917;
+  box-shadow: 2px 2px 0px #3A2E28;
   transition: all 0.12s ease;
 }
 
-.btn-yellow:hover {
+.btn-forest:hover {
+  background-color: #0B3D26;
   transform: translate(-1px, -1px);
-  box-shadow: 3px 3px 0px #1C1917;
-  background-color: #ffd83b;
+  box-shadow: 3px 3px 0px #3A2E28;
 }
 
-.btn-yellow:active {
+.btn-forest:active {
   transform: translate(1px, 1px);
-  box-shadow: 0px 0px 0px #1C1917;
+  box-shadow: 0px 0px 0px #3A2E28;
+}
+
+.btn-tomato {
+  background-color: #EF4E3A;
+  color: #FFFFFF;
+  font-weight: 800;
+  border: 1.5px solid #3A2E28;
+  border-radius: 12px;
+  box-shadow: 2px 2px 0px #3A2E28;
+  transition: all 0.12s ease;
+}
+
+.btn-tomato:hover {
+  background-color: #D93E2B;
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0px #3A2E28;
+}
+
+.btn-tomato:active {
+  transform: translate(1px, 1px);
+  box-shadow: 0px 0px 0px #3A2E28;
+}
+
+.btn-yellow, .btn-mango {
+  background-color: #F6B21A;
+  color: #3A2E28;
+  font-weight: 800;
+  border: 1.5px solid #3A2E28;
+  border-radius: 12px;
+  box-shadow: 2px 2px 0px #3A2E28;
+  transition: all 0.12s ease;
+}
+
+.btn-yellow:hover, .btn-mango:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0px #3A2E28;
+  background-color: #e5a315;
+}
+
+.btn-yellow:active, .btn-mango:active {
+  transform: translate(1px, 1px);
+  box-shadow: 0px 0px 0px #3A2E28;
 }
 
 .btn-blue {
-  background-color: #2748FF;
+  background-color: #0F5132;
   color: #FFFFFF;
   font-weight: 800;
-  border: 1.5px solid #1C1917;
+  border: 1.5px solid #3A2E28;
   border-radius: 12px;
-  box-shadow: 2px 2px 0px #1C1917;
+  box-shadow: 2px 2px 0px #3A2E28;
   transition: all 0.12s ease;
-}
-
-.btn-blue:hover {
-  transform: translate(-1px, -1px);
-  box-shadow: 3px 3px 0px #1C1917;
-}
-
-.btn-blue:active {
-  transform: translate(1px, 1px);
-  box-shadow: 0px 0px 0px #1C1917;
 }
 
 .btn-pink {
-  background-color: #FF5C9A;
+  background-color: #EF4E3A;
   color: #FFFFFF;
   font-weight: 800;
-  border: 1.5px solid #1C1917;
+  border: 1.5px solid #3A2E28;
   border-radius: 12px;
-  box-shadow: 2px 2px 0px #1C1917;
+  box-shadow: 2px 2px 0px #3A2E28;
   transition: all 0.12s ease;
-}
-
-.btn-pink:hover {
-  transform: translate(-1px, -1px);
-  box-shadow: 3px 3px 0px #1C1917;
-}
-
-.btn-pink:active {
-  transform: translate(1px, 1px);
-  box-shadow: 0px 0px 0px #1C1917;
 }
 
 .btn-white {
   background-color: #FFFFFF;
-  color: #1C1917;
+  color: #3A2E28;
   font-weight: 700;
-  border: 1.5px solid #1C1917;
+  border: 1.5px solid #3A2E28;
   border-radius: 12px;
-  box-shadow: 2px 2px 0px #1C1917;
+  box-shadow: 2px 2px 0px #3A2E28;
   transition: all 0.12s ease;
 }
 
 .btn-white:hover {
-  background-color: #FAF8F5;
+  background-color: #FFF8EE;
   transform: translate(-1px, -1px);
-  box-shadow: 3px 3px 0px #1C1917;
+  box-shadow: 3px 3px 0px #3A2E28;
 }
 
 .btn-white:active {
   transform: translate(2px, 2px);
-  box-shadow: 0px 0px 0px #121212;
+  box-shadow: 0px 0px 0px #3A2E28;
 }
 
 /* Badges & Chips */
@@ -153,35 +202,28 @@ body {
   letter-spacing: 0.05em;
   text-transform: uppercase;
   padding: 4px 10px;
-  border: 1.5px solid #121212;
+  border: 1.5px solid #3A2E28;
   border-radius: 9999px;
-  background-color: #FFD11A;
-  color: #121212;
+  background-color: #F6B21A;
+  color: #3A2E28;
 }
 
 .stamp-blue {
-  background-color: #2748FF;
+  background-color: #0F5132;
   color: #FFFFFF;
-  border: 1.5px solid #121212;
+  border: 1.5px solid #3A2E28;
 }
 
 .stamp-pink {
-  background-color: #FF5C9A;
+  background-color: #EF4E3A;
   color: #FFFFFF;
-  border: 1.5px solid #121212;
+  border: 1.5px solid #3A2E28;
 }
 
 .stamp-mint {
-  background-color: #00B26B;
+  background-color: #0F5132;
   color: #FFFFFF;
-  border: 1.5px solid #121212;
-}
-
-/* Street texture dots */
-.paper-pattern {
-  background-image: radial-gradient(#121212 0.75px, transparent 0.75px);
-  background-size: 20px 20px;
-  opacity: 0.04;
+  border: 1.5px solid #3A2E28;
 }
 
 /* Custom Scrollbar */
@@ -191,11 +233,11 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #F6EFE2;
+  background: #FFF8EE;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #121212;
+  background: #3A2E28;
   border-radius: 9999px;
 }
 
@@ -206,4 +248,17 @@ body {
 
 .safe-bottom {
   padding-bottom: max(env(safe-area-inset-bottom), 16px);
+}
+
+/* Palate Footer Legal Link Dividers (Desktop/Tablet) */
+.palate-footer-legal-links > a:not(:last-child)::after {
+  content: "";
+  display: inline-block;
+  width: 1px;
+  height: 12px;
+  background-color: var(--footer-ink);
+  opacity: 0.25;
+  margin-left: 0.875rem;
+  margin-right: 0.875rem;
+  vertical-align: middle;
 }

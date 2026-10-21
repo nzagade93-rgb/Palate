@@ -9,6 +9,7 @@
 
 import React, { useState, useEffect, useMemo, useRef } from 'react';
 import Link from 'next/link';
+import { motion, AnimatePresence } from 'framer-motion';
 import Navbar from '@/components/Navbar';
 import FoodBattleCard from '@/components/FoodBattleCard';
 import FoodPassport from '@/components/FoodPassport';
@@ -19,6 +20,9 @@ import LeaderboardView from '@/components/LeaderboardView';
 import InstallPWA from '@/components/InstallPWA';
 import AuthModal from '@/components/AuthModal';
 import CheckinModal from '@/components/CheckinModal';
+import Footer from '@/components/Footer';
+import RankedFoodSearchResults from '@/components/RankedFoodSearchResults';
+import { addCrestPoints } from '@/lib/crestSystem';
 
 import { Battle, FoodPassport as FoodPassportType, BattleChallenge } from '@/lib/types';
 import { getDeviceFingerprint } from '@/lib/fingerprint';
@@ -81,6 +85,7 @@ export default function HomePage() {
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [isCheckinModalOpen, setIsCheckinModalOpen] = useState(false);
   const [cloudCheckins, setCloudCheckins] = useState<CloudCheckin[]>([]);
+  const [crestToast, setCrestToast] = useState<{ msg: string; points: number } | null>(null);
 
   const battlesSectionRef = useRef<HTMLDivElement>(null);
 
@@ -181,6 +186,11 @@ export default function HomePage() {
           battleId,
           chosenContestantId,
         });
+        // Award Crest Points
+        addCrestPoints(10, 'Voted in food battle');
+        setCrestToast({ msg: 'Vote counted! +10 Crest Points earned', points: 10 });
+        setTimeout(() => setCrestToast(null), 3500);
+
         // Refresh leaderboard
         fetch('/api/leaderboard')
           .then((r) => r.json())
@@ -228,6 +238,11 @@ export default function HomePage() {
         const pRes = await fetch(`/api/passport?fingerprint=${encodeURIComponent(fingerprint)}`);
         const pData = await pRes.json();
         if (pData.success && pData.passport) setPassport(pData.passport);
+
+        // Award Crest Points
+        addCrestPoints(30, 'Created food battle');
+        setCrestToast({ msg: 'Battle pitched! +30 Crest Points earned', points: 30 });
+        setTimeout(() => setCrestToast(null), 3500);
         return true;
       }
     } catch (e) {
@@ -257,6 +272,11 @@ export default function HomePage() {
         const pRes = await fetch(`/api/passport?fingerprint=${encodeURIComponent(fingerprint)}`);
         const pData = await pRes.json();
         if (pData.success && pData.passport) setPassport(pData.passport);
+
+        // Award Crest Points
+        addCrestPoints(30, 'Challenged champion dish');
+        setCrestToast({ msg: 'Challenger pitched! +30 Crest Points earned', points: 30 });
+        setTimeout(() => setCrestToast(null), 3500);
         return true;
       }
     } catch (e) {
@@ -311,6 +331,14 @@ export default function HomePage() {
 
   const handleCheckinSuccess = (newCheckin: CloudCheckin, hasReceipt: boolean) => {
     setCloudCheckins((prev) => [newCheckin, ...prev]);
+    const earned = hasReceipt ? 50 : 20;
+    addCrestPoints(earned, hasReceipt ? 'Verified receipt check-in' : 'Foodie check-in');
+    setCrestToast({
+      msg: `Check-in recorded! +${earned} Crest Points earned`,
+      points: earned,
+    });
+    setTimeout(() => setCrestToast(null), 3500);
+
     if (passport) {
       setPassport((prev) =>
         prev
@@ -338,30 +366,48 @@ export default function HomePage() {
         onOpenCheckin={() => setIsCheckinModalOpen(true)}
       />
 
+      {/* FLOATING CREST POINTS TOAST */}
+      <AnimatePresence>
+        {crestToast && (
+          <motion.div
+            initial={{ opacity: 0, y: -20, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -20, scale: 0.9 }}
+            className="fixed top-18 left-1/2 -translate-x-1/2 z-50 flex items-center space-x-2 bg-[#3A2E28] text-[#F6B21A] border-2 border-[#F6B21A] px-4 py-2.5 rounded-2xl shadow-[4px_4px_0px_#3A2E28] font-mono text-xs font-black"
+          >
+            <Sparkles className="h-4 w-4 text-[#F6B21A]" />
+            <span>{crestToast.msg}</span>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* MAIN CONTAINER */}
       <main className="mx-auto max-w-4xl px-4 py-4 sm:px-6">
         {/* COMPACT APP-FIRST HERO BAR */}
         <div className="pb-3 flex items-center justify-between gap-3">
           <div>
             <div className="flex items-center space-x-1.5 mb-1">
-              <span className="flex h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-              <span className="font-mono text-[10px] font-black uppercase text-[#A16207]">
-                Navi Mumbai • Live Poll Pilot
+              <span className="flex h-2 w-2 rounded-full bg-[#0F5132] animate-pulse" />
+              <span className="font-mono text-[10px] font-black uppercase text-[#0F5132] tracking-wider">
+                FOOD WORTH TALKING ABOUT • NAVI MUMBAI
               </span>
             </div>
-            <h1 className="text-xl sm:text-2xl font-black text-[#1C1917] uppercase tracking-tight leading-none">
-              India's Food Fights <span className="bg-[#FFD11A] px-1.5 py-0.5 rounded-md border border-[#1C1917]/20 text-xs sm:text-sm font-black">LIVE</span>
+            <h1 className="text-xl sm:text-2xl font-black text-[#3A2E28] uppercase tracking-tight leading-none">
+              Trending Dishes &amp; Food Battles{' '}
+              <span className="bg-[#EF4E3A] text-white px-2 py-0.5 rounded-md border border-[#3A2E28]/20 text-xs sm:text-sm font-black">
+                LIVE
+              </span>
             </h1>
           </div>
 
           <div className="flex items-center space-x-2">
-            <span className="hidden xs:inline-flex items-center space-x-1.5 font-mono text-[11px] font-bold text-[#1C1917]/70 bg-white px-2.5 py-1 rounded-xl border border-[#1C1917]/15 shadow-xs">
-              <Flame className="h-3.5 w-3.5 text-[#FF5C9A]" />
+            <span className="hidden xs:inline-flex items-center space-x-1.5 font-mono text-[11px] font-bold text-[#3A2E28]/70 bg-white px-2.5 py-1 rounded-xl border border-[#3A2E28]/15 shadow-xs">
+              <Flame className="h-3.5 w-3.5 text-[#EF4E3A]" />
               <span>{liveBattles.length} Clashes</span>
             </span>
             <button
               onClick={() => setIsCreateBattleOpen(true)}
-              className="btn-yellow px-3 py-1.5 text-xs font-black uppercase flex items-center space-x-1"
+              className="btn-forest px-3 py-1.5 text-xs font-black uppercase flex items-center space-x-1"
             >
               <PlusCircle className="h-3.5 w-3.5" />
               <span>+ Battle</span>
@@ -369,17 +415,99 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Search Bar & Node Filters (Directly accessible above the fold!) */}
-        <div className="space-y-2.5 mb-5">
+        {/* Search Bar & Categories (Directly matching official mobile mockup) */}
+        <div className="space-y-3 mb-5">
           <div className="relative">
-            <Search className="absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-[#1C1917]/50" />
+            <Search className="absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-[#3A2E28]/50" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search dishes, stalls (e.g. Vada Pav, Dal Khichdi, Misal, Biryani)..."
-              className="w-full rounded-xl border border-[#1C1917]/20 bg-[#FFFFFF] py-2.5 pl-10 pr-4 text-xs font-bold text-[#1C1917] placeholder-[#1C1917]/40 focus:outline-none focus:ring-2 focus:ring-[#FFD11A] shadow-[2px_2px_0px_#1C1917]"
+              placeholder="What are you craving today? (e.g. Misal Pav, Vada Pav, Biryani)..."
+              className="w-full rounded-full border border-[#3A2E28]/20 bg-[#FFFFFF] py-3 pl-10 pr-4 text-xs font-bold text-[#3A2E28] placeholder-[#3A2E28]/45 focus:outline-none focus:ring-2 focus:ring-[#0F5132] shadow-[2px_2px_0px_#3A2E28]"
             />
+          </div>
+
+          {/* Quick Category Action Cards (Top Rated, Near Me, Trending, Food Battles) */}
+          <div className="grid grid-cols-4 gap-2 pt-0.5">
+            <button
+              onClick={() => {
+                setActiveNavSection('explore');
+                setSearchQuery('Misal');
+              }}
+              className="flex flex-col items-center justify-center py-2.5 px-1 rounded-2xl bg-white border border-[#3A2E28]/15 shadow-[2px_2px_0px_#3A2E28] hover:bg-[#FFF8EE] active:translate-y-0.5 transition-all text-center"
+            >
+              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#F6B21A]/20 text-[#F6B21A] mb-1">
+                <Sparkles className="h-4 w-4 text-[#F6B21A]" />
+              </div>
+              <span className="text-[10px] font-black text-[#3A2E28]">Top Rated</span>
+            </button>
+
+            <button
+              onClick={() => {
+                setSelectedNeighborhood(selectedNeighborhood === 'Vashi' ? 'All' : 'Vashi');
+              }}
+              className="flex flex-col items-center justify-center py-2.5 px-1 rounded-2xl bg-white border border-[#3A2E28]/15 shadow-[2px_2px_0px_#3A2E28] hover:bg-[#FFF8EE] active:translate-y-0.5 transition-all text-center"
+            >
+              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#EF4E3A]/15 text-[#EF4E3A] mb-1">
+                <MapPin className="h-4 w-4 text-[#EF4E3A]" />
+              </div>
+              <span className="text-[10px] font-black text-[#3A2E28]">Near Me</span>
+            </button>
+
+            <button
+              onClick={() => {
+                setActiveNavSection('battles');
+                setSearchQuery('');
+              }}
+              className="flex flex-col items-center justify-center py-2.5 px-1 rounded-2xl bg-white border border-[#3A2E28]/15 shadow-[2px_2px_0px_#3A2E28] hover:bg-[#FFF8EE] active:translate-y-0.5 transition-all text-center"
+            >
+              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#EF4E3A]/15 text-[#EF4E3A] mb-1">
+                <Flame className="h-4 w-4 text-[#EF4E3A]" />
+              </div>
+              <span className="text-[10px] font-black text-[#3A2E28]">Trending</span>
+            </button>
+
+            <button
+              onClick={() => {
+                setActiveNavSection('battles');
+                scrollToBattles();
+              }}
+              className="flex flex-col items-center justify-center py-2.5 px-1 rounded-2xl bg-white border border-[#3A2E28]/15 shadow-[2px_2px_0px_#3A2E28] hover:bg-[#FFF8EE] active:translate-y-0.5 transition-all text-center"
+            >
+              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#0F5132]/15 text-[#0F5132] mb-1">
+                <Swords className="h-4 w-4 text-[#0F5132]" />
+              </div>
+              <span className="text-[10px] font-black text-[#3A2E28]">Food Battles</span>
+            </button>
+          </div>
+
+          {/* Quick Popular Dish Filters */}
+          <div className="-mx-4 px-4 sm:mx-0 sm:px-0 flex items-center space-x-1.5 overflow-x-auto pb-0.5 scrollbar-none text-[11px] font-bold">
+            <span className="text-[10px] font-mono uppercase tracking-wider text-[#3A2E28]/50 font-black shrink-0">
+              Popular:
+            </span>
+            {[
+              { label: '🧈 Pav Bhaji', query: 'Pav Bhaji' },
+              { label: '🥔 Vada Pav', query: 'Vada Pav' },
+              { label: '🍲 Dal Khichdi', query: 'Dal Khichdi' },
+              { label: '🌶️ Misal Pav', query: 'Misal' },
+              { label: '🦀 Coastal Seafood', query: 'Seafood' },
+              { label: '🍚 Biryani', query: 'Biryani' },
+              { label: '🥞 Dosa', query: 'Dosa' },
+            ].map((chip) => (
+              <button
+                key={chip.query}
+                onClick={() => setSearchQuery(searchQuery.toLowerCase() === chip.query.toLowerCase() ? '' : chip.query)}
+                className={`whitespace-nowrap shrink-0 rounded-lg px-2.5 py-1 transition-all border ${
+                  searchQuery.toLowerCase() === chip.query.toLowerCase()
+                    ? 'border-[#3A2E28] bg-[#F6B21A] text-[#3A2E28] shadow-[1.5px_1.5px_0px_#3A2E28]'
+                    : 'border-[#3A2E28]/15 bg-[#FFFFFF] text-[#3A2E28]/75 hover:bg-[#FFF8EE]'
+                }`}
+              >
+                {chip.label}
+              </button>
+            ))}
           </div>
 
           {/* Node Chips (Smooth edge-to-edge swipe on mobile) */}
@@ -390,8 +518,8 @@ export default function HomePage() {
                 onClick={() => setSelectedNeighborhood(node)}
                 className={`whitespace-nowrap shrink-0 rounded-xl px-3 py-1.5 text-xs font-mono font-bold uppercase transition-all border ${
                   selectedNeighborhood === node
-                    ? 'border-[#1C1917] bg-[#FFD11A] text-[#1C1917] shadow-[2px_2px_0px_#1C1917]'
-                    : 'border-[#1C1917]/15 bg-[#FFFFFF] text-[#1C1917]/70 hover:bg-[#FAF8F5]'
+                    ? 'border-[#3A2E28] bg-[#0F5132] text-white shadow-[2px_2px_0px_#3A2E28]'
+                    : 'border-[#3A2E28]/15 bg-[#FFFFFF] text-[#3A2E28]/70 hover:bg-[#FFF8EE]'
                 }`}
               >
                 {node === 'All' ? 'ALL NODES' : node}
@@ -400,14 +528,14 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Desktop Navigation Tabs (Tablet/Desktop only; Mobile uses bottom app bar) */}
+        {/* Desktop Navigation Tabs */}
         <div className="hidden sm:flex items-center space-x-2 mb-6">
           <button
             onClick={() => setActiveNavSection('battles')}
             className={`flex items-center space-x-1.5 px-4 py-2 rounded-xl text-xs font-black uppercase transition-all ${
               activeNavSection === 'battles'
-                ? 'bg-[#FFD11A] text-[#1C1917] border border-[#1C1917] shadow-[2px_2px_0px_#1C1917]'
-                : 'bg-white text-[#1C1917]/70 border border-[#1C1917]/15 hover:bg-[#FAF8F5]'
+                ? 'bg-[#0F5132] text-white border border-[#3A2E28] shadow-[2px_2px_0px_#3A2E28]'
+                : 'bg-white text-[#3A2E28]/70 border border-[#3A2E28]/15 hover:bg-[#FFF8EE]'
             }`}
           >
             <span>🔥</span>
@@ -418,8 +546,8 @@ export default function HomePage() {
             onClick={() => setActiveNavSection('explore')}
             className={`flex items-center space-x-1.5 px-4 py-2 rounded-xl text-xs font-black uppercase transition-all ${
               activeNavSection === 'explore'
-                ? 'bg-[#FFD11A] text-[#1C1917] border border-[#1C1917] shadow-[2px_2px_0px_#1C1917]'
-                : 'bg-white text-[#1C1917]/70 border border-[#1C1917]/15 hover:bg-[#FAF8F5]'
+                ? 'bg-[#0F5132] text-white border border-[#3A2E28] shadow-[2px_2px_0px_#3A2E28]'
+                : 'bg-white text-[#3A2E28]/70 border border-[#3A2E28]/15 hover:bg-[#FFF8EE]'
             }`}
           >
             <span>📍</span>
@@ -430,8 +558,8 @@ export default function HomePage() {
             onClick={() => setActiveNavSection('leaderboard')}
             className={`flex items-center space-x-1.5 px-4 py-2 rounded-xl text-xs font-black uppercase transition-all ${
               activeNavSection === 'leaderboard'
-                ? 'bg-[#FFD11A] text-[#1C1917] border border-[#1C1917] shadow-[2px_2px_0px_#1C1917]'
-                : 'bg-white text-[#1C1917]/70 border border-[#1C1917]/15 hover:bg-[#FAF8F5]'
+                ? 'bg-[#0F5132] text-white border border-[#3A2E28] shadow-[2px_2px_0px_#3A2E28]'
+                : 'bg-white text-[#3A2E28]/70 border border-[#3A2E28]/15 hover:bg-[#FFF8EE]'
             }`}
           >
             <span>🏆</span>
@@ -442,8 +570,8 @@ export default function HomePage() {
             onClick={() => setActiveNavSection('challenges')}
             className={`flex items-center space-x-1.5 px-4 py-2 rounded-xl text-xs font-black uppercase transition-all ${
               activeNavSection === 'challenges'
-                ? 'bg-[#FFD11A] text-[#1C1917] border border-[#1C1917] shadow-[2px_2px_0px_#1C1917]'
-                : 'bg-white text-[#1C1917]/70 border border-[#1C1917]/15 hover:bg-[#FAF8F5]'
+                ? 'bg-[#0F5132] text-white border border-[#3A2E28] shadow-[2px_2px_0px_#3A2E28]'
+                : 'bg-white text-[#3A2E28]/70 border border-[#3A2E28]/15 hover:bg-[#FFF8EE]'
             }`}
           >
             <span>⚔️</span>
@@ -454,13 +582,37 @@ export default function HomePage() {
         {/* VIEW 1: BATTLES STREAM */}
         {activeNavSection === 'battles' && (
           <div ref={battlesSectionRef} className="space-y-8">
+            {/* IF SEARCHING: SHOW RANKED COMMUNITY CONTENDERS FIRST (100% ORGANIC & NON-PAID) */}
+            {searchQuery.trim().length > 0 && (
+              <RankedFoodSearchResults
+                searchQuery={searchQuery}
+                selectedNeighborhood={selectedNeighborhood}
+                battles={battles}
+                onUpvoteContender={(id, name) => {
+                  setCrestToast({ msg: `Upvoted ${name}! +5 Crest Points`, points: 5 });
+                  setTimeout(() => setCrestToast(null), 3000);
+                }}
+              />
+            )}
+
             {/* SECTION A: LIVE BATTLES */}
             <div>
-              <div className="flex items-center space-x-2 mb-3.5">
-                <span className="flex h-3 w-3 rounded-full bg-[#00B26B] animate-pulse" />
-                <h2 className="text-xl font-black text-[#121212] uppercase tracking-tight">
-                  A. Live Food Battles
-                </h2>
+              <div className="flex items-center justify-between mb-3.5">
+                <div className="flex items-center space-x-2">
+                  <span className="flex h-3 w-3 rounded-full bg-[#00B26B] animate-pulse" />
+                  <h2 className="text-xl font-black text-[#121212] uppercase tracking-tight">
+                    {searchQuery ? `⚔️ Related Battles for "${searchQuery}"` : 'A. Live Food Battles'}
+                  </h2>
+                </div>
+
+                {searchQuery && (
+                  <button
+                    onClick={() => setSearchQuery('')}
+                    className="font-mono text-xs font-bold text-[#D92D20] hover:underline"
+                  >
+                    Clear Search ✕
+                  </button>
+                )}
               </div>
 
               <div className="space-y-4">
@@ -747,82 +899,8 @@ export default function HomePage() {
           />
         )}
 
-        {/* COMPREHENSIVE LEGAL & STATUTORY INTERMEDIARY FOOTER */}
-        <footer className="mt-14 pt-8 pb-16 border-t-2 border-[#121212]/20 text-[#121212] space-y-6">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {/* Column 1: Brand & Safe Harbor Intermediary Declaration */}
-            <div className="space-y-2">
-              <div className="flex items-center space-x-2">
-                <span className="font-black text-lg tracking-tight uppercase">PALATE</span>
-                <span className="text-[10px] font-mono font-bold bg-[#FFD11A] text-[#121212] px-2 py-0.5 rounded border border-[#121212]">
-                  NAVI MUMBAI
-                </span>
-              </div>
-              <p className="text-xs text-[#121212]/80 leading-relaxed font-medium">
-                Hyper-local, dish-first food battles and community consensus platform covering Vashi, Nerul, Belapur, Kharghar, Seawoods, and Sanpada.
-              </p>
-              <div className="rounded-lg bg-white border border-[#121212]/20 p-2.5 text-[11px] text-[#121212]/80 leading-normal">
-                <strong>⚡ Section 79 IT Act 2000 Safe Harbor:</strong> Palate acts strictly as an intermediary platform hosting crowdsourced user sentiment, poll votes, and unverified dining reviews. Palate does not endorse, verify, or vouch for food safety, hygiene, licensing, or commercial standards of listed establishments.
-              </div>
-            </div>
-
-            {/* Column 2: Legal Disclaimers & ASCI Compliance */}
-            <div className="space-y-2">
-              <h5 className="text-xs font-black uppercase tracking-wider text-[#121212]">
-                Statutory Compliance & Ethics
-              </h5>
-              <ul className="text-xs space-y-1.5 text-[#121212]/75 font-medium">
-                <li className="flex items-start space-x-1.5">
-                  <span className="font-bold text-[#121212]">•</span>
-                  <span><strong>Independent & Non-Sponsored:</strong> Battle positions and rankings are 100% determined by community votes. Restaurants cannot pay for rank promotion or badge suppression.</span>
-                </li>
-                <li className="flex items-start space-x-1.5">
-                  <span className="font-bold text-[#121212]">•</span>
-                  <span><strong>ASCI 2023 Guidelines:</strong> If any sponsored trial or partner campaign runs in the future, it will be prominently branded with an unmistakable #Ad or #Sponsored banner.</span>
-                </li>
-                <li className="flex items-start space-x-1.5">
-                  <span className="font-bold text-[#121212]">•</span>
-                  <span><strong>DPDP Act 2023:</strong> Receipts uploaded by diners are processed solely for verification badges. Sensitive payment credentials must be masked.</span>
-                </li>
-              </ul>
-            </div>
-
-            {/* Column 3: Grievance Officer & Takedown Protocol */}
-            <div className="space-y-2">
-              <h5 className="text-xs font-black uppercase tracking-wider text-[#121212]">
-                Grievance Officer & Takedowns
-              </h5>
-              <div className="rounded-xl border-2 border-[#121212] bg-[#FFFFFF] p-3 text-xs space-y-1.5 shadow-[2px_2px_0px_#121212]">
-                <p className="font-bold text-[#121212]">
-                  Rule 3(2) IT (Intermediary Guidelines) Rules, 2021:
-                </p>
-                <p className="text-[11px] text-[#121212]/70 leading-relaxed">
-                  Are you a restaurant owner or vendor with a copyright, defamatory content, or listing discrepancy notice?
-                </p>
-                <div className="font-mono text-[11px] space-y-0.5 pt-1 border-t border-[#121212]/10 text-[#121212]">
-                  <div><strong>Officer:</strong> Grievance Redressal Cell</div>
-                  <div><strong>Email:</strong> <a href="mailto:grievance@palate.in" className="text-[#2748FF] underline font-bold">grievance@palate.in</a></div>
-                  <div><strong>Response Turnaround:</strong> &lt; 36 Hours</div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="pt-4 border-t border-[#121212]/15 flex flex-col sm:flex-row items-center justify-between text-[11px] font-mono text-[#121212]/70 gap-2">
-            <div>
-              © 2026 Palate Technologies. Built with pride for Navi Mumbai foodies.
-            </div>
-            <div className="flex flex-wrap items-center gap-x-3 gap-y-1 font-bold text-[#121212]">
-              <Link href="/terms" className="hover:underline hover:text-[#2748FF]">Terms & Safe Harbor</Link>
-              <span>•</span>
-              <Link href="/privacy" className="hover:underline hover:text-[#2748FF]">Privacy (DPDP)</Link>
-              <span>•</span>
-              <Link href="/refund" className="hover:underline hover:text-[#2748FF]">Refund Policy</Link>
-              <span>•</span>
-              <Link href="/grievance" className="hover:underline hover:text-[#2748FF]">Grievance Desk</Link>
-            </div>
-          </div>
-        </footer>
+        {/* PALATE REFACTORED LEGAL & STATUTORY FOOTER */}
+        <Footer />
       </main>
 
       {/* CREATE BATTLE MODAL */}
@@ -869,17 +947,17 @@ export default function HomePage() {
       <InstallPWA />
 
       {/* NATIVE MOBILE STICKY BOTTOM APP BAR (THUMB ZONE) */}
-      <nav className="sm:hidden fixed bottom-0 left-0 right-0 z-40 border-t border-[#1C1917]/15 bg-[#FAF8F5]/95 backdrop-blur-lg px-2 py-1.5 shadow-[0_-4px_16px_rgba(0,0,0,0.06)]">
+      <nav className="sm:hidden fixed bottom-0 left-0 right-0 z-40 border-t border-[#3A2E28]/15 bg-[#FFF8EE]/95 backdrop-blur-lg px-2 py-1.5 shadow-[0_-4px_16px_rgba(58,46,40,0.08)]">
         <div className="flex items-center justify-around max-w-md mx-auto">
           <button
             onClick={() => setActiveNavSection('battles')}
             className={`flex flex-col items-center py-1 px-3 rounded-xl transition-all ${
               activeNavSection === 'battles'
-                ? 'text-[#1C1917] font-black'
-                : 'text-[#1C1917]/50 font-bold hover:text-[#1C1917]'
+                ? 'text-[#0F5132] font-black'
+                : 'text-[#3A2E28]/50 font-bold hover:text-[#3A2E28]'
             }`}
           >
-            <Flame className={`h-5 w-5 ${activeNavSection === 'battles' ? 'text-[#FFD11A] fill-[#1C1917]' : ''}`} />
+            <Flame className={`h-5 w-5 ${activeNavSection === 'battles' ? 'text-[#EF4E3A] fill-[#EF4E3A]' : ''}`} />
             <span className="text-[10px] mt-0.5">Battles</span>
           </button>
 
@@ -887,11 +965,11 @@ export default function HomePage() {
             onClick={() => setActiveNavSection('explore')}
             className={`flex flex-col items-center py-1 px-3 rounded-xl transition-all ${
               activeNavSection === 'explore'
-                ? 'text-[#1C1917] font-black'
-                : 'text-[#1C1917]/50 font-bold hover:text-[#1C1917]'
+                ? 'text-[#0F5132] font-black'
+                : 'text-[#3A2E28]/50 font-bold hover:text-[#3A2E28]'
             }`}
           >
-            <Compass className={`h-5 w-5 ${activeNavSection === 'explore' ? 'text-[#2748FF]' : ''}`} />
+            <Compass className={`h-5 w-5 ${activeNavSection === 'explore' ? 'text-[#0F5132]' : ''}`} />
             <span className="text-[10px] mt-0.5">Explore</span>
           </button>
 
@@ -900,21 +978,21 @@ export default function HomePage() {
             onClick={() => setIsCheckinModalOpen(true)}
             className="flex flex-col items-center -mt-4 group"
           >
-            <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[#FFD11A] border-2 border-[#1C1917] shadow-[2px_2px_0px_#1C1917] group-active:translate-y-0.5 transition-all">
-              <Receipt className="h-5 w-5 text-[#1C1917]" />
+            <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[#0F5132] border-2 border-[#3A2E28] shadow-[2px_2px_0px_#3A2E28] group-active:translate-y-0.5 transition-all">
+              <Receipt className="h-5 w-5 text-white" />
             </div>
-            <span className="text-[10px] font-black text-[#1C1917] mt-0.5">Check In</span>
+            <span className="text-[10px] font-black text-[#3A2E28] mt-0.5">Check In</span>
           </button>
 
           <button
             onClick={() => setActiveNavSection('challenges')}
             className={`flex flex-col items-center py-1 px-3 rounded-xl transition-all ${
               activeNavSection === 'challenges'
-                ? 'text-[#1C1917] font-black'
-                : 'text-[#1C1917]/50 font-bold hover:text-[#1C1917]'
+                ? 'text-[#0F5132] font-black'
+                : 'text-[#3A2E28]/50 font-bold hover:text-[#3A2E28]'
             }`}
           >
-            <Swords className={`h-5 w-5 ${activeNavSection === 'challenges' ? 'text-[#FF5C9A]' : ''}`} />
+            <Swords className={`h-5 w-5 ${activeNavSection === 'challenges' ? 'text-[#EF4E3A]' : ''}`} />
             <span className="text-[10px] mt-0.5">Arena</span>
           </button>
 
@@ -922,11 +1000,11 @@ export default function HomePage() {
             onClick={() => setActiveNavSection('leaderboard')}
             className={`flex flex-col items-center py-1 px-3 rounded-xl transition-all ${
               activeNavSection === 'leaderboard'
-                ? 'text-[#1C1917] font-black'
-                : 'text-[#1C1917]/50 font-bold hover:text-[#1C1917]'
+                ? 'text-[#0F5132] font-black'
+                : 'text-[#3A2E28]/50 font-bold hover:text-[#3A2E28]'
             }`}
           >
-            <Trophy className={`h-5 w-5 ${activeNavSection === 'leaderboard' ? 'text-[#A16207]' : ''}`} />
+            <Trophy className={`h-5 w-5 ${activeNavSection === 'leaderboard' ? 'text-[#F6B21A]' : ''}`} />
             <span className="text-[10px] mt-0.5">Ranks</span>
           </button>
         </div>

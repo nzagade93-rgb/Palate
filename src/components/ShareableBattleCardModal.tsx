@@ -205,12 +205,12 @@ export default function ShareableBattleCardModal({
           animate={{ scale: 1, opacity: 1, y: 0 }}
           exit={{ scale: 0.95, opacity: 0, y: 16 }}
           transition={{ duration: 0.2, ease: 'easeOut' }}
-          className="relative z-10 max-h-[92vh] w-full max-w-md overflow-y-auto rounded-2xl border-[3px] border-[#121212] bg-[#F6EFE2] p-5 sm:p-6 shadow-[8px_8px_0px_#121212]"
+          className="relative z-10 max-h-[92vh] w-full max-w-md overflow-y-auto rounded-2xl border-[3px] border-[#3A2E28] bg-[#FFF8EE] p-5 sm:p-6 shadow-[6px_6px_0px_#3A2E28]"
         >
           {/* Close Button */}
           <button
             onClick={onClose}
-            className="absolute right-4 top-4 rounded-full border-2 border-[#121212] bg-[#FFFFFF] p-1.5 text-[#121212] shadow-[2px_2px_0px_#121212] hover:bg-[#FFD11A] transition-colors"
+            className="absolute right-4 top-4 rounded-full border-2 border-[#3A2E28] bg-[#FFFFFF] p-1.5 text-[#3A2E28] shadow-[2px_2px_0px_#3A2E28] hover:bg-[#F6B21A] transition-colors"
           >
             <X className="h-4 w-4" />
           </button>
@@ -220,22 +220,22 @@ export default function ShareableBattleCardModal({
             <span className="stamp-tag mb-1.5">
               <span>SOCIAL GROWTH ENGINE</span>
             </span>
-            <h3 className="text-xl font-black text-[#121212] uppercase tracking-tight">
+            <h3 className="text-xl font-black text-[#3A2E28] uppercase tracking-tight">
               Shareable Battle Card
             </h3>
-            <p className="text-xs text-[#121212]/70 font-medium">
+            <p className="text-xs text-[#3A2E28]/70 font-medium">
               Optimized for WhatsApp status, chats, and Instagram Stories.
             </p>
           </div>
 
           {/* Format Switcher */}
-          <div className="mb-4 grid grid-cols-2 gap-2 rounded-xl border-2 border-[#121212] bg-[#FFFFFF] p-1">
+          <div className="mb-4 grid grid-cols-2 gap-2 rounded-xl border-2 border-[#3A2E28] bg-[#FFFFFF] p-1">
             <button
               onClick={() => setActiveFormat('live')}
               className={`rounded-lg py-1.5 text-xs font-black uppercase transition-all ${
                 activeFormat === 'live'
-                  ? 'bg-[#FFD11A] text-[#121212] border-2 border-[#121212] shadow-[2px_2px_0px_#121212]'
-                  : 'text-[#121212]/70 hover:text-[#121212]'
+                  ? 'bg-[#0F5132] text-white border-2 border-[#3A2E28] shadow-[2px_2px_0px_#3A2E28]'
+                  : 'text-[#3A2E28]/70 hover:text-[#3A2E28]'
               }`}
             >
               Format A: Live Battle
@@ -244,8 +244,8 @@ export default function ShareableBattleCardModal({
               onClick={() => setActiveFormat('result')}
               className={`rounded-lg py-1.5 text-xs font-black uppercase transition-all ${
                 activeFormat === 'result'
-                  ? 'bg-[#FFD11A] text-[#121212] border-2 border-[#121212] shadow-[2px_2px_0px_#121212]'
-                  : 'text-[#121212]/70 hover:text-[#121212]'
+                  ? 'bg-[#0F5132] text-white border-2 border-[#3A2E28] shadow-[2px_2px_0px_#3A2E28]'
+                  : 'text-[#3A2E28]/70 hover:text-[#3A2E28]'
               }`}
             >
               Format B: Final Result
@@ -255,99 +255,98 @@ export default function ShareableBattleCardModal({
           {/* PREVIEW CARD: THE ACTUAL SHARE CARD */}
           <div
             ref={cardRef}
-            className="relative overflow-hidden rounded-xl border-[2.5px] border-[#121212] bg-[#FFFFFF] p-4 shadow-[4px_4px_0px_#121212]"
+            className="relative overflow-hidden rounded-xl border-[2.5px] border-[#3A2E28] bg-[#FFFFFF] p-4 shadow-[4px_4px_0px_#3A2E28]"
           >
             {/* Top Brand Banner */}
-            <div className="flex items-center justify-between border-b-2 border-[#121212] pb-2 mb-3 bg-[#FFD11A] -mx-4 -mt-4 px-4 pt-3">
-              <div className="flex items-center space-x-1.5">
-                <Swords className="h-4 w-4 text-[#121212]" />
-                <span className="font-black text-xs tracking-wider text-[#121212]">
+            <div className="flex items-center justify-between border-b-2 border-[#3A2E28] pb-2 mb-3 bg-[#0F5132] -mx-4 -mt-4 px-4 pt-3 text-white">
+              <div className="flex items-center space-x-2">
+                <span className="font-black text-xs tracking-wider">
                   PALATE • NAVI MUMBAI
                 </span>
               </div>
-              <span className="rounded bg-[#121212] px-2 py-0.5 font-mono text-[9px] font-black text-[#FFD11A]">
+              <span className="rounded bg-[#F6B21A] px-2 py-0.5 font-mono text-[9px] font-black text-[#3A2E28]">
                 {activeFormat === 'result' ? 'FINAL TALLY' : 'LIVE VOTE'}
               </span>
             </div>
 
             {/* Oversized Headline */}
             <div className="mb-3">
-              <h4 className="text-xl sm:text-2xl font-black text-[#121212] uppercase leading-tight tracking-tight">
+              <h4 className="text-xl sm:text-2xl font-black text-[#3A2E28] uppercase leading-tight tracking-tight">
                 {activeFormat === 'result' ? (
                   isBlueWinner ? (
-                    <span className="text-[#2748FF]">TEAM BLUE WINS!</span>
+                    <span className="text-[#0F5132]">CONTENDER A WINS!</span>
                   ) : (
-                    <span className="text-[#FF5C9A]">TEAM PINK WINS!</span>
+                    <span className="text-[#EF4E3A]">CONTENDER B WINS!</span>
                   )
                 ) : (
                   <span>
-                    {nodeA} says <span className="text-[#2748FF]">A</span>. {nodeB} says{' '}
-                    <span className="text-[#FF5C9A]">B</span>.
+                    {nodeA} says <span className="text-[#0F5132]">A</span>. {nodeB} says{' '}
+                    <span className="text-[#EF4E3A]">B</span>.
                   </span>
                 )}
               </h4>
-              <p className="text-xs font-bold text-[#121212]/75 mt-0.5 line-clamp-1">
+              <p className="text-xs font-bold text-[#3A2E28]/75 mt-0.5 line-clamp-1">
                 {battle.title}
               </p>
             </div>
 
             {/* Match Cards */}
             <div className="space-y-2 mb-3">
-              {/* Contestant A (Blue) */}
+              {/* Contestant A (Forest Green) */}
               <div
-                className={`relative flex items-center justify-between rounded-lg border-2 border-[#121212] p-2.5 ${
-                  activeFormat === 'result' && isBlueWinner ? 'bg-[#2748FF]/15' : 'bg-[#FFFFFF]'
+                className={`relative flex items-center justify-between rounded-lg border-2 border-[#3A2E28] p-2.5 ${
+                  activeFormat === 'result' && isBlueWinner ? 'bg-[#DCE7D9]/40' : 'bg-[#FFFFFF]'
                 }`}
               >
                 <div className="flex items-center space-x-2.5">
-                  <span className="flex h-6 w-6 items-center justify-center rounded-md bg-[#2748FF] font-black text-xs text-white border border-[#121212]">
+                  <span className="flex h-6 w-6 items-center justify-center rounded-md bg-[#0F5132] font-black text-xs text-white border border-[#3A2E28]">
                     A
                   </span>
                   <div>
-                    <h5 className="text-xs font-black text-[#121212] leading-tight">
+                    <h5 className="text-xs font-black text-[#3A2E28] leading-tight">
                       {battle.contestantA.name}
                     </h5>
-                    <span className="text-[10px] text-[#121212]/60 font-medium">
+                    <span className="text-[10px] text-[#3A2E28]/60 font-medium">
                       {battle.contestantA.neighborhood}
                     </span>
                   </div>
                 </div>
 
                 <div className="text-right">
-                  <span className="font-mono text-base font-black text-[#2748FF]">
+                  <span className="font-mono text-base font-black text-[#0F5132]">
                     {battle.percentA}%
                   </span>
-                  <span className="block text-[9px] font-mono text-[#121212]/60 font-bold">
+                  <span className="block text-[9px] font-mono text-[#3A2E28]/60 font-bold">
                     {battle.votesA.toLocaleString()} votes
                   </span>
                 </div>
               </div>
 
-              {/* Contestant B (Pink) */}
+              {/* Contestant B (Tomato Red) */}
               <div
-                className={`relative flex items-center justify-between rounded-lg border-2 border-[#121212] p-2.5 ${
-                  activeFormat === 'result' && !isBlueWinner ? 'bg-[#FF5C9A]/15' : 'bg-[#FFFFFF]'
+                className={`relative flex items-center justify-between rounded-lg border-2 border-[#3A2E28] p-2.5 ${
+                  activeFormat === 'result' && !isBlueWinner ? 'bg-[#FFF1F0]' : 'bg-[#FFFFFF]'
                 }`}
               >
                 <div className="flex items-center space-x-2.5">
-                  <span className="flex h-6 w-6 items-center justify-center rounded-md bg-[#FF5C9A] font-black text-xs text-white border border-[#121212]">
+                  <span className="flex h-6 w-6 items-center justify-center rounded-md bg-[#EF4E3A] font-black text-xs text-white border border-[#3A2E28]">
                     B
                   </span>
                   <div>
-                    <h5 className="text-xs font-black text-[#121212] leading-tight">
+                    <h5 className="text-xs font-black text-[#3A2E28] leading-tight">
                       {battle.contestantB.name}
                     </h5>
-                    <span className="text-[10px] text-[#121212]/60 font-medium">
+                    <span className="text-[10px] text-[#3A2E28]/60 font-medium">
                       {battle.contestantB.neighborhood}
                     </span>
                   </div>
                 </div>
 
                 <div className="text-right">
-                  <span className="font-mono text-base font-black text-[#FF5C9A]">
+                  <span className="font-mono text-base font-black text-[#EF4E3A]">
                     {battle.percentB}%
                   </span>
-                  <span className="block text-[9px] font-mono text-[#121212]/60 font-bold">
+                  <span className="block text-[9px] font-mono text-[#3A2E28]/60 font-bold">
                     {battle.votesB.toLocaleString()} votes
                   </span>
                 </div>
@@ -355,8 +354,8 @@ export default function ShareableBattleCardModal({
             </div>
 
             {/* Bottom Disclaimer & Callout */}
-            <div className="rounded-lg border border-[#121212] bg-[#F6EFE2] p-2 text-center">
-              <p className="text-[11px] font-black uppercase text-[#121212]">
+            <div className="rounded-lg border border-[#3A2E28] bg-[#FFF8EE] p-2 text-center">
+              <p className="text-[11px] font-black uppercase text-[#3A2E28]">
                 {activeFormat === 'result'
                   ? '🔥 Think someone serves better? Challenge the winner!'
                   : '⚔️ Your neighbourhood is calling. Vote now!'}
@@ -373,7 +372,7 @@ export default function ShareableBattleCardModal({
             <button
               onClick={handleWhatsAppShare}
               id="modal-share-whatsapp"
-              className="w-full flex items-center justify-center space-x-2 rounded-xl bg-[#25D366] py-3 text-xs font-black uppercase tracking-wider text-black border-2 border-[#121212] shadow-[3px_3px_0px_#121212] hover:translate-x-0.5 hover:translate-y-0.5 active:translate-x-1 active:translate-y-1 transition-all"
+              className="w-full flex items-center justify-center space-x-2 rounded-xl bg-[#25D366] py-3 text-xs font-black uppercase tracking-wider text-black border-2 border-[#3A2E28] shadow-[3px_3px_0px_#3A2E28] hover:translate-x-0.5 hover:translate-y-0.5 active:translate-x-1 active:translate-y-1 transition-all"
             >
               <MessageCircle className="h-4 w-4" />
               <span>Share to WhatsApp Chat / Status</span>
