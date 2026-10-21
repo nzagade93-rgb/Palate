@@ -1,14 +1,44 @@
 {
   "name": "Palate — Food Worth Talking About",
   "short_name": "Palate",
-  "description": "Food worth talking about. Hyper-local, dish-first food discovery and food battles across Navi Mumbai.",
+  "description": "Food worth talking about. Hyper-local, dish-first food discovery and culinary consensus across Navi Mumbai.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
-  "background_color": "#FFF8EE",
+  "background_color": "#0F5132",
   "theme_color": "#0F5132",
   "orientation": "portrait",
   "categories": ["food", "lifestyle", "social"],
+  "shortcuts": [
+    {
+      "name": "Food Battles",
+      "short_name": "Battles",
+      "description": "Live food battles across Navi Mumbai",
+      "url": "/",
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Explore Dishes",
+      "short_name": "Explore",
+      "description": "Ranked dishes and food directory",
+      "url": "/explore",
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Log Food Bite",
+      "short_name": "Check In",
+      "description": "Log meal & verify bill receipt",
+      "url": "/checkin",
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Foodie Passport",
+      "short_name": "Passport",
+      "description": "View level, badges, and Crest Points",
+      "url": "/passport",
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }]
+    }
+  ],
   "icons": [
     {
       "src": "/icons/icon-192.png",

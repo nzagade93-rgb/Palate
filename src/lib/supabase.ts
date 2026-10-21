@@ -65,6 +65,35 @@ export async function signInWithMagicLink(email: string) {
   return data;
 }
 
+export async function signInWithPhoneOtp(phoneNumber: string) {
+  if (!supabase) throw new Error('Supabase client not initialized');
+  let formatted = phoneNumber.trim().replace(/[\s-]/g, '');
+  if (!formatted.startsWith('+')) {
+    // Default to India (+91)
+    formatted = '+91' + formatted.replace(/^0+/, '');
+  }
+  const { data, error } = await supabase.auth.signInWithOtp({
+    phone: formatted,
+  });
+  if (error) throw error;
+  return data;
+}
+
+export async function verifyPhoneOtp(phoneNumber: string, token: string) {
+  if (!supabase) throw new Error('Supabase client not initialized');
+  let formatted = phoneNumber.trim().replace(/[\s-]/g, '');
+  if (!formatted.startsWith('+')) {
+    formatted = '+91' + formatted.replace(/^0+/, '');
+  }
+  const { data, error } = await supabase.auth.verifyOtp({
+    phone: formatted,
+    token: token.trim(),
+    type: 'sms',
+  });
+  if (error) throw error;
+  return data;
+}
+
 export async function signOutUser() {
   if (!supabase) return;
   const { error } = await supabase.auth.signOut();

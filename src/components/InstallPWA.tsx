@@ -119,7 +119,7 @@ export default function InstallPWA() {
               <button
                 onClick={handleInstallClick}
                 id="install-pwa-btn"
-                className="btn-forest px-4 py-2 text-xs font-bold rounded-full flex items-center space-x-1.5 shadow-sm"
+                className="bg-[#0F5132] text-white px-4 py-2 text-xs font-bold rounded-xl flex items-center space-x-1.5 shadow-xs hover:bg-[#0B3D26] active:scale-95 transition-all"
               >
                 <Download className="h-3.5 w-3.5 text-[#F6B21A]" />
                 <span>Install</span>
@@ -140,16 +140,16 @@ export default function InstallPWA() {
             <motion.div
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: 'auto', opacity: 1 }}
-              className="mt-3 border-t-2 border-[#121212] pt-2.5 text-xs text-[#121212]"
+              className="mt-3 border-t border-gray-100 pt-2.5 text-xs text-[#02060C]"
             >
-              <p className="font-black text-[#121212] mb-1 uppercase font-mono text-[11px]">
+              <p className="font-extrabold text-[#02060C] mb-1 text-[11px]">
                 Install on iPhone / iPad:
               </p>
-              <div className="flex items-center space-x-2 text-[11px] text-[#121212]/80 font-bold">
+              <div className="flex items-center space-x-2 text-[11px] text-[#686B78] font-medium">
                 <span>1. Tap Share</span>
-                <Share className="h-3.5 w-3.5 text-[#2748FF]" />
+                <Share className="h-3.5 w-3.5 text-[#0F5132]" />
                 <span>2. Select</span>
-                <span className="flex items-center space-x-1 font-black text-[#121212] underline">
+                <span className="flex items-center space-x-1 font-bold text-[#02060C]">
                   <PlusSquare className="h-3.5 w-3.5" />
                   <span>Add to Home Screen</span>
                 </span>

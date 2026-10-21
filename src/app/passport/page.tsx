@@ -6,7 +6,8 @@
 // - Digital Foodie ID Card with Level & XP Progress
 // - Crest Points Wallet & Local Navi Mumbai Cafe Perks
 // - Verified Badges Grid (Vashi Veteran, Spice Crusader, etc.)
-// - Cloud Account Sync via Supabase
+// - Cloud Account Sync via Supabase Phone OTP
+// - 1-Tap Add to Home Screen (PWA)
 // ==============================================================================
 
 import React, { useState, useEffect } from 'react';
@@ -27,9 +28,14 @@ import {
   Gift,
   ExternalLink,
   Lock,
+  Phone,
+  Smartphone,
+  Share,
+  PlusSquare,
 } from 'lucide-react';
 import { getCrestBalance, addCrestPoints } from '@/lib/crestSystem';
 import { getCurrentUser, supabase } from '@/lib/supabase';
+import AuthModal from '@/components/AuthModal';
 import confetti from 'canvas-confetti';
 
 interface BadgeItem {
@@ -120,6 +126,8 @@ export default function PassportPage() {
   const [crestBalance, setCrestBalance] = useState(75);
   const [user, setUser] = useState<any>(null);
   const [redeemedPerk, setRedeemedPerk] = useState<string | null>(null);
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+  const [showInstallGuide, setShowInstallGuide] = useState(false);
 
   useEffect(() => {
     setCrestBalance(getCrestBalance());
@@ -182,12 +190,16 @@ export default function PassportPage() {
             </div>
             <div>
               <div className="flex items-center space-x-1.5">
-                <h1 className="text-base font-extrabold tracking-tight">Navi Mumbai Foodie</h1>
+                <h1 className="text-base font-extrabold tracking-tight">
+                  {user ? (user.user_metadata?.display_name || user.phone || 'Verified Foodie') : 'Navi Mumbai Foodie'}
+                </h1>
                 <span className="text-[10px] font-bold bg-[#F6B21A] text-[#02060C] px-1.5 py-0.2 rounded-xs">
-                  PRO
+                  {user ? 'VERIFIED' : 'PRO'}
                 </span>
               </div>
-              <p className="text-xs text-white/70 font-medium">@foodie_nm_42 • Member since 2026</p>
+              <p className="text-xs text-white/70 font-medium">
+                {user ? (user.phone ? `📱 ${user.phone}` : `✉️ ${user.email}`) : '@foodie_nm_42 • Local Level'}
+              </p>
             </div>
           </div>
 
@@ -211,6 +223,34 @@ export default function PassportPage() {
             180 XP to unlock Level 4: Culinary Judge (+1.5x vote weight)
           </p>
         </div>
+      </div>
+
+      {/* Cloud Account Sync Card (Supabase Mobile OTP) */}
+      <div className="bg-white rounded-2xl border border-black/[0.06] p-3.5 shadow-xs flex items-center justify-between">
+        <div className="flex items-center space-x-2.5 min-w-0">
+          <div className="h-9 w-9 rounded-xl bg-emerald-50 text-[#0F5132] flex items-center justify-center shrink-0 border border-emerald-200/50">
+            <Phone className="h-4 w-4" />
+          </div>
+          <div className="min-w-0">
+            <h3 className="text-xs font-extrabold text-[#02060C] truncate">
+              {user ? 'Cloud Profile Active' : 'Sync Profile & Crest Points'}
+            </h3>
+            <p className="text-[10px] text-[#686B78] truncate">
+              {user ? 'Cross-device sync enabled via Supabase' : 'Sign in with 1-tap mobile OTP'}
+            </p>
+          </div>
+        </div>
+
+        <button
+          onClick={() => setIsAuthModalOpen(true)}
+          className={`shrink-0 px-3 py-1.5 text-xs font-bold rounded-xl transition-all shadow-xs ${
+            user
+              ? 'bg-gray-100 text-[#02060C] hover:bg-gray-200'
+              : 'bg-[#0F5132] text-white hover:bg-[#0B3D26] active:scale-95'
+          }`}
+        >
+          {user ? 'Account' : 'Sign In'}
+        </button>
       </div>
 
       {/* Crest Points Wallet Container */}
@@ -254,6 +294,52 @@ export default function PassportPage() {
             <span className="text-xs font-black text-[#F6B21A]">+50 CP</span>
           </div>
         </div>
+      </div>
+
+      {/* PWA: Add to Home Screen Banner */}
+      <div className="bg-gradient-to-r from-emerald-50 via-teal-50 to-emerald-50 rounded-2xl border border-emerald-200/60 p-3.5 shadow-xs">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center space-x-2.5 min-w-0">
+            <div className="h-9 w-9 rounded-xl bg-[#0F5132] text-white flex items-center justify-center shrink-0">
+              <Smartphone className="h-4 w-4 text-[#F6B21A]" />
+            </div>
+            <div className="min-w-0">
+              <h3 className="text-xs font-extrabold text-[#02060C] truncate">
+                Add Palate to Home Screen
+              </h3>
+              <p className="text-[10px] text-[#686B78] truncate">
+                Native app icon, offline caching & fastest load
+              </p>
+            </div>
+          </div>
+
+          <button
+            onClick={() => setShowInstallGuide(!showInstallGuide)}
+            className="shrink-0 px-3 py-1.5 bg-[#0F5132] text-white text-xs font-bold rounded-xl shadow-xs hover:bg-[#0B3D26] active:scale-95 transition-all"
+          >
+            {showInstallGuide ? 'Close' : 'Install'}
+          </button>
+        </div>
+
+        {/* Safari / Android Step-by-Step Guidance */}
+        {showInstallGuide && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            className="mt-3 pt-3 border-t border-emerald-200/50 text-[11px] text-[#02060C] space-y-1.5"
+          >
+            <p className="font-extrabold text-[#0F5132]">How to install on your phone:</p>
+            <div className="flex items-center space-x-2 text-[#475569]">
+              <span>📱 <strong>iPhone Safari:</strong> Tap Share</span>
+              <Share className="h-3.5 w-3.5 text-[#0F5132]" />
+              <span>→ tap <strong>Add to Home Screen</strong></span>
+              <PlusSquare className="h-3.5 w-3.5 text-[#0F5132]" />
+            </div>
+            <div className="text-[#475569]">
+              <span>🤖 <strong>Android Chrome:</strong> Tap top menu (⋮) → tap <strong>Install App</strong></span>
+            </div>
+          </motion.div>
+        )}
       </div>
 
       {/* Redeemable Perks Section */}
@@ -372,8 +458,16 @@ export default function PassportPage() {
       </div>
 
       <div className="text-center text-[10px] text-[#94A3B8] font-semibold py-2">
-        Palate Application v1.2 • Navi Mumbai Food Consensus Engine
+        Palate Application v1.3 • Navi Mumbai Food Consensus Engine
       </div>
+
+      {/* Auth Modal Trigger */}
+      <AuthModal
+        isOpen={isAuthModalOpen}
+        onClose={() => setIsAuthModalOpen(false)}
+        currentUser={user}
+        onAuthSuccess={(u) => setUser(u)}
+      />
     </div>
   );
 }
