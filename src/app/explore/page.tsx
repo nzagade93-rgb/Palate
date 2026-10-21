@@ -103,7 +103,7 @@ export default function ExplorePage() {
   };
 
   return (
-    <div className="min-h-full pb-10">
+    <div className="min-h-full pb-28">
       {/* Toast Notification */}
       <AnimatePresence>
         {toastMessage && (
@@ -303,7 +303,7 @@ export default function ExplorePage() {
                         />
                       </span>
 
-                      <h2 className="text-sm font-extrabold text-[#02060C] leading-snug truncate">
+                      <h2 className="text-sm font-extrabold text-[#02060C] leading-snug line-clamp-2">
                         {dish.name}
                       </h2>
                     </div>

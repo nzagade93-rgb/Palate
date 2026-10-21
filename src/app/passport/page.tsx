@@ -162,7 +162,7 @@ export default function PassportPage() {
   };
 
   return (
-    <div className="min-h-full pb-14 px-4 py-4 space-y-4">
+    <div className="min-h-full pb-28 px-4 py-4 space-y-4">
       {/* Redemptions Alert Toast */}
       <AnimatePresence>
         {redeemedPerk && (

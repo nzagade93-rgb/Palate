@@ -434,7 +434,7 @@ export const INITIAL_DISHES: Dish[] = [
     category: 'Street Food',
     isVeg: true,
     priceInr: 25,
-    photoUrl: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=1000&q=80',
+    photoUrl: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?w=800&auto=format&fit=crop&q=80',
     mustOrderCount: 284,
     skipCount: 7,
     totalVotes: 291,

@@ -2,15 +2,13 @@
 
 // ==============================================================================
 // PALATE: Home Screen — Battles Arena Feed (Tab 1)
-// Native Mobile Application Home Screen:
-// - Quick craving search bar (links directly to /explore)
-// - Daily Food Clash spotlight card with 1-tap live voting
-// - Navi Mumbai Node pills & live status toggle
-// - Swiggy-grade food battle cards feed with confetti celebration
+// Clean, aligned mobile application home screen:
+// - Daily Food Clash spotlight (shown ONCE, no duplicates)
+// - Quick node pills & status filter
+// - Clean horizontal contender battle cards feed with confetti celebration
 // ==============================================================================
 
 import React, { useState, useEffect, useMemo } from 'react';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import FoodBattleCard from '@/components/FoodBattleCard';
@@ -27,8 +25,10 @@ import {
   Trophy,
   Plus,
   Clock,
-  ArrowRight,
+  Star,
+  Check,
 } from 'lucide-react';
+import confetti from 'canvas-confetti';
 
 const NAVI_MUMBAI_NODES = ['All', 'Vashi', 'Nerul', 'Belapur', 'Kharghar', 'Seawoods'];
 
@@ -139,10 +139,17 @@ export default function HomePage() {
     });
   }, [battles, battleFilter, selectedNeighborhood]);
 
-  const dailyClash = battles[0];
+  // Feature the first battle as Daily Clash ONLY in 'live' & 'All' mode
+  const dailyClash = (selectedNeighborhood === 'All' && battleFilter === 'live') ? battles[0] : null;
+
+  // Crucial: Exclude dailyClash from the remaining feed so it NEVER appears twice!
+  const arenaFeedBattles = useMemo(() => {
+    if (!dailyClash) return filteredBattles;
+    return filteredBattles.filter((b) => b.id !== dailyClash.id);
+  }, [filteredBattles, dailyClash]);
 
   return (
-    <div className="min-h-full pb-14">
+    <div className="min-h-full pb-24 space-y-3">
       {/* Toast Notification */}
       <AnimatePresence>
         {crestToast && (
@@ -159,8 +166,8 @@ export default function HomePage() {
       </AnimatePresence>
 
       {/* Screen Header & Search Prompt Box */}
-      <div className="bg-white px-4 pt-3.5 pb-2.5 border-b border-black/[0.04] shadow-xs">
-        {/* Craving Search Trigger (Navigates to /explore) */}
+      <div className="bg-white px-4 pt-3 pb-2.5 border-b border-gray-100 shadow-xs">
+        {/* Craving Search Trigger */}
         <button
           onClick={() => router.push('/explore')}
           className="w-full flex items-center justify-between bg-[#F4F5F8] text-[#686B78] px-3.5 py-2.5 rounded-xl border border-black/[0.04] hover:bg-gray-200/70 transition-all text-xs font-medium text-left"
@@ -195,14 +202,15 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/* Daily Clash Spotlight Card */}
+      {/* Daily Clash Spotlight Card (Rendered ONCE at the top) */}
       {dailyClash && (
-        <div className="p-4 pb-2">
-          <div className="rounded-2xl bg-gradient-to-br from-[#0F5132] via-[#14532D] to-[#0A331E] text-white p-4 shadow-md relative overflow-hidden">
+        <div className="px-4">
+          <div className="rounded-2xl bg-gradient-to-br from-[#0F5132] via-[#14532D] to-[#0A331E] text-white p-4 shadow-sm relative overflow-hidden">
+            {/* Header Tag */}
             <div className="flex items-center justify-between mb-2">
               <span className="inline-flex items-center space-x-1.5 bg-[#EF4E3A] text-white px-2 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider shadow-xs">
                 <Flame className="h-3 w-3 fill-white" />
-                <span>Today&apos;s Daily Clash</span>
+                <span>Daily Clash</span>
               </span>
               <span className="text-[11px] text-white/80 font-bold flex items-center space-x-1">
                 <Clock className="h-3 w-3" />
@@ -217,88 +225,112 @@ export default function HomePage() {
               Contested: <span className="text-[#F6B21A] font-bold">{dailyClash.dishName}</span>
             </p>
 
-            {/* Quick Faceoff Row */}
-            <div className="mt-3 grid grid-cols-2 gap-2 text-center">
-              <div className="bg-white/10 rounded-xl p-2 border border-white/10 backdrop-blur-xs">
-                <p className="text-xs font-bold truncate text-white">
-                  {dailyClash.contestantA.name}
-                </p>
-                <span className="text-[10px] text-emerald-200 font-semibold block truncate">
-                  {dailyClash.contestantA.neighborhood}
-                </span>
-                <span className="mt-1 inline-block text-xs font-black text-[#F6B21A]">
-                  {dailyClash.percentA}% ({dailyClash.votesA} votes)
-                </span>
+            {/* Side-by-Side Faceoff Strip with Clean Names & Vote Buttons */}
+            <div className="mt-3 grid grid-cols-2 gap-2 text-left">
+              {/* Contender A */}
+              <div className="bg-white/10 rounded-xl p-2.5 border border-white/15 backdrop-blur-xs flex flex-col justify-between">
+                <div>
+                  <span className="text-[9px] font-black text-[#F6B21A] uppercase tracking-wider block">
+                    {dailyClash.contestantA.neighborhood.split(',')[0]}
+                  </span>
+                  <h3 className="text-xs font-extrabold text-white leading-tight line-clamp-2 mt-0.5">
+                    {dailyClash.contestantA.name}
+                  </h3>
+                </div>
+
+                <div className="mt-2.5 pt-2 border-t border-white/10 flex items-center justify-between">
+                  <span className="text-xs font-black text-[#F6B21A]">
+                    {dailyClash.percentA}%
+                  </span>
+                  <button
+                    onClick={() => handleVote(dailyClash.id, dailyClash.contestantA.id)}
+                    disabled={isVoting || Boolean(dailyClash.userVotedChoice)}
+                    className="px-2.5 py-1 bg-white text-[#0F5132] hover:bg-emerald-50 text-[10px] font-black rounded-lg shadow-xs active:scale-95 disabled:opacity-75 transition-all"
+                  >
+                    {dailyClash.userVotedChoice === dailyClash.contestantA.id ? 'VOTED' : 'VOTE'}
+                  </button>
+                </div>
               </div>
 
-              <div className="bg-white/10 rounded-xl p-2 border border-white/10 backdrop-blur-xs">
-                <p className="text-xs font-bold truncate text-white">
-                  {dailyClash.contestantB.name}
-                </p>
-                <span className="text-[10px] text-emerald-200 font-semibold block truncate">
-                  {dailyClash.contestantB.neighborhood}
-                </span>
-                <span className="mt-1 inline-block text-xs font-black text-[#F6B21A]">
-                  {dailyClash.percentB}% ({dailyClash.votesB} votes)
-                </span>
+              {/* Contender B */}
+              <div className="bg-white/10 rounded-xl p-2.5 border border-white/15 backdrop-blur-xs flex flex-col justify-between">
+                <div>
+                  <span className="text-[9px] font-black text-[#F6B21A] uppercase tracking-wider block">
+                    {dailyClash.contestantB.neighborhood.split(',')[0]}
+                  </span>
+                  <h3 className="text-xs font-extrabold text-white leading-tight line-clamp-2 mt-0.5">
+                    {dailyClash.contestantB.name}
+                  </h3>
+                </div>
+
+                <div className="mt-2.5 pt-2 border-t border-white/10 flex items-center justify-between">
+                  <span className="text-xs font-black text-[#F6B21A]">
+                    {dailyClash.percentB}%
+                  </span>
+                  <button
+                    onClick={() => handleVote(dailyClash.id, dailyClash.contestantB.id)}
+                    disabled={isVoting || Boolean(dailyClash.userVotedChoice)}
+                    className="px-2.5 py-1 bg-white text-[#EF4E3A] hover:bg-rose-50 text-[10px] font-black rounded-lg shadow-xs active:scale-95 disabled:opacity-75 transition-all"
+                  >
+                    {dailyClash.userVotedChoice === dailyClash.contestantB.id ? 'VOTED' : 'VOTE'}
+                  </button>
+                </div>
               </div>
             </div>
           </div>
         </div>
       )}
 
-      {/* Feed Filter Strip (Live vs Completed) */}
-      <div className="px-4 py-2 flex items-center justify-between">
-        <div className="flex items-center space-x-2">
+      {/* Filter Strip (Live vs Completed + New Battle) */}
+      <div className="px-4 flex items-center justify-between">
+        <div className="flex items-center space-x-1.5 bg-gray-200/70 p-1 rounded-xl">
           <button
             onClick={() => setBattleFilter('live')}
-            className={`flex items-center space-x-1.5 px-3 py-1 rounded-full text-xs font-bold transition-all ${
+            className={`px-3 py-1 rounded-lg text-xs font-bold transition-all ${
               battleFilter === 'live'
-                ? 'bg-[#EF4E3A] text-white shadow-xs'
-                : 'bg-white text-[#686B78] border border-black/[0.06]'
+                ? 'bg-white text-[#02060C] shadow-xs'
+                : 'text-[#686B78]'
             }`}
           >
-            <Flame className="h-3 w-3" />
-            <span>Live Fights</span>
+            🔥 Live Fights
           </button>
 
           <button
             onClick={() => setBattleFilter('completed')}
-            className={`flex items-center space-x-1.5 px-3 py-1 rounded-full text-xs font-bold transition-all ${
+            className={`px-3 py-1 rounded-lg text-xs font-bold transition-all ${
               battleFilter === 'completed'
-                ? 'bg-[#0F5132] text-white shadow-xs'
-                : 'bg-white text-[#686B78] border border-black/[0.06]'
+                ? 'bg-white text-[#02060C] shadow-xs'
+                : 'text-[#686B78]'
             }`}
           >
-            <Trophy className="h-3 w-3" />
-            <span>Hall of Fame</span>
+            🏆 Hall of Fame
           </button>
         </div>
 
         <button
           onClick={() => setIsCreateBattleOpen(true)}
-          className="flex items-center space-x-1 text-xs font-bold text-[#0F5132] bg-emerald-50 px-2.5 py-1 rounded-lg border border-emerald-200/50 hover:bg-emerald-100 transition-colors"
+          className="flex items-center space-x-1 text-xs font-bold text-[#0F5132] bg-emerald-50 px-2.5 py-1.5 rounded-xl border border-emerald-200/50 hover:bg-emerald-100 transition-colors"
         >
           <Plus className="h-3.5 w-3.5 stroke-[3]" />
           <span>New Battle</span>
         </button>
       </div>
 
-      {/* Battles Feed List */}
-      <div className="px-4 space-y-4 mt-1">
+      {/* Battles Feed List (No Duplicates) */}
+      <div className="px-4 space-y-3">
         {isLoading ? (
-          <div className="space-y-3 py-4">
+          <div className="space-y-3 py-2">
             {[1, 2].map((i) => (
               <div
                 key={i}
-                className="h-64 rounded-2xl bg-white border border-black/[0.06] animate-pulse p-4"
+                className="h-44 rounded-2xl bg-white border border-gray-100 animate-pulse p-4"
               />
             ))}
           </div>
-        ) : filteredBattles.length === 0 ? (
-          <div className="bg-white rounded-2xl p-8 text-center border border-black/[0.06] shadow-xs">
+        ) : arenaFeedBattles.length === 0 ? (
+          <div className="bg-white rounded-2xl p-8 text-center border border-gray-200/80 shadow-xs">
             <Swords className="h-8 w-8 text-gray-300 mx-auto mb-2" />
-            <h3 className="text-sm font-bold text-[#02060C]">No battles in this node</h3>
+            <h3 className="text-sm font-bold text-[#02060C]">No more battles in this node</h3>
             <p className="text-xs text-[#686B78] mt-1">
               Be the first to create a food battle for {selectedNeighborhood}!
             </p>
@@ -310,7 +342,7 @@ export default function HomePage() {
             </button>
           </div>
         ) : (
-          filteredBattles.map((battle) => (
+          arenaFeedBattles.map((battle) => (
             <FoodBattleCard
               key={battle.id}
               battle={battle}

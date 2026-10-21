@@ -165,30 +165,32 @@ function CheckinFormContent() {
   };
 
   return (
-    <div className="min-h-full pb-12">
+    <div className="min-h-full pb-28">
       {/* Top Banner Card */}
-      <div className="bg-gradient-to-r from-[#0F5132] to-[#166534] text-white p-4 shadow-sm">
-        <div className="flex items-center space-x-2">
-          <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white/20">
-            <Sparkles className="h-4 w-4 text-[#F6B21A]" />
-          </span>
-          <div>
-            <h1 className="text-base font-extrabold tracking-tight">Log Your Food Bite</h1>
-            <p className="text-[11px] text-white/80">
-              Rate your meal & build Navi Mumbai&apos;s culinary consensus
-            </p>
+      <div className="p-4 pb-1">
+        <div className="rounded-2xl bg-gradient-to-br from-[#0F5132] via-[#14532D] to-[#0A331E] text-white p-4 shadow-sm">
+          <div className="flex items-center space-x-2">
+            <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white/20">
+              <Sparkles className="h-4 w-4 text-[#F6B21A]" />
+            </span>
+            <div>
+              <h1 className="text-base font-extrabold tracking-tight">Log Your Food Bite</h1>
+              <p className="text-[11px] text-white/80">
+                Rate your meal & build Navi Mumbai&apos;s culinary consensus
+              </p>
+            </div>
           </div>
-        </div>
 
-        {/* Bonus Point Bar */}
-        <div className="mt-3 flex items-center justify-between bg-black/20 rounded-xl px-3 py-2 border border-white/10 text-xs">
-          <span className="font-semibold text-emerald-100 flex items-center space-x-1.5">
-            <Receipt className="h-3.5 w-3.5 text-[#F6B21A]" />
-            <span>Verify with receipt:</span>
-          </span>
-          <span className="font-black text-[#F6B21A] bg-black/30 px-2 py-0.5 rounded-md">
-            +50 Bonus CP
-          </span>
+          {/* Bonus Point Bar */}
+          <div className="mt-3 flex items-center justify-between bg-black/20 rounded-xl px-3 py-2 border border-white/10 text-xs">
+            <span className="font-semibold text-emerald-100 flex items-center space-x-1.5">
+              <Receipt className="h-3.5 w-3.5 text-[#F6B21A]" />
+              <span>Verify with receipt:</span>
+            </span>
+            <span className="font-black text-[#F6B21A] bg-black/30 px-2 py-0.5 rounded-md">
+              +50 Bonus CP
+            </span>
+          </div>
         </div>
       </div>
 
@@ -299,16 +301,16 @@ function CheckinFormContent() {
 
             {/* Field 3: Star Rating */}
             <div>
-              <label className="block text-xs font-extrabold text-[#02060C] mb-1">
+              <label className="block text-xs font-extrabold text-[#02060C] mb-1.5">
                 Taste Score: {rating} / 5 Stars
               </label>
-              <div className="flex items-center space-x-2 py-1">
+              <div className="flex items-center justify-center space-x-4 py-2.5 bg-[#F4F5F8] rounded-xl border border-black/[0.04]">
                 {[1, 2, 3, 4, 5].map((star) => (
                   <button
                     type="button"
                     key={star}
                     onClick={() => setRating(star)}
-                    className="p-1 text-2xl transition-transform active:scale-125 focus:outline-none"
+                    className="p-1 transition-transform active:scale-125 focus:outline-none"
                   >
                     <Star
                       className={`h-7 w-7 ${
