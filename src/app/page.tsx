@@ -22,6 +22,7 @@ import AuthModal from '@/components/AuthModal';
 import CheckinModal from '@/components/CheckinModal';
 import Footer from '@/components/Footer';
 import RankedFoodSearchResults from '@/components/RankedFoodSearchResults';
+import SplashScreen from '@/components/SplashScreen';
 import { addCrestPoints } from '@/lib/crestSystem';
 
 import { Battle, FoodPassport as FoodPassportType, BattleChallenge } from '@/lib/types';
@@ -50,6 +51,7 @@ import {
   Sparkles,
   Receipt,
   CheckCircle2,
+  Play,
 } from 'lucide-react';
 
 const NAVI_MUMBAI_NODES = [
@@ -86,6 +88,7 @@ export default function HomePage() {
   const [isCheckinModalOpen, setIsCheckinModalOpen] = useState(false);
   const [cloudCheckins, setCloudCheckins] = useState<CloudCheckin[]>([]);
   const [crestToast, setCrestToast] = useState<{ msg: string; points: number } | null>(null);
+  const [showSplashVideo, setShowSplashVideo] = useState(false);
 
   const battlesSectionRef = useRef<HTMLDivElement>(null);
 
@@ -353,7 +356,10 @@ export default function HomePage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#FAF8F5] text-[#1C1917] pb-28">
+    <div className="min-h-screen bg-[#FFF8EE] text-[#3A2E28] pb-28">
+      {/* 9:16 Mobile Splash Video Intro (Runs once per session or on request) */}
+      <SplashScreen forceShow={showSplashVideo} onFinish={() => setShowSplashVideo(false)} />
+
       {/* Top Navbar */}
       <Navbar
         passport={passport}
@@ -401,6 +407,14 @@ export default function HomePage() {
           </div>
 
           <div className="flex items-center space-x-2">
+            <button
+              onClick={() => setShowSplashVideo(true)}
+              className="hidden sm:inline-flex items-center space-x-1.5 font-mono text-[11px] font-bold text-[#3A2E28]/70 bg-white px-2.5 py-1 rounded-xl border border-[#3A2E28]/15 shadow-xs hover:bg-[#FFF8EE] transition-all"
+              title="Watch Intro Splash Video"
+            >
+              <Play className="h-3 w-3 text-[#0F5132]" />
+              <span>Intro</span>
+            </button>
             <span className="hidden xs:inline-flex items-center space-x-1.5 font-mono text-[11px] font-bold text-[#3A2E28]/70 bg-white px-2.5 py-1 rounded-xl border border-[#3A2E28]/15 shadow-xs">
               <Flame className="h-3.5 w-3.5 text-[#EF4E3A]" />
               <span>{liveBattles.length} Clashes</span>
