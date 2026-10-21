@@ -51,6 +51,8 @@ export const viewport: Viewport = {
   viewportFit: 'cover',
 };
 
+import AppShell from '@/components/AppShell';
+
 export default function RootLayout({
   children,
 }: {
@@ -65,9 +67,11 @@ export default function RootLayout({
         <link rel="icon" type="image/svg+xml" href="/icons/icon.svg" />
         <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
       </head>
-      <body className="min-h-full bg-[#F4F5F8] text-[#02060C] selection:bg-[#0F5132] selection:text-white">
+      <body className="min-h-full bg-[#0A0F1D] text-[#02060C] selection:bg-[#0F5132] selection:text-white">
         <PWARegistration />
-        {children}
+        <AppShell>
+          {children}
+        </AppShell>
       </body>
     </html>
   );
