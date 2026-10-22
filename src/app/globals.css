@@ -1,55 +1,76 @@
 @import "tailwindcss";
 
 :root {
-  /* Palate Brand Core Colors */
-  --palate-forest: #0F5132;        /* Primary Deep Forest Green */
-  --palate-tomato: #EF4E3A;        /* Accent Tomato Red */
-  --palate-mango: #F6B21A;         /* Warm Mango Yellow */
-  --palate-cream: #F4F5F8;         /* Swiggy-grade Clean App Background */
-  --palate-cocoa: #02060C;         /* Swiggy-grade High-Contrast Deep Slate */
-  --palate-muted: #686B78;         /* Swiggy Secondary Muted Text */
-  --palate-sage: #E8EBE9;          /* Subtle Slate Surface */
+  /* Palate Brand Core Colors (Staff UI/UX Specification) */
+  --palate-forest: #0D4734;        /* Primary Deep Forest Green */
+  --palate-emerald: #10B981;       /* Primary Emerald Green */
+  --palate-amber: #F59E0B;         /* Warm Amber / Gold Accent */
+  --palate-amber-light: #FEF3C7;   /* Warm Gold Surface Tint */
+  --palate-veg: #16A34A;           /* Pure Veg Status Dot Indicator */
+  --palate-nonveg: #DC2626;        /* Non-Veg Status Triangle Indicator */
+  
+  --palate-bg: #F8FAFC;            /* Light gray / off-white app background */
+  --palate-surface: #FFFFFF;       /* Clean white cards */
+  --palate-title: #0F172A;         /* Slate 900 for titles */
+  --palate-secondary: #64748B;     /* Slate 500 for secondary metadata */
+  --palate-placeholder: #94A3B8;   /* Slate 400 for placeholders */
+  
+  --palate-border: rgba(15, 23, 42, 0.06); /* Subtle border stroke */
+  --palate-card-border: #F1F5F9;   /* border-slate-100 */
 
-  /* Semantic Design System Mappings */
-  --palate-yellow: var(--palate-mango);
-  --palate-blue: var(--palate-forest);
-  --palate-pink: var(--palate-tomato);
-  --palate-mint: var(--palate-forest);
+  /* Backward Compatibility Mappings */
+  --palate-tomato: #DC2626;
+  --palate-mango: #F59E0B;
+  --palate-cream: #F8FAFC;
+  --palate-cocoa: #0F172A;
+  --palate-muted: #64748B;
+  --palate-sage: #F1F5F9;
+  --palate-yellow: #F59E0B;
+  --palate-blue: #0D4734;
+  --palate-pink: #DC2626;
+  --palate-mint: #10B981;
   --palate-paper: #FFFFFF;
   --palate-white: #FFFFFF;
-  --palate-concrete: var(--palate-sage);
-  --palate-tar: var(--palate-cocoa);
-  --palate-border: rgba(2, 6, 12, 0.08);
-
-  /* Footer Tokens */
-  --footer-bg: #FFFFFF;
-  --footer-ink: #02060C;
-  --footer-muted: #686B78;
-  --footer-border: rgba(2, 6, 12, 0.08);
-  --footer-border-bold: rgba(2, 6, 12, 0.16);
-  --footer-yellow: var(--palate-mango);
-  --footer-card-bg: #F8F9FA;
-  --footer-line-height-body: 1.6;
+  --palate-concrete: #F1F5F9;
+  --palate-tar: #0F172A;
 }
 
 @theme {
   --color-forest: var(--palate-forest);
-  --color-tomato: var(--palate-tomato);
-  --color-mango: var(--palate-mango);
-  --color-cream: var(--palate-cream);
-  --color-cocoa: var(--palate-cocoa);
-  --color-sage: var(--palate-sage);
+  --color-emerald: var(--palate-emerald);
+  --color-amber: var(--palate-amber);
+  --color-amber-light: var(--palate-amber-light);
+  --color-veg: var(--palate-veg);
+  --color-nonveg: var(--palate-nonveg);
+  --color-cream: var(--palate-bg);
+  --color-cocoa: var(--palate-title);
+  --color-muted: var(--palate-secondary);
 
-  --color-yellow: var(--palate-mango);
-  --color-blue: var(--palate-forest);
-  --color-pink: var(--palate-tomato);
-  --color-mint: var(--palate-forest);
-  --color-paper: var(--palate-paper);
-  --color-concrete: var(--palate-sage);
-  --color-tar: var(--palate-cocoa);
+  --font-sans: var(--font-sans), "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
 
-  --font-sans: var(--font-sans), "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Courier New", monospace;
+@keyframes floatUpFade {
+  0% {
+    opacity: 0;
+    transform: translateY(0px) scale(0.6);
+  }
+  20% {
+    opacity: 1;
+    transform: translateY(-8px) scale(1.15);
+  }
+  65% {
+    opacity: 1;
+    transform: translateY(-28px) scale(1.0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-44px) scale(0.85);
+  }
+}
+
+.animate-float-cp {
+  animation: floatUpFade 1.1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 /* Swiggy-Style Clean Modern Canvas */

@@ -47,7 +47,7 @@ export default function BottomNav() {
   ];
 
   return (
-    <nav className="w-full bg-white border-t border-gray-200/80 select-none shadow-[0_-2px_10px_rgba(0,0,0,0.03)]">
+    <nav className="w-full bg-white border-t border-slate-100 select-none shadow-[0_-2px_10px_rgba(0,0,0,0.03)]">
       <div className="grid grid-cols-4 w-full h-[58px]">
         {tabs.map((tab) => {
           const Icon = tab.icon;
@@ -57,8 +57,8 @@ export default function BottomNav() {
               href={tab.href}
               className={`flex flex-col items-center justify-center h-full transition-all active:scale-95 ${
                 tab.active
-                  ? 'text-[#0F5132]'
-                  : 'text-[#64748B] hover:text-[#0F5132]'
+                  ? 'text-[#0D4734]'
+                  : 'text-slate-400 hover:text-[#0D4734]'
               }`}
             >
               <div className="relative flex items-center justify-center">
@@ -80,7 +80,7 @@ export default function BottomNav() {
               {/* Active Dot Indicator */}
               <div className="h-1 flex items-center justify-center mt-0.5">
                 {tab.active && (
-                  <span className="h-1 w-1 rounded-full bg-[#0F5132]" />
+                  <span className="h-1 w-1 rounded-full bg-[#0D4734]" />
                 )}
               </div>
             </Link>

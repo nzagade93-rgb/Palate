@@ -170,32 +170,32 @@ export default function HomePage() {
         {/* Craving Search Trigger */}
         <button
           onClick={() => router.push('/explore')}
-          className="w-full flex items-center justify-between bg-[#F4F5F8] text-[#686B78] px-3.5 py-2.5 rounded-xl border border-black/[0.04] hover:bg-gray-200/70 transition-all text-xs font-medium text-left"
+          className="w-full flex items-center justify-between bg-[#F8FAFC] text-slate-500 px-3.5 py-2.5 rounded-2xl border border-slate-200/90 hover:bg-slate-100 transition-all text-xs font-medium text-left"
         >
           <div className="flex items-center space-x-2">
-            <Search className="h-4 w-4 text-[#686B78]" />
-            <span className="font-semibold text-[#02060C]/80">Craving Biryani, Misal, Shawarma...?</span>
+            <Search className="h-4 w-4 text-slate-400" />
+            <span className="font-semibold text-slate-800">Search Vada Pav, Biryani, Misal, Shawarma...</span>
           </div>
-          <span className="text-[10px] font-bold text-[#0F5132] bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200/50">
-            Rankings
+          <span className="text-[10px] font-extrabold text-[#0D4734] bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200/50">
+            Directory →
           </span>
         </button>
 
         {/* Navi Mumbai Node Chips (Horizontal Scroll) */}
         <div className="flex items-center space-x-1.5 overflow-x-auto scrollbar-none pt-2.5 -mx-4 px-4">
-          {NAVI_MUMBAI_NODES.map((node) => {
-            const isSelected = selectedNeighborhood === node;
+          {['All Navi Mumbai', 'Vashi', 'Nerul', 'Belapur', 'Kharghar', 'Seawoods', 'Sanpada'].map((node) => {
+            const isSelected = selectedNeighborhood === (node === 'All Navi Mumbai' ? 'All' : node);
             return (
               <button
                 key={node}
-                onClick={() => setSelectedNeighborhood(node)}
-                className={`shrink-0 px-3 py-1 rounded-full text-xs font-bold transition-all ${
+                onClick={() => setSelectedNeighborhood(node === 'All Navi Mumbai' ? 'All' : node)}
+                className={`shrink-0 px-3.5 py-1.5 rounded-full text-xs font-bold transition-all active:scale-95 ${
                   isSelected
-                    ? 'bg-[#0F5132] text-white shadow-xs'
-                    : 'bg-[#F4F5F8] text-[#686B78] hover:text-[#02060C] hover:bg-gray-200'
+                    ? 'bg-[#0D4734] text-white shadow-xs border border-[#0D4734]'
+                    : 'bg-white text-slate-700 border border-slate-200/90 hover:border-slate-300 shadow-2xs'
                 }`}
               >
-                {node === 'All' ? '📍 All Navi Mumbai' : node}
+                {node}
               </button>
             );
           })}
